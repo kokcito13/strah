@@ -1,0 +1,69 @@
+admin:
+    resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
+    prefix: /admin
+
+_sonata_admin:
+    resource: .
+    type: sonata_admin
+    prefix: /admin
+
+fos_user_security:
+   resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+fos_user_profile:
+   resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+   prefix: /profile
+fos_user_register:
+   resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+   prefix: /register
+fos_user_resetting:
+   resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+   prefix: /resetting
+fos_user_change_password:
+   resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+   prefix: /change-password
+fos_user_security:
+   resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+fos_user_profile:
+   resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+   prefix: /profile
+fos_user_register:
+   resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+   prefix: /register
+fos_user_resetting:
+   resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+   prefix: /resetting
+fos_user_change_password:
+   resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+   prefix: /change-password
+
+soanata_user:
+   resource: '@SonataUserBundle/Resources/config/routing/admin_security.xml'
+   prefix: /admin
+
+file_upload:
+    pattern:  /uploadfile
+    defaults: { _controller: AcmeMainBundle:ImageUpload:handle }
+
+_imagine:
+    resource: .
+    type:     imagine
+
+acme_main_page:
+    resource: "@AcmeMainBundle/Controller/PageController.php"
+    type:     annotation
+
+acme_main_category:
+    resource: "@AcmeMainBundle/Controller/CategoryController.php"
+    type:     annotation
+
+acme_main_tag:
+    resource: "@AcmeMainBundle/Controller/TagController.php"
+    type:     annotation
+
+acme_main_search:
+    resource: "@AcmeMainBundle/Controller/SearchController.php"
+    type:     annotation
+
+acme_main_post:
+    resource: "@AcmeMainBundle/Controller/PostController.php"
+    type:     annotation

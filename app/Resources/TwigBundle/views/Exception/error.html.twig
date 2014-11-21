@@ -1,0 +1,26 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}404 ошибка. Страница не найдена{% endblock %}
+{% block description %}Ошибка 404 по причине несуществующей странице{% endblock %}
+
+{% block meta %}
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $('div#category_description > ul').addClass('list mark-circle');
+        $('div#category_description > ol').addClass('list mark-circle-numbers');
+    </script>
+{% endblock %}
+
+{% block body %}
+    <div class="main-container">
+        <div id="category_description">
+            <h1>404 ошибка</h1>
+            <p>Вы попали на страницу которая не существует или уже была удалена.</p>
+            <br/>
+            <br/>
+            <small>The server returned a "{{ status_code }} {{ status_text }}".</small>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Правила пользования сайта Bohenon.com{% endblock %}
+{% block description %}Правила пользования сайта Bohenon.com{% endblock %}
+
+{% block body %}
+    <div class="text-container">
+        <div class="baselayout">
+            <h1>Правила пользования вебсайтом</h1>
+        </div>
+        <div class="baselayout-inner">
+            <p>Правила пользования вебсайтом разработаны администрацией вебсайта Bohenon.com</p>
+
+            <p>Мужской журнал о креативных подходах к <a href="{{ path('client_category_show',{ 'category_url': 'style' }) }}">стилю</a>.
+                Использование материалов Bohenon.com разрешено только с предварительного согласия правообладателей. Все права на картинки и тексты принадлежат их авторам.
+                Сайт может содержать контент, не предназначенный для лиц младше 16 лет.</p>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,12 @@
+_index_page:
+    pattern:  /
+    defaults: { _controller: AcmeMainBundle:Page:index }
+
+#_default_controller:
+#    resource: "@AcmeMainBundle/Controller/DefaultController.php"
+#    type:     annotation
+
+#_demo:
+#    resource: "@AcmeDemoBundle/Controller/DemoController.php"
+#    type:     annotation
+#    prefix:   /demo

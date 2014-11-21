@@ -1,0 +1,85 @@
+{% extends '::base.html.twig' %}
+
+{% block javascripts %}
+    
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.2/underscore-min.js" type="text/javascript"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.2/backbone-min.js"></script>
+    
+    {% if word|length > 1 %}
+        
+    <script type="text/template" id="search-results-template">
+        <% _.each(results, function(res){ %> 
+            <div class="item<% if (res.get('img_width') == 630) { %> w2<% } %>">
+                <div class="wrap">
+                        <div class="photo">
+                            <a href="<%= res.get('url') %>"><div class="photo-shadow"></div>
+                                <img height="<%= res.get('img_height') %>" width="<%= res.get('img_width') %>" src="<%= res.get('img') %>">
+                            </a>
+                        </div>
+                        <div class="name-news">
+                            <a href="<%= res.get('url') %>">
+                                <span class="i-catalog"><%= res.get('category_name') %></span>
+                                <%= res.get('name') %>
+                            </a>
+                        </div>
+                    <div class="date-news">
+                        <%= res.get('date') %>
+                    </div>
+                </div>
+            </div>
+        <% }); %>
+    </script>
+
+    <script type="text/javascript">
+        
+    var $container = $('#masonry_wrap').masonry({
+        itemSelector: '.item',
+        columnWidth: 300,
+        gutter: 30
+    });    
+    
+    var SearchResults = Backbone.Collection.extend({
+        url: "{{ path('client_search_show') }}"
+    });
+    
+    var SearchView = Backbone.View.extend({
+        el: '#masonry_wrap',
+        
+        render: function() {
+            
+            var that = this;
+            var results = new SearchResults();
+            results.fetch({
+                data: {searchValue: '{{ word }}'},
+                success: function(results){
+                    var template = _.template($('#search-results-template').html(), {results: results.models});
+                    var items = $(template);
+                    $container.prepend( items );
+                    $container.masonry('appended', items, 'reloadItems');
+                }
+            });
+            
+        }
+    });
+    var search = new SearchView();
+    search.render();
+    
+    </script>
+
+    {% endif %}
+    
+{% endblock %}
+
+{% block body %}
+    <div class="text-container">
+        <div class="baselayout">
+            {% if word|length > 1 %}
+                <h2>Результаты поиска по запросу: {{ word }}</h2>
+                <div id="masonry_wrap"></div>
+            {% else %}
+               <h1>Пустой запрос</h1>
+               <p>Введите слово для поиска и повторите попытку</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

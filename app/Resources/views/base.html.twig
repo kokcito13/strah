@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Bohenon.com{% endblock %}</title>
+    <meta name="description" content="{% block description %}Bohenon.com{% endblock %}"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta content="width=device-width, target-densityDpi=device-dpi" name="viewport"/>
+    <script type="text/javascript" src="{{ asset('bundles/acmemain/js/jquery.min.js') }}"></script>
+    <link type="text/css" rel="stylesheet" href="{{ asset('bundles/acmemain/css/style.css') }}" media="all"/>
+    {% block meta %}{% endblock %}
+    {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+</head>
+<body>
+    <a href="#" class="arrow-top">Вверх</a>
+    <div id="wrapper">
+        <div id="hd">
+            <div class="logo"><a href="{{ path('page_home') }}" title="Главная страница">BOHENON Мужской журнал</a></div>
+            {% if mainCategory is not defined %}
+                {% set mainCategory = false %}
+            {% endif %}
+            {{ render(controller('AcmeMainBundle:PageLayout:categories', {
+                'main': mainCategory
+            })) }}
+            <div class="search-block">
+                <form id="searchForm" name="searchForm" method="post" action="{{path('client_search_index')}}">
+                    <input type="text" name="searchValue" value="" placeholder="ПОИСК" class="search-fild"/>
+                    <input type="submit" name="searchButton" class="search-btn" value="Поиск"/>
+                </form>
+            </div>
+        </div>
+        <div class="wrap-content">
+            {% block body %}{% endblock %}
+        </div>
+        {{ render(controller('AcmeMainBundle:PageLayout:footer', {
+        'main': mainCategory
+        })) }}
+    </div>
+
+    <script type="text/javascript" src="{{ asset('bundles/acmemain/js/jquery.jcarousel.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/acmemain/js/masonry.pkgd.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/acmemain/js/modernizr.custom.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/acmemain/js/script.js') }}"></script>
+    {% block javascripts %}{% endblock %}
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">(function (d, w, c) {
+            (w[c] = w[c] || []).push(function () {
+                try {
+                    w.yaCounter24959840 = new Ya.Metrika({id: 24959840, webvisor: true, clickmap: true, trackLinks: true, accurateTrackBounce: true});
+                } catch (e) {
+                }
+            });
+            var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () {
+                n.parentNode.insertBefore(s, n);
+            };
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+            if (w.opera == "[object Opera]") {
+                d.addEventListener("DOMContentLoaded", f, false);
+            } else {
+                f();
+            }
+        })(document, window, "yandex_metrika_callbacks");</script>
+    <noscript>
+        <div><img src="//mc.yandex.ru/watch/24959840" style="position:absolute; left:-9999px;" alt=""/></div>
+    </noscript>
+    <!-- /Yandex.Metrika counter -->
+</body>
+</html>

@@ -1,0 +1,46 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Bohenon.com - мужской журнал{% endblock %}
+{% block description %}Информационный портал для мужчин - Bohenon.com{% endblock %}
+
+{% block meta %}
+    <meta name='yandex-verification' content='7e14ee72c1c23732' />
+    <meta name="google-site-verification" content="6u9eu5JfLePXnxHGGc9Z36vyTjwxKpWE5CeGvzNYEIU" />
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        var __urlGetPosts = '{{ path('list_of_post_main') }}';
+        var $container = $('#masonry_wrap').masonry({
+            itemSelector: '.item',
+            columnWidth: 300,
+            gutter: 30
+        });
+    </script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.2/underscore-min.js" type="text/javascript"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.2/backbone-min.js"></script>
+    <script type="text/javascript" src="{{ asset('bundles/acmemain/js/index-page.js') }}"></script>
+
+    <script type="text/template" id="post-template">
+        <% _.each(posts, function(post) { %>
+            <div class="item<% if (post.get('img_width') == 630) { %> w2<% } %>" data-page="<%=post.get('page')%>">
+                <div class="wrap">
+                    <div class="photo">
+                        <a href="<%=post.get('url')%>"><div class="photo-shadow"></div>
+                            <img src="<%=post.get('img')%>" width="<%=post.get('img_width')%>" height="<%=post.get('img_height')%>"/>
+                        </a>
+                    </div>
+                    <div class="name-news"><a href="<%=post.get('url')%>"><span class="i-catalog"><%=post.get('category_name')%>.</span> <%=post.get('name')%></a></div>
+                    <div class="date-news"><%=post.get('date')%></div>
+                </div>
+            </div>
+        <% }); %>
+    </script>
+{% endblock %}
+
+{% block body %}
+    <div class="main-container">
+        <div id="masonry_wrap"></div>
+        <div class="load-more"><a href="#" class="load-news">Показать еще</a></div>
+    </div>
+{% endblock %}

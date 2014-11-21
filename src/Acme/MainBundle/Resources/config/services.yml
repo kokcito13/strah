@@ -1,0 +1,27 @@
+services:
+    acme_main.admin.category:
+        class: Acme\MainBundle\Admin\CategoryAdmin
+        arguments: [~, Acme\MainBundle\Entity\Category, AcmeMainBundle:CategoryAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: Пости, label: Категории}
+
+    acme_main.admin.tag:
+        class: Acme\MainBundle\Admin\TagAdmin
+        arguments: [~, Acme\MainBundle\Entity\Tag, AcmeMainBundle:TagAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: Пости, label: Теги}
+
+    acme.main.admin.post:
+        class: Acme\MainBundle\Admin\PostAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Пости", label: Пости }
+        arguments:
+            - ~
+            - Acme\MainBundle\Entity\Post
+            - SonataAdminBundle:CRUD
+
+    fos_user.profile.form.type:
+        class: Acme\MainBundle\Form\Type\ProfileFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: fos_user_profile }

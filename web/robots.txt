@@ -1,0 +1,46 @@
+User-agent: Yandex
+Crawl-delay: 10
+Disallow: /contact
+Disallow: /advertising
+Disallow: /rule
+Disallow: /admin
+Disallow: /social/share
+Disallow: /posts?page=*
+Allow: /uploads/
+Allow: /media/
+Host: bohenon.com
+
+User-agent: Mediapartners-Google
+Disallow:
+
+User-agent: Googlebot
+Disallow: /contact
+Disallow: /advertising
+Disallow: /rule
+Disallow: /admin
+Disallow: /social/share
+Disallow: /posts?page=*
+Allow: /uploads/
+Allow: /media/
+
+User-agent: *
+Crawl-delay: 10
+Disallow: /contact
+Disallow: /advertising
+Disallow: /rule
+Disallow: /admin
+Disallow: /social/share
+Disallow: /posts?page=*
+Allow: /uploads/
+Allow: /media/
+
+User-agent: Googlebot-Image
+Allow: /uploads/
+Allow: /media/
+
+User-agent: YandexImages
+Allow: /uploads/
+Allow: /media/
+
+User-agent: Slurp
+Disallow: /
