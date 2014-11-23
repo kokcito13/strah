@@ -1,70 +1,136 @@
+{% if mainCategory is not defined %}
+    {% set mainCategory = false %}
+{% endif %}
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{% block title %}Bohenon.com{% endblock %}</title>
-    <meta name="description" content="{% block description %}Bohenon.com{% endblock %}"/>
+    <title>{% block title %}DveStrahovki.ru{% endblock %}</title>
+    <meta name="description" content="{% block description %}DveStrahovki.ru{% endblock %}"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta content="width=device-width, target-densityDpi=device-dpi" name="viewport"/>
-    <script type="text/javascript" src="{{ asset('bundles/acmemain/js/jquery.min.js') }}"></script>
-    <link type="text/css" rel="stylesheet" href="{{ asset('bundles/acmemain/css/style.css') }}" media="all"/>
+
     {% block meta %}{% endblock %}
     {% block stylesheets %}{% endblock %}
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
-</head>
-<body>
-    <a href="#" class="arrow-top">Вверх</a>
-    <div id="wrapper">
-        <div id="hd">
-            <div class="logo"><a href="{{ path('page_home') }}" title="Главная страница">BOHENON Мужской журнал</a></div>
-            {% if mainCategory is not defined %}
-                {% set mainCategory = false %}
-            {% endif %}
-            {{ render(controller('AcmeMainBundle:PageLayout:categories', {
-                'main': mainCategory
-            })) }}
-            <div class="search-block">
-                <form id="searchForm" name="searchForm" method="post" action="{{path('client_search_index')}}">
-                    <input type="text" name="searchValue" value="" placeholder="ПОИСК" class="search-fild"/>
-                    <input type="submit" name="searchButton" class="search-btn" value="Поиск"/>
-                </form>
-            </div>
-        </div>
-        <div class="wrap-content">
-            {% block body %}{% endblock %}
-        </div>
-        {{ render(controller('AcmeMainBundle:PageLayout:footer', {
-        'main': mainCategory
-        })) }}
-    </div>
 
-    <script type="text/javascript" src="{{ asset('bundles/acmemain/js/jquery.jcarousel.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/acmemain/js/masonry.pkgd.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/acmemain/js/modernizr.custom.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/acmemain/js/script.js') }}"></script>
-    {% block javascripts %}{% endblock %}
-    <!-- Yandex.Metrika counter -->
-    <script type="text/javascript">(function (d, w, c) {
-            (w[c] = w[c] || []).push(function () {
-                try {
-                    w.yaCounter24959840 = new Ya.Metrika({id: 24959840, webvisor: true, clickmap: true, trackLinks: true, accurateTrackBounce: true});
-                } catch (e) {
+    <!-- CSS
+    ================================================== -->
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{{ asset('bundles/acmemain/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/acmemain/css/bootstrap-responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/acmemain/css/prettyPhoto.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/acmemain/css/flexslider.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/acmemain/css/custom-styles.css') }}">
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <link rel="stylesheet" href="{{ asset('bundles/acmemain/css/style-ie.css') }}"/>
+    <![endif]-->
+
+    <script type="text/javascript" src="{{ asset('bundles/acmemain/js/jquery.min.js') }}"></script>
+
+    <!-- Favicons
+    ================================================== -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="apple-touch-icon" href="{{ asset('bundles/acmemain/images/apple-touch-icon.png') }}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('bundles/acmemain/images/apple-touch-icon-72x72.png') }}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('bundles/acmemain/images/apple-touch-icon-114x114.png') }}">
+</head>
+<body class="home">
+<!-- Color Bars (above header)-->
+<div class="color-bar-1"></div>
+<div class="color-bar-2 color-bg"></div>
+
+<div class="container">
+    <div class="row header"><!-- Begin Header -->
+        <!-- Logo
+        ================================================== -->
+        <div class="span5 logo">
+            <a href="{{ path('page_home') }}">
+                <img src="{{ asset('bundles/acmemain/images/piccolo-logo.png') }}" alt="" />
+            </a>
+            <h5>Все о страховке</h5>
+        </div>
+        <!-- Main Navigation
+        ================================================== -->
+        {{ render(controller('AcmeMainBundle:PageLayout:navigate', {
+            'main': mainCategory
+        })) }}
+    </div><!-- End Header -->
+    {% block body %}{% endblock %}
+</div> <!-- End Container -->
+
+<!-- Footer Area
+    ================================================== -->
+{{ render(controller('AcmeMainBundle:PageLayout:footer', {
+    'main': mainCategory
+})) }}
+
+{#<form id="searchForm" name="searchForm" method="post" action="{{path('client_search_index')}}">#}
+    {#<input type="text" name="searchValue" value="" placeholder="ПОИСК" class="search-fild"/>#}
+    {#<input type="submit" name="searchButton" class="search-btn" value="Поиск"/>#}
+{#</form>#}
+
+<!-- Scroll to Top -->
+<div id="toTop" class="hidden-phone hidden-tablet">Back to Top</div>
+
+    <!-- JS
+================================================== -->
+    <script src="{{ asset('bundles/acmemain/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('bundles/acmemain/js/jquery.prettyPhoto.js') }}"></script>
+    <script src="{{ asset('bundles/acmemain/js/jquery.flexslider.js') }}"></script>
+    <script src="{{ asset('bundles/acmemain/js/jquery.custom.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#btn-blog-next").click(function () {
+                $('#blogCarousel').carousel('next')
+            });
+            $("#btn-blog-prev").click(function () {
+                $('#blogCarousel').carousel('prev')
+            });
+
+            $("#btn-client-next").click(function () {
+                $('#clientCarousel').carousel('next')
+            });
+            $("#btn-client-prev").click(function () {
+                $('#clientCarousel').carousel('prev')
+            });
+        });
+        $(window).load(function(){
+            $('.flexslider').flexslider({
+                animation: "slide",
+                slideshow: true,
+                start: function(slider){
+                    $('body').removeClass('loading');
                 }
             });
-            var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () {
-                n.parentNode.insertBefore(s, n);
-            };
+        });
+    </script>
+    {% block javascripts %}{% endblock %}
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function (d, w, c) {
+            (w[c] = w[c] || []).push(function() {
+                try {
+                    w.yaCounter27107978 = new Ya.Metrika({id:27107978,
+                        webvisor:true,
+                        clickmap:true,
+                        trackLinks:true,
+                        accurateTrackBounce:true});
+                } catch(e) { }
+            });
+
+            var n = d.getElementsByTagName("script")[0],
+                    s = d.createElement("script"),
+                    f = function () { n.parentNode.insertBefore(s, n); };
             s.type = "text/javascript";
             s.async = true;
             s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
             if (w.opera == "[object Opera]") {
                 d.addEventListener("DOMContentLoaded", f, false);
-            } else {
-                f();
-            }
-        })(document, window, "yandex_metrika_callbacks");</script>
-    <noscript>
-        <div><img src="//mc.yandex.ru/watch/24959840" style="position:absolute; left:-9999px;" alt=""/></div>
-    </noscript>
+            } else { f(); }
+        })(document, window, "yandex_metrika_callbacks");
+    </script>
+    <noscript><div><img src="//mc.yandex.ru/watch/27107978" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->
 </body>
 </html>

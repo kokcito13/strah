@@ -1,7 +1,0 @@
-<ul class="hd-menu">
-    {% for entity in entities %}
-        <li {% if main == entity.url %} class="active" {% endif %}>
-            <a href="{{ path('client_category_show',{ 'category_url': entity.url }) }}">{{ entity.name }}</a>
-        </li>
-    {% endfor %}
-</ul>

@@ -1,21 +1,100 @@
-<div class="footer">
-    <div class="copy">© {{ "now"|date('Y') }}</div>
-    <div class="foot-navigation">
-        <ul class="foot-menu">
-            {% for entity in entities %}
-                <li {% if main == entity.url %} class="active" {% endif %}>
-                    <a href="{{ path('client_category_show',{ 'category_url': entity.url }) }}">{{ entity.name }}</a>
-                </li>
-            {% endfor %}
-        </ul>
-        <ul class="foot-nav">
-            <li><a href="{{ path('page_contact') }}">Контакты</a></li>
-            <li><a href="{{ path('page_advertising') }}">Реклама на сайте</a></li>
-            <li><a href="{{ path('page_sitemap') }}">Карта сайта</a></li>
-            <li><a href="{{ path('page_rule') }}">Правила сайта</a></li>
-        </ul>
-    </div>
+{#<div class="footer">#}
+    {#<div class="copy">© {{ "now"|date('Y') }}</div>#}
+    {#<div class="foot-navigation">#}
+        {#<ul class="foot-menu">#}
+            {#{% for entity in entities %}#}
+                {#<li {% if main == entity.url %} class="active" {% endif %}>#}
+                    {#<a href="{{ path('client_category_show',{ 'category_url': entity.url }) }}">{{ entity.name }}</a>#}
+                {#</li>#}
+            {#{% endfor %}#}
+        {#</ul>#}
+        {#<ul class="foot-nav">#}
+            {#<li><a href="{{ path('page_contact') }}">Контакты</a></li>#}
+            {#<li><a href="{{ path('page_advertising') }}">Реклама на сайте</a></li>#}
+            {#<li><a href="{{ path('page_sitemap') }}">Карта сайта</a></li>#}
+            {#<li><a href="{{ path('page_rule') }}">Правила сайта</a></li>#}
+        {#</ul>#}
+    {#</div>#}
     <!--noindex-->
-    <div class="autor">Дизайн сайта – <a class="some_way" href="#" data-url="http://rademade.com" rel="nofollow">rademade</a></div>
+    {#<div class="autor">Дизайн сайта – <a class="some_way" href="#" data-url="http://rademade.com" rel="nofollow">rademade</a></div>#}
     <!--/noindex-->
-</div>
+{#</div>#}
+<div class="footer-container"><!-- Begin Footer -->
+    <div class="container">
+        {#<div class="row footer-row">#}
+            {#<div class="span3 footer-col">#}
+                {#<h5>About Us</h5>#}
+                {#<img src="{{ asset('bundles/acmemain/images/piccolo-footer-logo.png') }}" alt="Piccolo" /><br /><br />#}
+                {#<address>#}
+                    {#<strong>Design Team</strong><br />#}
+                    {#123 Main St, Suite 500<br />#}
+                    {#New York, NY 12345<br />#}
+                {#</address>#}
+                {#<ul class="social-icons">#}
+                    {#<li><a href="#" class="social-icon facebook"></a></li>#}
+                    {#<li><a href="#" class="social-icon twitter"></a></li>#}
+                    {#<li><a href="#" class="social-icon dribble"></a></li>#}
+                    {#<li><a href="#" class="social-icon rss"></a></li>#}
+                    {#<li><a href="#" class="social-icon forrst"></a></li>#}
+                {#</ul>#}
+            {#</div>#}
+            {#&#123;&#35;<div class="span3 footer-col">&#35;&#125;#}
+                {#&#123;&#35;<h5>Latest Tweets</h5>&#35;&#125;#}
+                {#&#123;&#35;<ul>&#35;&#125;#}
+                    {#&#123;&#35;<li><a href="#">@room122</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>&#35;&#125;#}
+                    {#&#123;&#35;<li><a href="#">@room122</a> In interdum felis fermentum ipsum molestie sed porttitor ligula rutrum. Morbi blandit ultricies ultrices.</li>&#35;&#125;#}
+                    {#&#123;&#35;<li><a href="#">@room122</a> Vivamus nec lectus sed orci molestie molestie. Etiam mattis neque eu orci rutrum aliquam.</li>&#35;&#125;#}
+                {#&#123;&#35;</ul>&#35;&#125;#}
+            {#&#123;&#35;</div>&#35;&#125;#}
+            {#<div class="span3 footer-col">#}
+                {#<h5>Latest Posts</h5>#}
+                {#<ul class="post-list">#}
+                    {#<li><a href="#">Lorem ipsum dolor sit amet</a></li>#}
+                    {#<li><a href="#">Consectetur adipiscing elit est lacus gravida</a></li>#}
+                    {#<li><a href="#">Lectus sed orci molestie molestie etiam</a></li>#}
+                    {#<li><a href="#">Mattis consectetur adipiscing elit est lacus</a></li>#}
+                    {#<li><a href="#">Cras rutrum, massa non blandit convallis est</a></li>#}
+                {#</ul>#}
+            {#</div>#}
+            {#&#123;&#35;<div class="span3 footer-col">&#35;&#125;#}
+                {#&#123;&#35;<h5>Flickr Photos</h5>&#35;&#125;#}
+                {#&#123;&#35;<ul class="img-feed">&#35;&#125;#}
+                    {#&#123;&#35;<li><a href="#"><img src="{{ asset('bundles/acmemain/images/gallery/flickr-img-1.jpg') }}" alt="Image Feed"></a></li>&#35;&#125;#}
+                    {#&#123;&#35;<li><a href="#"><img src="{{ asset('bundles/acmemain/images/gallery/flickr-img-1.jpg') }}" alt="Image Feed"></a></li>&#35;&#125;#}
+                    {#&#123;&#35;<li><a href="#"><img src="{{ asset('bundles/acmemain/images/gallery/flickr-img-1.jpg') }}" alt="Image Feed"></a></li>&#35;&#125;#}
+                    {#&#123;&#35;<li><a href="#"><img src="{{ asset('bundles/acmemain/images/gallery/flickr-img-1.jpg') }}" alt="Image Feed"></a></li>&#35;&#125;#}
+                    {#&#123;&#35;<li><a href="#"><img src="{{ asset('bundles/acmemain/images/gallery/flickr-img-1.jpg') }}" alt="Image Feed"></a></li>&#35;&#125;#}
+                    {#&#123;&#35;<li><a href="#"><img src="{{ asset('bundles/acmemain/images/gallery/flickr-img-1.jpg') }}" alt="Image Feed"></a></li>&#35;&#125;#}
+                    {#&#123;&#35;<li><a href="#"><img src="{{ asset('bundles/acmemain/images/gallery/flickr-img-1.jpg') }}" alt="Image Feed"></a></li>&#35;&#125;#}
+                    {#&#123;&#35;<li><a href="#"><img src="{{ asset('bundles/acmemain/images/gallery/flickr-img-1.jpg') }}" alt="Image Feed"></a></li>&#35;&#125;#}
+                    {#&#123;&#35;<li><a href="#"><img src="{{ asset('bundles/acmemain/images/gallery/flickr-img-1.jpg') }}" alt="Image Feed"></a></li>&#35;&#125;#}
+                    {#&#123;&#35;<li><a href="#"><img src="{{ asset('bundles/acmemain/images/gallery/flickr-img-1.jpg') }}" alt="Image Feed"></a></li>&#35;&#125;#}
+                    {#&#123;&#35;<li><a href="#"><img src="{{ asset('bundles/acmemain/images/gallery/flickr-img-1.jpg') }}" alt="Image Feed"></a></li>&#35;&#125;#}
+                    {#&#123;&#35;<li><a href="#"><img src="{{ asset('bundles/acmemain/images/gallery/flickr-img-1.jpg') }}" alt="Image Feed"></a></li>&#35;&#125;#}
+                {#&#123;&#35;</ul>&#35;&#125;#}
+            {#&#123;&#35;</div>&#35;&#125;#}
+        {#</div>#}
+        <div class="row"><!-- Begin Sub Footer -->
+            <div class="span12 footer-col footer-sub">
+                <div class="row no-margin">
+                    <div class="span6"><span class="left">© {{ "now"|date('Y') }} Все права защищены</span></div>
+                    <div class="span6">
+                        <span class="right">
+                            <a href="{{ path('page_home') }}">Главная</a>
+                            {% for entity in entities %}
+                                &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                                <a href="{{ path('client_category_show',{ 'category_url': entity.url }) }}">{{ entity.name }}</a>
+                            {% endfor %}
+                            &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                            <a href="{{ path('page_home') }}">Контакты</a>
+                            &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                            <a href="{{ path('page_advertising') }}">Реклама на сайте</a>
+                            &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                            <a href="{{ path('page_sitemap') }}">Карта сайта</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div><!-- End Sub Footer -->
+    </div>
+</div><!-- End Footer -->

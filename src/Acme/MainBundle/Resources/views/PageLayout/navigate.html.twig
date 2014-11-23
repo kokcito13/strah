@@ -1,0 +1,31 @@
+<div class="span7 navigation">
+    <div class="navbar hidden-phone">
+        <ul class="nav">
+            <li class="active">
+                <a href="{{ path('page_home') }}">Главная</a>
+            </li>
+            {% for entity in entities %}
+            <li {% if main == entity.url %} class="active" {% endif %}>
+                <a href="{{ path('client_category_show',{ 'category_url': entity.url }) }}">{{ entity.name }}</a>
+            </li>
+            {% endfor %}
+            <li>
+                <a href="{{ path('page_contact') }}">Контакты</a>
+            </li>
+        </ul>
+    </div>
+    <!-- Mobile Nav
+    ================================================== -->
+    <form id="mobile-nav" class="visible-phone">
+        <div class="mobile-nav-select">
+            <select onchange="window.open(this.options[this.selectedIndex].value,'_top')">
+                <option value="">Меню...</option>
+                <option value="{{ path('page_home') }}">Главная</option>
+                {% for entity in entities %}
+                    <option value="{{ path('client_category_show',{ 'category_url': entity.url }) }}">{{ entity.name }}</option>
+                {% endfor %}
+                <option value="{{ path('page_contact') }}">Контакты</option>
+            </select>
+        </div>
+    </form>
+</div>

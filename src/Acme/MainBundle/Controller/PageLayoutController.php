@@ -12,7 +12,7 @@ class PageLayoutController extends Controller
     /**
      * @Template()
      */
-    public function categoriesAction($main = false)
+    public function navigateAction($main = false)
     {
         return array('entities' => $this->categoryList(), 'main' => $main);
     }
@@ -37,7 +37,7 @@ class PageLayoutController extends Controller
             $entities = unserialize($result);
         }
 
-
+        $entities = array();
 
         return $entities;
     }

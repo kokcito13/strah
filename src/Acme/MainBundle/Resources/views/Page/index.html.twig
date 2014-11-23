@@ -1,46 +1,106 @@
 {% extends '::base.html.twig' %}
 
-{% block title %}Bohenon.com - мужской журнал{% endblock %}
-{% block description %}Информационный портал для мужчин - Bohenon.com{% endblock %}
-
+{% block title %}Проект «Две страховки» поможет сделать правильный выбор при минимальных затратах{% endblock %}
+{% block description %}Чтобы не потеряться среди огромного числа предложений о страховании, лучше воспользоваться проектом «Две страховки», который поможет быстро определиться с актуальными предложениями{% endblock %}
 {% block meta %}
-    <meta name='yandex-verification' content='7e14ee72c1c23732' />
-    <meta name="google-site-verification" content="6u9eu5JfLePXnxHGGc9Z36vyTjwxKpWE5CeGvzNYEIU" />
+    <meta name='yandex-verification' content='701c161c095f9a74' />
+    <meta name="google-site-verification" content="vBnA1AXjmHnpGFFpV8kJWL9PSL0SLtnhVUxGIlECIQE" />
 {% endblock %}
-
-{% block javascripts %}
-    <script>
-        var __urlGetPosts = '{{ path('list_of_post_main') }}';
-        var $container = $('#masonry_wrap').masonry({
-            itemSelector: '.item',
-            columnWidth: 300,
-            gutter: 30
-        });
-    </script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.2/underscore-min.js" type="text/javascript"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.2/backbone-min.js"></script>
-    <script type="text/javascript" src="{{ asset('bundles/acmemain/js/index-page.js') }}"></script>
-
-    <script type="text/template" id="post-template">
-        <% _.each(posts, function(post) { %>
-            <div class="item<% if (post.get('img_width') == 630) { %> w2<% } %>" data-page="<%=post.get('page')%>">
-                <div class="wrap">
-                    <div class="photo">
-                        <a href="<%=post.get('url')%>"><div class="photo-shadow"></div>
-                            <img src="<%=post.get('img')%>" width="<%=post.get('img_width')%>" height="<%=post.get('img_height')%>"/>
-                        </a>
-                    </div>
-                    <div class="name-news"><a href="<%=post.get('url')%>"><span class="i-catalog"><%=post.get('category_name')%>.</span> <%=post.get('name')%></a></div>
-                    <div class="date-news"><%=post.get('date')%></div>
-                </div>
-            </div>
-        <% }); %>
-    </script>
-{% endblock %}
-
+{% block javascripts %}{% endblock %}
 {% block body %}
-    <div class="main-container">
-        <div id="masonry_wrap"></div>
-        <div class="load-more"><a href="#" class="load-news">Показать еще</a></div>
+    <!--noindex-->
+    <div class="row headline"><!-- Begin Headline -->
+        <!-- Slider Carousel
+       ================================================== -->
+        <div class="span8">
+            <div class="flexslider">
+                <ul class="slides">
+                    <li>
+                        <a href="#">
+                            <img src="{{ asset('bundles/acmemain/images/prettyPhoto/img114.jpg') }}" alt="slider" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="{{ asset('bundles/acmemain/images/prettyPhoto/insurance-comparison.jpg') }}" alt="slider" />
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- Headline Text
+        ================================================== -->
+        <div class="span4">
+            <h3>О проекте</h3>
+            <p>Абсолютно все из нас сталкивались с таким понятием как страхование. У одних есть только медицинский страховой полюс, у других страховка на автомобиль, а есть и те кто страхует свой бизнес, имущество и даже жизнь.</p>
+            <a href="#about"><i class="icon-plus-sign"></i>Читать больше</a>
+        </div>
+    </div><!-- End Headline -->
+    <!--/noindex-->
+    <div class="row gallery-row"><!-- Begin Gallery Row -->
+        <div class="span12">
+            <h5 class="title-bg">Последние новости
+                {#<button class="btn btn-mini btn-inverse hidden-phone" type="button">View Portfolio</button>#}
+            </h5>
+            <!-- Gallery Thumbnails
+            ================================================== -->
+            <div class="row clearfix no-margin">
+                <ul class="gallery-post-grid holder">
+                    <!-- Gallery Item 1 -->
+                   {# <li  class="span3 gallery-item" data-id="id-1" data-type="illustration">
+                        <span class="gallery-hover-4col hidden-phone hidden-tablet">
+                            <span class="gallery-icons">
+                                <a href="gallery-single.html" class="item-details-link"></a>
+                            </span>
+                        </span>
+                        <a href="gallery-single.html"><img src="{{ asset('bundles/acmemain/images/gallery/gallery-img-1-4col.jpg') }}" alt="Gallery"></a>
+                        <span class="project-details"><a href="gallery-single.html">Custom Illustration</a>For an international ad campaign.</span>
+                    </li>
+                    <!-- Gallery Item 2 -->
+                    <li class="span3 gallery-item" data-id="id-2" data-type="illustration">
+                        <span class="gallery-hover-4col hidden-phone hidden-tablet">
+                            <span class="gallery-icons">
+                                <a href="gallery-single.html" class="item-details-link"></a>
+                            </span>
+                        </span>
+                        <a href="gallery-single.html"><img src="{{ asset('bundles/acmemain/images/gallery/gallery-img-1-4col.jpg') }}" alt="Gallery"></a>
+                        <span class="project-details"><a href="gallery-single.html">3 Color Poster Design</a>For a regional festival event.</span>
+                    </li>
+                    <!-- Gallery Item 3 -->
+                    <li class="span3 gallery-item" data-id="id-3" data-type="web">
+                        <span class="gallery-hover-4col hidden-phone hidden-tablet">
+                            <span class="gallery-icons">
+                                <a href="#" class="item-details-link"></a>
+                            </span>
+                        </span>
+                        <a href="gallery-single.html"><img src="{{ asset('bundles/acmemain/images/gallery/gallery-img-1-4col.jpg') }}" alt="Gallery"></a>
+                        <span class="project-details"><a href="gallery-single.html">Ink Pen Illustration</a>Created for a best selling children's book.</span>
+                    </li>
+                    <!-- Gallery Item 4 -->
+                    <li class="span3 gallery-item" data-id="id-4" data-type="video">
+                        <span class="gallery-hover-4col hidden-phone hidden-tablet">
+                            <span class="gallery-icons">
+                                <a href="gallery-single.html" class="item-details-link"></a>
+                            </span>
+                        </span>
+                        <a href="gallery-single.html"><img src="{{ asset('bundles/acmemain/images/gallery/gallery-img-1-4col.jpg') }}" alt="Gallery"></a>
+                        <span class="project-details"><a href="gallery-single.html">Custom Illustration</a>For an international add campaign.</span>
+                    </li>#}
+                </ul>
+            </div>
+        </div>
+    </div><!-- End Gallery Row -->
+    <div class="row" id="about">
+        <div class="span12">
+            <h1>О проекте «Две страховки»</h1>
+            <p>Абсолютно все из нас сталкивались с таким понятием как страхование. У одних есть только медицинский страховой полюс, у других страховка на автомобиль, а есть и те кто страхует свой бизнес, имущество и даже жизнь.</p>
+            <p>Чтобы правильно выполнить всю процедуру страховки и не наткнуться на огромное количество подводных камней, требуется квалифицированная помощь специалиста. Если полагаться исключительно на свои познания или ощущения можно в итоге, при наступлении страхового случая, получить компенсацию в заниженном размере или что еще хуже вообще оказаться без возмещения ущерба.</p>
+            <p>Найти хорошего специалиста в области страхования не трудно. Сейчас существует множество частных адвокатов и страховых компаний, которые с удовольствием предложат весь спектр своих услуг и самых лучших специалистов, чтобы угодить клиенту. Существует лишь одно «но» - стоимость.</p>
+            <p>Многие могут скептически отнестись к этому нюансу и подойти к вопросу со словами «раз решил застраховаться, значить есть на это деньги». Отчасти это правильно, но любой даже успешный предприниматель всегда экономит не только свое время, но и свои финансы.</p>
+            <p>Для тех кто действительно не хочет тратить время зря, а желает получить исчерпывающую информацию о любом виде страхования был создан ресурс «Две страховки». В наше время развития интернет технологий с помощью нескольких нажатий можно не только узнать о стоимости, условиях и принципах страхования. Все желающие могут получить онлайн консультации на интересующие темы.</p>
+            <p>Больше не понадобится записываться на прием к страховому агенту, ехать через весь город и оплачивать серьезные суммы за разъяснения по и так понятным вопросам. Проект «Две страховки» разработан так же для тех кто только думает застраховать имущество, но нет времени или особого желания платить за консультации.</p>
+            <p>Пролистав страницы проекта многие могут задуматься о том, что страхование не только груз ответственности и дополнительные финансовые затраты, но и серьезная помощь при незапланированных и экстремальных ситуациях, которые в нашей жизни отнюдь не редкость.</p>
+            <p>Вложив определенную сумму сейчас можно действительно обезопасить себя в будущем. И даже если страховой случай не наступит, что уже само по себе очень хорошо, вложенные деньги дают уверенность в завтрашнем дне, а это очень важно в наше не стабильное время.</p>
+        </div>
     </div>
 {% endblock %}
