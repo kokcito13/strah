@@ -2,7 +2,7 @@
 
 namespace Acme\MainBundle\Controller;
 
-use Doctrine\Common\Cache\ApcCache;
+//use Doctrine\Common\Cache\ApcCache;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -26,18 +26,18 @@ class PageLayoutController extends Controller
 
     public function categoryList()
     {
-        $cacheDriver = new ApcCache();
-        $result = $cacheDriver->fetch('categories');
-        if (!$result) {
+//        $cacheDriver = new ApcCache();
+//        $result = $cacheDriver->fetch('categories');
+//        if (!$result) {
             $em = $this->getDoctrine()->getManager();
             $entities = $em->getRepository('AcmeMainBundle:Category')->findAll();
 
-            $cacheDriver->save('categories', serialize($entities), (3600*24));
-        } else {
-            $entities = unserialize($result);
-        }
-
-        $entities = array();
+//            $cacheDriver->save('categories', serialize($entities), (3600*24));
+//        } else {
+//            $entities = unserialize($result);
+//        }
+//
+//        $entities = array();
 
         return $entities;
     }

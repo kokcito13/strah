@@ -26,10 +26,10 @@ class PageController extends Controller
      */
     public function viewSitemapXmlAction(Request $request)
     {
-        $cacheKey = 'bohenon_sitemap_xml_test';
-        $cache = new ApcCache();
-        $sitemap = $cache->fetch($cacheKey);
-        if (!$sitemap ) {
+//        $cacheKey = 'bohenon_sitemap_xml_test';
+//        $cache = new ApcCache();
+//        $sitemap = $cache->fetch($cacheKey);
+//        if (!$sitemap ) {
             
             $repo = $this->getDoctrine()->getRepository('AcmeMainBundle:Post');
             $allPosts = $repo->findAll();
@@ -68,8 +68,9 @@ class PageController extends Controller
                 $itemNode->addChild( 'priority', '0.8' );
             }
             $sitemap = $rootNode->asXML();
-            $cache->save($cacheKey, $sitemap, (864000)); // 10 days cache 24*10*60*60
-        }
+//            $cache->save($cacheKey, $sitemap, (864000)); // 10 days cache 24*10*60*60
+//        }
+
         return new Response($sitemap);
     }
     

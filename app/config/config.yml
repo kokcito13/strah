@@ -130,8 +130,8 @@ parameters:
     sonata.user.admin.user.class: Acme\MainBundle\Admin\UserAdmin
 
 avalanche_imagine:
-    source_root:  %kernel.root_dir%/../web
-    web_root:     %kernel.root_dir%/../web
+    source_root:  %kernel.root_dir%/../www
+    web_root:     %kernel.root_dir%/../www
     cache_prefix: media/cache
     driver:       gd
     filters:
@@ -164,4 +164,4 @@ knp_paginator:
 
 ornicar_apc:
       host: http://bohenon.com
-      web_dir: %kernel.root_dir%/../web
+      web_dir: %kernel.root_dir%/../www
