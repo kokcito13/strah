@@ -106,7 +106,7 @@ fos_user:
             type: fos_user_profile
 
 sonata_admin:
-    title:      BOHENON
+    title:      DveStrahovki
     templates:
         edit:    AcmeMainBundle:CRUD:edit.html.twig
 #    title_logo: /path/to/logo.png
@@ -163,5 +163,5 @@ knp_paginator:
         sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig
 
 ornicar_apc:
-      host: http://bohenon.com
+      host: http://dvestrahovki.ru
       web_dir: %kernel.root_dir%/../www
