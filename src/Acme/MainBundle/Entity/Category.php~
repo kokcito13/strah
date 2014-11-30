@@ -196,4 +196,37 @@ class Category
     {
         return __CLASS__;
     }
+
+    /**
+     * Add posts
+     *
+     * @param \Acme\MainBundle\Entity\Post $posts
+     * @return Category
+     */
+    public function addPost(\Acme\MainBundle\Entity\Post $posts)
+    {
+        $this->posts[] = $posts;
+
+        return $this;
+    }
+
+    /**
+     * Remove posts
+     *
+     * @param \Acme\MainBundle\Entity\Post $posts
+     */
+    public function removePost(\Acme\MainBundle\Entity\Post $posts)
+    {
+        $this->posts->removeElement($posts);
+    }
+
+    /**
+     * Get posts
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPosts()
+    {
+        return $this->posts;
+    }
 }

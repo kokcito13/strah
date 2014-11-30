@@ -55,6 +55,13 @@ class Post
     /**
      * @var string
      *
+     * @ORM\Column(name="keywords", type="string", length=255, nullable=true)
+     */
+    private $keywords;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="short_text", type="text", nullable=true)
      */
     private $shortText;
@@ -65,6 +72,13 @@ class Post
      * @ORM\Column(name="text", type="text", nullable=true)
      */
     private $text;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="video", type="text", nullable=true)
+     */
+    private $video;
 
     /**
      * @var integer
@@ -756,5 +770,51 @@ class Post
     public function getNotEmptyShortText()
     {
        return  ($this->getShortText() == null) ? 'Нет описания' : $this->getShortText();
+    }
+
+    /**
+     * Set keywords
+     *
+     * @param string $keywords
+     * @return Post
+     */
+    public function setKeywords($keywords)
+    {
+        $this->keywords = $keywords;
+
+        return $this;
+    }
+
+    /**
+     * Get keywords
+     *
+     * @return string 
+     */
+    public function getKeywords()
+    {
+        return $this->keywords;
+    }
+
+    /**
+     * Set video
+     *
+     * @param string $video
+     * @return Post
+     */
+    public function setVideo($video)
+    {
+        $this->video = $video;
+
+        return $this;
+    }
+
+    /**
+     * Get video
+     *
+     * @return string 
+     */
+    public function getVideo()
+    {
+        return $this->video;
     }
 }

@@ -2,13 +2,11 @@ User-agent: Yandex
 Crawl-delay: 10
 Disallow: /contact
 Disallow: /advertising
-Disallow: /rule
 Disallow: /admin
-Disallow: /social/share
-Disallow: /posts?page=*
+Disallow: ?page=*
 Allow: /uploads/
 Allow: /media/
-Host: bohenon.com
+Host: dvestrahovki.ru
 
 User-agent: Mediapartners-Google
 Disallow:
@@ -16,10 +14,8 @@ Disallow:
 User-agent: Googlebot
 Disallow: /contact
 Disallow: /advertising
-Disallow: /rule
 Disallow: /admin
-Disallow: /social/share
-Disallow: /posts?page=*
+Disallow: ?page=*
 Allow: /uploads/
 Allow: /media/
 
@@ -27,10 +23,8 @@ User-agent: *
 Crawl-delay: 10
 Disallow: /contact
 Disallow: /advertising
-Disallow: /rule
 Disallow: /admin
-Disallow: /social/share
-Disallow: /posts?page=*
+Disallow: ?page=*
 Allow: /uploads/
 Allow: /media/
 

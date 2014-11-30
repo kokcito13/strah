@@ -138,6 +138,9 @@ avalanche_imagine:
         big_post:
             type:    thumbnail
             options: { size: [1200, 417], mode: outbound }
+        in_post:
+            type:    relative_resize
+            options: { widen: 270 }
         thumbnail1_category_post:
             type:    thumbnail
             options: { size: [300, 263], mode: outbound }

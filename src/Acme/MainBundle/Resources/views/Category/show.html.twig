@@ -6,30 +6,18 @@
 {% block meta %}
 {% endblock %}
 {% block javascripts %}
-    <script>
-        $('div#category_description > ul').addClass('list mark-circle');
-        $('div#category_description > ol').addClass('list mark-circle-numbers');
-        setTimeout(function(){
-            var $container = $('#masonry_wrap').masonry({
-                itemSelector: '.item',
-                columnWidth: 300,
-                gutter: 30
-            });
-            $container.masonry();
-        }, 200);
-    </script>
 {% endblock %}
 
 {% block body %}
     <div class="main-container">
         <div id="masonry_wrap">
             {% for item in entities %}
-                <div class="item{% if item.getImageThumbnail().par.w == 630 %} w2{% endif %}">
+                <div class="item">
                     <div class="wrap">
                         {% if item.imageName != null %}
                             <div class="photo">
                                 <a href="{{ path('client_post_show',{'category_url':item.category.url, 'post_url':item.url }) }}"><div class="photo-shadow"></div>
-                                    <img src="{{ item.getWebPath() | apply_filter(item.getImageThumbnail().key) }}" width="{{ item.getImageThumbnail().par.w }}" height="{{ item.getImageThumbnail().par.h }}"/>
+                                    {#<img src="{{ item.getWebPath() | apply_filter(item.getImageThumbnail().key) }}" width="{{ item.getImageThumbnail().par.w }}" height="{{ item.getImageThumbnail().par.h }}"/>#}
                                 </a>
                             </div>
                         {% endif %}

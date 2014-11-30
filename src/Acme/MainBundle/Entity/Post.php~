@@ -5,6 +5,7 @@ namespace Acme\MainBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints\DateTime;
+use Application\Sonata\UserBundle\Entity\User;
 
 /**
  * Post
@@ -54,16 +55,30 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="short_text", type="text")
+     * @ORM\Column(name="keywords", type="string", length=255, nullable=true)
+     */
+    private $keywords;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="short_text", type="text", nullable=true)
      */
     private $shortText;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="text", type="text")
+     * @ORM\Column(name="text", type="text", nullable=true)
      */
     private $text;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="video", type="text", nullable=true)
+     */
+    private $video;
 
     /**
      * @var integer
@@ -88,14 +103,14 @@ class Post
 
     /**
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="posts")
-     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=true)
      */
     private $category;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="image_name", type="string", length=255)
+     * @ORM\Column(name="image_name", type="string", length=255, nullable=true)
      */
     protected $imageName;
 
@@ -104,7 +119,7 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="image_name_top", type="string", length=255)
+     * @ORM\Column(name="image_name_top", type="string", length=255, nullable=true)
      */
     protected $imageNameTop;
 
@@ -151,6 +166,34 @@ class Post
      * @ORM\Column(name="shared_tw", type="integer", nullable=true)
      */
     private $sharedTw;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     **/
+    private $user;
+
+    /**
+     * Set user_id
+     *
+     * @return Post
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user_id
+     *
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
 
     private $imagesThumbnailType = array(
         'thumbnail1_category_post' => array(
@@ -439,6 +482,21 @@ class Post
         $this->setImageParameters();
     }
 
+    public function setImageFromFile()
+    {
+        if (null === $this->file) {
+            return;
+        }
+        $this->setImageName($this->file->getClientOriginalName());
+    }
+    public function setImageTopFromFile()
+    {
+        if (null === $this->fileTop) {
+            return;
+        }
+       $this->setImageNameTop($this->fileTop->getClientOriginalName());
+    }
+    
     public function setImageParameters()
     {
         $imageFile = $this->getWebPath();
@@ -618,6 +676,18 @@ class Post
         $this->fileTop = null;
     }
 
+    public function getFileTop()
+    {
+        return $this->fileTop;
+    }
+
+    public function setFileTop($file)
+    {
+        $this->fileTop = $file;
+
+        return $this;
+    }
+
     /**
      * Set sharedVk
      *
@@ -695,5 +765,33 @@ class Post
     public function removeTag(\Acme\MainBundle\Entity\Tag $tags)
     {
         $this->tags->removeElement($tags);
+    }
+
+    public function getNotEmptyShortText()
+    {
+       return  ($this->getShortText() == null) ? 'Нет описания' : $this->getShortText();
+    }
+
+    /**
+     * Set keywords
+     *
+     * @param string $keywords
+     * @return Post
+     */
+    public function setKeywords($keywords)
+    {
+        $this->keywords = $keywords;
+
+        return $this;
+    }
+
+    /**
+     * Get keywords
+     *
+     * @return string 
+     */
+    public function getKeywords()
+    {
+        return $this->keywords;
     }
 }

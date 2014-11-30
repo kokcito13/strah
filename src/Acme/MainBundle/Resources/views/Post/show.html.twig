@@ -13,26 +13,51 @@
     <meta property="og:image" content="{{ app.request.uri }}{{ entity.getWebPath() | apply_filter('big_post') }}"/>
 {% endblock %}
 {% block javascripts %}
-    <script>
-        $(function(){
-            $('div.text-container div.baselayout-inner > ul').addClass('list mark-circle');
-            $('div.text-container div.baselayout-inner > ol').addClass('list mark-circle-numbers');
-            $('.soc-networks a').click(function(e){
-                e.preventDefault();
-                var href = $(this).attr('href');
-                window.open(href,'','toolbar=0,status=0,width=626,height=436');
-                $.post(
-                    '{{ path('add_one_social_for_post') }}',
-                    {social: $(this).data('soc'), id: '{{ entity.id }}'},
-                    function (data) {}
-                );
-            });
-        });
-    </script>
 {% endblock %}
 {% set mainCategory = entity.category.url %}
 {% block body %}
-    <div class="text-container">
+    <div class="row"><!--Container row-->
+        <!-- Title Header -->
+        <div class="span8"><!--Begin page content column-->
+            <h1>{{ entity.name }}</h1>
+            {% if entity.shortText | length > 3 %}
+                <p class="lead">{{ entity.shortText | raw }}</p>
+            {% endif %}
+            <div class="clearfix">
+                <img src="{{ entity.getWebPathTop() | apply_filter('in_post') }}" width="270" class="thumbnail align-left" alt="Image">
+                {{ entity.text|raw }}
+            </div>
+        </div> <!--End page content column-->
+
+        <!-- Blog Sidebar
+        ================================================== -->
+        <div class="span4 sidebar page-sidebar"><!-- Begin sidebar column -->
+            <!--Testimonials-->
+            <h5 class="title-bg">Testimonials</h5>
+            <p class="quote-text side">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In interdum felis fermentum ipsum molestie sed porttitor ligula rutrum. Morbi blandit ultricies ultrices. Vivamus nec lectus sed orci molestie molestie."<cite>- Client Name, Big Company</cite></p>
+            <p class="quote-text side">"Adipiscing elit. In interdum felis fermentum ipsum molestie sed porttitor ligula rutrum. Morbi blandit ultricies ultrices. Vivamus nec lectus sed orci molestie molestie."<cite>- Another Client Name, Big Company</cite></p>
+            <!--Latest News-->
+            <h5 class="title-bg">Latest News</h5>
+            <ul class="popular-posts">
+                <li>
+                    <a href="#"><img src="img/gallery/gallery-img-2-thumb.jpg" alt="Popular Post"></a>
+                    <h6><a href="#">Lorem ipsum dolor sit amet consectetur adipiscing elit</a></h6>
+                    <em>Posted on 09/01/15</em>
+                </li>
+                <li>
+                    <a href="#"><img src="img/gallery/gallery-img-2-thumb.jpg" alt="Popular Post"></a>
+                    <h6><a href="#">Nulla iaculis mattis lorem, quis gravida nunc iaculis</a></h6>
+                    <em>Posted on 09/01/15</em>
+                </li><li>
+                    <a href="#"><img src="img/gallery/gallery-img-2-thumb.jpg" alt="Popular Post"></a>
+                    <h6><a href="#">Vivamus tincidunt sem eu magna varius elementum maecenas felis</a></h6>
+                    <em>Posted on 09/01/15</em>
+                </li>
+            </ul>
+        </div><!-- End sidebar column -->
+    </div>
+
+    {#<div class="text-container">
         <div class="baselayout">
             <h1>{{ entity.name }}</h1>
             <div class="info-news">
@@ -109,25 +134,5 @@
             </div>
             {% endif %}
         </div>
-        <div class="baselayout">
-            <div class="author-news">
-                <div>
-                    <div id="disqus_thread"></div>
-                    <script type="text/javascript">
-                        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                        var disqus_shortname = 'bohenoncom'; // required: replace example with your forum shortname
-
-                        /* * * DON'T EDIT BELOW THIS LINE * * */
-                        (function() {
-                            setTimeout(function(){
-                                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                            }, 3000);
-                        })();
-                    </script>
-                </div>
-            </div>
-        </div>
-    </div>
+    </div>#}
 {% endblock %}

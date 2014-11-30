@@ -79,13 +79,15 @@ class PostAdmin extends Admin
                 ->add('fileTop', 'file', $fileFieldOptionsTop)
                 ->add('name', 'text', array('label'=>'Название'))
                 ->add('url', 'text', array('label'=>'Урл'))
-                ->add('title', 'text', array('label'=>'Заголовок'))
-                ->add('description', 'textarea', array('label'=>'Дескрипшин'))
-                ->add('shortText', 'textarea', array('label'=>'Мысля статьи'))
+                ->add('title', 'text', array('label'=>'Title'))
+                ->add('description', 'textarea', array('label'=>'Description'))
+                ->add('keywords', 'textarea', array('label'=>'Keywords', 'required'  => false))
+                ->add('shortText', 'textarea', array('label'=>'Цитата', 'required'  => false))
                 ->add('category', 'entity',
                     array('label' => 'Категория', 'required'  => true, 'class'=>'AcmeMainBundle:Category',
                     'property'=>'name'))
                 ->add('text', 'textarea', array('label' => 'Текст', 'attr' => array('class' => 'ckeditor')))
+                ->add('video', 'textarea', array('label' => 'Видео (через запятую)', 'required'  => false))
             ->end()
             ->with('Теги')
                 ->add('tags', 'sonata_type_model', array('expanded' => true, 'multiple' => true, 'property'=>'name'))

@@ -1,7 +1,7 @@
-set :application, "bohenon.com"
-set :domain,      "bohenon.com"
-set :user,         "bohenon"
-set :deploy_to,   "/var/www/bohenon/data/www/capy"
+set :application, "strah.com"
+set :domain,      "strah.com"
+set :user,         "strah"
+set :deploy_to,   "/var/www/strah/data/www/capy"
 set :app_path,    "app"
 set :shared_files,      ["app/config/parameters.yml"]
 set :web_path, "web"
@@ -13,7 +13,7 @@ set :ssh_options, { :forward_agent => true, :port => 6277 }
 set :branch, "master"
 set :copy_exclude, [".git", "spec"]
 
-set :repository,  "https://github.com/kokcito13/bohenon"
+set :repository,  "https://github.com/kokcito13/strah"
 set :scm,         :git
 
 set :model_manager, "doctrine"
