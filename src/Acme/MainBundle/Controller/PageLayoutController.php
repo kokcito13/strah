@@ -24,6 +24,14 @@ class PageLayoutController extends Controller
         return array('entities' => $this->categoryList(), 'main' => $main);
     }
 
+    /**
+     * @Template()
+     */
+    public function rightSidebarAction($post = false)
+    {
+        return array('post' => $post);
+    }
+
     public function categoryList()
     {
 //        $cacheDriver = new ApcCache();

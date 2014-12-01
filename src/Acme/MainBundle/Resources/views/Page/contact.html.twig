@@ -1,15 +1,54 @@
 {% extends '::base.html.twig' %}
 
-{% block title %}Контактная информация сайта Bohenon.com{% endblock %}
+{% block title %}Контактная информация сайта DveStrahovki.ru{% endblock %}
 {% block description %}Список контактных данных для связи с нами{% endblock %}
 
 {% block body %}
-    <div class="text-container">
-        <div class="baselayout">
-            <h1>Контакты</h1>
-        </div>
-        <div class="baselayout-inner">
-            Контактная информация
-        </div>
+    <div class="row"><!--Container row-->
+        <div class="span8 contact"><!--Begin page content column-->
+            <h2>Контакты</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla iaculis mattis lorem, quis gravida nunc iaculis ac. Proin tristique tellus in est vulputate luctus fermentum ipsum molestie. Vivamus tincidunt sem eu magna varius elementum. Maecenas felis tellus, fermentum vitae laoreet vitae, volutpat et urna.</p>
+            <div class="alert alert-success">
+                Well done! You successfully read this important alert message.
+            </div>
+            <form action="#" id="contact-form">
+                <div class="input-prepend">
+                    <span class="add-on"><i class="icon-user"></i></span>
+                    <input class="span4" id="prependedInput" size="16" type="text" placeholder="Имя">
+                </div>
+                <div class="input-prepend">
+                    <span class="add-on"><i class="icon-envelope"></i></span>
+                    <input class="span4" id="prependedInput" size="16" type="text" placeholder="Email">
+                </div>
+                <textarea class="span6"></textarea>
+                <div class="row">
+                    <div class="span2">
+                        <input type="submit" class="btn btn-inverse" value="Отправить сообщение">
+                    </div>
+                </div>
+            </form>
+        </div> <!--End page content column-->
+        <!-- Sidebar
+        ================================================== -->
+        <div class="span4 sidebar page-sidebar"><!-- Begin sidebar column -->
+            <h5 class="title-bg">Адрес</h5>
+            <address>
+                <strong>Россия</strong><br>
+                г. Москва<br>
+                {#San Francisco, CA 94107<br>#}
+                {#<abbr title="Phone">P:</abbr> (123) 456-7890#}
+            </address>
+            <address>
+                <strong>Сокол Иван</strong><br>
+                <a href="mailto:#">ivan.sokol@dvestrahovki.ru<script type="text/javascript">
+                        /* <![CDATA[ */
+                        (function(){try{var s,a,i,j,r,c,l,b=document.getElementsByTagName("script");l=b[b.length-1].previousSibling;a=l.getAttribute('data-cfemail');if(a){s='';r=parseInt(a.substr(0,2),16);for(j=2;a.length-j;j+=2){c=parseInt(a.substr(j,2),16)^r;s+=String.fromCharCode(c);}s=document.createTextNode(s);l.parentNode.replaceChild(s,l);}}catch(e){}})();
+                        /* ]]> */
+                    </script></a>
+            </address>
+
+            <h5 class="title-bg">Мы на карте</h5>
+            <img src="{{ asset('bundles/acmemain/images/map.jpg') }}" alt="map">
+        </div><!-- End sidebar column -->
     </div>
 {% endblock %}

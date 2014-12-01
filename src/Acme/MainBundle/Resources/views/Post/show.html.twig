@@ -27,112 +27,17 @@
                 <img src="{{ entity.getWebPathTop() | apply_filter('in_post') }}" width="270" class="thumbnail align-left" alt="Image">
                 {{ entity.text|raw }}
             </div>
+            <div class="clearfix">
+
+            </div>
         </div> <!--End page content column-->
 
         <!-- Blog Sidebar
         ================================================== -->
-        <div class="span4 sidebar page-sidebar"><!-- Begin sidebar column -->
-            <!--Testimonials-->
-            <h5 class="title-bg">Testimonials</h5>
-            <p class="quote-text side">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In interdum felis fermentum ipsum molestie sed porttitor ligula rutrum. Morbi blandit ultricies ultrices. Vivamus nec lectus sed orci molestie molestie."<cite>- Client Name, Big Company</cite></p>
-            <p class="quote-text side">"Adipiscing elit. In interdum felis fermentum ipsum molestie sed porttitor ligula rutrum. Morbi blandit ultricies ultrices. Vivamus nec lectus sed orci molestie molestie."<cite>- Another Client Name, Big Company</cite></p>
-            <!--Latest News-->
-            <h5 class="title-bg">Latest News</h5>
-            <ul class="popular-posts">
-                <li>
-                    <a href="#"><img src="img/gallery/gallery-img-2-thumb.jpg" alt="Popular Post"></a>
-                    <h6><a href="#">Lorem ipsum dolor sit amet consectetur adipiscing elit</a></h6>
-                    <em>Posted on 09/01/15</em>
-                </li>
-                <li>
-                    <a href="#"><img src="img/gallery/gallery-img-2-thumb.jpg" alt="Popular Post"></a>
-                    <h6><a href="#">Nulla iaculis mattis lorem, quis gravida nunc iaculis</a></h6>
-                    <em>Posted on 09/01/15</em>
-                </li><li>
-                    <a href="#"><img src="img/gallery/gallery-img-2-thumb.jpg" alt="Popular Post"></a>
-                    <h6><a href="#">Vivamus tincidunt sem eu magna varius elementum maecenas felis</a></h6>
-                    <em>Posted on 09/01/15</em>
-                </li>
-            </ul>
-        </div><!-- End sidebar column -->
+        {{ render(controller('AcmeMainBundle:PageLayout:rightSidebar', {
+        'post': entity
+        })) }}
+        <!-- End sidebar column -->
     </div>
 
-    {#<div class="text-container">
-        <div class="baselayout">
-            <h1>{{ entity.name }}</h1>
-            <div class="info-news">
-                <span class="date">{{ entity.getFormatCreatedAt() }}</span>
-                <span class="views">Просмотров {{ entity.view }}</span>
-            </div>
-            <div class="news-topic">{{ entity.shortText }}</div>
-            <div class="soc-networks">
-                <div class="social-btn-list">
-                    <a data-soc="fb" href="http://www.facebook.com/sharer.php?u={{ app.request.uri }}&t={{ entity.title }}" target="_blank" class="social-btn sharrre" id="facebook-share">
-                        <span class="social-btn-text"><i class="ico fb-ico"></i><span>Рекомендую</span></span><span class="social-btn-value" id="twitter-share"><span>{{ entity.sharedFb }}</span><i class="ico social-tile"></i></span></a>
-                    <a data-soc="tw" href="http://twitter.com/share?url={{ app.request.uri }}&text={ entity.title }}" class="social-btn sharrre" id="twitter-share">
-                        <span class="social-btn-text"><i class="ico tw-ico"></i><span>Затвитить</span></span><span class="social-btn-value"><span>{{ entity.sharedTw }}</span><i class="ico social-tile"></i></span></a>
-                    <a data-soc="vk" href="http://vk.com/share.php?url={{ app.request.uri }}&title={{ entity.title }}&description={{ entity.description }}&image={{ entity.getWebPath() | apply_filter('big_post') }}" class="social-btn sharrre" id="vk-share">
-                        <span class="social-btn-text"><i class="ico vk-ico"></i><span>Поделиться</span></span><span class="social-btn-value"><span>{{ entity.sharedVk }}</span><i class="ico social-tile"></i></span></a>
-                </div>
-            </div>
-        </div>
-        {% if entity.imageNameTop != '' %}
-            <div class="baselayout-outer">
-                <img src="{{ entity.getWebPathTop() | apply_filter('big_post') }}" width="1200" height="417"/>
-            </div>
-        {% endif %}
-        <div class="baselayout-inner">
-            {{ entity.text|raw }}
-        </div>
-        <div class="baselayout">
-            <div class="author-news">
-                <div class="photo"><img src="{{ author ? asset(author.getWebPath()) | apply_filter('user_avatar') : asset('bundles/acmemain/images/no-avatar.jpg') }}" width="88" height="88"/></div>
-                <div class="name-author">
-                    <div class="name">{{ author ? author.firstname : 'Jonh' }} {{ author ? author.lastname : 'Doe' }}</div>
-                    <div class="status">{{ author ? author.biography : 'модератор рубрики «' ~ entity.category.name ~ '»' }}</div>
-                </div>
-                {% if entity.tags|length > 0 %}
-                    <div class="group-btns">
-                        {% for tag in entity.tags %}
-                            <a href="{{ path('client_tag_show', {'tag_url': tag.url}) }}" class="gray-btn">{{ tag.name }}</a>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-            </div>
-        </div>
-        <div class="baselayout-outer">
-            {% if entities|length > 0 %}
-                <div class="slider-news">
-                <div class="wrap-slider">
-                    <div class="title">Другие публикации в рубрике «{{ entity.category.name }}»</div>
-                    <div class="jcarousel-wrapper">
-                        <div class="jcarousel">
-                            <ul>
-                                {% for post in entities %}
-                                    <li>
-                                        <div class="item">
-                                            {% if post.imageName != null %}
-                                                <div class="photo">
-                                                    <a href="{{ path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) }}">
-                                                        <div class="photo-shadow"></div>
-                                                        <img src="{{ post.getWebPath() | apply_filter('thumbnail1_category_post') }}" width="300" height="263"/>
-                                                    </a>
-                                                </div>
-                                            {% endif %}
-                                            <div class="name-news">
-                                                <a href="{{ path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) }}"><span class="i-catalog">{{ post.category.name }}.</span> {{ post.name }}</a>
-                                            </div>
-                                            <div class="date-news">{{ post.getCreatedAtByFormat('d F / Y') }}</div>
-                                        </div>
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                        <p class="jcarousel-pagination"></p>
-                    </div>
-                </div>
-            </div>
-            {% endif %}
-        </div>
-    </div>#}
 {% endblock %}

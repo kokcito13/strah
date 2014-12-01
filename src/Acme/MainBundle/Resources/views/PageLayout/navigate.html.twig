@@ -1,7 +1,7 @@
 <div class="span7 navigation">
     <div class="navbar hidden-phone">
         <ul class="nav">
-            <li class="active">
+            <li {% if app.request.get('_route') == 'page_home' %} class="active" {% endif %}>
                 <a href="{{ path('page_home') }}">Главная</a>
             </li>
             {% for entity in entities %}
