@@ -817,4 +817,20 @@ class Post
     {
         return $this->video;
     }
+
+    public function getArrayVideoId()
+    {
+        $ids = array();
+        $videos = explode(',', $this->getVideo());
+        foreach ($videos as $video) {
+            $video = trim($video);
+            $part = parse_url($video);
+            parse_str($part['query'], $query);
+            if (isset($query['v']) && !empty($query['v'])) {
+                $ids[] = $query['v'];
+            }
+        }
+
+        return $ids;
+    }
 }

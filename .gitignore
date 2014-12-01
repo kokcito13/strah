@@ -1,6 +1,6 @@
-/web/bundles/
-/web/uploads/*
-/web/media/*
+/www/bundles/
+/www/uploads/*
+/www/media/*
 /app/bootstrap.php.cache
 /app/cache/*
 /app/config/parameters.yml

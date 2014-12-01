@@ -13,6 +13,74 @@
     <meta property="og:image" content="{{ app.request.uri }}{{ entity.getWebPath() | apply_filter('big_post') }}"/>
 {% endblock %}
 {% block javascripts %}
+    <script type= "text/javascript">
+        function getYouTubeInfo(ele) {
+            $.ajax({
+                url: "http://gdata.youtube.com/feeds/api/videos/"+ele.data('v')+"?v=2&alt=json",
+                dataType: "jsonp",
+                success: function (data) {
+                    parseresults(data, ele);
+                }
+            });
+        }
+
+        function parseresults(data, ele) {
+            var title = data.entry.title.$t;
+            ele.find('div').html(title);
+        }
+
+        function showFrameVideo(ele) {
+            var fHtml = '<iframe title="'+ele.find('div').html()+'" width="520" height="390" ' +
+                    'src="http://www.youtube.com/embed/'+ele.data('v')+'?fs=1&autoplay=0&loop=0" allowfullscreen></iframe>';
+            $('#frameVideo').html(fHtml);
+        }
+
+        $(document).ready(function () {
+            $('#yVideos li').each(function(){
+                getYouTubeInfo($(this));
+            });
+            $('#yVideos li').click(function(){
+                showFrameVideo($(this));
+            });
+            $('#yVideos li').mouseover(function(){
+                $(this).find('div').show();
+            });
+            $('#yVideos li').mouseout(function(){
+                $(this).find('div').hide();
+            });
+        });
+    </script>
+{% endblock %}
+{% block stylesheets %}
+    <style>
+        #yVideos {
+            list-style-type: none;
+        }
+        #yVideos li {
+            /*display: block;*/
+            cursor: pointer;
+            position: relative;
+            width: 145px;
+            line-height: 13px;
+            /*height: 142px;*/
+            margin: 10px 0px;
+        }
+        #yVideos li div {
+            font-size: 10px;
+            display: none;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            background-color: #000;
+            width: 145px;
+            height: 142px!important;
+            font-weight: bold;
+            text-align: center;
+            vertical-align: middle;
+            color: #fff;
+            opacity: 0.7;
+        }
+    </style>
 {% endblock %}
 {% set mainCategory = entity.category.url %}
 {% block body %}
@@ -27,9 +95,26 @@
                 <img src="{{ entity.getWebPathTop() | apply_filter('in_post') }}" width="270" class="thumbnail align-left" alt="Image">
                 {{ entity.text|raw }}
             </div>
-            <div class="clearfix">
-
-            </div>
+            {% if entity.getArrayVideoId()|length > 0 %}
+                <div class="clearfix">
+                    <div class="row" style="padding: 4px; border: 1px solid #ddd;">
+                        <div class="span6" id="frameVideo" style="margin-left: 0px;">
+                            <iframe width="520" height="390" src="http://www.youtube.com/embed/{{ entity.getArrayVideoId()[0] }}?fs=1&autoplay=0&loop=0" allowfullscreen></iframe>
+                        </div>
+                        <div class="span2">
+                            <span>Еще видео:</span>
+                            <ul id="yVideos">
+                                {% for v in entity.getArrayVideoId() %}
+                                    <li id="v_{{ v }}" data-v="{{ v }}">
+                                        <img src="http://img.youtube.com/vi/{{ v }}/mqdefault.jpg" width="150"/>
+                                        <div>{{ v }}</div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
         </div> <!--End page content column-->
 
         <!-- Blog Sidebar
@@ -39,5 +124,111 @@
         })) }}
         <!-- End sidebar column -->
     </div>
+    <div class="row"><!-- Begin Bottom Section -->
+        <!-- Blog Preview
+        ================================================== -->
+        <div class="span6">
+            <h5 class="title-bg">Рекомендованная публикация
+                <button id="btn-blog-next" class="btn btn-inverse btn-mini" type="button">»</button>
+                <button id="btn-blog-prev" class="btn btn-inverse btn-mini" type="button">«</button>
+            </h5>
+            <div id="blogCarousel" class="carousel slide ">
+                <!-- Carousel items -->
+                <div class="carousel-inner">
+                    <!-- Blog Item 1 -->
+                    <div class="active item">
+                        <a href="blog-single.html">
+                            <img src="img/gallery/blog-med-img-1.jpg" width="370" alt="" class="align-left blog-thumb-preview">
+                        </a>
+                        <div class="post-info clearfix">
+                            <h4><a href="blog-single.html">A subject that is beautiful in itself</a></h4>
+                            <ul class="blog-details-preview">
+                                <li>
+                                    <i class="icon-comment"></i><strong>Комментарии:</strong> <a href="#" title="Link">0</a>
+                                </li>
+                                <li>
+                                    <i class="icon-tags"></i> <a href="#">photoshop</a>, <a href="#">tutorials</a>, <a href="#">illustration</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <p class="blog-summary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In interdum felis fermentum ipsum molestie sed porttitor ligula rutrum. Vestibulum lectus tellus, aliquet et iaculis sed, volutpat vel erat. <a href="#">Читать дальше</a></p><p>
+                        </p>
+                    </div>
+                    <!-- Blog Item 2 -->
+                    <div class="item">
+                        <a href="blog-single.html">
+                            <img src="img/gallery/blog-med-img-1.jpg" alt="" class="align-left blog-thumb-preview">
+                        </a>
+                        <div class="post-info clearfix">
+                            <h4><a href="blog-single.html">A great artist is always before his time</a></h4>
+                            <ul class="blog-details-preview">
+                                <li>
+                                    <i class="icon-comment"></i><strong>Комментарии:</strong> <a href="#" title="Link">0</a>
+                                </li>
+                                <li>
+                                    <i class="icon-tags"></i> <a href="#">photoshop</a>, <a href="#">tutorials</a>, <a href="#">illustration</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <p class="blog-summary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In interdum felis fermentum ipsum molestie sed porttitor ligula rutrum. Vestibulum lectus tellus, aliquet et iaculis sed, volutpat vel erat. <a href="#">Read more</a></p><p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Client Area
+        ================================================== -->
+        <div class="span6">
+            <h5 class="title-bg">Интересное</h5>
+            <!-- Client Testimonial Slider-->
+            {#<div id="clientCarousel" class="carousel slide no-margin">#}
+                {#<!-- Carousel items -->#}
+                {#<div class="carousel-inner">#}
+                    {#<div class="active item">#}
+                        {#<p class="quote-text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In interdum felis fermentum ipsum molestie sed porttitor ligula rutrum. Morbi blandit ultricies ultrices. Vivamus nec lectus sed orci molestie molestie."<cite>- Client Name, Big Company</cite></p>#}
+                    {#</div>#}
+                    {#<div class="item">#}
+                        {#<p class="quote-text">"Adipiscing elit. In interdum felis fermentum ipsum molestie sed porttitor ligula rutrum. Morbi blandit ultricies ultrices. Vivamus nec lectus sed orci molestie molestie."<cite>- Another Client Name, Company Name</cite></p>#}
+                    {#</div>#}
+                    {#<div class="item">#}
+                        {#<p class="quote-text">"Mauris eget tellus sem. Cras sollicitudin sem eu elit aliquam quis condimentum nulla suscipit. Nam sed magna ante. Ut eget suscipit mauris."<cite>- On More Client, The Company</cite></p>#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div>#}
+            <!-- Client Logo Thumbs-->
+            {#<ul class="client-logos">#}
+                {#<li><a href="#" class="client-link"><img src="img/gallery/client-img-1.png" alt="Client"></a></li>#}
+                {#<li><a href="#" class="client-link"><img src="img/gallery/client-img-2.png" alt="Client"></a></li>#}
+                {#<li><a href="#" class="client-link"><img src="img/gallery/client-img-3.png" alt="Client"></a></li>#}
+                {#<li><a href="#" class="client-link"><img src="img/gallery/client-img-4.png" alt="Client"></a></li>#}
+                {#<li><a href="#" class="client-link"><img src="img/gallery/client-img-5.png" alt="Client"></a></li>#}
+            {#</ul>#}
+            <script type="text/javascript">(function() {
+                    if (window.pluso)if (typeof window.pluso.start == "function") return;
+                    if (window.ifpluso==undefined) { window.ifpluso = 1;
+                        var d = document, s = d.createElement('script'), g = 'getElementsByTagName';
+                        s.type = 'text/javascript'; s.charset='UTF-8'; s.async = true;
+                        s.src = ('https:' == window.location.protocol ? 'https' : 'http')  + '://share.pluso.ru/pluso-like.js';
+                        var h=d[g]('body')[0];
+                        h.appendChild(s);
+                    }})();</script>
+            <div class="pluso" data-background="transparent" data-options="big,square,line,horizontal,counter,theme=05" data-services="vkontakte,odnoklassniki,facebook,twitter,google,moimir,email,print"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span12">
+            <div id="disqus_thread"></div>
+            <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'dvestrahovki'; // required: replace example with your forum shortname
 
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            </script>
+        </div>
+    </div>
 {% endblock %}
