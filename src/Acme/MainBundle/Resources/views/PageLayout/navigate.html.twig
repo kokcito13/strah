@@ -10,6 +10,9 @@
             </li>
             {% endfor %}
             <li>
+                <a href="{{ path('page_catalog') }}">Каталог</a>
+            </li>
+            <li>
                 <a href="{{ path('page_contact') }}">Контакты</a>
             </li>
         </ul>
@@ -24,6 +27,7 @@
                 {% for entity in entities %}
                     <option value="{{ path('client_category_show',{ 'category_url': entity.url }) }}">{{ entity.name }}</option>
                 {% endfor %}
+                <option value="{{ path('page_catalog') }}">Каталог</option>
                 <option value="{{ path('page_contact') }}">Контакты</option>
             </select>
         </div>

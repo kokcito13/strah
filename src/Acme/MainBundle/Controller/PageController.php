@@ -157,4 +157,14 @@ class PageController extends Controller
 
         return array();
     }
+
+    /**
+     * @Route("/catalog", name="page_catalog")
+     * @Template()
+     */
+    public function catalogAction(Request $request)
+    {
+
+        return array();
+    }
 }
