@@ -9,28 +9,64 @@
 {% endblock %}
 
 {% block body %}
-    <div class="main-container">
-        <div id="masonry_wrap">
+    <div class="row">
+        <!-- Blog Posts
+        ================================================== -->
+        <div class="span8 blog">
             {% for item in entities %}
-                <div class="item">
-                    <div class="wrap">
-                        {% if item.imageName != null %}
-                            <div class="photo">
-                                <a href="{{ path('client_post_show',{'category_url':item.category.url, 'post_url':item.url }) }}"><div class="photo-shadow"></div>
-                                    {#<img src="{{ item.getWebPath() | apply_filter(item.getImageThumbnail().key) }}" width="{{ item.getImageThumbnail().par.w }}" height="{{ item.getImageThumbnail().par.h }}"/>#}
-                                </a>
-                            </div>
-                        {% endif %}
-                        <div class="name-news"><a href="{{ path('client_post_show',{'category_url':item.category.url, 'post_url':item.url }) }}"><span class="i-catalog">{{ item.category.name }}.</span> {{ item.name }}</a></div>
-                        <div class="date-news">{{ item.getCreatedAtByFormat('d F / Y') }}</div>
+                <article class="clearfix">
+                    {% if item.imageName != null %}
+                    <a href="{{ path('client_post_show',{'category_url':item.category.url, 'post_url':item.url }) }}">
+                        <img src="{{ item.getWebPath() | apply_filter('thumbnail_index_post') }}" alt="" class="align-left"
+                                style="border: 1px solid #333;padding: 4px;"
+                                >
+                    </a>
+                    {% endif %}
+                    <h4 class="title-bg">
+                        <a href="{{ path('client_post_show',{'category_url':item.category.url, 'post_url':item.url }) }}">{{ item.name }}</a>
+                    </h4>
+                    <p>{{ item.shortText }}</p>
+                    <a href="{{ path('client_post_show',{'category_url':item.category.url, 'post_url':item.url }) }}" class="btn btn-mini btn-inverse">Читать дальше</a>
+                    <div class="post-summary-footer">
+                        <ul class="post-data-3">
+                            <li><i class="icon-calendar"></i> {{ item.getCreatedAtByFormat('d F / Y') }}</li>
+                            <li><i class="icon-comment"></i> <a href="{{ path('client_post_show',{'category_url':item.category.url, 'post_url':item.url }) }}#block_comments">0 Комментариев</a></li>
+                            {% if item.tags|length > 0 %}
+                                <li>
+                                    <i class="icon-tags"></i>
+                                    {% for tag in entity.tags %}
+                                        <a href="{{ path('client_tag_show', {'tag_url': tag.url}) }}" class="gray-btn">{{ tag.name }}</a>
+                                    {% endfor %}
+                                </li>
+                            {% endif %}
+                        </ul>
                     </div>
-                </div>
+                </article>
             {% endfor %}
+            {#
+            <!-- Pagination -->
+            <div class="pagination">
+                <ul>
+                    <li class="active"><a href="#">Prev</a></li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">Next</a></li>
+                </ul>
+            </div>
+            #}
         </div>
-        {#<div class="load-more"><a href="#" class="load-news">Показать еще</a></div>#}
-        <br/>
-        <br/>
-        <div id="category_description">
+
+        <!-- Blog Sidebar
+        ================================================== -->
+        {{ render(controller('AcmeMainBundle:PageLayout:rightSidebar', {
+        'post': entity
+        })) }}
+        <!-- End sidebar column -->
+    </div>
+    <div class="row" id="about">
+        <div class="span12">
             {{ entity.text|raw }}
         </div>
     </div>

@@ -2,6 +2,7 @@
 
 {% block title %}{{ entity.title }}{% endblock %}
 {% block description %}{{ entity.description }}{% endblock %}
+{% block keywords %}{{ entity.keywords }}{% endblock %}
 
 {% block meta %}
     <meta property="og:title" content="{{ entity.title }}"/>
@@ -135,51 +136,37 @@
             <div id="blogCarousel" class="carousel slide ">
                 <!-- Carousel items -->
                 <div class="carousel-inner">
-                    <!-- Blog Item 1 -->
-                    <div class="active item">
-                        <a href="blog-single.html">
-                            <img src="img/gallery/blog-med-img-1.jpg" width="370" alt="" class="align-left blog-thumb-preview">
-                        </a>
-                        <div class="post-info clearfix">
-                            <h4><a href="blog-single.html">A subject that is beautiful in itself</a></h4>
-                            <ul class="blog-details-preview">
-                                <li>
-                                    <i class="icon-comment"></i><strong>Комментарии:</strong> <a href="#" title="Link">0</a>
-                                </li>
-                                <li>
-                                    <i class="icon-tags"></i> <a href="#">photoshop</a>, <a href="#">tutorials</a>, <a href="#">illustration</a>
-                                </li>
-                            </ul>
+                    {% for post in entities %}
+                        <div class="{% if loop.index == 1 %}active{% endif %} item">
+                            <a href="blog-single.html">
+                                <img src="{{ post.getWebPath() | apply_filter('thumbnail_index_post') }}" width="270" alt="" class="align-left blog-thumb-preview">
+                            </a>
+                            <div class="post-info clearfix">
+                                <h4>
+                                    <a href="{{ path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) }}">{{ post.name }}</a>
+                                </h4>
+                                <ul class="blog-details-preview">
+                                    <li><i class="icon-comment"></i> <a href="{{ path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) }}#block_comments">0 Комментариев</a></li>
+                                    {% if post.tags|length > 0 %}
+                                        <li>
+                                            <i class="icon-tags"></i>
+                                            {% for tag in post.tags %}
+                                                <a href="{{ path('client_tag_show', {'tag_url': tag.url}) }}" class="gray-btn">{{ tag.name }}</a>
+                                            {% endfor %}
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                            <p class="blog-summary">{{ post.shortText }} <a href="{{ path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) }}">Читать дальше</a></p>
                         </div>
-                        <p class="blog-summary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In interdum felis fermentum ipsum molestie sed porttitor ligula rutrum. Vestibulum lectus tellus, aliquet et iaculis sed, volutpat vel erat. <a href="#">Читать дальше</a></p><p>
-                        </p>
-                    </div>
-                    <!-- Blog Item 2 -->
-                    <div class="item">
-                        <a href="blog-single.html">
-                            <img src="img/gallery/blog-med-img-1.jpg" alt="" class="align-left blog-thumb-preview">
-                        </a>
-                        <div class="post-info clearfix">
-                            <h4><a href="blog-single.html">A great artist is always before his time</a></h4>
-                            <ul class="blog-details-preview">
-                                <li>
-                                    <i class="icon-comment"></i><strong>Комментарии:</strong> <a href="#" title="Link">0</a>
-                                </li>
-                                <li>
-                                    <i class="icon-tags"></i> <a href="#">photoshop</a>, <a href="#">tutorials</a>, <a href="#">illustration</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <p class="blog-summary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In interdum felis fermentum ipsum molestie sed porttitor ligula rutrum. Vestibulum lectus tellus, aliquet et iaculis sed, volutpat vel erat. <a href="#">Read more</a></p><p>
-                        </p>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
         <!-- Client Area
         ================================================== -->
         <div class="span6">
-            <h5 class="title-bg">Интересное</h5>
+            <h5 class="title-bg">Социальное</h5>
             <!-- Client Testimonial Slider-->
             {#<div id="clientCarousel" class="carousel slide no-margin">#}
                 {#<!-- Carousel items -->#}
@@ -215,7 +202,7 @@
             <div class="pluso" data-background="transparent" data-options="big,square,line,horizontal,counter,theme=05" data-services="vkontakte,odnoklassniki,facebook,twitter,google,moimir,email,print"></div>
         </div>
     </div>
-    <div class="row">
+    <div class="row" id="block_comments">
         <div class="span12">
             <div id="disqus_thread"></div>
             <script type="text/javascript">

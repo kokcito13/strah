@@ -141,15 +141,18 @@ avalanche_imagine:
         in_post:
             type:    relative_resize
             options: { widen: 270 }
-        thumbnail1_category_post:
+        thumbnail_index_post:
             type:    thumbnail
-            options: { size: [300, 263], mode: outbound }
-        thumbnail2_category_post:
+            options: { size: [270, 220], mode: outbound }
+        thumbnail_sidebar_post:
             type:    thumbnail
-            options: { size: [300, 153], mode: outbound }
+            options: { size: [70, 70], mode: outbound }
         thumbnail3_category_post:
             type:    thumbnail
             options: { size: [630, 343], mode: outbound }
+        index_banner:
+            type:    thumbnail
+            options: { size: [770, 414], mode: outbound }
         user_avatar:
             type:    thumbnail
             options: { size: [88, 88], mode: outbound }

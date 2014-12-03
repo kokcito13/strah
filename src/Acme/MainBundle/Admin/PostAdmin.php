@@ -82,7 +82,7 @@ class PostAdmin extends Admin
                 ->add('title', 'text', array('label'=>'Title'))
                 ->add('description', 'textarea', array('label'=>'Description'))
                 ->add('keywords', 'textarea', array('label'=>'Keywords', 'required'  => false))
-                ->add('shortText', 'textarea', array('label'=>'Цитата', 'required'  => false))
+                ->add('shortText', 'textarea', array('label'=>'Короткое описание', 'required'  => false))
                 ->add('category', 'entity',
                     array('label' => 'Категория', 'required'  => true, 'class'=>'AcmeMainBundle:Category',
                     'property'=>'name'))

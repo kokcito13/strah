@@ -110,5 +110,21 @@ class PostRepository extends EntityRepository
 
         return $result;
     }
-    
+
+    public function findForPage($order = false, $limit = false)
+    {
+        $em = $this->getEntityManager();
+
+        $query = $em->createQueryBuilder()
+            ->select('p')
+            ->from('AcmeMainBundle:Post', 'p');
+
+        if (!$order)
+            $query->orderBy('p.id', 'DESC');
+
+        if ($limit)
+            $query->setMaxResults($limit);
+
+        return $query->getQuery()->getResult();
+    }
 }

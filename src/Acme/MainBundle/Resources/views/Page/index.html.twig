@@ -16,13 +16,23 @@
             <div class="flexslider">
                 <ul class="slides">
                     <li>
-                        <a href="#">
-                            <img src="{{ asset('bundles/acmemain/images/prettyPhoto/img114.jpg') }}" alt="slider" />
+                        <a href="/health">
+                            <img src="{{ asset('bundles/acmemain/images/prettyPhoto/img114.jpg') | apply_filter('index_banner') }}" alt="slider" />
                         </a>
                     </li>
                     <li>
-                        <a href="#">
-                            <img src="{{ asset('bundles/acmemain/images/prettyPhoto/insurance-comparison.jpg') }}" alt="slider" />
+                        <a href="/insurer">
+                            <img src="{{ asset('bundles/acmemain/images/banner1.jpg') | apply_filter('index_banner') }}" alt="slider" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/social">
+                            <img src="{{ asset('bundles/acmemain/images/banner2.jpg') | apply_filter('index_banner') }}" alt="slider" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/auto">
+                            <img src="{{ asset('bundles/acmemain/images/banner3.jpg') | apply_filter('index_banner') }}" alt="slider" />
                         </a>
                     </li>
                 </ul>
@@ -39,53 +49,68 @@
     <!--/noindex-->
     <div class="row gallery-row"><!-- Begin Gallery Row -->
         <div class="span12">
-            <h5 class="title-bg">Последние новости
+            <h5 class="title-bg">Последние статьи
                 {#<button class="btn btn-mini btn-inverse hidden-phone" type="button">View Portfolio</button>#}
             </h5>
             <!-- Gallery Thumbnails
             ================================================== -->
             <div class="row clearfix no-margin">
                 <ul class="gallery-post-grid holder">
-                    <!-- Gallery Item 1 -->
-                   {# <li  class="span3 gallery-item" data-id="id-1" data-type="illustration">
-                        <span class="gallery-hover-4col hidden-phone hidden-tablet">
-                            <span class="gallery-icons">
-                                <a href="gallery-single.html" class="item-details-link"></a>
+                    {% for post in entities %}
+                        <li  class="span3 gallery-item" data-id="id-{{ post.id }}" data-type="illustration">
+                            <span class="gallery-hover-4col hidden-phone hidden-tablet">
+                                <span class="gallery-icons">
+                                    <a href="{{ path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) }}" class="item-details-link"></a>
+                                </span>
                             </span>
-                        </span>
-                        <a href="gallery-single.html"><img src="{{ asset('bundles/acmemain/images/gallery/gallery-img-1-4col.jpg') }}" alt="Gallery"></a>
-                        <span class="project-details"><a href="gallery-single.html">Custom Illustration</a>For an international ad campaign.</span>
-                    </li>
-                    <!-- Gallery Item 2 -->
-                    <li class="span3 gallery-item" data-id="id-2" data-type="illustration">
-                        <span class="gallery-hover-4col hidden-phone hidden-tablet">
-                            <span class="gallery-icons">
-                                <a href="gallery-single.html" class="item-details-link"></a>
+                            <a href="{{ path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) }}">
+                                <img src="{{ post.getWebPath() | apply_filter('thumbnail_index_post') }}" alt="">
+                            </a>
+                            <span class="project-details">
+                                <a href="{{ path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) }}">{{ post.name }}</a>
                             </span>
-                        </span>
-                        <a href="gallery-single.html"><img src="{{ asset('bundles/acmemain/images/gallery/gallery-img-1-4col.jpg') }}" alt="Gallery"></a>
-                        <span class="project-details"><a href="gallery-single.html">3 Color Poster Design</a>For a regional festival event.</span>
-                    </li>
-                    <!-- Gallery Item 3 -->
-                    <li class="span3 gallery-item" data-id="id-3" data-type="web">
-                        <span class="gallery-hover-4col hidden-phone hidden-tablet">
-                            <span class="gallery-icons">
-                                <a href="#" class="item-details-link"></a>
-                            </span>
-                        </span>
-                        <a href="gallery-single.html"><img src="{{ asset('bundles/acmemain/images/gallery/gallery-img-1-4col.jpg') }}" alt="Gallery"></a>
-                        <span class="project-details"><a href="gallery-single.html">Ink Pen Illustration</a>Created for a best selling children's book.</span>
-                    </li>
-                    <!-- Gallery Item 4 -->
-                    <li class="span3 gallery-item" data-id="id-4" data-type="video">
-                        <span class="gallery-hover-4col hidden-phone hidden-tablet">
-                            <span class="gallery-icons">
-                                <a href="gallery-single.html" class="item-details-link"></a>
-                            </span>
-                        </span>
-                        <a href="gallery-single.html"><img src="{{ asset('bundles/acmemain/images/gallery/gallery-img-1-4col.jpg') }}" alt="Gallery"></a>
-                        <span class="project-details"><a href="gallery-single.html">Custom Illustration</a>For an international add campaign.</span>
-                    </li>#}
+                        </li>
+                    {% endfor %}
+                    {# <!-- Gallery Item 1 -->
+                     <li  class="span3 gallery-item" data-id="id-1" data-type="illustration">
+                         <span class="gallery-hover-4col hidden-phone hidden-tablet">
+                             <span class="gallery-icons">
+                                 <a href="gallery-single.html" class="item-details-link"></a>
+                             </span>
+                         </span>
+                         <a href="gallery-single.html"><img src="{{ asset('bundles/acmemain/images/gallery/gallery-img-1-4col.jpg') }}" alt="Gallery"></a>
+                         <span class="project-details"><a href="gallery-single.html">Custom Illustration</a>For an international ad campaign.</span>
+                     </li>
+                     <!-- Gallery Item 2 -->
+                     <li class="span3 gallery-item" data-id="id-2" data-type="illustration">
+                         <span class="gallery-hover-4col hidden-phone hidden-tablet">
+                             <span class="gallery-icons">
+                                 <a href="gallery-single.html" class="item-details-link"></a>
+                             </span>
+                         </span>
+                         <a href="gallery-single.html"><img src="{{ asset('bundles/acmemain/images/gallery/gallery-img-1-4col.jpg') }}" alt="Gallery"></a>
+                         <span class="project-details"><a href="gallery-single.html">3 Color Poster Design</a>For a regional festival event.</span>
+                     </li>
+                     <!-- Gallery Item 3 -->
+                     <li class="span3 gallery-item" data-id="id-3" data-type="web">
+                         <span class="gallery-hover-4col hidden-phone hidden-tablet">
+                             <span class="gallery-icons">
+                                 <a href="#" class="item-details-link"></a>
+                             </span>
+                         </span>
+                         <a href="gallery-single.html"><img src="{{ asset('bundles/acmemain/images/gallery/gallery-img-1-4col.jpg') }}" alt="Gallery"></a>
+                         <span class="project-details"><a href="gallery-single.html">Ink Pen Illustration</a>Created for a best selling children's book.</span>
+                     </li>
+                     <!-- Gallery Item 4 -->
+                     <li class="span3 gallery-item" data-id="id-4" data-type="video">
+                         <span class="gallery-hover-4col hidden-phone hidden-tablet">
+                             <span class="gallery-icons">
+                                 <a href="gallery-single.html" class="item-details-link"></a>
+                             </span>
+                         </span>
+                         <a href="gallery-single.html"><img src="{{ asset('bundles/acmemain/images/gallery/gallery-img-1-4col.jpg') }}" alt="Gallery"></a>
+                         <span class="project-details"><a href="gallery-single.html">Custom Illustration</a>For an international add campaign.</span>
+                     </li>#}
                 </ul>
             </div>
         </div>

@@ -18,7 +18,12 @@ class PageController extends Controller
      */
     public function indexAction()
     {
-        return array();
+        $em = $this->getDoctrine()->getManager();
+        $entities = $em->getRepository('AcmeMainBundle:Post')->findForPage(false, 8);
+
+        return array(
+            'entities' => $entities
+        );
     }
     
     /**

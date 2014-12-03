@@ -12,9 +12,9 @@ class PageLayoutController extends Controller
     /**
      * @Template()
      */
-    public function navigateAction($main = false)
+    public function navigateAction($main = false, $route_name = '')
     {
-        return array('entities' => $this->categoryList(), 'main' => $main);
+        return array('entities' => $this->categoryList(), 'main' => $main, 'route_name' => $route_name);
     }
     /**
      * @Template()
@@ -29,7 +29,10 @@ class PageLayoutController extends Controller
      */
     public function rightSidebarAction($post = false)
     {
-        return array('post' => $post);
+        $em = $this->getDoctrine()->getManager();
+        $entities = $em->getRepository('AcmeMainBundle:Post')->findForPage(false, 3);
+
+        return array('post' => $post, 'entities' => $entities);
     }
 
     public function categoryList()

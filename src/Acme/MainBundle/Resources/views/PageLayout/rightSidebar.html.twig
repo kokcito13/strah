@@ -1,24 +1,28 @@
 <div class="span4 sidebar page-sidebar"><!-- Begin sidebar column -->
-    <!--Testimonials-->
-    {#<h5 class="title-bg">Testimonials</h5>#}
-    {#<p class="quote-text side">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In interdum felis fermentum ipsum molestie sed porttitor ligula rutrum. Morbi blandit ultricies ultrices. Vivamus nec lectus sed orci molestie molestie."<cite>- Client Name, Big Company</cite></p>#}
-    {#<p class="quote-text side">"Adipiscing elit. In interdum felis fermentum ipsum molestie sed porttitor ligula rutrum. Morbi blandit ultricies ultrices. Vivamus nec lectus sed orci molestie molestie."<cite>- Another Client Name, Big Company</cite></p>#}
-    <!--Latest News-->
-    <h5 class="title-bg">Latest News</h5>
+    <!--Search-->
+    <section>
+        <div class="input-append">
+            <form action="#">
+                <input id="appendedInputButton" size="16" type="text" placeholder="Искать..."/>
+                <button class="btn" type="button"><i class="icon-search"></i></button>
+            </form>
+        </div>
+    </section>
+    <h5 class="title-bg">Последние статьи</h5>
     <ul class="popular-posts">
-        <li>
-            <a href="#"><img src="img/gallery/gallery-img-2-thumb.jpg" alt="Popular Post"></a>
-            <h6><a href="#">Lorem ipsum dolor sit amet consectetur adipiscing elit</a></h6>
-            <em>Posted on 09/01/15</em>
-        </li>
-        <li>
-            <a href="#"><img src="img/gallery/gallery-img-2-thumb.jpg" alt="Popular Post"></a>
-            <h6><a href="#">Nulla iaculis mattis lorem, quis gravida nunc iaculis</a></h6>
-            <em>Posted on 09/01/15</em>
-        </li><li>
-            <a href="#"><img src="img/gallery/gallery-img-2-thumb.jpg" alt="Popular Post"></a>
-            <h6><a href="#">Vivamus tincidunt sem eu magna varius elementum maecenas felis</a></h6>
-            <em>Posted on 09/01/15</em>
-        </li>
+        {% for post in entities %}
+            <li>
+                <a href="{{ path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) }}">
+                    <img src="{{ post.getWebPath() | apply_filter('thumbnail_sidebar_post') }}" alt="">
+                </a>
+                <h6>
+                    <a href="{{ path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) }}">{{ post.name }}</a>
+                </h6>
+                <em>{{ post.getCreatedAtByFormat('d F / Y') }}</em>
+            </li>
+        {% endfor %}
     </ul>
+    <!--Video Widget-->
+    <h5 class="title-bg">Последнее видео</h5>
+    <iframe src="http://player.vimeo.com/video/108892001" width="370" height="208"></iframe>
 </div>

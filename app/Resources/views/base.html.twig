@@ -6,6 +6,7 @@
 <head>
     <title>{% block title %}DveStrahovki.ru{% endblock %}</title>
     <meta name="description" content="{% block description %}DveStrahovki.ru{% endblock %}"/>
+    <meta name="keywords" content="{% block keywords %}DveStrahovki.ru{% endblock %}"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta content="width=device-width, target-densityDpi=device-dpi" name="viewport"/>
 
@@ -53,7 +54,8 @@
         <!-- Main Navigation
         ================================================== -->
         {{ render(controller('AcmeMainBundle:PageLayout:navigate', {
-            'main': mainCategory
+            'main': mainCategory,
+            'route_name':  app.request.get('_route')
         })) }}
     </div><!-- End Header -->
     {% block body %}{% endblock %}

@@ -1,7 +1,7 @@
 <div class="span7 navigation">
     <div class="navbar hidden-phone">
         <ul class="nav">
-            <li {% if app.request.get('_route') == 'page_home' %} class="active" {% endif %}>
+            <li {% if route_name == 'page_home' %} class="active" {% endif %}>
                 <a href="{{ path('page_home') }}">Главная</a>
             </li>
             {% for entity in entities %}
@@ -9,10 +9,10 @@
                 <a href="{{ path('client_category_show',{ 'category_url': entity.url }) }}">{{ entity.name }}</a>
             </li>
             {% endfor %}
-            <li>
+            <li {% if route_name == 'page_catalog' %} class="active" {% endif %}>
                 <a href="{{ path('page_catalog') }}">Каталог</a>
             </li>
-            <li>
+            <li {% if route_name == 'page_contact' %} class="active" {% endif %}>
                 <a href="{{ path('page_contact') }}">Контакты</a>
             </li>
         </ul>
