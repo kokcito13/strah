@@ -2,16 +2,15 @@
 
 namespace Acme\MainBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Category
+ * Company
  *
- * @ORM\Table(name="category")
- * @ORM\Entity(repositoryClass="Acme\MainBundle\Entity\CategoryRepository")
+ * @ORM\Table(name="company")
+ * @ORM\Entity(repositoryClass="Acme\MainBundle\Entity\CompanyRepository")
  */
-class Category
+class Company
 {
     /**
      * @var integer
@@ -53,19 +52,23 @@ class Category
     /**
      * @var string
      *
-     * @ORM\Column(name="text", type="text", nullable=true)
+     * @ORM\Column(name="keywords", type="string", length=255)
+     */
+    private $keywords;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="text", type="text")
      */
     private $text;
 
-    /**
-     * @ORM\OneToMany(targetEntity="Post", mappedBy="category")
-     */
-    private $posts;
 
-    public function __construct()
-    {
-        $this->posts = new ArrayCollection();
-    }
+    /**
+     * @ORM\ManyToOne(targetEntity="City", inversedBy="companies")
+     * @ORM\JoinColumn(name="city_id", referencedColumnName="id")
+     */
+    private $city;
 
     /**
      * Get id
@@ -81,7 +84,7 @@ class Category
      * Set name
      *
      * @param string $name
-     * @return Category
+     * @return Company
      */
     public function setName($name)
     {
@@ -104,7 +107,7 @@ class Category
      * Set url
      *
      * @param string $url
-     * @return Category
+     * @return Company
      */
     public function setUrl($url)
     {
@@ -127,7 +130,7 @@ class Category
      * Set title
      *
      * @param string $title
-     * @return Category
+     * @return Company
      */
     public function setTitle($title)
     {
@@ -150,7 +153,7 @@ class Category
      * Set description
      *
      * @param string $description
-     * @return Category
+     * @return Company
      */
     public function setDescription($description)
     {
@@ -170,10 +173,33 @@ class Category
     }
 
     /**
+     * Set keywords
+     *
+     * @param string $keywords
+     * @return Company
+     */
+    public function setKeywords($keywords)
+    {
+        $this->keywords = $keywords;
+
+        return $this;
+    }
+
+    /**
+     * Get keywords
+     *
+     * @return string 
+     */
+    public function getKeywords()
+    {
+        return $this->keywords;
+    }
+
+    /**
      * Set text
      *
      * @param string $text
-     * @return Category
+     * @return Company
      */
     public function setText($text)
     {
@@ -190,43 +216,5 @@ class Category
     public function getText()
     {
         return $this->text;
-    }
-
-    public function __toString()
-    {
-        return __CLASS__;
-    }
-
-    /**
-     * Add posts
-     *
-     * @param \Acme\MainBundle\Entity\Post $posts
-     * @return Category
-     */
-    public function addPost(\Acme\MainBundle\Entity\Post $posts)
-    {
-        $this->posts[] = $posts;
-
-        return $this;
-    }
-
-    /**
-     * Remove posts
-     *
-     * @param \Acme\MainBundle\Entity\Post $posts
-     */
-    public function removePost(\Acme\MainBundle\Entity\Post $posts)
-    {
-        $this->posts->removeElement($posts);
-    }
-
-    /**
-     * Get posts
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getPosts()
-    {
-        return $this->posts;
     }
 }

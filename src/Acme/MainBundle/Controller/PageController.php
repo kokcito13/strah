@@ -167,12 +167,20 @@ class PageController extends Controller
     }
 
     /**
-     * @Route("/catalog", name="page_catalog")
+     * @Route("/catalog/{country}/{city}", name="page_catalog", defaults={"country" = null, "city" = null})
      * @Template()
      */
-    public function catalogAction(Request $request)
+    public function catalogAction($country = null, $city = null, Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+        $countries = $em->getRepository('AcmeMainBundle:Country')->findAll();
+        $cities = $em->getRepository('AcmeMainBundle:City')->findAll();
+        $companies = $em->getRepository('AcmeMainBundle:Company')->findAll();
 
-        return array();
+        return array(
+            'countries' => $countries,
+            'cities' => $cities,
+            'companies' => $companies
+        );
     }
 }

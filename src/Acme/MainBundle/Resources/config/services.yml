@@ -25,3 +25,21 @@ services:
         arguments: [%fos_user.model.user.class%]
         tags:
             - { name: form.type, alias: fos_user_profile }
+
+    acme_main.admin.country:
+        class: Acme\MainBundle\Admin\CountryAdmin
+        arguments: [~, Acme\MainBundle\Entity\Country, AcmeMainBundle:CountryAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: Каталог, label: Страны}
+
+    acme_main.admin.city:
+        class: Acme\MainBundle\Admin\CityAdmin
+        arguments: [~, Acme\MainBundle\Entity\City, AcmeMainBundle:CityAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: Каталог, label: Города}
+
+    acme_main.admin.company:
+        class: Acme\MainBundle\Admin\CompanyAdmin
+        arguments: [~, Acme\MainBundle\Entity\Company, AcmeMainBundle:CompanyAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: Каталог, label: Компании}

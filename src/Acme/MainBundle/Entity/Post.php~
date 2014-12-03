@@ -794,4 +794,43 @@ class Post
     {
         return $this->keywords;
     }
+
+    /**
+     * Set video
+     *
+     * @param string $video
+     * @return Post
+     */
+    public function setVideo($video)
+    {
+        $this->video = $video;
+
+        return $this;
+    }
+
+    /**
+     * Get video
+     *
+     * @return string 
+     */
+    public function getVideo()
+    {
+        return $this->video;
+    }
+
+    public function getArrayVideoId()
+    {
+        $ids = array();
+        $videos = explode(',', $this->getVideo());
+        foreach ($videos as $video) {
+            $video = trim($video);
+            $part = parse_url($video);
+            parse_str($part['query'], $query);
+            if (isset($query['v']) && !empty($query['v'])) {
+                $ids[] = $query['v'];
+            }
+        }
+
+        return $ids;
+    }
 }

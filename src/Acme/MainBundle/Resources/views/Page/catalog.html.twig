@@ -4,12 +4,59 @@
 {% block description %}Доступная информация о компаниях на сайте{% endblock %}
 
 {% block body %}
-    <div class="text-container">
-        <div class="baselayout">
-            <h1>Каталог</h1>
+    <div class="row gallery-row"><!-- Begin Gallery Row -->
+        <div class="span8">
+            <div class="row clearfix no-margin">
+                <div class="span12">
+                    <div class="navbar hidden-phone">
+                        <ul class="nav">
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="{{ path('page_catalog') }}">Все страны <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    {% for con in countries %}
+                                        <li>
+                                            <a href="{{ path('page_catalog', {"country":con.url}) }}">{{ con.name }}</a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="{{ path('page_catalog') }}">Все города <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    {% for city in cities %}
+                                        <li>
+                                            <a href="{{ path('page_catalog', {"country":city.country.url, 'city':city.url}) }}">{{ city.name }}</a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Gallery Thumbnails
+            ================================================== -->
+            <div class="row clearfix no-margin">
+                <ul class="gallery-post-grid holder">
+                    {% for company in companies %}
+                        <!-- Gallery Item 1 -->
+                        <li class="span3 gallery-item" data-id="id-1" data-type="illustration">
+                            {#<a href="gallery-single.html">#}
+                                {#<img src="img/gallery/gallery-img-1-4col.jpg" alt="Gallery">#}
+                            {#</a>#}
+                            <span class="project-details">
+                                <a href="gallery-single.html">{{ company.name }}</a>
+                            </span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
-        <div class="baselayout-inner">
-
-        </div>
+        <!-- Blog Sidebar
+        ================================================== -->
+        {{ render(controller('AcmeMainBundle:PageLayout:rightSidebar', {
+        'post': false
+        })) }}
+        <!-- End sidebar column -->
     </div>
 {% endblock %}
