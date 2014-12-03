@@ -1,4 +1,4 @@
-/www/bundles/
+/www/bundles/*
 /www/uploads/*
 /www/media/*
 /app/bootstrap.php.cache
