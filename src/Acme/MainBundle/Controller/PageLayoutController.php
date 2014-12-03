@@ -21,7 +21,10 @@ class PageLayoutController extends Controller
      */
     public function footerAction($main = false)
     {
-        return array('entities' => $this->categoryList(), 'main' => $main);
+        $em = $this->getDoctrine()->getManager();
+        $entities = $em->getRepository('AcmeMainBundle:Post')->findForPage(false, 12);
+
+        return array('entities' => $this->categoryList(), 'main' => $main, 'posts' => $entities);
     }
 
     /**

@@ -149,8 +149,11 @@ class PageController extends Controller
      */
     public function sitemapAction(Request $request)
     {
+        $categories = $this->getDoctrine()->getRepository('AcmeMainBundle:Category')->findAll();
 
-        return array();
+        return array(
+            'categories' => $categories
+        );
     }
 
     /**

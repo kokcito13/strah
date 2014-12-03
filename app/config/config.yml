@@ -147,9 +147,9 @@ avalanche_imagine:
         thumbnail_sidebar_post:
             type:    thumbnail
             options: { size: [70, 70], mode: outbound }
-        thumbnail3_category_post:
+        thumbnail_footer_post:
             type:    thumbnail
-            options: { size: [630, 343], mode: outbound }
+            options: { size: [60, 60], mode: outbound }
         index_banner:
             type:    thumbnail
             options: { size: [770, 414], mode: outbound }

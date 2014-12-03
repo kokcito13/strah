@@ -4,12 +4,44 @@
 {% block description %}Ваш путиводитель по сайту DveStrahovki.ru{% endblock %}
 
 {% block body %}
-    <div class="text-container">
-        <div class="baselayout">
+    <div class="row">
+        <!-- Blog Posts
+        ================================================== -->
+        <div class="span8 blog">
             <h1>Карта сайта</h1>
+            <ul class="post-category-list" style="list-style-type: none;">
+                {% for entity in categories %}
+                <li>
+                    <a href="{{ path('client_category_show',{ 'category_url': entity.url }) }}"><i class="icon-plus-sign"></i>{{ entity.name }}</a>
+                    <ul>
+                        {% for post in entity.getPosts %}
+                            <li>
+                                <a href="{{ path('client_post_show',{'category_url':entity.url, 'post_url':post.url }) }}">{#<i class="icon-plus-sign"></i>#}{{ post.name }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                {% endfor %}
+            </ul>
+            {#
+            <!-- Pagination -->
+            <div class="pagination">
+                <ul>
+                    <li class="active"><a href="#">Prev</a></li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">Next</a></li>
+                </ul>
+            </div>
+            #}
         </div>
-        <div class="baselayout-inner">
-            Путиводитель по сайту
-        </div>
+        <!-- Blog Sidebar
+        ================================================== -->
+        {{ render(controller('AcmeMainBundle:PageLayout:rightSidebar', {
+        'post': false
+        })) }}
+        <!-- End sidebar column -->
     </div>
 {% endblock %}
