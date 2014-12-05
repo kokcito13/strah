@@ -3,6 +3,7 @@ Crawl-delay: 10
 Disallow: /contact
 Disallow: /advertising
 Disallow: /admin
+Disallow: /login*
 Disallow: ?page=*
 Allow: /uploads/
 Allow: /media/
@@ -15,6 +16,7 @@ User-agent: Googlebot
 Disallow: /contact
 Disallow: /advertising
 Disallow: /admin
+Disallow: /login*
 Disallow: ?page=*
 Allow: /uploads/
 Allow: /media/
@@ -24,6 +26,7 @@ Crawl-delay: 10
 Disallow: /contact
 Disallow: /advertising
 Disallow: /admin
+Disallow: /login*
 Disallow: ?page=*
 Allow: /uploads/
 Allow: /media/
