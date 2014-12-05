@@ -21,7 +21,7 @@
             </li>
             {% for entity in entities %}
             <li {% if main == entity.url %} class="active" {% endif %}>
-                {% if main == entity.url %}
+                {% if main == entity.url and route_name == 'client_category_show' %}
                     <span>{{ entity.name }}</span>
                 {% else %}
                     <a href="{{ path('client_category_show',{ 'category_url': entity.url }) }}">{{ entity.name }}</a>
