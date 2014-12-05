@@ -1,14 +1,17 @@
 <div class="span4 sidebar page-sidebar"><!-- Begin sidebar column -->
     <!--Search-->
-    <section>
-        <div class="input-append">
-            <form action="#">
-                <input id="appendedInputButton" size="16" type="text" placeholder="Искать..."/>
-                <button class="btn" type="button"><i class="icon-search"></i></button>
-            </form>
-        </div>
-    </section>
-    <h5 class="title-bg">Последние статьи</h5>
+    {##}
+    {#<!--noindex-->#}
+    {#<section>#}
+        {#<div class="input-append">#}
+            {#<form action="#">#}
+                {#<input id="appendedInputButton" size="16" type="text" placeholder="Искать..."/>#}
+                {#<button class="btn" type="button"><i class="icon-search"></i></button>#}
+            {#</form>#}
+        {#</div>#}
+    {#</section>#}
+    {#<!--/noindex-->#}
+    <div class="title-bg">Последние публикации</div>
     <ul class="popular-posts">
         {% for post in entities %}
             <li>
@@ -22,7 +25,9 @@
             </li>
         {% endfor %}
     </ul>
+    <!--noindex-->
     <!--Video Widget-->
-    <h5 class="title-bg">Последнее видео</h5>
+    <div class="title-bg">Последнее видео</div>
     <iframe src="http://player.vimeo.com/video/108892001" width="370" height="208"></iframe>
+    <!--/noindex-->
 </div>

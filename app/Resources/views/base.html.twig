@@ -46,9 +46,13 @@
         <!-- Logo
         ================================================== -->
         <div class="span5 logo">
-            <a href="{{ path('page_home') }}">
+            {% if app.request.get('_route') == 'page_home' %}
                 <img src="{{ asset('bundles/acmemain/images/logoD.png') }}" alt="" style="width: 255px;"/>
-            </a>
+            {% else %}
+                <a href="{{ path('page_home') }}">
+                    <img src="{{ asset('bundles/acmemain/images/logoD.png') }}" alt="" style="width: 255px;"/>
+                </a>
+            {% endif %}
             {#<h5>Все о страховке</h5>#}
         </div>
         <!-- Main Navigation

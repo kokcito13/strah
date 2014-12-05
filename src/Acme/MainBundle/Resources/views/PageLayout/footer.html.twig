@@ -1,8 +1,9 @@
 <div class="footer-container"><!-- Begin Footer -->
     <div class="container">
         <div class="row footer-row">
+            <!--noindex-->
             <div class="span3 footer-col">
-                <h5>Мы в соц. сетях</h5>
+                <div class="h5">Мы в соц. сетях</div>
                 <img src="{{ asset('bundles/acmemain/images/logoD.png') }}" alt="Logo" /><br /><br />
                 {#<address>#}
                     {#<strong>Design Team</strong><br />#}
@@ -10,15 +11,19 @@
                     {#New York, NY 12345<br />#}
                 {#</address>#}
                 <ul class="social-icons">
-                    <li><a href="#" class="social-icon facebook"></a></li>
-                    <li><a href="#" class="social-icon twitter"></a></li>
-                    <li><a href="#" class="social-icon dribble"></a></li>
-                    <li><a href="#" class="social-icon rss"></a></li>
-                    <li><a href="#" class="social-icon forrst"></a></li>
+                    <li>
+                        <a href="https://www.facebook.com/dvestrahovki" target="_blank" rel="nofollow" class="social-icon facebook"></a>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/dvestrahovki" target="_blank" rel="nofollow" class="social-icon twitter"></a>
+                    </li>
+                    <li>
+                        <a href="https://vk.com/dvestrahovki" target="_blank" rel="nofollow" class="social-icon vk"></a>
+                    </li>
                 </ul>
             </div>
             <div class="span3 footer-col">
-                <h5>ТОП компаний</h5>
+                <div class="h5">ТОП компаний</div>
                 <ul>
                     {#<li><a href="#">@room122</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>#}
                     {#<li><a href="#">@room122</a> In interdum felis fermentum ipsum molestie sed porttitor ligula rutrum. Morbi blandit ultricies ultrices.</li>#}
@@ -26,17 +31,17 @@
                 </ul>
             </div>
             <div class="span3 footer-col">
-                <h5>Рубрики</h5>
+                <div class="h5">Рубрики</div>
                 <ul class="post-list">
                     {% for entity in entities %}
                         <li>
-                            <a href="{{ path('client_category_show',{ 'category_url': entity.url }) }}">{{ entity.name }}</a>
+                            <a rel="nofollow" href="{{ path('client_category_show',{ 'category_url': entity.url }) }}">{{ entity.name }}</a>
                         </li>
                     {% endfor %}
                 </ul>
             </div>
             <div class="span3 footer-col">
-                <h5>Карта картинок</h5>
+                <div class="h5">Карта картинок</div>
                 <ul class="img-feed">
                     {% for post in posts %}
                         <li>
@@ -48,22 +53,27 @@
                 </ul>
             </div>
         </div>
+        <!--/noindex-->
         <div class="row"><!-- Begin Sub Footer -->
             <div class="span12 footer-col footer-sub">
                 <div class="row no-margin">
+                    <!--noindex-->
                     <div class="span6">
-                        <span class="left">© {{ "now"|date('Y') }} Все права защищены</span>
+                        <span class="left">© 2001 - {{ "now"|date('Y') }} Все права защищены</span>
                     </div>
+                    <!--/noindex-->
                     <div class="span6">
                         <span class="right">
-                            <a href="{{ path('page_home') }}">Главная</a>
+                            <!--noindex-->
+                            <a rel="nofollow" href="{{ path('page_home') }}">Главная</a>
                             &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-                            <a href="{{ path('page_catalog') }}">Каталог</a>
+                            <a rel="nofollow" href="{{ path('page_catalog') }}">Каталог</a>
                             &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-                            <a href="{{ path('page_contact') }}">Контакты</a>
+                            <a rel="nofollow" href="{{ path('page_contact') }}">Контакты</a>
                             &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-                            <a href="{{ path('page_advertising') }}">Реклама на сайте</a>
+                            <a rel="nofollow" href="{{ path('page_advertising') }}">Реклама на сайте</a>
                             &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                            <!--/noindex-->
                             <a href="{{ path('page_sitemap') }}">Карта сайта</a>
                         </span>
                     </div>

@@ -2,16 +2,33 @@
     <div class="navbar hidden-phone">
         <ul class="nav">
             <li {% if route_name == 'page_home' %} class="active" {% endif %}>
-                <a href="{{ path('page_home') }}"><i class="icon-home"></i></a>
+                {% if route_name == 'page_home' %}
+                    <span>
+                        <i class="icon-home"></i>
+                    </span>
+                {% else %}
+                    <a href="{{ path('page_home') }}">
+                        <i class="icon-home"></i>
+                    </a>
+                {% endif %}
+            </li>
+            <li {% if route_name == 'page_catalog' %} class="active" {% endif %}>
+                {% if route_name == 'page_catalog' %}
+                    <span>Каталог</span>
+                {% else %}
+                    <a href="{{ path('page_catalog') }}">Каталог</a>
+                {% endif %}
             </li>
             {% for entity in entities %}
             <li {% if main == entity.url %} class="active" {% endif %}>
-                <a href="{{ path('client_category_show',{ 'category_url': entity.url }) }}">{{ entity.name }}</a>
+                {% if main == entity.url %}
+                    <span>{{ entity.name }}</span>
+                {% else %}
+                    <a href="{{ path('client_category_show',{ 'category_url': entity.url }) }}">{{ entity.name }}</a>
+                {% endif %}
             </li>
             {% endfor %}
-            <li {% if route_name == 'page_catalog' %} class="active" {% endif %}>
-                <a href="{{ path('page_catalog') }}">Каталог</a>
-            </li>
+
         </ul>
     </div>
     <!-- Mobile Nav

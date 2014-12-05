@@ -16,31 +16,36 @@
             {% for item in entities %}
                 <article class="clearfix">
                     {% if item.imageName != null %}
-                    <a href="{{ path('client_post_show',{'category_url':item.category.url, 'post_url':item.url }) }}">
-                        <img src="{{ item.getWebPath() | apply_filter('thumbnail_index_post') }}" alt="" class="align-left"
-                                style="border: 1px solid #333;padding: 4px;"
-                                >
-                    </a>
+                        <!--noindex-->
+                        <a rel="nofollow" href="{{ path('client_post_show',{'category_url':item.category.url, 'post_url':item.url }) }}">
+                            <img src="{{ item.getWebPath() | apply_filter('thumbnail_index_post') }}" alt="" class="align-left"
+                                    style="border: 1px solid #333;padding: 4px;"
+                                    >
+                        </a>
+                        <!--/noindex-->
                     {% endif %}
-                    <h4 class="title-bg">
+                    <div class="h4 title-bg">
                         <a href="{{ path('client_post_show',{'category_url':item.category.url, 'post_url':item.url }) }}">{{ item.name }}</a>
-                    </h4>
+                    </div>
+                    <!--noindex-->
                     <p>{{ item.shortText }}</p>
-                    <a href="{{ path('client_post_show',{'category_url':item.category.url, 'post_url':item.url }) }}" class="btn btn-mini btn-inverse">Читать дальше</a>
+
+                    <a rel="nofollow" href="{{ path('client_post_show',{'category_url':item.category.url, 'post_url':item.url }) }}" class="btn btn-mini btn-inverse">Читать дальше</a>
                     <div class="post-summary-footer">
                         <ul class="post-data-3">
                             <li><i class="icon-calendar"></i> {{ item.getCreatedAtByFormat('d F / Y') }}</li>
-                            <li><i class="icon-comment"></i> <a href="{{ path('client_post_show',{'category_url':item.category.url, 'post_url':item.url }) }}#block_comments">0 Комментариев</a></li>
+                            <li><i class="icon-comment"></i> <a rel="nofollow" href="{{ path('client_post_show',{'category_url':item.category.url, 'post_url':item.url }) }}#block_comments">0 Комментариев</a></li>
                             {% if item.tags|length > 0 %}
                                 <li>
                                     <i class="icon-tags"></i>
                                     {% for tag in entity.tags %}
-                                        <a href="{{ path('client_tag_show', {'tag_url': tag.url}) }}" class="gray-btn">{{ tag.name }}</a>
+                                        <a rel="nofollow" href="{{ path('client_tag_show', {'tag_url': tag.url}) }}" class="gray-btn">{{ tag.name }}</a>
                                     {% endfor %}
                                 </li>
                             {% endif %}
                         </ul>
                     </div>
+                    <!--/noindex-->
                 </article>
             {% endfor %}
             {#

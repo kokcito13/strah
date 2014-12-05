@@ -773,3 +773,79 @@ a.accordion-toggle{background: #f5f5f5;}
 .footer-container .container {
     background-color: #333;
 }
+.nav .active span {
+    color: #FFF;
+    background-color: #d8450b;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    text-decoration: none;
+    font-family: "Oswald", sans-serif;
+    font-weight: normal;
+    text-shadow: none;
+    text-transform: uppercase;
+    font-size: 12px;
+    padding: 10px 15px 10px;
+    float: none;
+    display: block;
+}
+div.title-bg {
+    background:#f8f8f8;
+    padding:10px 5px;
+    margin: 0px 0px 20px 0px;
+    border-bottom: 1px dotted #a9a9a9;
+    border-top: 1px dotted #a9a9a9;
+    font-size: 14px;
+    line-height: 20px;
+    font-family: "Oswald", sans-serif;
+    font-weight: normal;
+    text-transform: uppercase;
+    color: inherit;
+    text-rendering: optimizelegibility;
+    display: block;
+}
+div.h3 {
+    font-family: "Oswald", sans-serif;
+    font-weight: normal;
+    text-transform: uppercase;
+    font-size: 24px;
+    line-height: 40px;
+    margin: 0 10px 0 0;
+    color: inherit;
+    text-rendering: optimizelegibility;
+    display: block;
+}
+div.h5 {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 10px;
+    margin-left: 0px;
+    font-family: "Oswald", sans-serif;
+    font-weight: normal;
+    text-transform: uppercase;
+    font-size: 14px;
+    line-height: 20px;
+    text-rendering: optimizelegibility;
+    display: block;
+}
+.footer-col .h5 {
+    margin-bottom: 25px;
+    color: #f9f9f9;
+    text-shadow: none;
+}
+.blog article div.h4 a {
+    color: #333333;
+    text-decoration: none;
+}
+div.h1.title-bg, div.h2.title-bg, div.h3.title-bg, div.h4.title-bg , div.h5.title-bg, div.h6.title-bg {
+    background:#f8f8f8;
+    padding:10px 5px;
+    margin: 0px 0px 20px 0px;
+    border-bottom: 1px dotted #a9a9a9;
+    border-top: 1px dotted #a9a9a9;
+}
+div.title-bg button {
+    float: right;
+    text-transform: none;
+    margin-left:5px;
+}
