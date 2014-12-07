@@ -18,7 +18,7 @@
                     {% if item.imageName != null %}
                         <!--noindex-->
                         <a rel="nofollow" href="{{ path('client_post_show',{'category_url':item.category.url, 'post_url':item.url }) }}">
-                            <img src="{{ item.getWebPath() | apply_filter('thumbnail_index_post') }}" alt="" class="align-left"
+                            <img src="{{ item.getWebPath() | apply_filter('thumbnail_index_post') }}" alt="{{ item.imageAlt }}" class="align-left"
                                     style="border: 1px solid #333;padding: 4px;"
                                     >
                         </a>
