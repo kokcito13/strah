@@ -49,7 +49,7 @@ class PostAdmin extends Admin
         $image = $this->getSubject();
 
         // use $fileFieldOptions so we can add other options to the field
-        $fileFieldOptions = array('required' => false,'label' => 'Картинка в списке');
+        $fileFieldOptions = array('required' => false,'label' => 'Основная картинка');
         if ($image && ($webPath = $image->getWebPath())) {
             // get the container so the full path to the image can be set
             $container = $this->getConfigurationPool()->getContainer();
