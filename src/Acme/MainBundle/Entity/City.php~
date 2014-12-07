@@ -107,4 +107,60 @@ class City
     {
         return $this->url;
     }
+
+    /**
+     * Set country
+     *
+     * @param \Acme\MainBundle\Entity\Country $country
+     * @return City
+     */
+    public function setCountry(\Acme\MainBundle\Entity\Country $country = null)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get country
+     *
+     * @return \Acme\MainBundle\Entity\Country 
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * Add companies
+     *
+     * @param \Acme\MainBundle\Entity\Company $companies
+     * @return City
+     */
+    public function addCompany(\Acme\MainBundle\Entity\Company $companies)
+    {
+        $this->companies[] = $companies;
+
+        return $this;
+    }
+
+    /**
+     * Remove companies
+     *
+     * @param \Acme\MainBundle\Entity\Company $companies
+     */
+    public function removeCompany(\Acme\MainBundle\Entity\Company $companies)
+    {
+        $this->companies->removeElement($companies);
+    }
+
+    /**
+     * Get companies
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCompanies()
+    {
+        return $this->companies;
+    }
 }

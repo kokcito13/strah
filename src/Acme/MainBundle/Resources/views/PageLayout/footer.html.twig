@@ -46,7 +46,7 @@
                     {% for post in posts %}
                         <li>
                             <a href="{{ path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) }}">
-                                <img src="{{ post.getWebPath() | apply_filter('thumbnail_footer_post') }}" alt="">
+                                <img src="{{ post.getWebPath() | apply_filter('thumbnail_footer_post') }}" alt="{{ post.imageAlt }}">
                             </a>
                         </li>
                     {% endfor %}

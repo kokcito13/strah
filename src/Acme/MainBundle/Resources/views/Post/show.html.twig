@@ -93,7 +93,7 @@
                 <p class="lead">{{ entity.shortText | raw }}</p>
             {% endif %}
             <div class="clearfix">
-                <img src="{{ entity.getWebPathTop() | apply_filter('in_post') }}" width="270" class="thumbnail align-left" alt="Image">
+                <img src="{{ entity.getWebPath() | apply_filter('in_post') }}" width="270" class="thumbnail align-left" alt="{{ entity.imageAlt }}">
                 {{ entity.text|raw }}
             </div>
             {% if entity.getArrayVideoId()|length > 0 %}

@@ -76,7 +76,8 @@ class PostAdmin extends Admin
         $formMapper
             ->with('Главное')
                 ->add('file', 'file', $fileFieldOptions)
-                ->add('fileTop', 'file', $fileFieldOptionsTop)
+//                ->add('fileTop', 'file', $fileFieldOptionsTop)
+                ->add('imageAlt', 'text', array('label'=>'Описание картинки'))
                 ->add('name', 'text', array('label'=>'Название'))
                 ->add('url', 'text', array('label'=>'Урл'))
                 ->add('title', 'text', array('label'=>'Title'))

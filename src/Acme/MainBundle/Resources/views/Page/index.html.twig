@@ -64,7 +64,7 @@
                                 </span>
                             </span>
                             <a href="{{ path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) }}">
-                                <img src="{{ post.getWebPath() | apply_filter('thumbnail_index_post') }}" alt="">
+                                <img src="{{ post.getWebPath() | apply_filter('thumbnail_index_post') }}" alt="{{ post.imageAlt }}">
                             </a>
                             <span class="project-details">
                                 <a href="{{ path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) }}">{{ post.name }}</a>

@@ -174,6 +174,13 @@ class Post
     private $user;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="image_alt", type="string", length=255, nullable=true)
+     */
+    protected $imageAlt;
+
+    /**
      * Set user_id
      *
      * @return Post
@@ -832,5 +839,28 @@ class Post
         }
 
         return $ids;
+    }
+
+    /**
+     * Set imageAlt
+     *
+     * @param string $imageAlt
+     * @return Post
+     */
+    public function setImageAlt($imageAlt)
+    {
+        $this->imageAlt = $imageAlt;
+
+        return $this;
+    }
+
+    /**
+     * Get imageAlt
+     *
+     * @return string 
+     */
+    public function getImageAlt()
+    {
+        return $this->imageAlt;
     }
 }

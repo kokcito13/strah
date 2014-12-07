@@ -217,4 +217,27 @@ class Company
     {
         return $this->text;
     }
+
+    /**
+     * Set city
+     *
+     * @param \Acme\MainBundle\Entity\City $city
+     * @return Company
+     */
+    public function setCity(\Acme\MainBundle\Entity\City $city = null)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return \Acme\MainBundle\Entity\City 
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
 }

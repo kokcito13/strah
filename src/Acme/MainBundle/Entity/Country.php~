@@ -101,4 +101,37 @@ class Country
     {
         return $this->url;
     }
+
+    /**
+     * Add cities
+     *
+     * @param \Acme\MainBundle\Entity\City $cities
+     * @return Country
+     */
+    public function addCity(\Acme\MainBundle\Entity\City $cities)
+    {
+        $this->cities[] = $cities;
+
+        return $this;
+    }
+
+    /**
+     * Remove cities
+     *
+     * @param \Acme\MainBundle\Entity\City $cities
+     */
+    public function removeCity(\Acme\MainBundle\Entity\City $cities)
+    {
+        $this->cities->removeElement($cities);
+    }
+
+    /**
+     * Get cities
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCities()
+    {
+        return $this->cities;
+    }
 }
