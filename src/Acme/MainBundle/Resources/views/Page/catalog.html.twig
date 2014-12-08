@@ -43,7 +43,7 @@
                                 "city_url": company.city.url,
                                 "company_url": company.url
                             }) }}" rel="nofollow">
-                                <img src="{{ company.getWebPath() | apply_filter('thumbnail_index_post') }}" alt="{{ company.name }}" width="270px">
+                                <img src="{{ company.getWebPath() | apply_filter('thumbnail_catalog_company') }}" alt="{{ company.name }}" width="270px">
                             </a>
                             <span class="project-details">
                                 <a href="{{ path('client_company_show', {

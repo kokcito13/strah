@@ -108,7 +108,7 @@ class PostAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('name')
-            ->addIdentifier('url')
+//            ->addIdentifier('url')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -128,8 +128,9 @@ class PostAdmin extends Admin
         $datagridMapper
             ->add('name')
 //            ->add('enabled')
-            ->add('category', null, array('field_options' => array('expanded' => true, 'property'=>'name')))
-            ->add('tags', null, array('field_options' => array('expanded' => true, 'multiple' => true, 'property'=>'name')));
+//            ->add('category', null, array('field_options' => array('expanded' => true, 'property'=>'name')))
+//            ->add('tags', null, array('field_options' => array('expanded' => true, 'multiple' => true, 'property'=>'name')))
+        ;
     }
 
     public function prePersist($post)

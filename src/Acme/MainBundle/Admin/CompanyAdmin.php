@@ -103,11 +103,9 @@ class CompanyAdmin extends Admin
         ;
     }
 
-    public function prePersist($post)
+    public function prePersist($company)
     {
-        $user = $this->getConfigurationPool()->getContainer()->get('security.context')->getToken()->getUser();
-        $post->setUser($user);
-        $post->setImageFromFile();
+        $company->setImageFromFile();
     }
 
     public function postPersist($post)
@@ -120,9 +118,9 @@ class CompanyAdmin extends Admin
         $this->saveFile($post);
     }
 
-    public function saveFile(Company $post)
+    public function saveFile(Company $company)
     {
         $basepath = $this->getRequest()->getBasePath();
-        $post->upload($basepath);
+        $company->upload($basepath);
     }
 }
