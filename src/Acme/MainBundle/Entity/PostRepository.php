@@ -54,7 +54,7 @@ class PostRepository extends EntityRepository
             ->setParameter('category', $post->getCategory()->getId())
 
             ->orderBy('p.id', 'DESC')
-            ->setMaxResults(9)
+            ->setMaxResults(3)
         ;
 
         return $query->getQuery()->getResult();

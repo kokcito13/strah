@@ -12,7 +12,7 @@
                     </a>
                 {% endif %}
             </li>
-            <li {% if route_name == 'page_catalog' %} class="active" {% endif %}>
+            <li {% if route_name == 'page_catalog' or route_name == 'client_company_show' %} class="active" {% endif %}>
                 {% if route_name == 'page_catalog' %}
                     <span>Каталог</span>
                 {% else %}
@@ -28,9 +28,9 @@
                 {% endif %}
             </li>
             {% endfor %}
-
         </ul>
     </div>
+    <!--noindex-->
     <!-- Mobile Nav
     ================================================== -->
     <form id="mobile-nav" class="visible-phone">
@@ -46,4 +46,5 @@
             </select>
         </div>
     </form>
+    <!--/noindex-->
 </div>

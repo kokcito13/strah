@@ -141,6 +141,9 @@ avalanche_imagine:
         in_post:
             type:    relative_resize
             options: { widen: 270 }
+        in_company:
+            type:    relative_resize
+            options: { widen: 170 }
         thumbnail_same_post:
             type:    relative_resize
             options: { widen: 150 }

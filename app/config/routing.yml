@@ -67,3 +67,7 @@ acme_main_search:
 acme_main_post:
     resource: "@AcmeMainBundle/Controller/PostController.php"
     type:     annotation
+
+acme_main_company:
+    resource: "@AcmeMainBundle/Controller/CompanyController.php"
+    type:     annotation

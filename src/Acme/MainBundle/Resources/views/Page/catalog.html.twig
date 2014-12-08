@@ -4,7 +4,7 @@
 {% block description %}Доступная информация о компаниях на сайте{% endblock %}
 
 {% block body %}
-    <div class="row gallery-row"><!-- Begin Gallery Row -->
+    <div class="row gallery-row">
         <div class="span8">
             <div class="row clearfix no-margin">
                 <div class="span12">
@@ -34,18 +34,23 @@
                     </div>
                 </div>
             </div>
-            <!-- Gallery Thumbnails
-            ================================================== -->
             <div class="row clearfix no-margin">
                 <ul class="gallery-post-grid holder">
                     {% for company in companies %}
-                        <!-- Gallery Item 1 -->
                         <li class="span3 gallery-item" data-id="id-1" data-type="illustration">
-                            {#<a href="gallery-single.html">#}
-                                {#<img src="img/gallery/gallery-img-1-4col.jpg" alt="Gallery">#}
-                            {#</a>#}
+                            <a href="{{ path('client_company_show', {
+                                "country_url": company.city.country.url,
+                                "city_url": company.city.url,
+                                "company_url": company.url
+                            }) }}" rel="nofollow">
+                                <img src="{{ company.getWebPath() | apply_filter('thumbnail_index_post') }}" alt="{{ company.name }}" width="270px">
+                            </a>
                             <span class="project-details">
-                                <a href="gallery-single.html">{{ company.name }}</a>
+                                <a href="{{ path('client_company_show', {
+                                "country_url": company.city.country.url,
+                                "city_url": company.city.url,
+                                "company_url": company.url
+                                }) }}">{{ company.name }}</a>
                             </span>
                         </li>
                     {% endfor %}

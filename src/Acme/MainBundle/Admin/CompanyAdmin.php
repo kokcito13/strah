@@ -2,6 +2,7 @@
 
 namespace Acme\MainBundle\Admin;
 
+use Acme\MainBundle\Entity\Company;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -52,16 +53,38 @@ class CompanyAdmin extends Admin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
+        // get the current Image instance
+        $image = $this->getSubject();
+
+        // use $fileFieldOptions so we can add other options to the field
+        $fileFieldOptions = array('required' => false,'label' => 'Логотип');
+        if ($image && ($webPath = $image->getWebPath())) {
+            // get the container so the full path to the image can be set
+            $container = $this->getConfigurationPool()->getContainer();
+            $fullPath = $container->get('request')->getBasePath().'/'.$webPath;
+
+            // add a 'help' option containing the preview's img tag
+            $fileFieldOptions['help'] = '<img src="'.$fullPath.'" class="admin-preview" />';
+        }
+
         $formMapper
-            ->add('name')
-            ->add('url')
-            ->add('title')
-            ->add('description')
-            ->add('keywords')
-            ->add('city', 'entity',
-                array('label' => 'Город', 'required'  => true, 'class'=>'AcmeMainBundle:City',
-                    'property'=>'name'))
-            ->add('text', 'textarea', array('label' => 'Текст', 'attr' => array('class' => 'ckeditor')))
+            ->with('Главное')
+                ->add('name', 'text', array('label' => 'Название'))
+                ->add('file', 'file', $fileFieldOptions)
+                ->add('site', 'text', array('label' => 'Сайт'))
+                ->add('url')
+                ->add('city', 'entity',
+                    array('label' => 'Город', 'required'  => true, 'class'=>'AcmeMainBundle:City',
+                        'property'=>'name'))
+                ->add('services', 'textarea', array('label' => 'Виды услуг', 'attr' => array('class' => 'ckeditor')))
+                ->add('contacts', 'textarea', array('label' => 'Контакты', 'attr' => array('class' => 'ckeditor')))
+                ->add('text', 'textarea', array('label' => 'Инфо', 'attr' => array('class' => 'ckeditor')))
+            ->end()
+            ->with('СЕО')
+                ->add('title')
+                ->add('description')
+                ->add('keywords')
+            ->end()
         ;
     }
 
@@ -78,5 +101,28 @@ class CompanyAdmin extends Admin
             ->add('keywords')
             ->add('text')
         ;
+    }
+
+    public function prePersist($post)
+    {
+        $user = $this->getConfigurationPool()->getContainer()->get('security.context')->getToken()->getUser();
+        $post->setUser($user);
+        $post->setImageFromFile();
+    }
+
+    public function postPersist($post)
+    {
+        $this->saveFile($post);
+    }
+
+    public function preUpdate($post)
+    {
+        $this->saveFile($post);
+    }
+
+    public function saveFile(Company $post)
+    {
+        $basepath = $this->getRequest()->getBasePath();
+        $post->upload($basepath);
     }
 }

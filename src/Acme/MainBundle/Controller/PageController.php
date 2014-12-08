@@ -167,7 +167,7 @@ class PageController extends Controller
     }
 
     /**
-     * @Route("/catalog/{country}/{city}", name="page_catalog", defaults={"country" = null, "city" = null})
+     * @Route("/company/{country}/{city}", name="page_catalog", defaults={"country" = null, "city" = null})
      * @Template()
      */
     public function catalogAction($country = null, $city = null, Request $request)

@@ -840,4 +840,27 @@ class Post
 
         return $ids;
     }
+
+    /**
+     * Set imageAlt
+     *
+     * @param string $imageAlt
+     * @return Post
+     */
+    public function setImageAlt($imageAlt)
+    {
+        $this->imageAlt = $imageAlt;
+
+        return $this;
+    }
+
+    /**
+     * Get imageAlt
+     *
+     * @return string 
+     */
+    public function getImageAlt()
+    {
+        return $this->imageAlt;
+    }
 }
