@@ -53,41 +53,11 @@
     </script>
 {% endblock %}
 {% block stylesheets %}
-    <style>
-        #yVideos {
-            list-style-type: none;
-        }
-        #yVideos li {
-            /*display: block;*/
-            cursor: pointer;
-            position: relative;
-            width: 145px;
-            line-height: 13px;
-            /*height: 142px;*/
-            margin: 10px 0px;
-        }
-        #yVideos li div {
-            font-size: 10px;
-            display: none;
-            position: absolute;
-            top: 0px;
-            left: 0px;
-            background-color: #000;
-            width: 145px;
-            height: 142px!important;
-            font-weight: bold;
-            text-align: center;
-            vertical-align: middle;
-            color: #fff;
-            opacity: 0.7;
-        }
-    </style>
 {% endblock %}
 {% set mainCategory = entity.category.url %}
 {% block body %}
-    <div class="row"><!--Container row-->
-        <!-- Title Header -->
-        <div class="span8"><!--Begin page content column-->
+    <div class="row">
+        <div class="span8">
             <h1>{{ entity.name }}</h1>
             {% if entity.shortText | length > 3 %}
                 <p class="lead">{{ entity.shortText | raw }}</p>
@@ -102,8 +72,11 @@
                         <div class="span6" id="frameVideo" style="margin-left: 0px;">
                             <iframe width="520" height="390" src="http://www.youtube.com/embed/{{ entity.getArrayVideoId()[0] }}?fs=1&autoplay=0&loop=0" allowfullscreen></iframe>
                         </div>
+                        {% if entity.getArrayVideoId()|length > 1 %}
                         <div class="span2">
+                            <!--noindex-->
                             <span>Еще видео:</span>
+                            <!--/noindex-->
                             <ul id="yVideos">
                                 {% for v in entity.getArrayVideoId() %}
                                     <li id="v_{{ v }}" data-v="{{ v }}">
@@ -113,11 +86,11 @@
                                 {% endfor %}
                             </ul>
                         </div>
+                        {% endif %}
                     </div>
                 </div>
             {% endif %}
-        </div> <!--End page content column-->
-
+        </div>
         <!-- Blog Sidebar
         ================================================== -->
         {{ render(controller('AcmeMainBundle:PageLayout:rightSidebar', {
@@ -129,40 +102,38 @@
         <!-- Blog Preview
         ================================================== -->
         <div class="span6">
+            <!--noindex-->
             <div class="h5 title-bg">Рекомендованная публикация
-                <button id="btn-blog-next" class="btn btn-inverse btn-mini" type="button">»</button>
-                <button id="btn-blog-prev" class="btn btn-inverse btn-mini" type="button">«</button>
+                {% if entities|length > 1 %}
+                    <button id="btn-blog-next" class="btn btn-inverse btn-mini" type="button">»</button>
+                    <button id="btn-blog-prev" class="btn btn-inverse btn-mini" type="button">«</button>
+                {% endif %}
             </div>
+            <!--/noindex-->
             <div id="blogCarousel" class="carousel slide ">
                 <!-- Carousel items -->
                 <div class="carousel-inner">
                     {% for post in entities %}
                         <div class="{% if loop.index == 1 %}active{% endif %} item">
                             <a href="blog-single.html">
-                                <img src="{{ post.getWebPath() | apply_filter('thumbnail_index_post') }}" width="270" alt="" class="align-left blog-thumb-preview">
+                                <img src="{{ post.getWebPath() | apply_filter('thumbnail_same_post') }}" width="150" alt="{{ post.imageAlt }}" class="align-left blog-thumb-preview">
                             </a>
                             <div class="post-info clearfix">
-                                <h4>
+                                <div class="h4">
                                     <a href="{{ path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) }}">{{ post.name }}</a>
-                                </h4>
-                                <ul class="blog-details-preview">
-                                    <li><i class="icon-comment"></i> <a href="{{ path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) }}#block_comments">0 Комментариев</a></li>
-                                    {% if post.tags|length > 0 %}
-                                        <li>
-                                            <i class="icon-tags"></i>
-                                            {% for tag in post.tags %}
-                                                <a href="{{ path('client_tag_show', {'tag_url': tag.url}) }}" class="gray-btn">{{ tag.name }}</a>
-                                            {% endfor %}
-                                        </li>
-                                    {% endif %}
-                                </ul>
+                                </div>
+                                {% if post.shortText | length >5 %}
+                                    <!--noindex-->
+                                    <p class="blog-summary">{{ post.shortText }} <a rel="nofollow" href="{{ path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) }}">Читать дальше</a></p>
+                                    <!--/noindex-->
+                                {% endif %}
                             </div>
-                            <p class="blog-summary">{{ post.shortText }} <a href="{{ path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) }}">Читать дальше</a></p>
                         </div>
                     {% endfor %}
                 </div>
             </div>
         </div>
+        <!--noindex-->
         <!-- Client Area
         ================================================== -->
         <div class="span6">
@@ -201,9 +172,13 @@
                     }})();</script>
             <div class="pluso" data-background="transparent" data-options="big,square,line,horizontal,counter,theme=05" data-services="vkontakte,odnoklassniki,facebook,twitter,google,moimir,email,print"></div>
         </div>
+        <!--/noindex-->
     </div>
     <div class="row" id="block_comments">
-        <div class="span12">
+        <div class="span6">
+            <!--noindex-->
+            <div class="title-bg">Отзывы</div>
+            <!--/noindex-->
             <div id="disqus_thread"></div>
             <script type="text/javascript">
                 /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
@@ -216,6 +191,8 @@
                     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
                 })();
             </script>
+        </div>
+        <div class="span6">
         </div>
     </div>
 {% endblock %}

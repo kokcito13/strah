@@ -141,6 +141,9 @@ avalanche_imagine:
         in_post:
             type:    relative_resize
             options: { widen: 270 }
+        thumbnail_same_post:
+            type:    relative_resize
+            options: { widen: 150 }
         thumbnail_index_post:
             type:    thumbnail
             options: { size: [270, 220], mode: outbound }

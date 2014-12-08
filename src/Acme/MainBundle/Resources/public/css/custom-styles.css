@@ -856,3 +856,71 @@ div.title-bg button {
     text-transform: none;
     margin-left:5px;
 }
+
+.post-info div.h4 {
+    line-height: 26px;
+    font-family: "Oswald", sans-serif;
+    font-weight: normal;
+    text-transform: uppercase;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 10px;
+    margin-left: 0px;
+    font-size: 18px;
+    color: inherit;
+    text-rendering: optimizelegibility;
+}
+.post-info div.h4 a {
+    color:#333;
+    text-decoration: none;
+}
+.post-info div.h4 a:hover {
+    color: #d8450b;
+    text-decoration: underline;
+}
+div.h6 {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 10px;
+    margin-left: 0px;
+    font-family: "Oswald", sans-serif;
+    font-weight: normal;
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 20px;
+    color: inherit;
+    text-rendering: optimizelegibility;
+}
+
+.popular-posts li div.h6 a:hover {
+    color: #d8450b;
+    text-decoration: underline;
+}
+
+#yVideos {
+    list-style-type: none;
+}
+#yVideos li {
+    /*display: block;*/
+    cursor: pointer;
+    position: relative;
+    width: 145px;
+    line-height: 13px;
+    /*height: 142px;*/
+    margin: 10px 0px;
+}
+#yVideos li div {
+    font-size: 10px;
+    display: none;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: #000;
+    width: 145px;
+    height: 142px!important;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    color: #fff;
+    opacity: 0.7;
+}

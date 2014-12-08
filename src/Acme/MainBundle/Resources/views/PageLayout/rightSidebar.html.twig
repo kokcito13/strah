@@ -18,10 +18,10 @@
                 <a href="{{ path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) }}">
                     <img src="{{ post.getWebPath() | apply_filter('thumbnail_sidebar_post') }}" alt="{{ post.imageAlt }}">
                 </a>
-                <h6>
+                <div class="h6">
                     <a href="{{ path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) }}">{{ post.name }}</a>
-                </h6>
-                <em>{{ post.getCreatedAtByFormat('d F / Y') }}</em>
+                </div>
+                {#<em>{{ post.getCreatedAtByFormat('d F / Y') }}</em>#}
             </li>
         {% endfor %}
     </ul>
