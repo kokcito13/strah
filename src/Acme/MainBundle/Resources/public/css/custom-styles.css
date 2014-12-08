@@ -346,7 +346,14 @@ a.item-zoom-link:hover {background: #d8450b url(../images/gallery-item-icons.png
 a.item-details-link:hover {background: #d8450b url(../images/gallery-item-icons.png) no-repeat; background-position: -42px 0px;}
 
 .gallery-post-grid {margin:0px;}
-.gallery-post-grid li {list-style: none; float: left; margin-bottom: 30px;}
+.gallery-post-grid li {
+    list-style: none;
+    float: none;
+    margin-bottom: 30px;
+    display: inline-block;
+    margin-left: 27px;
+    /*list-style: none; float: left; margin-bottom: 30px;*/
+}
 
 .gallery-cats {margin: 0px 0px 20px 0px;}
 .gallery-cats li{
