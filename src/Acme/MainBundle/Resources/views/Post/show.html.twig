@@ -109,6 +109,20 @@
                     </div>
                 </div>
             {% endif %}
+            <div class="">
+                <div xmlns:v="{{ url('page_home') }}">
+                   <span typeof="v:Breadcrumb">
+                     <a href="{{ url('page_home') }}" rel="v:url" property="v:title">
+                         Страхование
+                     </a> ›
+                   </span>
+                   <span typeof="v:Breadcrumb">
+                    <a href="{{ url('client_category_show', {'category_url':mainCategory}) }}" rel="v:url" property="v:title">
+                        {{ entity.category.name }}    </a> ›
+                   </span>
+                   <span typeof="v:Breadcrumb">...</span>
+                </div>
+            </div>
         </div>
         <!-- Blog Sidebar
         ================================================== -->
