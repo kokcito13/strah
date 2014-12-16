@@ -59,12 +59,30 @@
     <div class="row">
         <div class="span8">
             <h1>{{ entity.name }}</h1>
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- strah link 1 -->
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:468px;height:15px"
+                 data-ad-client="ca-pub-3861532892125732"
+                 data-ad-slot="3474008491"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
             {% if entity.shortText | length > 3 %}
                 <p class="lead">{{ entity.shortText | raw }}</p>
             {% endif %}
             <div class="clearfix">
                 <img src="{{ entity.getWebPath() | apply_filter('in_post') }}" width="270" class="thumbnail align-left" alt="{{ entity.imageAlt }}">
                 {{ entity.text|raw }}
+            </div>
+            <div class="clearfix">
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- strah post footer 1 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:728px;height:90px"
+                     data-ad-client="ca-pub-3861532892125732"
+                     data-ad-slot="1857674499"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             </div>
             {% if entity.getArrayVideoId()|length > 0 %}
                 <div class="clearfix">
