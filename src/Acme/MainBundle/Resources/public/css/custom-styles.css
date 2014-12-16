@@ -61,7 +61,7 @@ blockquote.pull-right {border-right: 5px solid #999;}
 /**************************************
 / Header
 **************************************/
-.logo { margin-top:40px; }
+.logo { margin-top:20px; }
 .logo img { padding-right:20px; }
 .logo h5 { display: inline-block; }
 .headline { margin-bottom:20px; }
@@ -77,7 +77,7 @@ blockquote.pull-right {border-right: 5px solid #999;}
 	.headline .lead {display: none;}
 }
 
-.navigation { margin-top:40px; }
+.navigation { margin-top:20px; }
 .navigation .navbar { 
 	float:right; background:#f8f8f8;
 	border-bottom: 1px dotted #a9a9a9;
@@ -89,7 +89,7 @@ blockquote.pull-right {border-right: 5px solid #999;}
 	text-shadow: none; 
 	text-transform:uppercase; 
 	font-size:12px; 
-	padding: 10px 15px 10px;
+	padding: 10px 10px 10px 10px;
 }
 
 /* Portrait tablet */
@@ -652,7 +652,7 @@ a.forrst:hover {background-position: -208px -47px;}
 /**************************************
 / MISC
 **************************************/
-.row {margin-bottom:40px;}
+.row {margin-bottom:20px;}
 .sub-row30 {margin-bottom:30px;}
 .sub-row20 {margin-bottom:20px;}
 .no-margin {margin-bottom:0px;}
@@ -792,7 +792,7 @@ a.accordion-toggle{background: #f5f5f5;}
     text-shadow: none;
     text-transform: uppercase;
     font-size: 12px;
-    padding: 10px 15px 10px;
+    padding: 10px 10px 10px 10px;
     float: none;
     display: block;
 }
