@@ -1,6 +1,9 @@
 {% if mainCategory is not defined %}
     {% set mainCategory = false %}
 {% endif %}
+{% if currentPost is not defined %}
+    {% set currentPost = false %}
+{% endif %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,7 +71,9 @@
 <!-- Footer Area
     ================================================== -->
 {{ render(controller('AcmeMainBundle:PageLayout:footer', {
-    'main': mainCategory
+    'main': mainCategory,
+    'route_name':  app.request.get('_route'),
+    'post': currentPost
 })) }}
 <!--LiveInternet counter--><script type="text/javascript"><!--
     document.write("<a href='//www.liveinternet.ru/click' "+

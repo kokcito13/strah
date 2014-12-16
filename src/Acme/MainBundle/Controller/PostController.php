@@ -43,12 +43,12 @@ class PostController extends Controller
             )
         );
 
-        $entities = $postRepo->findOther($entity);
-        
         if (!$entity) {
             throw $this->createNotFoundException('Данную статью мы неможем найти!');
         }
 
+        $entities = $postRepo->findOther($entity);
+        
         $entity->oneMoreView();
         $em->persist($entity);
         $em->flush();

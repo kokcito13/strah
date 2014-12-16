@@ -19,12 +19,19 @@ class PageLayoutController extends Controller
     /**
      * @Template()
      */
-    public function footerAction($main = false)
+    public function footerAction($main = false, $route_name = '', $post = false)
     {
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository('AcmeMainBundle:Post')->findForPage(false, 12);
+        if ($post) {
+            foreach ($entities as $k=>$ent) {
+                if ($ent->getId() == $post->getId()) {
+                    unset($entities[$k]);
+                }
+            }
+        }
 
-        return array('entities' => $this->categoryList(), 'main' => $main, 'posts' => $entities);
+        return array('entities' => $this->categoryList(), 'main' => $main, 'posts' => $entities, 'route_name' => $route_name);
     }
 
     /**
@@ -33,7 +40,14 @@ class PageLayoutController extends Controller
     public function rightSidebarAction($post = false)
     {
         $em = $this->getDoctrine()->getManager();
-        $entities = $em->getRepository('AcmeMainBundle:Post')->findForPage(false, 3);
+        $entities = $em->getRepository('AcmeMainBundle:Post')->findForPage(false, 5);
+        if ($post) {
+            foreach ($entities as $k=>$ent) {
+                if ($ent->getId() == $post->getId()) {
+                    unset($entities[$k]);
+                }
+            }
+        }
 
         return array('post' => $post, 'entities' => $entities);
     }

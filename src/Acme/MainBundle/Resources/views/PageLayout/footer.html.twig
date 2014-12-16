@@ -1,7 +1,7 @@
 <div class="footer-container"><!-- Begin Footer -->
     <div class="container">
+        <!--noindex-->
         <div class="row footer-row">
-            <!--noindex-->
             <div class="span3 footer-col">
                 <div class="h5">Мы в соц. сетях</div>
                 <img src="{{ asset('bundles/acmemain/images/logoD.png') }}" alt="Logo" /><br /><br />
@@ -35,7 +35,13 @@
                 <ul class="post-list">
                     {% for entity in entities %}
                         <li>
-                            <a rel="nofollow" href="{{ path('client_category_show',{ 'category_url': entity.url }) }}">{{ entity.name }}</a>
+                            {% if main == entity.url and route_name == 'client_category_show' %}
+                                <span>{{ entity.name }}</span>
+                            {% else %}
+                                <a rel="nofollow" href="{{ path('client_category_show',{ 'category_url': entity.url }) }}">
+                                    {{ entity.name }}
+                                </a>
+                            {% endif %}
                         </li>
                     {% endfor %}
                 </ul>
@@ -65,16 +71,26 @@
                     <div class="span6">
                         <span class="right">
                             <!--noindex-->
+                            {% if route_name != 'page_home' %}
                             <a rel="nofollow" href="{{ path('page_home') }}">Главная</a>
                             &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                            {% endif %}
+                            {% if route_name != 'page_catalog' %}
                             <a rel="nofollow" href="{{ path('page_catalog') }}">Каталог</a>
                             &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                            {% endif %}
+                            {% if route_name != 'page_contact' %}
                             <a rel="nofollow" href="{{ path('page_contact') }}">Контакты</a>
                             &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                            {% endif %}
+                            {% if route_name != 'page_advertising' %}
                             <a rel="nofollow" href="{{ path('page_advertising') }}">Реклама на сайте</a>
                             &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                            {% endif %}
                             <!--/noindex-->
+                            {% if route_name != 'page_sitemap' %}
                             <a href="{{ path('page_sitemap') }}">Карта сайта</a>
+                            {% endif %}
                         </span>
                     </div>
                 </div>
