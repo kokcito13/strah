@@ -150,9 +150,11 @@ class PageController extends Controller
     public function sitemapAction(Request $request)
     {
         $categories = $this->getDoctrine()->getRepository('AcmeMainBundle:Category')->findAll();
+        $countries = $this->getDoctrine()->getRepository('AcmeMainBundle:Country')->findAll();
 
         return array(
-            'categories' => $categories
+            'categories' => $categories,
+            'countries' => $countries
         );
     }
 
@@ -177,10 +179,32 @@ class PageController extends Controller
         $cities = $em->getRepository('AcmeMainBundle:City')->findAll();
         $companies = $em->getRepository('AcmeMainBundle:Company')->findAll();
 
+        $title = 'Список страховых компаний с фильтром по странам и городам';
+        $description = 'Каталог компаний которые связанные со страхованием. Также частные агенты - страхователи.';
+        $keywords = 'каталог компании страховые агенты страны города';
+
+        if (!is_null($country)) {
+            $country = $em->getRepository('AcmeMainBundle:Country')->findOneByUrl($country);
+            $title = 'Каталог страховых компаний страны - '.$country->getName();
+            $description = 'Информации о всех страховых компаниях страны - '.$country->getName();
+            $keywords = 'каталог компании '.mb_strtolower($country->getName(), 'UTF8').' страховые агенты города';
+            if (!is_null($city)) {
+                $city = $em->getRepository('AcmeMainBundle:City')->findOneByUrl($city);
+                $title = 'Каталог страховых компаний страны - '.$country->getName().' и города - '.$city->getName();
+                $description = 'Информации о всех страховых компаниях страны - '.$country->getName().' и города - '.$city->getName();
+                $keywords = 'каталог компании '.mb_strtolower($country->getName(), 'UTF8').' страховые агенты '.mb_strtolower($city->getName(), 'UTF8');
+            }
+        }
+
         return array(
             'countries' => $countries,
             'cities' => $cities,
-            'companies' => $companies
+            'companies' => $companies,
+            'title' => $title,
+            'description' => $description,
+            'keywords' => $keywords,
+            'country' => $country,
+            'city' => $city
         );
     }
 }

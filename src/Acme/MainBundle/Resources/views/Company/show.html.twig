@@ -14,8 +14,6 @@
     {#<meta property="og:image" content="{{ app.request.uri }}{{ entity.getWebPath() | apply_filter('big_post') }}"/>#}
 {% endblock %}
 {% block javascripts %}
-    <script type= "text/javascript">
-    </script>
 {% endblock %}
 {% block stylesheets %}
 {% endblock %}
@@ -25,7 +23,18 @@
             <div class="row">
                 <div class="span4">
                     <div class="clearfix">
-                        <img src="{{ entity.getWebPath() | apply_filter('in_company') }}" width="170" class="thumbnail align-left" alt="">
+                        <img src="{{ entity.getWebPath() | apply_filter('in_company') }}" width="170" class="thumbnail align-left" alt="логотип компании {{ entity.name }}">
+                    </div>
+                    <div class="clearfix">
+                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <!-- strah_company_page1 -->
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:336px;height:280px"
+                             data-ad-client="ca-pub-3861532892125732"
+                             data-ad-slot="1561466494"></ins>
+                        <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
                     </div>
                     {{ entity.text|raw }}
                 </div>

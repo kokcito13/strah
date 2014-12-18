@@ -57,7 +57,35 @@ class PostRepository extends EntityRepository
             ->setMaxResults(3)
         ;
 
-        return $query->getQuery()->getResult();
+        $result = $query->getQuery()->getResult();
+        if (empty($result)) {
+            $result = $this->getFirstInCategory($post);
+        }
+
+        return $result;
+    }
+
+    public function getFirstInCategory(Post $post)
+    {
+        $em = $this->getEntityManager();
+
+        $query = $em->createQueryBuilder()
+            ->select('p, c')
+            ->from('AcmeMainBundle:Post', 'p')
+            ->join('p.category', 'c')
+            ->where('c.id = :category')
+            ->andWhere('p.id != :post_id')
+
+            ->setParameter('post_id', $post->getId())
+            ->setParameter('category', $post->getCategory()->getId())
+
+            ->orderBy('p.id', 'ASC')
+            ->setMaxResults(1)
+        ;
+
+        $result = $query->getQuery()->getResult();
+
+        return $result;
     }
 
     /**

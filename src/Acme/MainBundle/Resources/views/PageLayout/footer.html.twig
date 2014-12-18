@@ -52,7 +52,7 @@
                     {% for post in posts %}
                         <li>
                             <a href="{{ path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) }}">
-                                <img src="{{ post.getWebPath() | apply_filter('thumbnail_footer_post') }}" alt="{{ post.imageAlt }}">
+                                <img src="{{ post.getWebPath() | apply_filter('thumbnail_footer_post') }}" alt="{{ post.imageAlt }}" width="60" height="60">
                             </a>
                         </li>
                     {% endfor %}
@@ -88,9 +88,7 @@
                             &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
                             {% endif %}
                             <!--/noindex-->
-                            {% if route_name != 'page_sitemap' %}
                             <a href="{{ path('page_sitemap') }}">Карта сайта</a>
-                            {% endif %}
                         </span>
                     </div>
                 </div>

@@ -22,6 +22,35 @@
                     </ul>
                 </li>
                 {% endfor %}
+
+                <li>
+                    <a href="{{ path('page_catalog') }}"><i class="icon-plus-sign"></i>Каталог</a>
+                    <ul>
+                        {% for country in countries %}
+                            <li>
+                                <a href="{{ path('page_catalog', {"country":country.url}) }}">{#<i class="icon-plus-sign"></i>#}{{ country.name }}</a>
+                                <ul class="post-category-list" style="list-style-type: none;">
+                                    {% for city in country.cities %}
+                                        <li>
+                                            <a href="{{ path('page_catalog', {"country":city.country.url, 'city':city.url}) }}"><i class="icon-asterisk"></i>{{ city.name }}</a>
+                                            <ul>
+                                                {% for company in city.companies %}
+                                                    <li>
+                                                        <a href="{{ path('client_company_show', {
+                                                        "country_url": country.url,
+                                                        "city_url": city.url,
+                                                        "company_url": company.url
+                                                        }) }}">{{ company.name }}</a>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
             </ul>
             {#
             <!-- Pagination -->
