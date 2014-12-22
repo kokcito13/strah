@@ -148,7 +148,7 @@
                 <div class="carousel-inner">
                     {% for post in entities %}
                         <div class="{% if loop.index == 1 %}active{% endif %} item">
-                            <a href="blog-single.html">
+                            <a href="{{ path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) }}">
                                 <img src="{{ post.getWebPath() | apply_filter('thumbnail_same_post') }}" width="150" alt="{{ post.imageAlt }}" class="align-left blog-thumb-preview">
                             </a>
                             <div class="post-info clearfix">
