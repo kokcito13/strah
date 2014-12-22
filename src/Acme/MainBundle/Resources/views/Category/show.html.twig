@@ -28,8 +28,7 @@
                         <a href="{{ path('client_post_show',{'category_url':item.category.url, 'post_url':item.url }) }}">{{ item.name }}</a>
                     </div>
                     <!--noindex-->
-                    <p>{{ item.shortText }}</p>
-
+                    <p>{{ item.getPreviewText() }} ...</p>
                     <a rel="nofollow" href="{{ path('client_post_show',{'category_url':item.category.url, 'post_url':item.url }) }}" class="btn btn-mini btn-inverse">Читать дальше</a>
                     <div class="post-summary-footer">
                         <ul class="post-data-3">
@@ -72,7 +71,7 @@
     </div>
     <div class="row" id="about">
         <div class="span12">
-            <h1>{{ entity.name }}</h1>
+            {#<h1>{{ entity.name }}</h1>#}
             {{ entity.text|raw }}
         </div>
     </div>

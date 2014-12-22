@@ -155,9 +155,9 @@
                                 <div class="h4">
                                     <a href="{{ path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) }}">{{ post.name }}</a>
                                 </div>
-                                {% if post.shortText | length >5 %}
+                                {% if post.getPreviewText() | length >5 %}
                                     <!--noindex-->
-                                    <p class="blog-summary">{{ post.shortText }} <a rel="nofollow" href="{{ path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) }}">Читать дальше</a></p>
+                                    <p class="blog-summary">{{ post.getPreviewText() }} ... <a rel="nofollow" href="{{ path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) }}">Читать дальше</a></p>
                                     <!--/noindex-->
                                 {% endif %}
                             </div>

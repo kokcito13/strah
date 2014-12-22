@@ -865,4 +865,15 @@ class Post
     {
         return $this->imageAlt;
     }
+
+    public function getPreviewText()
+    {
+        $text = $this->getShortText();
+        if (empty($text)) {
+            $textBig = strip_tags($this->getText());
+            $text = mb_substr($textBig, 0, 250, 'UTF8');
+        }
+
+        return $text;
+    }
 }
