@@ -2,6 +2,8 @@
 
 namespace Acme\MainBundle\Controller;
 
+use Acme\MainBundle\Entity\City;
+use Acme\MainBundle\Entity\Country;
 use Doctrine\Common\Cache\ApcCache;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -35,7 +37,9 @@ class PageController extends Controller
 //        $cache = new ApcCache();
 //        $sitemap = $cache->fetch($cacheKey);
 //        if (!$sitemap ) {
-            
+
+            $countries = $this->getDoctrine()->getRepository('AcmeMainBundle:Country')->findAll();
+
             $repo = $this->getDoctrine()->getRepository('AcmeMainBundle:Post');
             $allPosts = $repo->findAll();
             
@@ -71,6 +75,37 @@ class PageController extends Controller
                 $itemNode->addChild( 'lastmod', $post->getCreatedAt()->format('Y-m-d') );
                 $itemNode->addChild( 'changefreq', 'monthly' );
                 $itemNode->addChild( 'priority', '0.8' );
+            }
+
+            // adding all countries and city and company
+            foreach ( $countries as $country ) {/** @var Country $country */
+                $url = $rootUrl . $this->generateUrl('page_catalog', array('country' => $country->getUrl() ));
+
+                $itemNode = $rootNode->addChild('url');
+                $itemNode->addChild( 'loc', $url );
+//                $itemNode->addChild( 'lastmod', $country->getCreatedAt()->format('Y-m-d') );
+                $itemNode->addChild( 'changefreq', 'monthly' );
+                $itemNode->addChild( 'priority', '1.0' );
+                foreach ($country->getCities() as $city) {/** @var City $city */
+                    $url = $rootUrl . $this->generateUrl('page_catalog', array('country' => $country->getUrl(), 'city'=>$city->getUrl() ));
+
+                    $itemNode = $rootNode->addChild('url');
+                    $itemNode->addChild( 'loc', $url );
+//                $itemNode->addChild( 'lastmod', $country->getCreatedAt()->format('Y-m-d') );
+                    $itemNode->addChild( 'changefreq', 'monthly' );
+                    $itemNode->addChild( 'priority', '0.9' );
+
+                    foreach ($city->getCompanies() as $company) {
+                        $url = $rootUrl . $this->generateUrl('client_company_show',
+                                array('country_url' => $country->getUrl(), 'city_url'=>$city->getUrl(), 'company_url'=>$company->getUrl() ));
+
+                        $itemNode = $rootNode->addChild('url');
+                        $itemNode->addChild( 'loc', $url );
+//                $itemNode->addChild( 'lastmod', $country->getCreatedAt()->format('Y-m-d') );
+                        $itemNode->addChild( 'changefreq', 'monthly' );
+                        $itemNode->addChild( 'priority', '0.8' );
+                    }
+                }
             }
             $sitemap = $rootNode->asXML();
 //            $cache->save($cacheKey, $sitemap, (864000)); // 10 days cache 24*10*60*60
