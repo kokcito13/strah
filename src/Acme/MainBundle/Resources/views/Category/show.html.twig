@@ -29,11 +29,11 @@
                     </div>
                     <!--noindex-->
                     <p>{{ item.getPreviewText() }} ...</p>
-                    <a rel="nofollow" href="{{ path('client_post_show',{'category_url':item.category.url, 'post_url':item.url }) }}" class="btn btn-mini btn-inverse">Читать дальше</a>
+
                     <div class="post-summary-footer">
                         <ul class="post-data-3">
-                            <li><i class="icon-calendar"></i> {{ item.getCreatedAtByFormat('d F / Y') }}</li>
                             <li><i class="icon-comment"></i> <a rel="nofollow" href="{{ path('client_post_show',{'category_url':item.category.url, 'post_url':item.url }) }}#block_comments">0 Комментариев</a></li>
+                            <li><a rel="nofollow" href="{{ path('client_post_show',{'category_url':item.category.url, 'post_url':item.url }) }}" class="btn btn-mini btn-inverse">Читать дальше</a></li>
                             {% if item.tags|length > 0 %}
                                 <li>
                                     <i class="icon-tags"></i>

@@ -19,7 +19,7 @@ class PageLayoutController extends Controller
     /**
      * @Template()
      */
-    public function footerAction($main = false, $route_name = '', $post = false)
+    public function footerAction($main = false, $route_name = '', $post = false, $company = false)
     {
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository('AcmeMainBundle:Post')->findForPage(false, 12);
@@ -31,7 +31,18 @@ class PageLayoutController extends Controller
             }
         }
 
-        return array('entities' => $this->categoryList(), 'main' => $main, 'posts' => $entities, 'route_name' => $route_name);
+        $cId = false;
+        if ($company)
+            $cId = $company->getId();
+        $companies = $em->getRepository('AcmeMainBundle:Company')->getTop($cId, 7);
+
+        return array(
+            'entities' => $this->categoryList(),
+            'main' => $main,
+            'posts' => $entities,
+            'route_name' => $route_name,
+            'companies' => $companies
+        );
     }
 
     /**

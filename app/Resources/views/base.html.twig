@@ -4,6 +4,9 @@
 {% if currentPost is not defined %}
     {% set currentPost = false %}
 {% endif %}
+{% if currentCompany is not defined %}
+    {% set currentCompany = false %}
+{% endif %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,7 +76,8 @@
 {{ render(controller('AcmeMainBundle:PageLayout:footer', {
     'main': mainCategory,
     'route_name':  app.request.get('_route'),
-    'post': currentPost
+    'post': currentPost,
+    'company': currentCompany,
 })) }}
 <!--LiveInternet counter--><script type="text/javascript"><!--
     document.write("<a href='//www.liveinternet.ru/click' "+

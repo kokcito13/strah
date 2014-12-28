@@ -12,4 +12,30 @@ use Doctrine\ORM\EntityRepository;
  */
 class CompanyRepository extends EntityRepository
 {
+
+    /**
+     * @param bool $id
+     * @param bool $limit
+     * @return array
+     */
+    public function getTop($id = false, $limit = false)
+    {
+        $em = $this->getEntityManager();
+
+        $query = $em->createQueryBuilder()
+            ->select('c')
+            ->from('AcmeMainBundle:Company', 'c');
+
+        if ($id)
+            $query
+                ->where('c.id != :cId')
+                ->setParameter('cId', $id);
+
+        $query
+            ->orderBy('c.rating', 'DESC')
+            ->addOrderBy('c.id');
+
+        return $query->getQuery()->getResult();
+    }
+
 }

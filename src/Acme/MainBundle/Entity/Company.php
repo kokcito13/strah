@@ -108,6 +108,18 @@ class Company
     protected $file;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="rating", type="integer")
+     */
+    private $rating;
+
+    public function __construct()
+    {
+        $this->rating = 0;
+    }
+
+    /**
      * Get id
      *
      * @return integer 
@@ -436,5 +448,28 @@ class Company
     public function getSite()
     {
         return $this->site;
+    }
+
+    /**
+     * Set rating
+     *
+     * @param integer $rating
+     * @return Company
+     */
+    public function setRating($rating)
+    {
+        $this->rating = $rating;
+
+        return $this;
+    }
+
+    /**
+     * Get rating
+     *
+     * @return integer 
+     */
+    public function getRating()
+    {
+        return $this->rating;
     }
 }

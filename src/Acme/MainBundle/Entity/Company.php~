@@ -108,6 +108,13 @@ class Company
     protected $file;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="rating", type="integer")
+     */
+    private $rating;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -296,7 +303,7 @@ class Company
 
     protected function getUploadDir()
     {
-        return 'uploads/posts/'.$this->getId();
+        return 'uploads/company/'.$this->getId();
     }
 
     public function upload($basepath)
@@ -312,8 +319,6 @@ class Company
         $this->file->move($this->getUploadRootDir($basepath), $this->file->getClientOriginalName());
         $this->setImageName($this->file->getClientOriginalName());
         $this->file = null;
-
-        $this->setImageParameters();
     }
 
     public function setImageFromFile()
@@ -346,5 +351,97 @@ class Company
     public function getImageName()
     {
         return $this->imageName;
+    }
+
+    /**
+     * Set address
+     *
+     * @param string $address
+     * @return Company
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * Get address
+     *
+     * @return string 
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * Set contacts
+     *
+     * @param string $contacts
+     * @return Company
+     */
+    public function setContacts($contacts)
+    {
+        $this->contacts = $contacts;
+
+        return $this;
+    }
+
+    /**
+     * Get contacts
+     *
+     * @return string 
+     */
+    public function getContacts()
+    {
+        return $this->contacts;
+    }
+
+    /**
+     * Set services
+     *
+     * @param string $services
+     * @return Company
+     */
+    public function setServices($services)
+    {
+        $this->services = $services;
+
+        return $this;
+    }
+
+    /**
+     * Get services
+     *
+     * @return string 
+     */
+    public function getServices()
+    {
+        return $this->services;
+    }
+
+    /**
+     * Set site
+     *
+     * @param string $site
+     * @return Company
+     */
+    public function setSite($site)
+    {
+        $this->site = $site;
+
+        return $this;
+    }
+
+    /**
+     * Get site
+     *
+     * @return string 
+     */
+    public function getSite()
+    {
+        return $this->site;
     }
 }
