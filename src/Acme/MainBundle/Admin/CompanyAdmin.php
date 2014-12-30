@@ -20,9 +20,9 @@ class CompanyAdmin extends Admin
             ->add('name')
             ->add('url')
             ->add('title')
-            ->add('description')
-            ->add('keywords')
-            ->add('text')
+//            ->add('description')
+//            ->add('keywords')
+//            ->add('text')
         ;
     }
 
@@ -33,11 +33,11 @@ class CompanyAdmin extends Admin
     {
         $listMapper
             ->add('name')
-            ->add('url')
-            ->add('title')
-            ->add('description')
-            ->add('keywords')
-            ->add('text')
+//            ->add('url')
+//            ->add('title')
+//            ->add('description')
+//            ->add('keywords')
+//            ->add('text')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
