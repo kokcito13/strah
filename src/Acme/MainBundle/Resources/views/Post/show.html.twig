@@ -70,10 +70,12 @@
             {% if entity.shortText | length > 3 %}
                 <p class="lead">{{ entity.shortText | raw }}</p>
             {% endif %}
+            <!--start_content-->
             <div class="clearfix">
                 <img src="{{ entity.getWebPath() | apply_filter('in_post') }}" width="270" class="thumbnail align-left" alt="{{ entity.imageAlt }}">
                 {{ entity.text|raw }}
             </div>
+            <!--end_content-->
             <div class="clearfix">
                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <!-- strah post footer 1 -->
