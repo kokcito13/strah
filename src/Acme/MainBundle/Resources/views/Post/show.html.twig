@@ -59,6 +59,20 @@
 {% block body %}
     <div class="row">
         <div class="span8">
+            <div class="">
+                <div xmlns:v="{{ url('page_home') }}">
+                   <span typeof="v:Breadcrumb">
+                     <a href="{{ url('page_home') }}" rel="v:url" property="v:title">
+                         Страхование
+                     </a> ›
+                   </span>
+                   <span typeof="v:Breadcrumb">
+                    <a href="{{ url('client_category_show', {'category_url':mainCategory}) }}" rel="v:url" property="v:title">
+                        {{ entity.category.name }}    </a> ›
+                   </span>
+                    <span typeof="v:Breadcrumb">...</span>
+                </div>
+            </div>
             <h1>{{ entity.name }}</h1>
             <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
             <!-- strah link 1 -->
@@ -67,24 +81,27 @@
                  data-ad-client="ca-pub-3861532892125732"
                  data-ad-slot="3474008491"></ins>
             <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-            {% if entity.shortText | length > 3 %}
-                <p class="lead">{{ entity.shortText | raw }}</p>
-            {% endif %}
+            {#{% if entity.shortText | length > 3 %}#}
+                {#<p class="lead">{{ entity.shortText | raw }}</p>#}
+            {#{% endif %}#}
             <!--start_content-->
             <div class="clearfix">
                 <img src="{{ entity.getWebPath() | apply_filter('in_post') }}" width="270" class="thumbnail align-left" alt="{{ entity.imageAlt }}">
                 {{ entity.text|raw }}
             </div>
             <!--end_content-->
-            <div class="clearfix">
-                <ul>
-                    {% for link in links %}
-                        <li>
-                            <a href="{{ link.link }}" title="{{ link.key }}">{{ link.key }}</a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
+            {% if links | length > 0 %}
+                <div class="clearfix">
+                    <span class="sub_title_links">Похожие публикации:</span>
+                    <ul>
+                        {% for link in links %}
+                            <li>
+                                <a href="{{ link.link }}" title="{{ link.key }}">{{ link.key }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
             <div class="clearfix">
                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <!-- strah post footer 1 -->
@@ -99,13 +116,13 @@
             {% if entity.getArrayVideoId()|length > 0 %}
                 <div class="clearfix">
                     <div class="row" style="padding: 4px; border: 1px solid #ddd;">
-                        <div class="span6" id="frameVideo" style="margin-left: 0px;">
+                        <div class="span{% if entity.getArrayVideoId()|length > 1 %}6{% else %}8 one_video{% endif %}" id="frameVideo" style="margin-left: 0px;">
                             <iframe width="520" height="390" src="http://www.youtube.com/embed/{{ entity.getArrayVideoId()[0] }}?fs=1&autoplay=0&loop=0" allowfullscreen></iframe>
                         </div>
                         {% if entity.getArrayVideoId()|length > 1 %}
                         <div class="span2">
                             <!--noindex-->
-                            <span>Еще видео:</span>
+                            <span class="sub_title_links">Еще видео:</span>
                             <!--/noindex-->
                             <ul id="yVideos">
                                 {% for v in entity.getArrayVideoId() %}
@@ -120,20 +137,6 @@
                     </div>
                 </div>
             {% endif %}
-            <div class="">
-                <div xmlns:v="{{ url('page_home') }}">
-                   <span typeof="v:Breadcrumb">
-                     <a href="{{ url('page_home') }}" rel="v:url" property="v:title">
-                         Страхование
-                     </a> ›
-                   </span>
-                   <span typeof="v:Breadcrumb">
-                    <a href="{{ url('client_category_show', {'category_url':mainCategory}) }}" rel="v:url" property="v:title">
-                        {{ entity.category.name }}    </a> ›
-                   </span>
-                   <span typeof="v:Breadcrumb">...</span>
-                </div>
-            </div>
         </div>
         <!-- Blog Sidebar
         ================================================== -->

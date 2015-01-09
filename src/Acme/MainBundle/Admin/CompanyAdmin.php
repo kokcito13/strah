@@ -79,6 +79,7 @@ class CompanyAdmin extends Admin
                 ->add('services', 'textarea', array('label' => 'Виды услуг', 'attr' => array('class' => 'ckeditor')))
                 ->add('contacts', 'textarea', array('label' => 'Контакты', 'attr' => array('class' => 'ckeditor')))
                 ->add('text', 'textarea', array('label' => 'Инфо', 'attr' => array('class' => 'ckeditor')))
+                ->add('rating', 'integer', array('label' => 'Рейтинг'))
             ->end()
             ->with('СЕО')
                 ->add('title')

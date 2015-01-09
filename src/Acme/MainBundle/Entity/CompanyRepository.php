@@ -35,7 +35,13 @@ class CompanyRepository extends EntityRepository
             ->orderBy('c.rating', 'DESC')
             ->addOrderBy('c.id');
 
-        return $query->getQuery()->getResult();
+        if ($limit) {
+            $query->setMaxResults($limit);
+        }
+
+        $result = $query->getQuery()->getResult();
+
+        return $result;
     }
 
 }

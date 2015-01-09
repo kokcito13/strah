@@ -924,3 +924,10 @@ div.h6 {
     color: #fff;
     opacity: 0.7;
 }
+.sub_title_links {
+    font-size: 14px;
+    font-weight: bold;
+}
+.one_video {
+    text-align: center;
+}

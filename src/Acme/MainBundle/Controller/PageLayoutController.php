@@ -60,7 +60,9 @@ class PageLayoutController extends Controller
             }
         }
 
-        return array('post' => $post, 'entities' => $entities);
+        $companies = $em->getRepository('AcmeMainBundle:Company')->getTop(false, 3);
+
+        return array('post' => $post, 'entities' => $entities, 'companies' => $companies);
     }
 
     public function categoryList()
