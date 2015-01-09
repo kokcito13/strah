@@ -149,6 +149,10 @@ class PostAdmin extends Admin
     public function preUpdate($post)
     {
         $this->saveFile($post);
+
+        $cacheKey = 'post_pereink_'.$post->getId();
+        $this->getConfigurationPool()->getContainer()->get('cache.m')
+            ->delete($cacheKey);
     }
 
     public function saveFile(Post $post)

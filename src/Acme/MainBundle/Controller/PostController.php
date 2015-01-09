@@ -3,6 +3,7 @@
 namespace Acme\MainBundle\Controller;
 
 use Acme\MainBundle\Entity\PostRepository;
+use Acme\MainBundle\Service\Perelink;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -53,12 +54,39 @@ class PostController extends Controller
         $em->persist($entity);
         $em->flush();
 
-        $author = $entity->getUser();
+        $text = $entity->getText();
+
+
+
+
+        $cacheKey = 'post_pereink_'.$entity->getId();
+        $cache = $this->get('cache.m');
+        $result = $cache->fetch($cacheKey);
+        if (!$result) {
+            $baseurl = $this->getRequest()->getScheme() .
+                '://' . $this->getRequest()->getHttpHost() .
+                $this->getRequest()->getBasePath().
+                $this->getRequest()->getPathInfo();
+
+            /** @var Perelink $perelink */
+            $perelink = $this->get('binet.perelink');
+            $perelink->getInfo($baseurl);
+            $text = $perelink->updateText($text);
+            $links = $perelink->getLinksAfter();
+
+            $cache->save($cacheKey, json_encode(array(0=>$text, 1=>$links)), (5*24*60*60));
+        } else {
+            $result = json_decode($result, true);
+            $text = $result[0];
+            $links = $result[1];
+        }
+
+        $entity->setText($text);
 
         return array(
             'entity'        => $entity,
             'entities'      => $entities,
-            'author'          => $author
+            'links' => $links
         );
     }
 

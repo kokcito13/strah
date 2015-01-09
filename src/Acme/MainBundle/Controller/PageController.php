@@ -23,6 +23,8 @@ class PageController extends Controller
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository('AcmeMainBundle:Post')->findForPage(false, 8);
 
+        //$this->get('cache.m')->set('first', 123);
+
         return array(
             'entities' => $entities
         );
@@ -33,10 +35,10 @@ class PageController extends Controller
      */
     public function viewSitemapXmlAction(Request $request)
     {
-//        $cacheKey = 'bohenon_sitemap_xml_test';
-//        $cache = new ApcCache();
-//        $sitemap = $cache->fetch($cacheKey);
-//        if (!$sitemap ) {
+        $cacheKey = 'dvestrahovki_sitemap_xml';
+        $cache = $this->get('cache.m');
+        $sitemap = $cache->fetch($cacheKey);
+        if (!$sitemap ) {
 
             $countries = $this->getDoctrine()->getRepository('AcmeMainBundle:Country')->findAll();
 
@@ -108,8 +110,8 @@ class PageController extends Controller
                 }
             }
             $sitemap = $rootNode->asXML();
-//            $cache->save($cacheKey, $sitemap, (864000)); // 10 days cache 24*10*60*60
-//        }
+            $cache->save($cacheKey, $sitemap, (5*24*60*60)); // 10 days cache 24*10*60*60
+        }
 
         return new Response($sitemap);
     }

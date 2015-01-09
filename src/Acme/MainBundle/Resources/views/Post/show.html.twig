@@ -77,6 +77,15 @@
             </div>
             <!--end_content-->
             <div class="clearfix">
+                <ul>
+                    {% for link in links %}
+                        <li>
+                            <a href="{{ link.link }}" title="{{ link.key }}">{{ link.key }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="clearfix">
                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <!-- strah post footer 1 -->
                 <ins class="adsbygoogle"

@@ -43,3 +43,11 @@ services:
         arguments: [~, Acme\MainBundle\Entity\Company, AcmeMainBundle:CompanyAdmin]
         tags:
             - {name: sonata.admin, manager_type: orm, group: Каталог, label: Компании}
+
+    cache.m:
+        class: Acme\MainBundle\Service\CacheM
+        arguments: [ @doctrine.orm.entity_manager, true ]
+
+    binet.perelink:
+        class: Acme\MainBundle\Service\Perelink
+        arguments: [ '@service_container' ]
