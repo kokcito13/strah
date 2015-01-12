@@ -114,6 +114,13 @@ class Company
      */
     private $rating;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image_alt", type="string", length=255, nullable=true)
+     */
+    private $imageAlt;
+
     public function __construct()
     {
         $this->rating = 0;
@@ -471,5 +478,36 @@ class Company
     public function getRating()
     {
         return $this->rating;
+    }
+
+    /**
+     * Set imageAlt
+     *
+     * @param string $imageAlt
+     * @return Company
+     */
+    public function setImageAlt($imageAlt)
+    {
+        $this->imageAlt = $imageAlt;
+
+        return $this;
+    }
+
+    /**
+     * Get imageAlt
+     *
+     * @return string 
+     */
+    public function getImageAlt()
+    {
+        return $this->imageAlt;
+    }
+
+    public function getImageAltView()
+    {
+        if (!is_null($this->getImageAlt()))
+            return $this->imageAlt;
+
+        return 'Логотип компании - '.$this->getName();
     }
 }

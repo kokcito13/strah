@@ -108,4 +108,27 @@ class CacheM
         return $this->value;
     }
 
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime | NULL $createdAt
+     * @return CacheM
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime | NULL
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
 }

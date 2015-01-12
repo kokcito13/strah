@@ -71,6 +71,7 @@ class CompanyAdmin extends Admin
             ->with('Главное')
                 ->add('name', 'text', array('label' => 'Название'))
                 ->add('file', 'file', $fileFieldOptions)
+                ->add('imageAlt', 'text', array('label' => 'Описание картинки'))
                 ->add('site', 'text', array('label' => 'Сайт'))
                 ->add('url')
                 ->add('city', 'entity',

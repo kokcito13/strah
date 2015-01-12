@@ -114,6 +114,13 @@ class Company
      */
     private $rating;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image_alt", type="string", length=255, nullable=true)
+     */
+    private $imageAlt;
+
     public function __construct()
     {
         $this->rating = 0;

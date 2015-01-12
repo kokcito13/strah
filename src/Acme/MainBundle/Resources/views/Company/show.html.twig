@@ -24,7 +24,7 @@
             <div class="row">
                 <div class="span4">
                     <div class="clearfix">
-                        <img src="{{ entity.getWebPath() | apply_filter('in_company') }}" width="170" class="thumbnail align-left" alt="логотип компании {{ entity.name }}">
+                        <img src="{{ entity.getWebPath() | apply_filter('in_company') }}" width="170" class="thumbnail align-left" alt="{{ entity.getImageAltView() }}">
                     </div>
                     {#<div class="clearfix">#}
                         {#<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>#}
