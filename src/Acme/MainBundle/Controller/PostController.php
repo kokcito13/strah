@@ -56,9 +56,6 @@ class PostController extends Controller
 
         $text = $entity->getText();
 
-
-
-
         $cacheKey = 'post_pereink_'.$entity->getId();
         $cache = $this->get('cache.m');
         $result = $cache->fetch($cacheKey);
@@ -74,7 +71,7 @@ class PostController extends Controller
             $text = $perelink->updateText($text);
             $links = $perelink->getLinksAfter();
 
-            $cache->save($cacheKey, json_encode(array(0=>$text, 1=>$links)), (5*24*60*60));
+            $cache->save($cacheKey, json_encode(array(0=>$text, 1=>$links)), (2*24*60*60));
         } else {
             $result = json_decode($result, true);
             $text = $result[0];
