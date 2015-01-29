@@ -8,7 +8,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-class CategoryAdmin extends Admin
+class ServiceAdmin extends Admin
 {
     /**
      * @param DatagridMapper $datagridMapper
@@ -17,10 +17,6 @@ class CategoryAdmin extends Admin
     {
         $datagridMapper
             ->add('name')
-            ->add('url')
-            ->add('title')
-            ->add('description')
-            ->add('text')
         ;
     }
 
@@ -31,8 +27,6 @@ class CategoryAdmin extends Admin
     {
         $listMapper
             ->add('name')
-            ->add('url')
-            ->add('title')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -49,16 +43,7 @@ class CategoryAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('Главное')
-                ->add('name')
-                ->add('url')
-                ->add('title')
-                ->add('description')
-                ->add('text', 'textarea', array('label' => 'Текст', 'attr' => array('class' => 'ckeditor')))
-            ->end()
-            ->with('Услуги')
-                ->add('services', 'sonata_type_model', array('expanded' => true, 'multiple' => true, 'property'=>'name'))
-            ->end()
+            ->add('name')
         ;
     }
 
@@ -69,10 +54,6 @@ class CategoryAdmin extends Admin
     {
         $showMapper
             ->add('name')
-            ->add('url')
-            ->add('title')
-            ->add('description')
-            ->add('text')
         ;
     }
 }

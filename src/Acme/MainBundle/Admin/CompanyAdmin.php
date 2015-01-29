@@ -87,6 +87,9 @@ class CompanyAdmin extends Admin
                 ->add('description')
                 ->add('keywords')
             ->end()
+            ->with('Услуги')
+                ->add('servicesArray', 'sonata_type_model', array('expanded' => true, 'multiple' => true, 'property'=>'name'))
+            ->end()
         ;
     }
 
