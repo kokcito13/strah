@@ -62,9 +62,16 @@ class Category
      */
     private $posts;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Service", inversedBy="categories")
+     * @ORM\JoinTable(name="category_services")
+     **/
+    private $services;
+
     public function __construct()
     {
         $this->posts = new ArrayCollection();
+        $this->services = new ArrayCollection();
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace Acme\MainBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -121,9 +122,16 @@ class Company
      */
     private $imageAlt;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Service", inversedBy="companies")
+     * @ORM\JoinTable(name="company_services")
+     **/
+    private $servicesArray;
+
     public function __construct()
     {
         $this->rating = 0;
+        $this->servicesArray = new ArrayCollection();
     }
 
     /**
@@ -509,5 +517,38 @@ class Company
             return $this->imageAlt;
 
         return 'Логотип компании - '.$this->getName();
+    }
+
+    /**
+     * Add servicesArray
+     *
+     * @param \Acme\MainBundle\Entity\Service $servicesArray
+     * @return Company
+     */
+    public function addServicesArray(\Acme\MainBundle\Entity\Service $servicesArray)
+    {
+        $this->servicesArray[] = $servicesArray;
+
+        return $this;
+    }
+
+    /**
+     * Remove servicesArray
+     *
+     * @param \Acme\MainBundle\Entity\Service $servicesArray
+     */
+    public function removeServicesArray(\Acme\MainBundle\Entity\Service $servicesArray)
+    {
+        $this->servicesArray->removeElement($servicesArray);
+    }
+
+    /**
+     * Get servicesArray
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getServicesArray()
+    {
+        return $this->servicesArray;
     }
 }

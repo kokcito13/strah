@@ -62,9 +62,16 @@ class Category
      */
     private $posts;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Service", inversedBy="categories")
+     * @ORM\JoinTable(name="category_services")
+     **/
+    private $services;
+
     public function __construct()
     {
         $this->posts = new ArrayCollection();
+        $this->services = new ArrayCollection();
     }
 
     /**
@@ -228,5 +235,38 @@ class Category
     public function getPosts()
     {
         return $this->posts;
+    }
+
+    /**
+     * Add services
+     *
+     * @param \Acme\MainBundle\Entity\Service $services
+     * @return Category
+     */
+    public function addService(\Acme\MainBundle\Entity\Service $services)
+    {
+        $this->services[] = $services;
+
+        return $this;
+    }
+
+    /**
+     * Remove services
+     *
+     * @param \Acme\MainBundle\Entity\Service $services
+     */
+    public function removeService(\Acme\MainBundle\Entity\Service $services)
+    {
+        $this->services->removeElement($services);
+    }
+
+    /**
+     * Get services
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getServices()
+    {
+        return $this->services;
     }
 }
