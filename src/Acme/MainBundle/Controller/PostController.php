@@ -29,6 +29,7 @@ class PostController extends Controller
      */
     public function showAction($category_url, $post_url)
     {
+        $links = array();
         $em = $this->getDoctrine()->getManager();
         $category = $em->getRepository('AcmeMainBundle:Category')->findOneByUrl($category_url);
         if (!$category) {
@@ -54,6 +55,8 @@ class PostController extends Controller
         $em->persist($entity);
         $em->flush();
 
+        $postEdit = $this->get('post.edit');
+
         $text = $entity->getText();
 
         $cacheKey = 'post_pereink_'.$entity->getId();
@@ -78,6 +81,8 @@ class PostController extends Controller
             $links = $result[1];
         }
 
+        $text = $postEdit->setAdvertising($text);
+        list($text, $links) = $postEdit->setReadMore($text, $links);
         $entity->setText($text);
 
         return array(

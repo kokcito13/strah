@@ -935,3 +935,17 @@ h2 {
     font-size: 24px;
     line-height: 30px;
 }
+
+.read_more_p {
+    margin-bottom: 0px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 50px;
+}
+
+.read_more_ul {
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 80px;
+    margin-bottom: 20px;
+}
