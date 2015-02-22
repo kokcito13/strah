@@ -12,7 +12,8 @@
             <ul class="post-category-list" style="list-style-type: none;">
                 {% for entity in categories %}
                 <li>
-                    <a href="{{ path('client_category_show',{ 'category_url': entity.url }) }}"><i class="icon-plus-sign"></i>{{ entity.name }}</a>
+                    <i class="icon-plus-sign"></i>
+                    <a href="{{ path('client_category_show',{ 'category_url': entity.url }) }}">{{ entity.name }}</a>
                     <ul>
                         {% for post in entity.getPosts %}
                             <li>

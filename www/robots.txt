@@ -41,3 +41,5 @@ Allow: /media/
 
 User-agent: Slurp
 Disallow: /
+
+Sitemap: http://dvestrahovki.ru/sitemap.xml
