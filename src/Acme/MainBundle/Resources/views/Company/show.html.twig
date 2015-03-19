@@ -40,11 +40,31 @@
                 <div class="span8">
                     <div class="project-info">
                         <h3>Услуги компании <b>{{ entity.name }}</b>:</h3>
-                        <ul>
-                            {% for service in entity.servicesArray %}
-                                <li><i class="icon-ok"></i> {{ service.name }}</li>
-                            {% endfor %}
-                        </ul>
+                        <div class="row">
+                            {% set hlf = (entity.servicesArray|length)/2  %}
+                            <div class="span4">
+                                <ul>
+                                    {% for service in entity.servicesArray %}
+                                        {% if ( hlf >= 1 and loop.index0 < hlf) or hlf < 1 %}
+                                            <li><i class="icon-ok"></i> {{ service.name }}</li>
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </div>
+
+                            <div class="span4">
+                                {% if hlf >= 1 %}
+                                    <ul>
+                                        {% for service in entity.servicesArray %}
+                                            {% if loop.index0 > hlf %}
+                                                <li><i class="icon-ok"></i> {{ service.name }}</li>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>

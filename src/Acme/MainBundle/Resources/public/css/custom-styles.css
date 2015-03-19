@@ -967,6 +967,11 @@ h2 {
 .company_page h3 {
     text-transform: none;
 }
+
+.company_page .project-info {
+    margin-bottom: 0px;
+}
+
 .block_logo {
     width: 200px;
     height: 200px;
