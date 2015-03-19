@@ -892,6 +892,20 @@ div.h6 {
     text-rendering: optimizelegibility;
 }
 
+.lower_h6 {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 10px;
+    margin-left: 0px;
+    font-family: "Oswald", sans-serif;
+    font-weight: normal;
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 20px;
+    color: inherit;
+    text-rendering: optimizelegibility;
+}
+
 .popular-posts li div.h6 a:hover {
     color: #d8450b;
     text-decoration: underline;
@@ -948,4 +962,25 @@ h2 {
     font-weight: bold;
     margin-left: 80px;
     margin-bottom: 20px;
+}
+
+.company_page h3 {
+    text-transform: none;
+}
+.block_logo {
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.block_logo img.thumbnail {
+    margin: 0px;
+    padding: 0px;
+    float: none;
+    display: inline-block;
+    border: 0px;
+    border-radius: 0px;
 }

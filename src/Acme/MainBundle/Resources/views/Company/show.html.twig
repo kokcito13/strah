@@ -19,48 +19,59 @@
 {% endblock %}
 {% set currentCompany = entity %}
 {% block body %}
-    <div class="row">
+    <div class="row company_page">
         <div class="span8">
             <div class="row">
-                <div class="span4">
+                <div class="span3">
                     <div class="clearfix">
-                        <img src="{{ entity.getWebPath() | apply_filter('in_company') }}" width="170" class="thumbnail align-left" alt="{{ entity.getImageAltView() }}">
-                    </div>
-                    {#<div class="clearfix">#}
-                        {#<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>#}
-                        {#<!-- strah_company_page1 -->#}
-                        {#<ins class="adsbygoogle"#}
-                             {#style="display:inline-block;width:336px;height:280px"#}
-                             {#data-ad-client="ca-pub-3861532892125732"#}
-                             {#data-ad-slot="1561466494"></ins>#}
-                        {#<script>#}
-                            {#(adsbygoogle = window.adsbygoogle || []).push({});#}
-                        {#</script>#}
-                    {#</div>#}
-                    <div class="project-info">
-                        <div class="h6">Виды услуг:</div>
-                        <ul>
-                            {% for service in entity.servicesArray %}
-                                <li>{{ service.name }}</li>
-                            {% endfor %}
-                        </ul>
-                        {#{{ entity.services|raw }}#}
+                        <div class="block_logo">
+                            <img src="{{ entity.getWebPath() | apply_filter('in_company') }}" class="thumbnail align-left" alt="{{ entity.getImageAltView() }}">
+                        </div>
                     </div>
                 </div>
-                <div class="span4">
+                <div class="span5">
                     <h1>{{ entity.name }}</h1>
-                    {#<a href="http://{{ entity.site }}" rel="nofollow" target="_blank">{{ entity.site }}</a>#}
-                    <div class="h6">Контактные данные:</div>
-                    <div style="padding-left: 15px;">
-                        {{ entity.contacts|raw }}
+                    <div class="alert alert-info">
+                        Рейтинг компании - <strong>5.21</strong>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="span8">
+                    <div class="project-info">
+                        <h3>Услуги компании <b>{{ entity.name }}</b>:</h3>
+                        <ul>
+                            {% for service in entity.servicesArray %}
+                                <li><i class="icon-ok"></i> {{ service.name }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="span8">
+                    <h3>О компании <b>{{ entity.name }}</b>:</h3>
+                    <section class="post-content">
+                        <div class="post-body about-author">
                     <!--start_content-->
                     {{ entity.text|raw }}
                     <!--end_content-->
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="span6">
+                    <h3>Контактные данные:</h3>
+                    <div style="padding-left: 15px;">
+                        {{ entity.contacts|raw }}
+                    </div>
+                </div>
+                <div class="span2">
+                    <div class="lower_h6"><b>Перейти на сайт:</b></div>
+                    <a href="http://{{ entity.site }}" rel="nofollow" target="_blank" class="btn btn-primary">{{ entity.site }}</a>
                 </div>
             </div>
         </div>
