@@ -79,6 +79,7 @@
     'post': currentPost,
     'company': currentCompany,
 })) }}
+{% if app.environment == 'prod' %}
 <!--LiveInternet counter--><script type="text/javascript"><!--
     document.write("<a href='//www.liveinternet.ru/click' "+
             "target=_blank><img src='//counter.yadro.ru/hit?t44.6;r"+
@@ -89,6 +90,7 @@
             "' alt='' title='LiveInternet' "+
             "border='0' width='31' height='31'><\/a>")
     //--></script><!--/LiveInternet-->
+{% endif %}
 <!-- Scroll to Top -->
 <div id="toTop" class="hidden-phone hidden-tablet">Back to Top</div>
 
@@ -124,7 +126,9 @@
             });
         });
     </script>
+    {% block stylesheets_after %}{% endblock %}
     {% block javascripts %}{% endblock %}
+    {% if app.environment == 'prod' %}
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
         (function (d, w, c) {
@@ -151,5 +155,6 @@
     </script>
     <noscript><div><img src="//mc.yandex.ru/watch/27107978" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->
+    {% endif %}
 </body>
 </html>

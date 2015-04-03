@@ -6,25 +6,16 @@
 
 {% block body %}
     <div class="row gallery-row">
-        <div class="span8">
+        <div class="span12">
             <div class="row clearfix no-margin">
                 <div class="span12">
                     <div class="navbar hidden-phone">
-                        <ul class="nav">
+                        <div class="h5" style="float: left; font-weight: bold;color: black;">Города: </div>
+                        <ul class="nav" style="margin-top: -10px;">
                             <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="{{ path('page_catalog') }}">Все страны <b class="caret"></b></a>
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="{{ path('page_catalog') }}">Все<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    {% for con in countries %}
-                                        <li>
-                                            <a href="{{ path('page_catalog', {"country":con.url}) }}">{{ con.name }}</a>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="{{ path('page_catalog') }}">Все города <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    {% for city in cities %}
+                                    {% for city in cities if city.country.url == 'ru' %}
                                         <li>
                                             <a href="{{ path('page_catalog', {"country":city.country.url, 'city':city.url}) }}">{{ city.name }}</a>
                                         </li>
@@ -35,36 +26,85 @@
                     </div>
                 </div>
             </div>
-            <div class="row clearfix no-margin">
-                <ul class="gallery-post-grid holder">
-                    {% for company in companies %}
-                        <li class="span3 gallery-item" data-id="id-1" data-type="illustration">
-                            <a href="{{ path('client_company_show', {
-                                "country_url": company.city.country.url,
-                                "city_url": company.city.url,
-                                "company_url": company.url
-                            }) }}" rel="nofollow">
-                                <div class="block_logo">
-                                    <img src="{{ company.getWebPath() | apply_filter('thumbnail_catalog_company') }}" alt="{{ company.getImageAltView() }}">
-                                </div>
-                            </a>
-                            <span class="project-details">
-                                <a href="{{ path('client_company_show', {
-                                "country_url": company.city.country.url,
-                                "city_url": company.city.url,
-                                "company_url": company.url
-                                }) }}">{{ company.name }}</a>
-                            </span>
-                        </li>
-                    {% endfor %}
-                </ul>
+            <div class="row clearfix">
+                <div id="map"></div>
             </div>
+            <div class="row clearfix no-margin">
+                {% for company in companies %}
+                <div class="row">
+                    <div class="span4">
+                        <a href="{{ path('client_company_show', {
+                        "country_url": company.city.country.url,
+                        "city_url": company.city.url,
+                        "company_url": company.url
+                        }) }}" rel="nofollow">
+                            <div class="block_logo">
+                                <img src="{{ company.getWebPath() | apply_filter('thumbnail_catalog_company') }}" alt="{{ company.getImageAltView() }}">
+                            </div>
+                        </a>
+                    </div>
+                    <div class="span8">
+                        <div class="h5"><a href="{{ path('client_company_show', {
+                            "country_url": company.city.country.url,
+                            "city_url": company.city.url,
+                            "company_url": company.url
+                            }) }}">{{ company.name }}</a></div>
+                        {#<p>Vivamus augue nulla, vestibulum ac ultrices posuere, vehicula ac arcu. Quisque nisi lacus, bibendum quis commodo eget, lobortis eget elit. Cras venenatis mauris eu tortor consequat a convallis nulla molestie. Phasellus malesuada malesuada velit et fermentum. Proin ut leo nec mauris pulvinar volutpat. Sed ac neque nec leo condimentum rhoncus. Nunc dapibus odio et lacus elementum congue. Praesent nulla arcu, condimentum eu lobortis sit amet, pretium vitae metus. </p>#}
+
+                        {#<blockquote>#}
+                            {#<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante. Praesent nulla arcu, condimentum eu lobortis.</p>#}
+                            {#<small>Someone famous <cite title="Source Title">Source Title</cite></small>#}
+                        {#</blockquote>#}
+
+                        {#<button class="btn btn-small btn-inverse" type="button">Find out more</button>#}
+                    </div>
+
+                </div>
+                {% endfor %}
+                {#<ul class="gallery-post-grid holder">#}
+                    {#{% for company in companies %}#}
+                        {#<li class="span3 gallery-item" data-id="id-1" data-type="illustration">#}
+                            {##}
+                            {#<span class="project-details">#}
+                                {##}
+                            {#</span>#}
+                        {#</li>#}
+                    {#{% endfor %}#}
+                {#</ul>#}
+            </div>
+
         </div>
-        <!-- Blog Sidebar
-        ================================================== -->
-        {{ render(controller('AcmeMainBundle:PageLayout:rightSidebar', {
-        'post': false
-        })) }}
-        <!-- End sidebar column -->
+        {#<!-- Blog Sidebar#}
+        {#================================================== -->#}
+        {#{{ render(controller('AcmeMainBundle:PageLayout:rightSidebar', {#}
+        {#'post': false#}
+        {#})) }}#}
+        {#<!-- End sidebar column -->#}
     </div>
+{% endblock %}
+
+{% block stylesheets_after %}
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+    <style>
+        #map { height: 280px; }
+    </style>
+{% endblock %}
+{% block javascripts %}
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([55.75, 37.62], 13);
+
+        L.tileLayer('https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+                    '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+                    'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+            id: 'examples.map-i875mjb7'
+        }).addTo(map);
+
+
+//        L.marker([55.75, 37.62]).addTo(map)
+//                .bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
+
+    </script>
 {% endblock %}
