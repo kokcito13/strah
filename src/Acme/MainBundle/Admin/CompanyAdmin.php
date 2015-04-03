@@ -90,6 +90,16 @@ class CompanyAdmin extends Admin
             ->with('Услуги')
                 ->add('servicesArray', 'sonata_type_model', array('expanded' => true, 'multiple' => true, 'property'=>'name'))
             ->end()
+            ->with('Point')
+            ->add('points', 'sonata_type_collection',
+                array('label' => 'Point', 'by_reference' => false),
+                array(
+                    'edit' => 'inline',
+                    //В сущности NewsLink есть поле pos, отражающее положение ссылки в списке
+                    //указание опции sortable позволяет менять положение ссылок в списке перетаскиваением
+                    'inline' => 'table',
+                ))
+            ->end()
         ;
     }
 
@@ -111,16 +121,22 @@ class CompanyAdmin extends Admin
     public function prePersist($company)
     {
         $company->setImageFromFile();
+
+
     }
 
-    public function postPersist($post)
+    public function postPersist($company)
     {
-        $this->saveFile($post);
+        $this->saveFile($company);
     }
 
-    public function preUpdate($post)
+    public function preUpdate($company)
     {
-        $this->saveFile($post);
+        $this->saveFile($company);
+
+        foreach ($company->getPoints() as $point) {
+            $point->setCompany($company);
+        }
     }
 
     public function saveFile(Company $company)

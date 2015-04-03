@@ -1,0 +1,158 @@
+<?php
+
+namespace Acme\MainBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * CompanyPoint
+ *
+ * @ORM\Table(name="company_points")
+ * @ORM\Entity(repositoryClass="Acme\MainBundle\Entity\CompanyPointRepository")
+ */
+class CompanyPoint
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lat", type="decimal", precision=19, scale=4)
+     */
+    private $lat;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lng", type="decimal", precision=19, scale=4)
+     */
+    private $lng;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Company", inversedBy="points", cascade={"persist"})
+     * @ORM\JoinColumn(name="company_id", referencedColumnName="id")
+     **/
+    private $company;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime('now');
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return CompanyPoint
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set lat
+     *
+     * @param string $lat
+     * @return CompanyPoint
+     */
+    public function setLat($lat)
+    {
+        $this->lat = $lat;
+
+        return $this;
+    }
+
+    /**
+     * Get lat
+     *
+     * @return string 
+     */
+    public function getLat()
+    {
+        return $this->lat;
+    }
+
+    /**
+     * Set lng
+     *
+     * @param string $lng
+     * @return CompanyPoint
+     */
+    public function setLng($lng)
+    {
+        $this->lng = $lng;
+
+        return $this;
+    }
+
+    /**
+     * Get lng
+     *
+     * @return string 
+     */
+    public function getLng()
+    {
+        return $this->lng;
+    }
+
+    /**
+     * Set company
+     *
+     * @param \Acme\MainBundle\Entity\Company $company
+     * @return CompanyPoint
+     */
+    public function setCompany(\Acme\MainBundle\Entity\Company $company = null)
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
+    /**
+     * Get company
+     *
+     * @return \Acme\MainBundle\Entity\Company 
+     */
+    public function getCompany()
+    {
+        return $this->company;
+    }
+}

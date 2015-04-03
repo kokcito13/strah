@@ -60,3 +60,9 @@ services:
 
     post.edit:
         class: Acme\MainBundle\Service\PostEdit
+
+    acme_main.admin.company_point:
+        class: Acme\MainBundle\Admin\CompanyPointAdmin
+        arguments: [~, Acme\MainBundle\Entity\CompanyPoint, AcmeMainBundle:CompanyPointAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: CompanyPoint}

@@ -128,10 +128,16 @@ class Company
      **/
     private $servicesArray;
 
+    /**
+     * @ORM\OneToMany(targetEntity="CompanyPoint", mappedBy="company", cascade={"persist"}, orphanRemoval=true)
+     **/
+    private $points;
+
     public function __construct()
     {
         $this->rating = 0;
         $this->servicesArray = new ArrayCollection();
+        $this->points = new ArrayCollection();
     }
 
     /**
@@ -550,5 +556,38 @@ class Company
     public function getServicesArray()
     {
         return $this->servicesArray;
+    }
+
+    /**
+     * Add points
+     *
+     * @param \Acme\MainBundle\Entity\CompanyPoint $points
+     * @return Company
+     */
+    public function addPoint(\Acme\MainBundle\Entity\CompanyPoint $points)
+    {
+        $this->points[] = $points;
+
+        return $this;
+    }
+
+    /**
+     * Remove points
+     *
+     * @param \Acme\MainBundle\Entity\CompanyPoint $points
+     */
+    public function removePoint(\Acme\MainBundle\Entity\CompanyPoint $points)
+    {
+        $this->points->removeElement($points);
+    }
+
+    /**
+     * Get points
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPoints()
+    {
+        return $this->points;
     }
 }

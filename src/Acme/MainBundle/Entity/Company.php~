@@ -128,10 +128,16 @@ class Company
      **/
     private $servicesArray;
 
+    /**
+     * @ORM\OneToMany(targetEntity="CompanyPoint", mappedBy="company")
+     **/
+    private $points;
+
     public function __construct()
     {
         $this->rating = 0;
         $this->servicesArray = new ArrayCollection();
+        $this->points = new ArrayCollection();
     }
 
     /**
