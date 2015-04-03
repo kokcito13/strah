@@ -6,8 +6,9 @@
 
 {% block body %}
     <div class="row gallery-row catalog">
-        <div class="span12">
-            <div class="row clearfix no-margin">
+        <div class="span1"></div>
+        <div class="span10">
+            <div class="row clearfix">
                 <div class="span12">
                     <div class="navbar hidden-phone">
                         <div class="h5" style="float: left; font-weight: bold;color: black;">Города: </div>
@@ -29,7 +30,7 @@
             <div class="row clearfix">
                 <div id="map"></div>
             </div>
-            <div class="row clearfix no-margin">
+            <div class="row clearfix">
                 {% for company in companies %}
                 <div class="row">
                     <div class="span4">
@@ -43,7 +44,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="span8">
+                    <div class="span6">
                         <div class="h5"><a href="{{ path('client_company_show', {
                             "country_url": company.city.country.url,
                             "city_url": company.city.url,
@@ -72,8 +73,8 @@
                     {#{% endfor %}#}
                 {#</ul>#}
             </div>
-
         </div>
+        <div class="span1"></div>
         {#<!-- Blog Sidebar#}
         {#================================================== -->#}
         {#{{ render(controller('AcmeMainBundle:PageLayout:rightSidebar', {#}
@@ -102,9 +103,15 @@
             id: 'examples.map-i875mjb7'
         }).addTo(map);
 
-
-//        L.marker([55.75, 37.62]).addTo(map)
-//                .bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
-
+        {% for company in companies %}
+            {% for point in company.points %}
+                L.marker([{{ point.lat }}, {{ point.lng }}]).addTo(map)
+                    .bindPopup("<a href=\"{{ path('client_company_show', {
+                            "country_url": company.city.country.url,
+                            "city_url": company.city.url,
+                            "company_url": company.url
+                            }) }}\">{{ company.name }}</a><br />{{ point.address }}").openPopup();
+            {% endfor %}
+        {% endfor %}
     </script>
 {% endblock %}

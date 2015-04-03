@@ -49,6 +49,13 @@ class CompanyPoint
      **/
     private $company;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="address", type="text", nullable=true)
+     */
+    private $address;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime('now');
@@ -154,5 +161,28 @@ class CompanyPoint
     public function getCompany()
     {
         return $this->company;
+    }
+
+    /**
+     * Set address
+     *
+     * @param string $address
+     * @return CompanyPoint
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * Get address
+     *
+     * @return string 
+     */
+    public function getAddress()
+    {
+        return $this->address;
     }
 }

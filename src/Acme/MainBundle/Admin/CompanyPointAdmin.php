@@ -16,6 +16,7 @@ class CompanyPointAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
+            ->add('address')
             ->add('lat')
             ->add('lng')
         ;
@@ -27,6 +28,7 @@ class CompanyPointAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
+            ->add('address')
             ->add('lat')
             ->add('lng')
             ->add('_action', 'actions', array(
@@ -45,6 +47,7 @@ class CompanyPointAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
+            ->add('address')
             ->add('lat')
             ->add('lng')
         ;
@@ -56,6 +59,7 @@ class CompanyPointAdmin extends Admin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
+            ->add('address')
             ->add('lat')
             ->add('lng')
         ;

@@ -90,15 +90,13 @@ class CompanyAdmin extends Admin
             ->with('Услуги')
                 ->add('servicesArray', 'sonata_type_model', array('expanded' => true, 'multiple' => true, 'property'=>'name'))
             ->end()
-            ->with('Point')
-            ->add('points', 'sonata_type_collection',
-                array('label' => 'Point', 'by_reference' => false),
-                array(
-                    'edit' => 'inline',
-                    //В сущности NewsLink есть поле pos, отражающее положение ссылки в списке
-                    //указание опции sortable позволяет менять положение ссылок в списке перетаскиваением
-                    'inline' => 'table',
-                ))
+            ->with('Адрес')
+                ->add('points', 'sonata_type_collection',
+                    array('label' => 'Отделение', 'by_reference' => false),
+                    array(
+                        'edit' => 'inline',
+                        'inline' => 'table',
+                    ))
             ->end()
         ;
     }
