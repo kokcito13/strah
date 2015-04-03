@@ -835,6 +835,12 @@ div.h5 {
     text-rendering: optimizelegibility;
     display: block;
 }
+.catalog div.h5{
+    font-weight: bold;
+    text-transform: none;
+    font-size: 20px;
+    line-height: 20px;
+}
 .footer-col .h5 {
     margin-bottom: 25px;
     color: #f9f9f9;

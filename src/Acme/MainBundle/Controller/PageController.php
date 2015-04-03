@@ -211,6 +211,7 @@ class PageController extends Controller
      */
     public function catalogAction($country = null, $city = null, Request $request)
     {
+
         $em = $this->getDoctrine()->getManager();
         $countries = $em->getRepository('AcmeMainBundle:Country')->findAll();
         $cities = $em->getRepository('AcmeMainBundle:City')->findAll();
@@ -242,7 +243,14 @@ class PageController extends Controller
                 ));
             }
         } else {
-            $companies = $em->getRepository('AcmeMainBundle:Company')->findAll();
+            $country = $em->getRepository('AcmeMainBundle:Country')->findOneByUrl('ru');
+            $cIds = array();
+            foreach ($country->getCities() as $c) {
+                $cIds[] = $c->getId();
+            }
+            $companies = $em->getRepository('AcmeMainBundle:Company')->findBy(array(
+                'city' => $cIds
+            ));
         }
 
         return array(
