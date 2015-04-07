@@ -1,0 +1,131 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}{{ entity.title }}{% endblock %}
+{% block description %}{{ entity.description }}{% endblock %}
+{% block keywords %}{{ entity.keywords }}{% endblock %}
+
+{% block meta %}
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('bundles/acmemain/plugins/raty/jquery.raty.js') }}"></script>
+    <script>
+        $('div#ratyId').raty({
+            path: '{{ asset('bundles/acmemain/plugins/raty/images') }}',
+            number: 3,
+            hints: ['Плохо', 'Так себе', 'Рекомендую', 'good', 'gorgeous'],
+            readOnly: true,
+            score: 2
+        });
+    </script>
+{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/acmemain/plugins/raty/jquery.raty.css') }}">
+{% endblock %}
+{% set currentCompany = entity %}
+{% block body %}
+    <div class="row company_page">
+        <div class="span8">
+            <div class="row">
+                <div class="span3">
+                    <div class="clearfix">
+                        <div class="block_logo">
+                            <img src="{{ entity.getWebPath() | apply_filter('in_company') }}" class="thumbnail align-left" alt="{{ entity.getImageAltView() }}">
+                        </div>
+                    </div>
+                </div>
+                <div class="span5">
+                    <h1>{{ entity.name }}</h1>
+                    <div class="alert alert-info">
+                        Рейтинг компании - <strong>5.21</strong>
+                    </div>
+                    <div class="row">
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span8 blog">
+                    <ul class="nav nav-tabs" style="margin-bottom: 0px; border-bottom: 0px;">
+                        <li><a href="{{ path('client_company_show', {
+                            "country_url": entity.city.country.url,
+                            "city_url": entity.city.url,
+                            "company_url": entity.url
+                            }) }}" >Главная</a></li>
+                        <li class="active">
+                            <a >Отзывы {{ entity.comments|length }}</a>
+                        </li>
+                    </ul>
+                    <!-- Post Comments
+                    ================================================== -->
+                    <section class="comments">
+                        <ul>
+                            <li>
+                                <img src="img/user-avatar.jpg" alt="Image">
+                                <span class="comment-name">John Doe</span>
+                                <span class="comment-date">March 15, 2015 | <a href="#">Reply</a></span>
+                                <div class="comment-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam venenatis, ligula quis sagittis euismod, odio ante molestie tortor, eget ullamcorper lacus nunc a ligula. Donec est lacus, aliquet in interdum id, rutrum ac tellus. Ut rutrum, justo et lobortis commodo, est metus ornare tortor, vitae luctus turpis leo sed magna. In leo dolor, suscipit non mattis in.</div>
+                                <!-- Reply -->
+                                <ul>
+                                    <li>
+                                        <img src="img/user-avatar.jpg" alt="Image">
+                                        <span class="comment-name">Jason Doe</span>
+                                        <span class="comment-date">March 15, 2015 | <a href="#">Reply</a></span>
+                                        <div class="comment-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam venenatis, ligula quis sagittis euismod, odio ante molestie tortor, eget ullamcorper lacus nunc a ligula. Donec est lacus, aliquet in interdum id, rutrum ac tellus. Ut rutrum, justo et lobortis commodo, est metus ornare tortor, vitae luctus turpis leo sed magna. In leo dolor, suscipit non mattis in.</div>
+                                    </li>
+                                    <li>
+                                        <img src="img/user-avatar.jpg" alt="Image">
+                                        <span class="comment-name">Jason Doe</span>
+                                        <span class="comment-date">March 15, 2015 | <a href="#">Reply</a></span>
+                                        <div class="comment-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam venenatis, ligula quis sagittis euismod, odio ante molestie tortor, eget ullamcorper lacus nunc a ligula. Donec est lacus, aliquet in interdum id, rutrum ac tellus. Ut rutrum, justo et lobortis commodo, est metus ornare tortor, vitae luctus turpis leo sed magna. In leo dolor, suscipit non mattis in.</div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <img src="img/user-avatar.jpg" alt="Image">
+                                <span class="comment-name">John Doe</span>
+                                <span class="comment-date">March 15, 2015 | <a href="#">Reply</a></span>
+                                <div class="comment-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam venenatis, ligula quis sagittis euismod, odio ante molestie tortor, eget ullamcorper lacus nunc a ligula. Donec est lacus, aliquet in interdum id, rutrum ac tellus. Ut rutrum, justo et lobortis commodo, est metus ornare tortor, vitae luctus turpis leo sed magna. In leo dolor, suscipit non mattis in.</div>
+                            </li>
+                            <li>
+                                <img src="img/user-avatar.jpg" alt="Image">
+                                <span class="comment-name">John Doe</span>
+                                <span class="comment-date">March 15, 2015 | <a href="#">Reply</a></span>
+                                <div class="comment-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam venenatis, ligula quis sagittis euismod, odio ante molestie tortor, eget ullamcorper lacus nunc a ligula. Donec est lacus, aliquet in interdum id, rutrum ac tellus. Ut rutrum, justo et lobortis commodo, est metus ornare tortor, vitae luctus turpis leo sed magna. In leo dolor, suscipit non mattis in.</div>
+                            </li>
+
+                        </ul>
+                        <div class="comment-form-container">
+                            <div class="h6" style="text-transform: none; font-size: 18px;">Добавить новый отзыв</div>
+                            <form action="#" id="comment-form">
+                                <div class="input-prepend">
+                                    <span class="add-on"><i class="icon-user"></i></span>
+                                    <input class="span4" id="prependedInput" size="16" type="text" placeholder="Имя">
+                                </div>
+                                <div class="input-prepend">
+                                    <span class="add-on"><i class="icon-envelope"></i></span>
+                                    <input class="span4" id="prependedInput" size="16" type="text" placeholder="Email">
+                                </div>
+                                <textarea class="span6" id="commentText" placeholder="Что вам понравилось и не понравилось в компании? Посоветовали бы вы эту страховую друзьям?"></textarea>
+                                <div class="">
+                                    <strong>Моя оценка компании:</strong>
+                                    <div id="ratyId"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="span2">
+                                        <input type="submit" class="btn btn-warning" value="Добавить">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <!-- Blog Sidebar
+        ================================================== -->
+        {{ render(controller('AcmeMainBundle:PageLayout:rightSidebar', {
+        'post': entity
+        })) }}
+        <!-- End sidebar column -->
+    </div>
+{% endblock %}

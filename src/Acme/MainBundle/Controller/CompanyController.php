@@ -55,4 +55,39 @@ class CompanyController extends Controller
             'entity'  => $entity,
         );
     }
+    /**
+     *
+     * @Route("/company/{country_url}/{city_url}/{company_url}/comments", name="client_company_show_comments")
+     * @Method("GET")
+     * @Template()
+     */
+    public function showCommentsAction($country_url, $city_url, $company_url)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $country = $em->getRepository('AcmeMainBundle:Country')->findOneByUrl($country_url);
+        $city = $em->getRepository('AcmeMainBundle:City')->findOneBy(array(
+            'url' => $city_url,
+            'country' => $country
+        ));
+        if (!$city) {
+            throw $this->createNotFoundException('Данную страницу мы не можем найти');
+        }
+
+        $companyRepo = $em->getRepository('AcmeMainBundle:Company');
+        $entity = $companyRepo->findOneBy(
+            array(
+                'city' => $city,
+                'url' => $company_url
+            )
+        );
+
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Данную страницу мы не можем найти!');
+        }
+
+        return array(
+            'entity'  => $entity,
+        );
+    }
 }

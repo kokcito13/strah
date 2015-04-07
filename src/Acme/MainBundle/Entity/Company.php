@@ -133,11 +133,17 @@ class Company
      **/
     private $points;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="company")
+     **/
+    private $comments;
+
     public function __construct()
     {
         $this->rating = 0;
         $this->servicesArray = new ArrayCollection();
         $this->points = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     /**
@@ -589,5 +595,38 @@ class Company
     public function getPoints()
     {
         return $this->points;
+    }
+
+    /**
+     * Add comments
+     *
+     * @param \Acme\MainBundle\Entity\Comments $comments
+     * @return Company
+     */
+    public function addComment(\Acme\MainBundle\Entity\Comments $comments)
+    {
+        $this->comments[] = $comments;
+
+        return $this;
+    }
+
+    /**
+     * Remove comments
+     *
+     * @param \Acme\MainBundle\Entity\Comments $comments
+     */
+    public function removeComment(\Acme\MainBundle\Entity\Comments $comments)
+    {
+        $this->comments->removeElement($comments);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 }

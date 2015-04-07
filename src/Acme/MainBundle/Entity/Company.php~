@@ -133,11 +133,17 @@ class Company
      **/
     private $points;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Comments", mappedBy="company")
+     **/
+    private $comments;
+
     public function __construct()
     {
         $this->rating = 0;
         $this->servicesArray = new ArrayCollection();
         $this->points = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     /**

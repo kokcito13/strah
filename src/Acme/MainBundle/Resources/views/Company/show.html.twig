@@ -38,47 +38,59 @@
             </div>
             <div class="row">
                 <div class="span8">
-                    <div class="project-info">
-                        <h3>Услуги компании <b>{{ entity.name }}</b>:</h3>
-                        <div class="row">
-                            {% set hlf = (entity.servicesArray|length)/2  %}
-                            <div class="span4">
-                                <ul>
-                                    {% for service in entity.servicesArray %}
-                                        {% if ( hlf >= 1 and loop.index0 < hlf) or hlf < 1 %}
-                                            <li><i class="icon-ok"></i> {{ service.name }}</li>
-                                        {% endif %}
-                                    {% endfor %}
-                                </ul>
-                            </div>
-
-                            <div class="span4">
-                                {% if hlf >= 1 %}
+                    <ul class="nav nav-tabs" style="margin-bottom: 0px; border-bottom: 0px;">
+                        <li class="active"><a  >Главная</a></li>
+                        <li>
+                            <a href="{{ path('client_company_show_comments', {
+                            "country_url": entity.city.country.url,
+                            "city_url": entity.city.url,
+                            "company_url": entity.url
+                            }) }}">Отзывы {{ entity.comments|length }}</a>
+                        </li>
+                    </ul>
+                    <section class="post-content">
+                        <div class="post-body about-author ">
+                            <h3>Услуги компании <b>{{ entity.name }}</b>:</h3>
+                            <div class="row">
+                                {% set hlf = (entity.servicesArray|length)/2  %}
+                                <div class="span4">
                                     <ul>
                                         {% for service in entity.servicesArray %}
-                                            {% if loop.index0 > hlf %}
+                                            {% if ( hlf >= 1 and loop.index0 < hlf) or hlf < 1 %}
                                                 <li><i class="icon-ok"></i> {{ service.name }}</li>
                                             {% endif %}
                                         {% endfor %}
                                     </ul>
-                                {% endif %}
+                                </div>
+
+                                <div class="span4">
+                                    {% if hlf >= 1 %}
+                                        <ul>
+                                            {% for service in entity.servicesArray %}
+                                                {% if loop.index0 > hlf %}
+                                                    <li><i class="icon-ok"></i> {{ service.name }}</li>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </ul>
+                                    {% endif %}
+                                </div>
                             </div>
                         </div>
-
-                    </div>
+                    </section>
                 </div>
             </div>
 
             <div class="row">
                 <div class="span8">
+
                     <h3>О компании <b>{{ entity.name }}</b>:</h3>
-                    <section class="post-content">
+                    {#<section class="post-content">#}
                         <div class="post-body about-author">
-                    <!--start_content-->
-                    {{ entity.text|raw }}
-                    <!--end_content-->
+                            <!--start_content-->
+                            {{ entity.text|raw }}
+                            <!--end_content-->
                         </div>
-                    </section>
+                    {#</section>#}
                 </div>
             </div>
 
