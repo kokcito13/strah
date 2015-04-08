@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="span3">
+        <div class="clearfix">
+            <div class="block_logo">
+                <img src="{{ entity.getWebPath() | apply_filter('in_company') }}" class="thumbnail align-left" alt="{{ entity.getImageAltView() }}">
+            </div>
+        </div>
+    </div>
+    <div class="span5">
+        <h1>{{ entity.name }}</h1>
+        <div>
+            <img src="{{ asset('bundles/acmemain/plugins/raty/images/star-on.png') }}" width="20" height="20"/> <strong>- {% if entity.rating == 0 %}0.00{% else %}{{ entity.rating/100 }}{% endif %}</strong>
+        </div>
+        <div class="row">
+
+        </div>
+    </div>
+</div>

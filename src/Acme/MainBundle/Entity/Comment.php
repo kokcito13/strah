@@ -73,10 +73,22 @@ class Comment
      **/
     private $company;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="status", type="smallint")
+     */
+    private $status;
+
+    const STATUS_CREATED = 0;
+    const STATUS_CONFIRM = 1;
+    const STATUS_DELETE = 2;
+
     public function __construct()
     {
         $this->children = new \Doctrine\Common\Collections\ArrayCollection();
         $this->createdAt = new \DateTime('now');
+        $this->status = self::STATUS_CREATED;
     }
 
     /**
@@ -281,5 +293,28 @@ class Comment
     public function getCompany()
     {
         return $this->company;
+    }
+
+    /**
+     * Set status
+     *
+     * @param integer $status
+     * @return Comment
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return integer 
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 }

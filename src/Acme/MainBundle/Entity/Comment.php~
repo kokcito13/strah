@@ -56,14 +56,13 @@ class Comment
      */
     private $createdAt;
 
-
     /**
-     * @ORM\OneToMany(targetEntity="Comments", mappedBy="parent")
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="parent")
      **/
     private $children;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Comments", inversedBy="children")
+     * @ORM\ManyToOne(targetEntity="Comment", inversedBy="children")
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
      **/
     private $parent;
@@ -74,10 +73,22 @@ class Comment
      **/
     private $company;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="status", type="smallint")
+     */
+    private $status;
+
+    const STATUS_CREATED = 0;
+    const STATUS_CONFIRM = 1;
+    const STATUS_DELETE = 2;
+
     public function __construct()
     {
         $this->children = new \Doctrine\Common\Collections\ArrayCollection();
         $this->createdAt = new \DateTime('now');
+        $this->status = self::STATUS_CREATED;
     }
 
     /**
@@ -203,5 +214,84 @@ class Comment
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+
+    /**
+     * Add children
+     *
+     * @param \Acme\MainBundle\Entity\Comments $children
+     * @return Comment
+     */
+    public function addChild(\Acme\MainBundle\Entity\Comments $children)
+    {
+        $this->children[] = $children;
+
+        return $this;
+    }
+
+    /**
+     * Remove children
+     *
+     * @param \Acme\MainBundle\Entity\Comments $children
+     */
+    public function removeChild(\Acme\MainBundle\Entity\Comments $children)
+    {
+        $this->children->removeElement($children);
+    }
+
+    /**
+     * Get children
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getChildren()
+    {
+        return $this->children;
+    }
+
+    /**
+     * Set parent
+     *
+     * @param \Acme\MainBundle\Entity\Comments $parent
+     * @return Comment
+     */
+    public function setParent(\Acme\MainBundle\Entity\Comments $parent = null)
+    {
+        $this->parent = $parent;
+
+        return $this;
+    }
+
+    /**
+     * Get parent
+     *
+     * @return \Acme\MainBundle\Entity\Comments 
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * Set company
+     *
+     * @param \Acme\MainBundle\Entity\Company $company
+     * @return Comment
+     */
+    public function setCompany(\Acme\MainBundle\Entity\Company $company = null)
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
+    /**
+     * Get company
+     *
+     * @return \Acme\MainBundle\Entity\Company 
+     */
+    public function getCompany()
+    {
+        return $this->company;
     }
 }

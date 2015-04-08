@@ -6,18 +6,6 @@
 
 {% block meta %}
 {% endblock %}
-{% block javascripts %}
-    <script type="text/javascript" src="{{ asset('bundles/acmemain/plugins/raty/jquery.raty.js') }}"></script>
-    <script>
-        $('div#ratyId').raty({
-            path: '{{ asset('bundles/acmemain/plugins/raty/images') }}',
-            number: 3,
-            hints: ['Плохо', 'Так себе', 'Рекомендую', 'good', 'gorgeous'],
-            readOnly: true,
-            score: 2
-        });
-    </script>
-{% endblock %}
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('bundles/acmemain/plugins/raty/jquery.raty.css') }}">
 {% endblock %}
@@ -25,24 +13,7 @@
 {% block body %}
     <div class="row company_page">
         <div class="span8">
-            <div class="row">
-                <div class="span3">
-                    <div class="clearfix">
-                        <div class="block_logo">
-                            <img src="{{ entity.getWebPath() | apply_filter('in_company') }}" class="thumbnail align-left" alt="{{ entity.getImageAltView() }}">
-                        </div>
-                    </div>
-                </div>
-                <div class="span5">
-                    <h1>{{ entity.name }}</h1>
-                    <div class="alert alert-info">
-                        Рейтинг компании - <strong>5.21</strong>
-                    </div>
-                    <div class="row">
-
-                    </div>
-                </div>
-            </div>
+            {% include("AcmeMainBundle::Company/blocks/header.html.twig") %}
             <div class="row">
                 <div class="span8 blog">
                     <ul class="nav nav-tabs" style="margin-bottom: 0px; border-bottom: 0px;">
@@ -59,53 +30,47 @@
                     ================================================== -->
                     <section class="comments">
                         <ul>
+                            {% for comment in entity.comments %}
                             <li>
-                                <img src="img/user-avatar.jpg" alt="Image">
-                                <span class="comment-name">John Doe</span>
-                                <span class="comment-date">March 15, 2015 | <a href="#">Reply</a></span>
-                                <div class="comment-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam venenatis, ligula quis sagittis euismod, odio ante molestie tortor, eget ullamcorper lacus nunc a ligula. Donec est lacus, aliquet in interdum id, rutrum ac tellus. Ut rutrum, justo et lobortis commodo, est metus ornare tortor, vitae luctus turpis leo sed magna. In leo dolor, suscipit non mattis in.</div>
-                                <!-- Reply -->
-                                <ul>
-                                    <li>
-                                        <img src="img/user-avatar.jpg" alt="Image">
-                                        <span class="comment-name">Jason Doe</span>
-                                        <span class="comment-date">March 15, 2015 | <a href="#">Reply</a></span>
-                                        <div class="comment-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam venenatis, ligula quis sagittis euismod, odio ante molestie tortor, eget ullamcorper lacus nunc a ligula. Donec est lacus, aliquet in interdum id, rutrum ac tellus. Ut rutrum, justo et lobortis commodo, est metus ornare tortor, vitae luctus turpis leo sed magna. In leo dolor, suscipit non mattis in.</div>
-                                    </li>
-                                    <li>
-                                        <img src="img/user-avatar.jpg" alt="Image">
-                                        <span class="comment-name">Jason Doe</span>
-                                        <span class="comment-date">March 15, 2015 | <a href="#">Reply</a></span>
-                                        <div class="comment-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam venenatis, ligula quis sagittis euismod, odio ante molestie tortor, eget ullamcorper lacus nunc a ligula. Donec est lacus, aliquet in interdum id, rutrum ac tellus. Ut rutrum, justo et lobortis commodo, est metus ornare tortor, vitae luctus turpis leo sed magna. In leo dolor, suscipit non mattis in.</div>
-                                    </li>
-                                </ul>
+                                {#<img src="img/user-avatar.jpg" alt="Image">#}
+                                <span class="comment-name">{{ comment.name }}</span>
+                                <span class="comment-date">{{ comment.createdAt | date('d.m.Y H:i') }} | <a href="#">Reply</a></span>
+                                <div class="comment-content">{{ comment.text | raw }}</div>
+                                {#<!-- Reply -->#}
+                                {#<ul>#}
+                                    {#<li>#}
+                                        {#<img src="img/user-avatar.jpg" alt="Image">#}
+                                        {#<span class="comment-name">Jason Doe</span>#}
+                                        {#<span class="comment-date">March 15, 2015 | <a href="#">Reply</a></span>#}
+                                        {#<div class="comment-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam venenatis, ligula quis sagittis euismod, odio ante molestie tortor, eget ullamcorper lacus nunc a ligula. Donec est lacus, aliquet in interdum id, rutrum ac tellus. Ut rutrum, justo et lobortis commodo, est metus ornare tortor, vitae luctus turpis leo sed magna. In leo dolor, suscipit non mattis in.</div>#}
+                                    {#</li>#}
+                                    {#<li>#}
+                                        {#<img src="img/user-avatar.jpg" alt="Image">#}
+                                        {#<span class="comment-name">Jason Doe</span>#}
+                                        {#<span class="comment-date">March 15, 2015 | <a href="#">Reply</a></span>#}
+                                        {#<div class="comment-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam venenatis, ligula quis sagittis euismod, odio ante molestie tortor, eget ullamcorper lacus nunc a ligula. Donec est lacus, aliquet in interdum id, rutrum ac tellus. Ut rutrum, justo et lobortis commodo, est metus ornare tortor, vitae luctus turpis leo sed magna. In leo dolor, suscipit non mattis in.</div>#}
+                                    {#</li>#}
+                                {#</ul>#}
                             </li>
-                            <li>
-                                <img src="img/user-avatar.jpg" alt="Image">
-                                <span class="comment-name">John Doe</span>
-                                <span class="comment-date">March 15, 2015 | <a href="#">Reply</a></span>
-                                <div class="comment-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam venenatis, ligula quis sagittis euismod, odio ante molestie tortor, eget ullamcorper lacus nunc a ligula. Donec est lacus, aliquet in interdum id, rutrum ac tellus. Ut rutrum, justo et lobortis commodo, est metus ornare tortor, vitae luctus turpis leo sed magna. In leo dolor, suscipit non mattis in.</div>
-                            </li>
-                            <li>
-                                <img src="img/user-avatar.jpg" alt="Image">
-                                <span class="comment-name">John Doe</span>
-                                <span class="comment-date">March 15, 2015 | <a href="#">Reply</a></span>
-                                <div class="comment-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam venenatis, ligula quis sagittis euismod, odio ante molestie tortor, eget ullamcorper lacus nunc a ligula. Donec est lacus, aliquet in interdum id, rutrum ac tellus. Ut rutrum, justo et lobortis commodo, est metus ornare tortor, vitae luctus turpis leo sed magna. In leo dolor, suscipit non mattis in.</div>
-                            </li>
+                            {% endfor %}
 
                         </ul>
                         <div class="comment-form-container">
                             <div class="h6" style="text-transform: none; font-size: 18px;">Добавить новый отзыв</div>
-                            <form action="#" id="comment-form">
+                            <form action="{{ path('client_company_save_comment', {
+                            "country_url": entity.city.country.url,
+                            "city_url": entity.city.url,
+                            "company_url": entity.url
+                            }) }}" id="comment-form">
                                 <div class="input-prepend">
                                     <span class="add-on"><i class="icon-user"></i></span>
-                                    <input class="span4" id="prependedInput" size="16" type="text" placeholder="Имя">
+                                    <input class="span4" id="prependedName" size="16" type="text" placeholder="Имя">
                                 </div>
                                 <div class="input-prepend">
                                     <span class="add-on"><i class="icon-envelope"></i></span>
-                                    <input class="span4" id="prependedInput" size="16" type="text" placeholder="Email">
+                                    <input class="span4" id="prependedEmail" size="16" type="email" placeholder="Email">
                                 </div>
-                                <textarea class="span6" id="commentText" placeholder="Что вам понравилось и не понравилось в компании? Посоветовали бы вы эту страховую друзьям?"></textarea>
+                                <textarea class="span6" id="commentText" placeholder="Чем вам понравилась или не понравилась компания? Посоветовали бы вы эту страховую друзьям?"></textarea>
                                 <div class="">
                                     <strong>Моя оценка компании:</strong>
                                     <div id="ratyId"></div>
@@ -128,4 +93,39 @@
         })) }}
         <!-- End sidebar column -->
     </div>
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('bundles/acmemain/plugins/raty/jquery.raty.js') }}"></script>
+    <script>
+        $('div#ratyId').raty({
+            path: '{{ asset('bundles/acmemain/plugins/raty/images') }}',
+            number: 3,
+            hints: ['Плохо', 'Так себе', 'Рекомендую'],
+//            readOnly: true,
+            score: 1
+        });
+        var comment = {
+            init: function()
+            {
+                $('#comment-form').submit(function(e){
+                    e.preventDefault();
+
+                    var args =
+                    {
+                        email: $(this).find('#prependedName').val().trim(),
+                        name: $(this).find('#prependedEmail').val().trim(),
+                        text: $(this).find('#commentText').val().trim(),
+                        score: $(this).find('input[name=score]').val().trim()
+                    };
+
+                    $.post($(this).attr('action'), args, function(data){
+                        console.log(data);
+                    })
+                });
+            }
+        };
+        $(function(){
+            comment.init();
+        });
+    </script>
 {% endblock %}

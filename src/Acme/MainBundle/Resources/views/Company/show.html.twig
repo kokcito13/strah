@@ -21,21 +21,7 @@
 {% block body %}
     <div class="row company_page">
         <div class="span8">
-            <div class="row">
-                <div class="span3">
-                    <div class="clearfix">
-                        <div class="block_logo">
-                            <img src="{{ entity.getWebPath() | apply_filter('in_company') }}" class="thumbnail align-left" alt="{{ entity.getImageAltView() }}">
-                        </div>
-                    </div>
-                </div>
-                <div class="span5">
-                    <h1>{{ entity.name }}</h1>
-                    <div class="alert alert-info">
-                        Рейтинг компании - <strong>5.21</strong>
-                    </div>
-                </div>
-            </div>
+            {% include("AcmeMainBundle::Company/blocks/header.html.twig") %}
             <div class="row">
                 <div class="span8">
                     <ul class="nav nav-tabs" style="margin-bottom: 0px; border-bottom: 0px;">
