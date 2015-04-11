@@ -27,20 +27,20 @@
                     </div>
                 </div>
             </div>
-            <div class="row clearfix">
-                <div class="span12">
-                    <div class="h3">Виды услуг:</div>
-                    <div>
-                        <ul>
-                            <li>asdasd</li>
-                            <li>asdasd</li>
-                            <li>asdasd</li>
-                            <li>asdasd</li>
-                            <li>asdasd</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            {#<div class="row clearfix">#}
+                {#<div class="span12">#}
+                    {#<div class="h3">Виды услуг:</div>#}
+                    {#<div>#}
+                        {#<ul>#}
+                            {#<li>asdasd</li>#}
+                            {#<li>asdasd</li>#}
+                            {#<li>asdasd</li>#}
+                            {#<li>asdasd</li>#}
+                            {#<li>asdasd</li>#}
+                        {#</ul>#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div>#}
             <div class="row clearfix">
                 <div id="map"></div>
             </div>
@@ -66,10 +66,14 @@
                             }) }}">{{ company.name }}</a></div>
                         {#<p>Vivamus augue nulla, vestibulum ac ultrices posuere, vehicula ac arcu. Quisque nisi lacus, bibendum quis commodo eget, lobortis eget elit. Cras venenatis mauris eu tortor consequat a convallis nulla molestie. Phasellus malesuada malesuada velit et fermentum. Proin ut leo nec mauris pulvinar volutpat. Sed ac neque nec leo condimentum rhoncus. Nunc dapibus odio et lacus elementum congue. Praesent nulla arcu, condimentum eu lobortis sit amet, pretium vitae metus. </p>#}
 
-                        {#<blockquote>#}
-                            {#<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante. Praesent nulla arcu, condimentum eu lobortis.</p>#}
-                            {#<small>Someone famous <cite title="Source Title">Source Title</cite></small>#}
-                        {#</blockquote>#}
+                        <blockquote>
+                            <small><strong>Отзывов: <a href="{{ path('client_company_show_comments', {
+                                    "country_url": company.city.country.url,
+                                    "city_url": company.city.url,
+                                    "company_url": company.url
+                                    }) }}">{{ company.comments|length }}</a></strong></small>
+                            <small><strong>Рейтинг: {% if company.rating == 0 %}0.00{% else %}{{ company.rating/100 }}{% endif %}</strong></small>
+                        </blockquote>
 
                         {#<button class="btn btn-small btn-inverse" type="button">Find out more</button>#}
                     </div>

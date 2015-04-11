@@ -34,7 +34,9 @@
                             <li>
                                 {#<img src="img/user-avatar.jpg" alt="Image">#}
                                 <span class="comment-name">{{ comment.name }}</span>
-                                <span class="comment-date">{{ comment.createdAt | date('d.m.Y H:i') }} | <a href="#">Reply</a></span>
+                                <span class="comment-date">оставил отзыв в {{ comment.createdAt | date('H:i, d.m.Y') }}</span>
+                                <br/>
+                                <span class="comment-date">Моя оценка: <span class="rat" data-score="{{ comment.rating }}"></span></span>
                                 <div class="comment-content">{{ comment.text | raw }}</div>
                                 {#<!-- Reply -->#}
                                 {#<ul>#}
@@ -101,9 +103,18 @@
             path: '{{ asset('bundles/acmemain/plugins/raty/images') }}',
             number: 3,
             hints: ['Плохо', 'Так себе', 'Рекомендую'],
-//            readOnly: true,
             score: 1
         });
+        $('.rat').raty({
+            score: function() {
+                return $(this).attr('data-score');
+            },
+            path: '{{ asset('bundles/acmemain/plugins/raty/images') }}',
+            number: 3,
+            hints: ['Плохо', 'Так себе', 'Рекомендую'],
+            readOnly: true
+        });
+
         var comment = {
             init: function()
             {
@@ -118,8 +129,15 @@
                         score: $(this).find('input[name=score]').val().trim()
                     };
 
+                    if (!confirm('Подтвердите свое желаине ставить отзыв')) {
+                        return false;
+                    }
+
                     $.post($(this).attr('action'), args, function(data){
                         console.log(data);
+                        if (data.success) {
+                            window.location.reload();
+                        }
                     })
                 });
             }

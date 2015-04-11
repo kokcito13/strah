@@ -137,6 +137,10 @@ class CompanyController extends Controller
             $comment->setRating($arr['args']['score']);
 
             $em->persist($comment);
+
+
+            $entity->setRating($entity->getRating()+$arr['args']['score']);
+            $em->persist($entity);
             $em->flush();
 
             $arr['success'] = true;

@@ -39,7 +39,7 @@
                             <h3>Услуги компании <b>{{ entity.name }}</b>:</h3>
                             <div class="row">
                                 {% set hlf = (entity.servicesArray|length)/2  %}
-                                <div class="span4">
+                                <div class="span3">
                                     <ul>
                                         {% for service in entity.servicesArray %}
                                             {% if ( hlf >= 1 and loop.index0 < hlf) or hlf < 1 %}

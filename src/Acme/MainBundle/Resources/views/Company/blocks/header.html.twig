@@ -9,7 +9,7 @@
     <div class="span5">
         <h1>{{ entity.name }}</h1>
         <div>
-            <img src="{{ asset('bundles/acmemain/plugins/raty/images/star-on.png') }}" width="20" height="20"/> <strong>- {% if entity.rating == 0 %}0.00{% else %}{{ entity.rating/100 }}{% endif %}</strong>
+            <img src="{{ asset('bundles/acmemain/plugins/raty/images/star-on.png') }}" width="20" height="20"/> <strong>Рейтинг: {% if entity.rating == 0 %}0.00{% else %}{{ entity.rating/100 }}{% endif %}</strong>
         </div>
         <div class="row">
 
