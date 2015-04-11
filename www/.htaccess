@@ -1,6 +1,7 @@
 DirectoryIndex app.php
 
-Redirect 301 /company/ru/moscow	http://dvestrahovki.ru/company
+#Redirect 301 /company/ru/moscow	http://dvestrahovki.ru/company$
+RedirectMatch /company/ru/moscow$ http://dvestrahovki.ru/company$
 
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/css

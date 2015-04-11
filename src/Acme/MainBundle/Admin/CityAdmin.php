@@ -47,6 +47,8 @@ class CityAdmin extends Admin
         $formMapper
             ->add('name')
             ->add('url')
+            ->add('lat')
+            ->add('lng')
             ->add('country', 'entity',
                 array('label' => 'Страна', 'required'  => true, 'class'=>'AcmeMainBundle:Country',
                     'property'=>'name'))
@@ -61,6 +63,8 @@ class CityAdmin extends Admin
         $showMapper
             ->add('name')
             ->add('url')
+            ->add('lat')
+            ->add('lng')
         ;
     }
 }

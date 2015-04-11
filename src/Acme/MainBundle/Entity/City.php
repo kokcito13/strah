@@ -47,6 +47,20 @@ class City
      */
     private $companies;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lat", type="decimal", precision=19, scale=4, nullable=true)
+     */
+    private $lat;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lng", type="decimal", precision=19, scale=4, nullable=true)
+     */
+    private $lng;
+
     public function __construct()
     {
         $this->companies = new ArrayCollection();
@@ -162,5 +176,51 @@ class City
     public function getCompanies()
     {
         return $this->companies;
+    }
+
+    /**
+     * Set lat
+     *
+     * @param string $lat
+     * @return City
+     */
+    public function setLat($lat)
+    {
+        $this->lat = $lat;
+
+        return $this;
+    }
+
+    /**
+     * Get lat
+     *
+     * @return string 
+     */
+    public function getLat()
+    {
+        return $this->lat;
+    }
+
+    /**
+     * Set lng
+     *
+     * @param string $lng
+     * @return City
+     */
+    public function setLng($lng)
+    {
+        $this->lng = $lng;
+
+        return $this;
+    }
+
+    /**
+     * Get lng
+     *
+     * @return string 
+     */
+    public function getLng()
+    {
+        return $this->lng;
     }
 }

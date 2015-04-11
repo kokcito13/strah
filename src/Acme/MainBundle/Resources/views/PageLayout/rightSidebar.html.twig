@@ -1,7 +1,5 @@
 <div class="span4 sidebar page-sidebar"><!-- Begin sidebar column -->
     <!--Search-->
-    {##}
-    {#<!--noindex-->#}
     {#<section>#}
         {#<div class="input-append">#}
             {#<form action="#">#}
@@ -10,21 +8,6 @@
             {#</form>#}
         {#</div>#}
     {#</section>#}
-    {#<!--/noindex-->#}
-    <div class="title-bg">Последние публикации</div>
-    <ul class="popular-posts">
-        {% for post in entities %}
-            <li>
-                <a href="{{ path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) }}">
-                    <img src="{{ post.getWebPath() | apply_filter('thumbnail_sidebar_post') }}" alt="{{ post.imageAlt }}">
-                </a>
-                <div class="h6">
-                    <a href="{{ path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) }}">{{ post.name }}</a>
-                </div>
-                {#<em>{{ post.getCreatedAtByFormat('d F / Y') }}</em>#}
-            </li>
-        {% endfor %}
-    </ul>
     <div class="title-bg">Лучшие страховые</div>
     <ul class="popular-posts">
         {% for company in companies %}
@@ -47,9 +30,21 @@
             </li>
         {% endfor %}
     </ul>
-    <!--noindex-->
+    <div class="title-bg">Последние публикации</div>
+    <ul class="popular-posts">
+        {% for post in entities %}
+            <li>
+                <a href="{{ path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) }}">
+                    <img src="{{ post.getWebPath() | apply_filter('thumbnail_sidebar_post') }}" alt="{{ post.imageAlt }}">
+                </a>
+                <div class="h6">
+                    <a href="{{ path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) }}">{{ post.name }}</a>
+                </div>
+                {#<em>{{ post.getCreatedAtByFormat('d F / Y') }}</em>#}
+            </li>
+        {% endfor %}
+    </ul>
     <!--Video Widget-->
     <div class="title-bg">Последнее видео</div>
     <iframe src="http://player.vimeo.com/video/108892001" width="370" height="208"></iframe>
-    <!--/noindex-->
 </div>

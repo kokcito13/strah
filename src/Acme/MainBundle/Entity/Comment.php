@@ -219,10 +219,10 @@ class Comment
     /**
      * Add children
      *
-     * @param \Acme\MainBundle\Entity\Comments $children
+     * @param \Acme\MainBundle\Entity\Comment $children
      * @return Comment
      */
-    public function addChild(\Acme\MainBundle\Entity\Comments $children)
+    public function addChild(\Acme\MainBundle\Entity\Comment $children)
     {
         $this->children[] = $children;
 
@@ -232,9 +232,9 @@ class Comment
     /**
      * Remove children
      *
-     * @param \Acme\MainBundle\Entity\Comments $children
+     * @param \Acme\MainBundle\Entity\Comment $children
      */
-    public function removeChild(\Acme\MainBundle\Entity\Comments $children)
+    public function removeChild(\Acme\MainBundle\Entity\Comment $children)
     {
         $this->children->removeElement($children);
     }
@@ -252,10 +252,10 @@ class Comment
     /**
      * Set parent
      *
-     * @param \Acme\MainBundle\Entity\Comments $parent
+     * @param \Acme\MainBundle\Entity\Comment $parent
      * @return Comment
      */
-    public function setParent(\Acme\MainBundle\Entity\Comments $parent = null)
+    public function setParent(\Acme\MainBundle\Entity\Comment $parent = null)
     {
         $this->parent = $parent;
 

@@ -600,10 +600,10 @@ class Company
     /**
      * Add comments
      *
-     * @param \Acme\MainBundle\Entity\Comments $comments
+     * @param \Acme\MainBundle\Entity\Comment $comments
      * @return Company
      */
-    public function addComment(\Acme\MainBundle\Entity\Comments $comments)
+    public function addComment(\Acme\MainBundle\Entity\Comment $comments)
     {
         $this->comments[] = $comments;
 
@@ -613,9 +613,9 @@ class Company
     /**
      * Remove comments
      *
-     * @param \Acme\MainBundle\Entity\Comments $comments
+     * @param \Acme\MainBundle\Entity\Comment $comments
      */
-    public function removeComment(\Acme\MainBundle\Entity\Comments $comments)
+    public function removeComment(\Acme\MainBundle\Entity\Comment $comments)
     {
         $this->comments->removeElement($comments);
     }

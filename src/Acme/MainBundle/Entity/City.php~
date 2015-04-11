@@ -47,6 +47,20 @@ class City
      */
     private $companies;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lat", type="decimal", precision=19, scale=4, nullable=true)
+     */
+    private $lat;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lng", type="decimal", precision=19, scale=4, nullable=true)
+     */
+    private $lng;
+
     public function __construct()
     {
         $this->companies = new ArrayCollection();
