@@ -14,12 +14,14 @@
                         <div class="h5" style="float: left; font-weight: bold;color: black;">Города: </div>
                         <ul class="nav" style="margin-top: -10px;">
                             <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="{{ path('page_catalog') }}">Все<b class="caret"></b></a>
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="{{ path('page_catalog', {"country":city.country.url, 'city':city.url}) }}">{{ city.name }}<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    {% for city in cities if city.country.url == 'ru' %}
-                                        <li>
-                                            <a href="{{ path('page_catalog', {"country":city.country.url, 'city':city.url}) }}">{{ city.name }}</a>
-                                        </li>
+                                    {% for cityN in cities if cityN.country.url == 'ru' %}
+                                        {% if cityN.id != city.id %}
+                                            <li>
+                                                <a href="{{ path('page_catalog', {"country":cityN.country.url, 'city':cityN.url}) }}">{{ cityN.name }}</a>
+                                            </li>
+                                        {% endif %}
                                     {% endfor %}
                                 </ul>
                             </li>

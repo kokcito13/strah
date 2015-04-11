@@ -206,10 +206,10 @@ class PageController extends Controller
     }
 
     /**
-     * @Route("/company/{country}/{city}", name="page_catalog", defaults={"country" = null, "city" = null})
+     * @Route("/company/{country}/{city}", name="page_catalog", defaults={"country" = "ru", "city" = "moscow"})
      * @Template()
      */
-    public function catalogAction($country = null, $city = null, Request $request)
+    public function catalogAction($country = 'ru', $city = 'moscow', Request $request)
     {
 
         $em = $this->getDoctrine()->getManager();
