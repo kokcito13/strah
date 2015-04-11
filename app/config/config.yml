@@ -165,6 +165,9 @@ avalanche_imagine:
         user_avatar:
             type:    thumbnail
             options: { size: [88, 88], mode: outbound }
+        thumbnail_sidebar_company:
+            type:    relative_resize
+            options: { widen: 70s }
 
 knp_paginator:
     page_range: 5                      # default page range used in pagination control

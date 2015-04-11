@@ -16,8 +16,8 @@
                 "country_url": company.city.country.url,
                 "city_url": company.city.url,
                 "company_url": company.url
-                }) }}">
-                    <img src="{{ company.getWebPath() | apply_filter('thumbnail_sidebar_post') }}" alt="{{ company.getImageAltView() }}">
+                }) }}" style="height: 70px; display: block; width: 90px; float:left;">
+                    <img src="{{ company.getWebPath() | apply_filter('thumbnail_sidebar_company') }}" alt="{{ company.getImageAltView() }}">
                 </a>
                 <div class="h6">
                     <a href="{{ path('client_company_show', {
@@ -25,8 +25,14 @@
                     "city_url": company.city.url,
                     "company_url": company.url
                     }) }}">{{ company.name }}</a>
+                <br/>
+                <em style="font-size: 10px;">Рейтинг: {% if company.rating == 0 %}0.00{% else %}{{ company.rating/100 }}{% endif %}</em><br/>
+                <em style="font-size: 10px;">Отзывов: <a href="{{ path('client_company_show_comments', {
+                    "country_url": company.city.country.url,
+                    "city_url": company.city.url,
+                    "company_url": company.url
+                    }) }}">{{ company.comments|length }}</a></em>
                 </div>
-                {#<em>{{ post.getCreatedAtByFormat('d F / Y') }}</em>#}
             </li>
         {% endfor %}
     </ul>
