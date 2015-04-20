@@ -88,6 +88,12 @@ class CompanyController extends Controller
             throw $this->createNotFoundException('Данную страницу мы не можем найти!');
         }
 
+        $title = 'Страховая компания '.$entity->getName()." - честные отзывы потребителей, честный рейтинг в городе ".$city->getName();
+        $description = 'Отзывы и мнения о страховой компании '.$entity->getName()." в городе ".$city->getName().'. Отзывы которые формируют мнение и честный рейтинг  о компании ';
+
+        $entity->setTitle($title);
+        $entity->setDescription($description);
+
         return array(
             'entity'  => $entity,
         );
