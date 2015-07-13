@@ -51,6 +51,9 @@
             });
         });
     </script>
+
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5475a2f20b90b0ff" async="async"></script>
 {% endblock %}
 {% block stylesheets %}
 {% endblock %}
@@ -158,16 +161,11 @@
                 </div>
             {% endif %}
         </div>
-        <!-- Blog Sidebar
-        ================================================== -->
         {{ render(controller('AcmeMainBundle:PageLayout:rightSidebar', {
         'post': entity
         })) }}
-        <!-- End sidebar column -->
     </div>
-    <div class="row"><!-- Begin Bottom Section -->
-        <!-- Blog Preview
-        ================================================== -->
+    <div class="row">
         <div class="span6">
             <!--noindex-->
             <div class="h5 title-bg">Рекомендованная публикация
@@ -201,8 +199,6 @@
             </div>
         </div>
         <!--noindex-->
-        <!-- Client Area
-        ================================================== -->
         <div class="span6">
             <div class="title-bg">Социальное</div>
             <!-- Client Testimonial Slider-->
