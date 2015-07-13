@@ -9,60 +9,86 @@
 {% block javascripts %}{% endblock %}
 {% block body %}
     <!--noindex-->
-    <div class="row headline"><!-- Begin Headline -->
-        <!-- Slider Carousel
-       ================================================== -->
-        <div class="span8">
-            <div class="flexslider">
-                <ul class="slides">
-                    <li>
-                        <a href="/health">
-                            <img src="{{ asset('bundles/acmemain/images/prettyPhoto/img114.jpg') | apply_filter('index_banner') }}" alt="" />
+    <div class="row headline">
+        <div class="span12"><!-- Begin sidebar column -->
+            <div class="row" style="text-align: center">
+                <h1>DveStrahovki помогут вам подобрать</h1>
+                <p class="lead">страховую компанию в Росии</p>
+            </div>
+            <div class="row clearfix" style="text-align: center">
+                <ul class="gallery-post-grid holder">
+                    <li class="span3 gallery-item" data-id="id-1" data-type="illustration">
+                        <a href="{{ path('client_category_show',{ 'category_url': "health" }) }}">
+                            <img src="http://www.clipartsfree.de/images/joomgallery/details/finanzen_clipart-bilder_10/insurance_clip_art_20140814_1284211961.png" alt="Gallery" class="img-circle img_advantages">
                         </a>
                     </li>
-                    <li>
-                        <a href="/insurer">
-                            <img src="{{ asset('bundles/acmemain/images/banner1.jpg') | apply_filter('index_banner') }}" alt="" />
+                    <li class="span3 gallery-item" data-id="id-2" data-type="illustration">
+                        <a href="{{ path('client_category_show',{ 'category_url': "auto" }) }}">
+                            <img src="http://www.clipartguide.com/_named_clipart_images/0511-1002-2501-1027_Car_Keys_and_Insurance_Paper_clipart_image.jpg" alt="Gallery" class="img-circle img_advantages">
                         </a>
                     </li>
-                    <li>
-                        <a href="/social">
-                            <img src="{{ asset('bundles/acmemain/images/banner2.jpg') | apply_filter('index_banner') }}" alt="" />
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/auto">
-                            <img src="{{ asset('bundles/acmemain/images/banner3.jpg') | apply_filter('index_banner') }}" alt="" />
+                    <li class="span3 gallery-item" data-id="id-3" data-type="web">
+                        <a href="{{ path('client_category_show',{ 'category_url': "social" }) }}">
+                            <img src="http://dvestrahovki.ru/media/cache/in_post/uploads/posts/144/1-2.jpeg" alt="Gallery" class="img-circle img_advantages">
                         </a>
                     </li>
                 </ul>
             </div>
-        </div>
-        <!-- Headline Text
-        ================================================== -->
-        <div class="span4">
-            <div class="h3">О проекте</div>
-            <p>Абсолютно все из нас сталкивались с таким понятием как страхование. У одних есть только медицинский страховой полюс, у других страховка на автомобиль, а есть и те кто страхует свой бизнес, имущество и даже жизнь.</p>
-            <a href="#about"><i class="icon-plus-sign"></i>Читать больше</a>
-        </div>
-    </div><!-- End Headline -->
-    <!--/noindex-->
-    <div class="row gallery-row"><!-- Begin Gallery Row -->
-        <div class="span12">
-            <div class="title-bg">Последние публикации
-                {#<button class="btn btn-mini btn-inverse hidden-phone" type="button">View Portfolio</button>#}
+            <div class="row" style="text-align: center">
+                <a href="{{ path('page_catalog') }}" class="btn btn-large btn-warning">Перейти к выбору компании</a>
             </div>
-            <!-- Gallery Thumbnails
-            ================================================== -->
+        </div>
+    </div>
+    <div class="row headline">
+        <div class="span12">
+            <div class="row" style="text-align: center">
+                <h2>Самые популярные компании</h2>
+            </div>
+            <div class="row">
+                <div class="span1"></div>
+                {% for company in companies %}
+                <div class="span2">
+                    <a href="{{ path('client_company_show', {
+                    "country_url": company.city.country.url,
+                    "city_url": company.city.url,
+                    "company_url": company.url
+                    }) }}">
+                        <img src="{{ company.getWebPath() | apply_filter('thumbnail_sidebar_company') }}"
+                             alt="{{ company.getImageAltView() }}"
+                             class="thumbnail">
+                    </a>
+                    <div class="h5">
+                        <a href="{{ path('client_company_show', {
+                        "country_url": company.city.country.url,
+                        "city_url": company.city.url,
+                        "company_url": company.url
+                        }) }}">{{ company.name }}</a>
+                    </div>
+                    {#<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla iaculis mattis lorem ...</p>#}
+                </div>
+                {% endfor %}
+                    <div class="span1"></div>
+            </div>
+            <div class="row" style="text-align: center">
+                <a href="{{ path('page_catalog') }}" class="btn btn-large btn-warning">Выборать компанию</a>
+            </div>
+        </div>
+    </div>
+    <!--/noindex-->
+    <div class="row gallery-row">
+        <div class="span12">
+            <div class="row" style="text-align: center">
+                <h2>Последние публикации</h2>
+            </div>
             <div class="row clearfix no-margin">
                 <ul class="gallery-post-grid holder">
                     {% for post in entities %}
                         <li  class="span3 gallery-item" data-id="id-{{ post.id }}" data-type="illustration">
-                            <span class="gallery-hover-4col hidden-phone hidden-tablet">
-                                <span class="gallery-icons">
-                                    <a href="{{ path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) }}" class="item-details-link"></a>
-                                </span>
-                            </span>
+                            {#<span class="gallery-hover-4col hidden-phone hidden-tablet">#}
+                                {#<span class="gallery-icons">#}
+                                    {#<a href="{{ path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) }}" class="item-details-link"></a>#}
+                                {#</span>#}
+                            {#</span>#}
                             <a href="{{ path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) }}">
                                 <img src="{{ post.getWebPath() | apply_filter('thumbnail_index_post') }}" alt="{{ post.imageAlt }}">
                             </a>
@@ -74,10 +100,10 @@
                 </ul>
             </div>
         </div>
-    </div><!-- End Gallery Row -->
+    </div>
     <div class="row" id="about">
         <div class="span12">
-            <h1>О проекте «Две страховки»</h1>
+            <h2>О проекте «Две страховки»</h2>
             <p>Абсолютно все из нас сталкивались с таким понятием как страхование. У одних есть только медицинский страховой полюс, у других страховка на автомобиль, а есть и те кто страхует свой бизнес, имущество и даже жизнь.</p>
             <p>Чтобы правильно выполнить всю процедуру страховки и не наткнуться на огромное количество подводных камней, требуется квалифицированная помощь специалиста. Если полагаться исключительно на свои познания или ощущения можно в итоге, при наступлении страхового случая, получить компенсацию в заниженном размере или что еще хуже вообще оказаться без возмещения ущерба.</p>
             <p>Найти хорошего специалиста в области страхования не трудно. Сейчас существует множество частных адвокатов и страховых компаний, которые с удовольствием предложат весь спектр своих услуг и самых лучших специалистов, чтобы угодить клиенту. Существует лишь одно «но» - стоимость.</p>

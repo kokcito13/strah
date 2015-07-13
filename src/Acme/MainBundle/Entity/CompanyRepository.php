@@ -43,5 +43,4 @@ class CompanyRepository extends EntityRepository
 
         return $result;
     }
-
 }

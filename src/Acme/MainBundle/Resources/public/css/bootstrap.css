@@ -198,6 +198,11 @@ a:hover {
           border-radius: 500px;
 }
 
+.img_advantages {
+    height: 270px;
+    border: 1px solid grey;
+}
+
 .row {
   margin-left: -20px;
   *zoom: 1;

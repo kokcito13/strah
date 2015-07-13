@@ -25,8 +25,11 @@ class PageController extends Controller
 
         //$this->get('cache.m')->set('first', 123);
 
+        $companiesPopular = $em->getRepository('AcmeMainBundle:Company')->getTop(false, 5);
+
         return array(
-            'entities' => $entities
+            'entities' => $entities,
+            'companies' => $companiesPopular
         );
     }
     
