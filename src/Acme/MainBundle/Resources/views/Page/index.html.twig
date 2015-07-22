@@ -42,29 +42,25 @@
     <div class="row headline">
         <div class="span12">
             <div class="row" style="text-align: center">
-                <h2>Самые популярные компании</h2>
+                <h2>Познакомьтесь с популярными компаниями</h2>
             </div>
             <div class="row">
                 <div class="span1"></div>
                 {% for company in companies %}
                 <div class="span2">
-                    <a href="{{ path('client_company_show', {
-                    "country_url": company.city.country.url,
-                    "city_url": company.city.url,
-                    "company_url": company.url
-                    }) }}">
-                        <img src="{{ company.getWebPath() | apply_filter('thumbnail_sidebar_company') }}"
-                             alt="{{ company.getImageAltView() }}"
-                             class="thumbnail">
-                    </a>
-                    <div class="h5">
-                        <a href="{{ path('client_company_show', {
+                    <div class="school-item">
+                        <a class="link-to" href="{{ path('client_company_show', {
                         "country_url": company.city.country.url,
                         "city_url": company.city.url,
                         "company_url": company.url
-                        }) }}">{{ company.name }}</a>
+                        }) }}">
+                        <span class="school-item-img">
+                            <img src="{{ company.getWebPath() | apply_filter('thumbnail_popular') }}"
+                                 alt="{{ company.getImageAltView() }}" width="122" height="86">
+                        </span>
+                            <span class="school-item-text"><span>{{ company.name }}</span></span>
+                        </a>
                     </div>
-                    {#<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla iaculis mattis lorem ...</p>#}
                 </div>
                 {% endfor %}
                     <div class="span1"></div>
@@ -81,23 +77,40 @@
                 <h2>Последние публикации</h2>
             </div>
             <div class="row clearfix no-margin">
-                <ul class="gallery-post-grid holder">
-                    {% for post in entities %}
-                        <li  class="span3 gallery-item" data-id="id-{{ post.id }}" data-type="illustration">
-                            {#<span class="gallery-hover-4col hidden-phone hidden-tablet">#}
-                                {#<span class="gallery-icons">#}
-                                    {#<a href="{{ path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) }}" class="item-details-link"></a>#}
-                                {#</span>#}
-                            {#</span>#}
-                            <a href="{{ path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) }}">
-                                <img src="{{ post.getWebPath() | apply_filter('thumbnail_index_post') }}" alt="{{ post.imageAlt }}">
-                            </a>
-                            <span class="project-details">
-                                <a href="{{ path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) }}">{{ post.name }}</a>
-                            </span>
-                        </li>
-                    {% endfor %}
-                </ul>
+                {% for post in entities %}
+                    {% if loop.index < 5 %}
+                        {% set url = path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) %}
+                        <div class="span3">
+                            <div class="news-item">
+                                <a class="news-item-img" href="{{ url }}">
+                                    <img src="{{ post.getWebPath() | apply_filter('thumbnail_index_post') }}" alt="{{ post.imageAlt }}" width="200" height="140">
+                                </a>
+                                <div class="news-item-data">
+                                    <span class="news-item-author">{{ post.category.name }}</span>
+                                    <a class="news-item-link-to" href="{{ url }}">{{ post.name }}</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="row clearfix no-margin">
+                {% for post in entities %}
+                    {% if loop.index > 4 %}
+                        {% set url = path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) %}
+                        <div class="span3">
+                            <div class="news-item">
+                                <a class="news-item-img" href="{{ url }}">
+                                    <img src="{{ post.getWebPath() | apply_filter('thumbnail_index_post') }}" alt="{{ post.imageAlt }}" width="200" height="140">
+                                </a>
+                                <div class="news-item-data">
+                                    <span class="news-item-author">{{ post.category.name }}</span>
+                                    <a class="news-item-link-to" href="{{ url }}">{{ post.name }}</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
             </div>
         </div>
     </div>
