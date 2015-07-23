@@ -1057,6 +1057,14 @@ h2 {
     box-sizing: border-box;
 }
 
+.school-item .link-to .school-item-text span {
+    display: table-cell;
+    width: 100%;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 22px;
+}
+
 .news-item {
     float: left;
     margin: 0 40px 20px 0;
