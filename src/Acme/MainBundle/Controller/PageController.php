@@ -23,13 +23,13 @@ class PageController extends Controller
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository('AcmeMainBundle:Post')->findForPage(false, 8);
 
-        //$this->get('cache.m')->set('first', 123);
-
         $companiesPopular = $em->getRepository('AcmeMainBundle:Company')->getTop(false, 5);
+        $comments = $em->getRepository('AcmeMainBundle:Comment')->getLastComments(5);
 
         return array(
             'entities' => $entities,
-            'companies' => $companiesPopular
+            'companies' => $companiesPopular,
+            'comments' => $comments
         );
     }
     

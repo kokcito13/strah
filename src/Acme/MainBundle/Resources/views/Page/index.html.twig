@@ -114,6 +114,28 @@
             </div>
         </div>
     </div>
+    <div class="span12">
+        <div class="row" style="text-align: center">
+            <h2>Последние комментарии</h2>
+        </div>
+        <div class="row clearfix no-margin">
+            <div class="span6"></div>
+            <div class="span6">
+                {% for comment in comments %}
+                    <ul>
+                        <li>
+                            <span class="comment-name">{{ comment.name }}</span>
+                            <span class="comment-date">оставил отзыв в {{ comment.createdAt | date('H:i, d-m-Y') }}</span>
+                            <br>
+                            <span class="comment-date">Моя оценка: <span class="rat" data-score="2" title="Так себе"><img alt="1" src="/bundles/acmemain/plugins/raty/images/star-on.png" title="Так себе">&nbsp;<img alt="2" src="/bundles/acmemain/plugins/raty/images/star-on.png" title="Так себе">&nbsp;<img alt="3" src="/bundles/acmemain/plugins/raty/images/star-off.png" title="Так себе"><input name="score" type="hidden" value="2" readonly=""></span></span>
+                            <div class="comment-content">{{ comment.text }}</div>
+                        </li>
+
+                    </ul>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
     <div class="row" id="about">
         <div class="span12">
             <h2>О проекте «Две страховки»</h2>
