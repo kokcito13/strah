@@ -47,23 +47,23 @@
             <div class="row">
                 <div class="span1"></div>
                 {% for company in companies %}
-                <div class="span2">
-                    <div class="school-item">
-                        <a class="link-to" href="{{ path('client_company_show', {
-                        "country_url": company.city.country.url,
-                        "city_url": company.city.url,
-                        "company_url": company.url
-                        }) }}">
-                        <span class="school-item-img">
-                            <img src="{{ company.getWebPath() | apply_filter('thumbnail_popular') }}"
-                                 alt="{{ company.getImageAltView() }}" width="122" height="86">
-                        </span>
-                            <span class="school-item-text"><span>{{ company.name }}</span></span>
-                        </a>
+                    <div class="span2">
+                        <div class="school-item">
+                            <a class="link-to" href="{{ path('client_company_show', {
+                            "country_url": company.city.country.url,
+                            "city_url": company.city.url,
+                            "company_url": company.url
+                            }) }}">
+                            <span class="school-item-img">
+                                <img src="{{ company.getWebPath() | apply_filter('thumbnail_popular') }}"
+                                     alt="{{ company.getImageAltView() }}" width="122" height="86">
+                            </span>
+                                <span class="school-item-text"><span>{{ company.name }}</span></span>
+                            </a>
+                        </div>
                     </div>
-                </div>
                 {% endfor %}
-                    <div class="span1"></div>
+                <div class="span1"></div>
             </div>
             <div class="row" style="text-align: center">
                 <a href="{{ path('page_catalog') }}" class="btn btn-large btn-warning">Выборать компанию</a>
@@ -115,24 +115,49 @@
         </div>
     </div>
     <div class="span12">
-        <div class="row" style="text-align: center">
-            <h2>Последние комментарии</h2>
-        </div>
         <div class="row clearfix no-margin">
-            <div class="span6"></div>
-            <div class="span6">
-                {% for comment in comments %}
-                    <ul>
-                        <li>
-                            <span class="comment-name">{{ comment.name }}</span>
-                            <span class="comment-date">оставил отзыв в {{ comment.createdAt | date('H:i, d-m-Y') }}</span>
-                            <br>
-                            <span class="comment-date">Моя оценка: <span class="rat" data-score="2" title="Так себе"><img alt="1" src="/bundles/acmemain/plugins/raty/images/star-on.png" title="Так себе">&nbsp;<img alt="2" src="/bundles/acmemain/plugins/raty/images/star-on.png" title="Так себе">&nbsp;<img alt="3" src="/bundles/acmemain/plugins/raty/images/star-off.png" title="Так себе"><input name="score" type="hidden" value="2" readonly=""></span></span>
-                            <div class="comment-content">{{ comment.text }}</div>
-                        </li>
+            <div class="span8">
+                <div class="row" style="text-align: left">
+                    <a href="#"><b>Новые отзывы</b> о страховых компаниях</a>
+                </div>
+                <div class="row">
+                    {% for comment in comments %}
+                        {% set companyUrl = path('client_company_show', {
+                        "country_url": comment.company.city.country.url,
+                        "city_url": comment.company.city.url,
+                        "company_url": comment.company.url
+                        }) %}
+                        <ul>
+                            <li>
+                                <span class="comment-name">{{ comment.name }}</span>
+                                <span class="comment-date">оставил <a href="">отзыв</a> o <a href="{{ companyUrl }}">{{ comment.company.name }}</a> в {{ comment.createdAt | date('H:i, d-m-Y') }}</span>
+                                {#<br>#}
+                                <div class="comment-content">{{ comment.text }}</div>
+                            </li>
 
-                    </ul>
-                {% endfor %}
+                        </ul>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="span4">
+                <div class="row" style="text-align: left">
+                    <a href="#"><b>Рейтинг</b> страховых компаний</a>
+                </div>
+                <div class="row">
+                    {% for company in companies %}
+                        <ul>
+                            <li>
+                                <a href="{{ path('client_company_show', {
+                                "country_url": company.city.country.url,
+                                "city_url": company.city.url,
+                                "company_url": company.url
+                                }) }}">
+                                    <span class="school-item-text"><span>{{ company.name }}</span></span>
+                                </a>
+                            </li>
+                        </ul>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>
