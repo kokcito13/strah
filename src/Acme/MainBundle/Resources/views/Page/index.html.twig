@@ -127,10 +127,15 @@
                         "city_url": comment.company.city.url,
                         "company_url": comment.company.url
                         }) %}
+                        {% set companyCommentsUrl = path('client_company_show_comments', {
+                        "country_url": comment.company.city.country.url,
+                        "city_url": comment.company.city.url,
+                        "company_url": comment.company.url
+                        }) %}
                         <ul>
                             <li>
                                 <span class="comment-name">{{ comment.name }}</span>
-                                <span class="comment-date">оставил <a href="">отзыв</a> o <a href="{{ companyUrl }}">{{ comment.company.name }}</a> в {{ comment.createdAt | date('H:i, d-m-Y') }}</span>
+                                <span class="comment-date">оставил <a href="{{ companyCommentsUrl }}">отзыв</a> o <a href="{{ companyUrl }}">{{ comment.company.name }}</a> в {{ comment.createdAt | date('H:i, d-m-Y') }}</span>
                                 {#<br>#}
                                 <div class="comment-content">{{ comment.text }}</div>
                             </li>
