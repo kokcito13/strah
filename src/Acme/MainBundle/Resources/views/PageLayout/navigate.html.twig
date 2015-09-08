@@ -19,15 +19,23 @@
                     <a href="{{ path('page_catalog') }}">Каталог</a>
                 {% endif %}
             </li>
-            {% for entity in entities %}
-            <li {% if main == entity.url %} class="active" {% endif %}>
-                {% if main == entity.url and route_name == 'client_category_show' %}
-                    <span>{{ entity.name }}</span>
-                {% else %}
-                    <a href="{{ path('client_category_show',{ 'category_url': entity.url }) }}">{{ entity.name }}</a>
-                {% endif %}
+            <li class="dropdown">
+                <a href="" data-toggle="dropdown" class="dropdown-toggle">публикации <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    {% for entity in entities %}
+                        <li {% if main == entity.url %} class="active" {% endif %}>
+                            {% if main == entity.url and route_name == 'client_category_show' %}
+                                <span>{{ entity.name }}</span>
+                            {% else %}
+                                <a href="{{ path('client_category_show',{ 'category_url': entity.url }) }}">{{ entity.name }}</a>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
             </li>
-            {% endfor %}
+            <li>
+                <a href="#">Отзывы</a>
+            </li>
         </ul>
     </div>
     <!--noindex-->
