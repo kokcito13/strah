@@ -156,4 +156,6 @@ class CompanyController extends Controller
 
         return new JsonResponse($arr);
     }
+
+
 }

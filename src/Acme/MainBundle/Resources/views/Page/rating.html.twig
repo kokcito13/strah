@@ -1,0 +1,69 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Рейтинг страховых компаний в городе {{ city.name }} на DveStrahovki{% endblock %}
+{% block description %}Представляем рейтинг страховых компаний от DveStrahovki в городе {{ city.name }} на основе отзывов реальных посетителей сайта и активности страховых компаний.{% endblock %}
+{% block keywords %}рейтинг страховые компании город {{ city.name }} отзывы полестители{% endblock %}
+
+{% block body %}
+    <div class="row gallery-row rating">
+        <div class="span12">
+            {% for company in companies %}
+                {% set companyUrl = path('client_company_show', {
+                "country_url": company.city.country.url,
+                "city_url": company.city.url,
+                "company_url": company.url
+                }) %}
+                <div class="item">
+                    <span class="number">{{ loop.index }}</span>
+                    <div class="school-img-container">
+                        <a href="{{ companyUrl }}">
+                            <img src="{{ company.getWebPath() | apply_filter('thumbnail_company_rating') }}" alt="{{ company.getImageAltView() }}" width="54" height="38">
+                        </a>
+                    </div>
+                    <a href="{{ companyUrl }}" class="school-rate-link">{{ company.name }}</a><div class="shortcuts rating-shortcuts"><span class="rating-shortcut">
+                            <i class="ico"></i>
+                            <span>{% if company.rating == 0 %}0.00{% else %}{{ company.rating/100 }}{% endif %}</span>
+                        </span><a class="comments-shortcut" href="{{ companyUrl }}/comments">
+                            <i class="ico"></i>
+                            <span>{{ company.comments|length }}</span>
+                        </a></div>
+                    <div class="clear"></div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <style>
+        .rating .item {
+            border-top: 1px solid #ececec;
+            padding: 15px 0;
+        }
+        .rating .item .school-img-container {
+            float: left;
+            background: #fff;
+            padding: 1px;
+            border: 1px solid #e9e6d6;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+        }
+        .rating .item .number {
+            color: #b3b3b3;
+            float: left;
+            margin-right: 15px;
+            width: 15px;
+            line-height: 44px;
+        }
+        .rating .item .school-rate-link a {
+            text-decoration: none;
+            display: inline-block;
+            height: 15px;
+            color: #0098d7;
+            border-bottom: 1px solid #b2e0f3;
+        }
+        .rating .item .school-rate-link {
+            float: left;
+            margin-left: 20px;
+            font-size: 14px;
+            margin-top: 14px;
+        }
+    </style>
+{% endblock %}

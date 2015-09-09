@@ -19,6 +19,13 @@
                     <a href="{{ path('page_catalog') }}">Каталог</a>
                 {% endif %}
             </li>
+            <li {% if route_name == 'company_rating' %} class="active" {% endif %}>
+                {% if route_name == 'company_rating' %}
+                    <span>Рейтинг</span>
+                {% else %}
+                    <a href="{{ path('company_rating') }}">Рейтинг</a>
+                {% endif %}
+            </li>
             <li class="dropdown">
                 <a href="" data-toggle="dropdown" class="dropdown-toggle">публикации <b class="caret"></b></a>
                 <ul class="dropdown-menu">

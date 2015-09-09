@@ -8,6 +8,7 @@ use Doctrine\Common\Cache\ApcCache;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -206,6 +207,37 @@ class PageController extends Controller
     {
 
         return array();
+    }
+
+    /**
+     * Rating of companies
+     *
+     * @Route("/company/{city_url}/rating", name="company_rating", defaults={"city_url":"moscow"})
+     * @Method("GET")
+     * @Template()
+     */
+    public function ratingAction($city_url)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $city = $em->getRepository('AcmeMainBundle:City')->findOneBy(array(
+            'url' => $city_url
+        ));
+        if (!$city) {
+            throw $this->createNotFoundException('Данную страницу мы не можем найти');
+        }
+
+        $companyRepo = $em->getRepository('AcmeMainBundle:Company');
+        $entities = $companyRepo->findBy(
+            array(
+                'city' => $city
+            ),
+            array('rating'=>'DESC')
+        );
+
+        return array(
+            'companies'  => $entities,
+            'city' => $city
+        );
     }
 
     /**
