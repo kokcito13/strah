@@ -66,8 +66,6 @@
                             "city_url": company.city.url,
                             "company_url": company.url
                             }) }}">{{ company.name }}</a></div>
-                        {#<p>Vivamus augue nulla, vestibulum ac ultrices posuere, vehicula ac arcu. Quisque nisi lacus, bibendum quis commodo eget, lobortis eget elit. Cras venenatis mauris eu tortor consequat a convallis nulla molestie. Phasellus malesuada malesuada velit et fermentum. Proin ut leo nec mauris pulvinar volutpat. Sed ac neque nec leo condimentum rhoncus. Nunc dapibus odio et lacus elementum congue. Praesent nulla arcu, condimentum eu lobortis sit amet, pretium vitae metus. </p>#}
-
                         <blockquote>
                             <small><strong>Отзывов: <a href="{{ path('client_company_show_comments', {
                                     "country_url": company.city.country.url,
@@ -76,8 +74,6 @@
                                     }) }}">{{ company.comments|length }}</a></strong></small>
                             <small><strong>Рейтинг: {% if company.rating == 0 %}0.00{% else %}{{ company.rating/100 }}{% endif %}</strong></small>
                         </blockquote>
-
-                        {#<button class="btn btn-small btn-inverse" type="button">Find out more</button>#}
                     </div>
                 </div>
                 <hr/>
@@ -89,7 +85,7 @@
 {% endblock %}
 
 {% block stylesheets_after %}
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />
     <link rel="stylesheet" href="http://leaflet.github.io/Leaflet.markercluster/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="http://leaflet.github.io/Leaflet.markercluster/dist/MarkerCluster.Default.css" />
     <!--[if lte IE 8]><link rel="stylesheet" href="http://leaflet.github.io/Leaflet.markercluster/dist/MarkerCluster.Default.ie.css" /><![endif]-->
@@ -98,16 +94,15 @@
     </style>
 {% endblock %}
 {% block javascripts %}
-    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
     <script src="http://leaflet.github.io/Leaflet.markercluster/dist/leaflet.markercluster-src.js"></script>
     <script>
         var map = L.map('map').setView([{{ city.lat }}, {{ city.lng }}], 12);
-        L.tileLayer('https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
+        L.tileLayer('https://{s}.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
             maxZoom: 21,
-            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-                    '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-                    'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-            id: 'examples.map-i875mjb7'
+            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+            id: 'kokcito13.cied2t8vh001ytsm60v7w5q8m',
+            accessToken: 'pk.eyJ1Ijoia29rY2l0bzEzIiwiYSI6ImVjZmRjMzRhNWY5MGZjYTMyYzNiZmJkYjUyZTE1ZTg5In0.--vP7JCFV3dK3kLipXkXWg'
         }).addTo(map);
 
         var markers = new L.MarkerClusterGroup();
@@ -115,11 +110,11 @@
             {% for point in company.points %}
                 var marker = L.marker([{{ point.lat }}, {{ point.lng }}]);
                     marker
-                            .bindPopup("<a href=\"{{ path('client_company_show', {
-                                "country_url": company.city.country.url,
-                                "city_url": company.city.url,
-                                "company_url": company.url
-                                }) }}\">{{ company.name }}</a><br />{{ point.address }}").openPopup();
+                        .bindPopup("<a href=\"{{ path('client_company_show', {
+                            "country_url": company.city.country.url,
+                            "city_url": company.city.url,
+                            "company_url": company.url
+                            }) }}\">{{ company.name }}</a><br />{{ point.address }}").openPopup();
                 markers.addLayer(marker);
             {% endfor %}
         {% endfor %}

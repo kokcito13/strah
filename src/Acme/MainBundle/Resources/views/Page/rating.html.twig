@@ -13,6 +13,11 @@
                 "city_url": company.city.url,
                 "company_url": company.url
                 }) %}
+                {% set companyCommentsUrl = path('client_company_show_comments', {
+                "country_url": company.city.country.url,
+                "city_url": company.city.url,
+                "company_url": company.url
+                }) %}
                 <div class="item">
                     <span class="number">{{ loop.index }}</span>
                     <div class="school-img-container">
@@ -23,7 +28,7 @@
                     <a href="{{ companyUrl }}" class="school-rate-link">{{ company.name }}</a><div class="shortcuts rating-shortcuts"><span class="rating-shortcut">
                             <i class="ico"></i>
                             <span>{% if company.rating == 0 %}0.00{% else %}{{ company.rating/100 }}{% endif %}</span>
-                        </span><a class="comments-shortcut" href="{{ companyUrl }}/comments">
+                        </span><a class="comments-shortcut" href="{{ companyCommentsUrl }}">
                             <i class="ico"></i>
                             <span>{{ company.comments|length }}</span>
                         </a></div>
