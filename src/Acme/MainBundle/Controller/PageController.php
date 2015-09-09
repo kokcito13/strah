@@ -257,16 +257,10 @@ class PageController extends Controller
             throw $this->createNotFoundException('Данную страницу мы не можем найти');
         }
 
-        $companyRepo = $em->getRepository('AcmeMainBundle:Company');
-        $entities = $companyRepo->findBy(
-            array(
-                'city' => $city
-            ),
-            array('rating'=>'DESC')
-        );
+        $comments = $em->getRepository('AcmeMainBundle:Comment')->getCommentsByCity($city_url);
 
         return array(
-            'companies'  => $entities,
+            'comments'  => $comments,
             'city' => $city
         );
     }

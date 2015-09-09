@@ -36,4 +36,29 @@ class CommentRepository extends EntityRepository
 
         return $result;
     }
+
+    /**
+     * @param string $cityUrl
+     * @return array
+     */
+    public function getCommentsByCity($cityUrl)
+    {
+        $em = $this->getEntityManager();
+
+        $query = $em->createQueryBuilder()
+            ->select('c, com, city')
+            ->from('AcmeMainBundle:Comment', 'c');
+        $query->join('c.company', 'com');
+        $query->join('com.city', 'city');
+        $query->where('city.url = :url');
+
+        $query
+            ->orderBy('c.id', 'DESC');
+        $query->setParameter('url', $cityUrl);
+
+
+        $result = $query->getQuery()->getResult();
+
+        return $result;
+    }
 }
