@@ -40,8 +40,12 @@
                     {% endfor %}
                 </ul>
             </li>
-            <li>
-                <a href="#">Отзывы</a>
+            <li {% if route_name == 'company_comments' %} class="active" {% endif %}>
+                {% if route_name == 'company_comments' %}
+                    <span>Отзывы</span>
+                {% else %}
+                    <a href="{{ path('company_comments') }}">Отзывы</a>
+                {% endif %}
             </li>
         </ul>
     </div>

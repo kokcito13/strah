@@ -212,11 +212,42 @@ class PageController extends Controller
     /**
      * Rating of companies
      *
-     * @Route("/company/{city_url}/rating", name="company_rating", defaults={"city_url":"moscow"})
+     * @Route("/{city_url}/rating", name="company_rating", defaults={"city_url":"moscow"})
      * @Method("GET")
      * @Template()
      */
     public function ratingAction($city_url)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $city = $em->getRepository('AcmeMainBundle:City')->findOneBy(array(
+            'url' => $city_url
+        ));
+        if (!$city) {
+            throw $this->createNotFoundException('Данную страницу мы не можем найти');
+        }
+
+        $companyRepo = $em->getRepository('AcmeMainBundle:Company');
+        $entities = $companyRepo->findBy(
+            array(
+                'city' => $city
+            ),
+            array('rating'=>'DESC')
+        );
+
+        return array(
+            'companies'  => $entities,
+            'city' => $city
+        );
+    }
+
+    /**
+     * Comments of companies
+     *
+     * @Route("/{city_url}/comments", name="company_comments", defaults={"city_url":"moscow"})
+     * @Method("GET")
+     * @Template()
+     */
+    public function commentsAction($city_url)
     {
         $em = $this->getDoctrine()->getManager();
         $city = $em->getRepository('AcmeMainBundle:City')->findOneBy(array(
