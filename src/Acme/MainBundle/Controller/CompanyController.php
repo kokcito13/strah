@@ -23,18 +23,15 @@ class CompanyController extends Controller
     /**
      * Finds and displays a Post entity.
      *
-     * @Route("/company/{country_url}/{city_url}/{company_url}", name="client_company_show")
+     * @Route("/{city_url}/companies/{company_url}", name="client_company_show")
      * @Method("GET")
      * @Template()
      */
-    public function showAction($country_url, $city_url, $company_url)
+    public function showAction($company_url)
     {
         $em = $this->getDoctrine()->getManager();
-        $country = $em->getRepository('AcmeMainBundle:Country')->findOneByUrl($country_url);
-        $city = $em->getRepository('AcmeMainBundle:City')->findOneBy(array(
-            'url' => $city_url,
-            'country' => $country
-        ));
+
+        $city = $this->get('city.service')->getCity();
         if (!$city) {
             throw $this->createNotFoundException('Данную страницу мы не можем найти');
         }
@@ -46,7 +43,6 @@ class CompanyController extends Controller
                 'url' => $company_url
             )
         );
-
 
         if (!$entity) {
             throw $this->createNotFoundException('Данную страницу мы не можем найти!');
@@ -59,18 +55,15 @@ class CompanyController extends Controller
 
     /**
      *
-     * @Route("/company/{country_url}/{city_url}/{company_url}/comments", name="client_company_show_comments")
+     * @Route("/{city_url}/companies/{company_url}/comments", name="client_company_show_comments")
      * @Method("GET")
      * @Template()
      */
-    public function showCommentsAction($country_url, $city_url, $company_url)
+    public function showCommentsAction($company_url)
     {
         $em = $this->getDoctrine()->getManager();
-        $country = $em->getRepository('AcmeMainBundle:Country')->findOneByUrl($country_url);
-        $city = $em->getRepository('AcmeMainBundle:City')->findOneBy(array(
-            'url' => $city_url,
-            'country' => $country
-        ));
+
+        $city = $this->get('city.service')->getCity();
         if (!$city) {
             throw $this->createNotFoundException('Данную страницу мы не можем найти');
         }
@@ -82,7 +75,6 @@ class CompanyController extends Controller
                 'url' => $company_url
             )
         );
-
 
         if (!$entity) {
             throw $this->createNotFoundException('Данную страницу мы не можем найти!');
@@ -101,21 +93,17 @@ class CompanyController extends Controller
 
     /**
      *
-     * @Route("/company/{country_url}/{city_url}/{company_url}/save_comment", name="client_company_save_comment")
+     * @Route("/{city_url}/companies/{company_url}/save_comment", name="client_company_save_comment")
      * @Method("POST")
      */
-    public function saveCommentAction(Request $request, $country_url, $city_url, $company_url)
+    public function saveCommentAction(Request $request, $company_url)
     {
         $arr = array();
         if ($request->isXmlHttpRequest()) {
 
-
             $em = $this->getDoctrine()->getManager();
-            $country = $em->getRepository('AcmeMainBundle:Country')->findOneByUrl($country_url);
-            $city = $em->getRepository('AcmeMainBundle:City')->findOneBy(array(
-                'url' => $city_url,
-                'country' => $country
-            ));
+            $city = $this->get('city.service')->getCity();
+
             if (!$city) {
                 throw $this->createNotFoundException('Данную страницу мы не можем найти');
             }
@@ -143,7 +131,6 @@ class CompanyController extends Controller
             $comment->setRating($arr['args']['score']);
 
             $em->persist($comment);
-
 
             $entity->setRating($entity->getRating()+$arr['args']['score']);
             $em->persist($entity);

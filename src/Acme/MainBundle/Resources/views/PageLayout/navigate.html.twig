@@ -7,23 +7,48 @@
                         <i class="icon-home"></i>
                     </span>
                 {% else %}
-                    <a href="{{ path('page_home') }}">
+                    <a href="{{ path('page_home', {city_url: currentCity().url}) }}">
                         <i class="icon-home"></i>
                     </a>
                 {% endif %}
+            </li>
+            <li class="dropdown">
+                <a href="" data-toggle="dropdown" class="dropdown-toggle">{{ currentCity().name }} <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    {% for city in cityList() %}
+                        <li {% if currentCity().id == city.id %} class="active" {% endif %}>
+                            {% if currentCity().id == city.id %}
+                                <span>{{ city.name }}</span>
+                            {% else %}
+                                {% set cityPath = path(route_name, route_attributes | merge ({city_url:city.url})) %}
+                                {% if route_attributes['city_url'] is not defined %}
+                                    {% set cityPath = path('page_home', {city_url:city.url}) %}
+                                {% endif %}
+                                <a href="{{ cityPath }}">{{ city.name }}</a>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
             </li>
             <li {% if route_name == 'page_catalog' or route_name == 'client_company_show' %} class="active" {% endif %}>
                 {% if route_name == 'page_catalog' %}
                     <span>Каталог</span>
                 {% else %}
-                    <a href="{{ path('page_catalog') }}">Каталог</a>
+                    <a href="{{ path('page_catalog', {city_url: currentCity().url}) }}">Каталог</a>
                 {% endif %}
             </li>
             <li {% if route_name == 'company_rating' %} class="active" {% endif %}>
                 {% if route_name == 'company_rating' %}
                     <span>Рейтинг</span>
                 {% else %}
-                    <a href="{{ path('company_rating') }}">Рейтинг</a>
+                    <a href="{{ path('company_rating', {city_url: currentCity().url}) }}">Рейтинг</a>
+                {% endif %}
+            </li>
+            <li {% if route_name == 'company_comments' %} class="active" {% endif %}>
+                {% if route_name == 'company_comments' %}
+                    <span>Отзывы</span>
+                {% else %}
+                    <a href="{{ path('company_comments', {city_url: currentCity().url}) }}">Отзывы</a>
                 {% endif %}
             </li>
             <li class="dropdown">
@@ -40,13 +65,6 @@
                     {% endfor %}
                 </ul>
             </li>
-            <li {% if route_name == 'company_comments' %} class="active" {% endif %}>
-                {% if route_name == 'company_comments' %}
-                    <span>Отзывы</span>
-                {% else %}
-                    <a href="{{ path('company_comments') }}">Отзывы</a>
-                {% endif %}
-            </li>
         </ul>
     </div>
     <!--noindex-->
@@ -56,12 +74,12 @@
         <div class="mobile-nav-select">
             <select onchange="window.open(this.options[this.selectedIndex].value,'_top')">
                 <option value="">Меню...</option>
-                <option value="{{ path('page_home') }}">Главная</option>
+                <option value="{{ path('page_home', {city_url: currentCity().url}) }}">Главная</option>
                 {% for entity in entities %}
                     <option value="{{ path('client_category_show',{ 'category_url': entity.url }) }}">{{ entity.name }}</option>
                 {% endfor %}
-                <option value="{{ path('page_catalog') }}">Каталог</option>
-                <option value="{{ path('page_contact') }}">Контакты</option>
+                <option value="{{ path('page_catalog', {city_url: currentCity().url}) }}">Каталог</option>
+                <option value="{{ path('page_contact', {city_url: currentCity().url}) }}">Контакты</option>
             </select>
         </div>
     </form>

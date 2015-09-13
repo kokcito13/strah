@@ -38,7 +38,6 @@
                                                 {% for company in city.companies %}
                                                     <li>
                                                         <a href="{{ path('client_company_show', {
-                                                        "country_url": country.url,
                                                         "city_url": city.url,
                                                         "company_url": company.url
                                                         }) }}">{{ company.name }}</a>

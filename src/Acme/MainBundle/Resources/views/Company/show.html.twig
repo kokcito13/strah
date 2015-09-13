@@ -28,7 +28,6 @@
                         <li class="active"><a  >Главная</a></li>
                         <li>
                             <a href="{{ path('client_company_show_comments', {
-                            "country_url": entity.city.country.url,
                             "city_url": entity.city.url,
                             "company_url": entity.url
                             }) }}">Отзывы {{ entity.comments|length }}</a>

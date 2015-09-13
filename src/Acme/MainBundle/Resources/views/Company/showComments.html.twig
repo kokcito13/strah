@@ -18,7 +18,6 @@
                 <div class="span8 blog">
                     <ul class="nav nav-tabs" style="margin-bottom: 0px; border-bottom: 0px;">
                         <li><a href="{{ path('client_company_show', {
-                            "country_url": entity.city.country.url,
                             "city_url": entity.city.url,
                             "company_url": entity.url
                             }) }}" >Главная</a></li>
@@ -83,6 +82,8 @@
                                     </div>
                                 </div>
                             </form>
+                            <button onclick="hello('facebook').login()">facebook</button>
+                            <button onclick="hello('vk').login()">vk</button>
                         </div>
                     </section>
                 </div>
@@ -98,6 +99,7 @@
 {% endblock %}
 {% block javascripts %}
     <script type="text/javascript" src="{{ asset('bundles/acmemain/plugins/raty/jquery.raty.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/acmemain/js/hello.min.js') }}"></script>
     <script>
         $('div#ratyId').raty({
             path: '{{ asset('bundles/acmemain/plugins/raty/images') }}',
@@ -145,5 +147,32 @@
         $(function(){
             comment.init();
         });
+
+        hello.init({
+            facebook: 1644610492487426,
+            vk: 5065377,
+        }
+//                , {redirect_uri: 'redirect.html'}
+        );
+
+        hello.on('auth.login', function(auth) {
+
+            // Call user information, for the given network
+            hello(auth.network).api('/me').then(function(r) {
+                // Inject it into the container
+//                var label = document.getElementById('profile_' + auth.network);
+//                if (!label) {
+//                    label = document.createElement('div');
+//                    label.id = 'profile_' + auth.network;
+//                    document.getElementById('profile').appendChild(label);
+//                }
+//                label.innerHTML = '<img src="' + r.thumbnail + '" /> Hey ' + r.name;
+
+                console.log(r);
+            });
+        });
+
+
+
     </script>
 {% endblock %}

@@ -8,27 +8,6 @@
     <div class="row gallery-row catalog">
         <div class="span1"></div>
         <div class="span10">
-            <div class="row clearfix">
-                <div class="span12">
-                    <div class="navbar hidden-phone">
-                        <div class="h5" style="float: left; font-weight: bold;color: black;">Города: </div>
-                        <ul class="nav" style="margin-top: -10px;">
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="{{ path('page_catalog', {"country":city.country.url, 'city':city.url}) }}">{{ city.name }}<b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    {% for cityN in cities if cityN.country.url == 'ru' %}
-                                        {% if cityN.id != city.id %}
-                                            <li>
-                                                <a href="{{ path('page_catalog', {"country":cityN.country.url, 'city':cityN.url}) }}">{{ cityN.name }}</a>
-                                            </li>
-                                        {% endif %}
-                                    {% endfor %}
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
             {#<div class="row clearfix">#}
                 {#<div class="span12">#}
                     {#<div class="h3">Виды услуг:</div>#}
@@ -51,7 +30,6 @@
                 <div class="row">
                     <div class="span4">
                         <a href="{{ path('client_company_show', {
-                        "country_url": company.city.country.url,
                         "city_url": company.city.url,
                         "company_url": company.url
                         }) }}" rel="nofollow">
@@ -62,13 +40,11 @@
                     </div>
                     <div class="span6">
                         <div class="h5"><a href="{{ path('client_company_show', {
-                            "country_url": company.city.country.url,
                             "city_url": company.city.url,
                             "company_url": company.url
                             }) }}">{{ company.name }}</a></div>
                         <blockquote>
                             <small><strong>Отзывов: <a href="{{ path('client_company_show_comments', {
-                                    "country_url": company.city.country.url,
                                     "city_url": company.city.url,
                                     "company_url": company.url
                                     }) }}">{{ company.comments|length }}</a></strong></small>
@@ -111,7 +87,6 @@
                 var marker = L.marker([{{ point.lat }}, {{ point.lng }}]);
                     marker
                         .bindPopup("<a href=\"{{ path('client_company_show', {
-                            "country_url": company.city.country.url,
                             "city_url": company.city.url,
                             "company_url": company.url
                             }) }}\">{{ company.name }}</a><br />{{ point.address }}").openPopup();

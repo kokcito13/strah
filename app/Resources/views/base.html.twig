@@ -75,7 +75,8 @@
         ================================================== -->
         {{ render(controller('AcmeMainBundle:PageLayout:navigate', {
             'main': mainCategory,
-            'route_name':  app.request.get('_route')
+            'route_name':  app.request.get('_route'),
+            'route_attributes': app.request.attributes.get('_route_params')
         })) }}
     </div><!-- End Header -->
     {% block body %}{% endblock %}

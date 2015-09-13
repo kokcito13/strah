@@ -12,11 +12,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class PageController extends Controller
 {
     /**
-     * @Route("/", name="page_home")
+     * @Route("/{city_url}", name="page_home", defaults={"city_url" = "moscow"})
      * @Template()
      */
     public function indexAction()
@@ -24,8 +25,13 @@ class PageController extends Controller
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository('AcmeMainBundle:Post')->findForPage(false, 8);
 
-        $companiesPopular = $em->getRepository('AcmeMainBundle:Company')->getTop(false, 5);
-        $comments = $em->getRepository('AcmeMainBundle:Comment')->getLastComments(5);
+        $city = $this->get('city.service')->getCity();
+
+        $companiesPopular = $em->getRepository('AcmeMainBundle:Company')
+            ->getTop(false, 5, $city);
+
+        $comments = $em->getRepository('AcmeMainBundle:Comment')
+            ->getLastComments(5, $city);
 
         return array(
             'entities' => $entities,
@@ -103,7 +109,7 @@ class PageController extends Controller
 
                     foreach ($city->getCompanies() as $company) {
                         $url = $rootUrl . $this->generateUrl('client_company_show',
-                                array('country_url' => $country->getUrl(), 'city_url'=>$city->getUrl(), 'company_url'=>$company->getUrl() ));
+                                array('city_url'=>$city->getUrl(), 'company_url'=>$company->getUrl() ));
 
                         $itemNode = $rootNode->addChild('url');
                         $itemNode->addChild( 'loc', $url );
@@ -266,61 +272,26 @@ class PageController extends Controller
     }
 
     /**
-     * @Route("/company/{country}/{city}", name="page_catalog", defaults={"country" = "ru", "city" = "moscow"})
+     * @Route("/{city_url}/companies", name="page_catalog", defaults={"city_url" = "moscow"})
      * @Template()
      */
-    public function catalogAction($country = 'ru', $city = 'moscow', Request $request)
+    public function catalogAction()
     {
-
+        $city = $this->get('city.service')->getCity();
         $em = $this->getDoctrine()->getManager();
-        $countries = $em->getRepository('AcmeMainBundle:Country')->findAll();
-        $cities = $em->getRepository('AcmeMainBundle:City')->findAll();
 
-        $title = 'Список страховых компаний с фильтром по странам и городам';
-        $description = 'Каталог компаний которые связанные со страхованием. Также частные агенты - страхователи.';
-        $keywords = 'каталог компании страховые агенты страны города';
-
-        if (!is_null($country)) {
-            $country = $em->getRepository('AcmeMainBundle:Country')->findOneByUrl($country);
-            $title = 'Каталог страховых компаний страны - '.$country->getName();
-            $description = 'Информации о всех страховых компаниях страны - '.$country->getName();
-            $keywords = 'каталог компании '.mb_strtolower($country->getName(), 'UTF8').' страховые агенты города';
-            if (!is_null($city)) {
-                $city = $em->getRepository('AcmeMainBundle:City')->findOneByUrl($city);
-                $title = 'Каталог страховых компаний страны - '.$country->getName().' и города - '.$city->getName();
-                $description = 'Информации о всех страховых компаниях страны - '.$country->getName().' и города - '.$city->getName();
-                $keywords = 'каталог компании '.mb_strtolower($country->getName(), 'UTF8').' страховые агенты '.mb_strtolower($city->getName(), 'UTF8');
-                $companies = $em->getRepository('AcmeMainBundle:Company')->findBy(array(
-                    'city' => $city
-                ));
-            } else {
-                $cIds = array();
-                foreach ($country->getCities() as $c) {
-                    $cIds[] = $c->getId();
-                }
-                $companies = $em->getRepository('AcmeMainBundle:Company')->findBy(array(
-                    'city' => $cIds
-                ));
-            }
-        } else {
-            $country = $em->getRepository('AcmeMainBundle:Country')->findOneByUrl('ru');
-            $cIds = array();
-            foreach ($country->getCities() as $c) {
-                $cIds[] = $c->getId();
-            }
-            $companies = $em->getRepository('AcmeMainBundle:Company')->findBy(array(
-                'city' => $cIds
+        $title = 'Каталог страховых компаний города - '.$city->getName();
+        $description = 'Информации о всех страховых компаниях  города - '.$city->getName();
+        $keywords = 'каталог компании страховые агенты '.mb_strtolower($city->getName(), 'UTF8');
+        $companies = $em->getRepository('AcmeMainBundle:Company')->findBy(array(
+                'city' => $city
             ));
-        }
 
         return array(
-            'countries' => $countries,
-            'cities' => $cities,
             'companies' => $companies,
             'title' => $title,
             'description' => $description,
             'keywords' => $keywords,
-            'country' => $country,
             'city' => $city
         );
     }

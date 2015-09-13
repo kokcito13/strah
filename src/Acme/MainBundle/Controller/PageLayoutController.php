@@ -12,9 +12,12 @@ class PageLayoutController extends Controller
     /**
      * @Template()
      */
-    public function navigateAction($main = false, $route_name = '')
+    public function navigateAction($main = false, $route_name = '', $route_attributes = array())
     {
-        return array('entities' => $this->categoryList(), 'main' => $main, 'route_name' => $route_name);
+        return array('entities' => $this->categoryList(),
+            'main' => $main,
+            'route_name' => $route_name,
+            'route_attributes' => $route_attributes);
     }
     /**
      * @Template()

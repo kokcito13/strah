@@ -11,12 +11,10 @@
                 <ul>
                     {% for comment in comments %}
                         {% set companyUrl = path('client_company_show', {
-                                "country_url": comment.company.city.country.url,
                                 "city_url": comment.company.city.url,
                                 "company_url": comment.company.url
                                 }) %}
                         {% set companyCommentsUrl = path('client_company_show_comments', {
-                                "country_url": comment.company.city.country.url,
                                 "city_url": comment.company.city.url,
                                 "company_url": comment.company.url
                                 }) %}

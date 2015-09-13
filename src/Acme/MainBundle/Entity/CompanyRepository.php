@@ -18,7 +18,7 @@ class CompanyRepository extends EntityRepository
      * @param bool $limit
      * @return array
      */
-    public function getTop($id = false, $limit = false)
+    public function getTop($id = false, $limit = false, $city = null)
     {
         $em = $this->getEntityManager();
 
@@ -30,6 +30,14 @@ class CompanyRepository extends EntityRepository
             $query
                 ->where('c.id != :cId')
                 ->setParameter('cId', $id);
+
+        if ($city) {
+            $query
+                ->join('c.city', 'city');
+            $query
+                ->where('city.id = :cityId')
+                ->setParameter('cityId', $city->getId());
+        }
 
         $query
             ->orderBy('c.rating', 'DESC')

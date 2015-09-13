@@ -4,7 +4,7 @@
         <div class="row footer-row">
             <div class="span3 footer-col">
                 <div class="h5">Мы в соц. сетях</div>
-                <img src="{{ asset('bundles/acmemain/images/logoD.png') }}" alt="Logo" /><br /><br />
+                {#<img src="{{ asset('bundles/acmemain/images/logoD.png') }}" alt="Logo" /><br /><br />#}
                 {#<address>#}
                     {#<strong>Design Team</strong><br />#}
                     {#123 Main St, Suite 500<br />#}
@@ -28,7 +28,6 @@
                         {% if loop.index < 7  %}
                             <div style="float: left;margin: 10px;">
                                 <a href="{{ path('client_company_show', {
-                                "country_url": company.city.country.url,
                                 "city_url": company.city.url,
                                 "company_url": company.url
                                 }) }}" rel="nofollow">

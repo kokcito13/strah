@@ -66,3 +66,20 @@ services:
         arguments: [~, Acme\MainBundle\Entity\CompanyPoint, AcmeMainBundle:CompanyPointAdmin]
         tags:
             - {name: sonata.admin, manager_type: orm, group: admin, label: CompanyPoint}
+
+    city.service:
+        class: Acme\MainBundle\Service\CityService
+        arguments: [ @doctrine.orm.entity_manager, @session ]
+
+    city.listener:
+        class: Acme\MainBundle\Listener\CityListener
+        arguments: [ @doctrine.orm.entity_manager, @city.service ]
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }
+
+    main.twig_extension:
+        class: Acme\MainBundle\Twig\Extension\MainExtension
+        arguments: [ @city.service ]
+        public: false
+        tags:
+            - { name: twig.extension }

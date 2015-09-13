@@ -14,10 +14,11 @@ class CommentRepository extends EntityRepository
 {
 
     /**
-     * @param bool $limit
+     * @param bool|false $limit
+     * @param null $city
      * @return array
      */
-    public function getLastComments($limit = false)
+    public function getLastComments($limit = false, $city = null)
     {
         $em = $this->getEntityManager();
 
@@ -27,6 +28,15 @@ class CommentRepository extends EntityRepository
 
         $query
             ->orderBy('c.id', 'DESC');
+
+        if ($city) {
+            $query
+                ->join('c.company', 'company')
+                ->join('company.city', 'city');
+            $query
+                ->where('city.id = :cityId')
+                ->setParameter('cityId', $city->getId());
+        }
 
         if ($limit) {
             $query->setMaxResults($limit);
