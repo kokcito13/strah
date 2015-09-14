@@ -79,11 +79,19 @@
                         <span class="right">
                             <!--noindex-->
                             {% if route_name != 'page_home' %}
-                            <a rel="nofollow" href="{{ path('page_home') }}">Главная</a>
+                            <a rel="nofollow" href="{{ path('page_home', {city_url: currentCity().url}) }}">Главная</a>
                             &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
                             {% endif %}
                             {% if route_name != 'page_catalog' %}
-                            <a rel="nofollow" href="{{ path('page_catalog') }}">Каталог</a>
+                            <a rel="nofollow" href="{{ path('page_catalog', {city_url: currentCity().url}) }}">Каталог</a>
+                            &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                            {% endif %}
+                            {% if route_name != 'company_rating' %}
+                            <a rel="nofollow" href="{{ path('company_rating', {city_url: currentCity().url}) }}">Рейтинг</a>
+                            &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                            {% endif %}
+                            {% if route_name != 'company_comments' %}
+                            <a rel="nofollow" href="{{ path('company_comments', {city_url: currentCity().url}) }}">Отзывы</a>
                             &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
                             {% endif %}
                             {% if route_name != 'page_contact' %}

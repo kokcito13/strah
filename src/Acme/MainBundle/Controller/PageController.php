@@ -17,30 +17,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 class PageController extends Controller
 {
     /**
-     * @Route("/{city_url}", name="page_home", defaults={"city_url" = "moscow"})
-     * @Template()
-     */
-    public function indexAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-        $entities = $em->getRepository('AcmeMainBundle:Post')->findForPage(false, 8);
-
-        $city = $this->get('city.service')->getCity();
-
-        $companiesPopular = $em->getRepository('AcmeMainBundle:Company')
-            ->getTop(false, 5, $city);
-
-        $comments = $em->getRepository('AcmeMainBundle:Comment')
-            ->getLastComments(5, $city);
-
-        return array(
-            'entities' => $entities,
-            'companies' => $companiesPopular,
-            'comments' => $comments
-        );
-    }
-    
-    /**
      * @Route("/sitemap.xml", name="sitemap_xml")
      */
     public function viewSitemapXmlAction(Request $request)
@@ -213,6 +189,30 @@ class PageController extends Controller
     {
 
         return array();
+    }
+
+    /**
+     * @Route("/{city_url}", name="page_home", defaults={"city_url" = "moscow"})
+     * @Template()
+     */
+    public function indexAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $entities = $em->getRepository('AcmeMainBundle:Post')->findForPage(false, 8);
+
+        $city = $this->get('city.service')->getCity();
+
+        $companiesPopular = $em->getRepository('AcmeMainBundle:Company')
+            ->getTop(false, 5, $city);
+
+        $comments = $em->getRepository('AcmeMainBundle:Comment')
+            ->getLastComments(5, $city);
+
+        return array(
+            'entities' => $entities,
+            'companies' => $companiesPopular,
+            'comments' => $comments
+        );
     }
 
     /**
