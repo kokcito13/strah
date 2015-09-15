@@ -91,6 +91,7 @@ class RegisteringUserSocial
         $user->setUsernameCanonical($this->socialId);
         $user->setEnabled(false);
         $user->setPassword(md5($this->socialId));
+        $user->setRoles(array('ROLE_USER'));
 
         /*
          * $plainPassword = 'ryanpass';
@@ -99,7 +100,6 @@ class RegisteringUserSocial
 
          * $user->setPassword($encoded);
          */
-
 
         switch ($this->socialType) {
             case self::SOCIAL_VK:

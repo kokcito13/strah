@@ -25,18 +25,28 @@ class SecuredController extends Controller
         $resp = array();
         if ($request->isXmlHttpRequest()) {
             $regSocialService = $this->get('registering.user.social');
-            try{
+//            try{
                 $user = $regSocialService->registration($request->request->all());
 
 
+                $security = $this->get('security.context');
+                $providerKey = 'main';
+                $roles = $user->getRoles();
+                $token = new \Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken($user, null, $providerKey, $roles);
+                $security->setToken($token);
+
                //need make user logined
+
+//                $token = new \Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken($user, null, 'main');
+//                $this->get('security.context')->setToken($token);
+//                $this->get('session')->set('_security_main',serialize($token));
 
                 $resp['user_id'] = $user->getId();
 
                 $resp['success'] = true;
-            } catch (\Exception $e) {
-                $resp['error'] = 'Some error';
-            }
+//            } catch (\Exception $e) {
+//                $resp['error'] = 'Some error';
+//            }
         } else {
             $resp['error'] = 'Not for you';
         }

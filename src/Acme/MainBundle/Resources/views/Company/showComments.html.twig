@@ -83,6 +83,9 @@
                             </form>
                             <button onclick="hello('facebook').login()">facebook</button>
                             <button onclick="hello('vk').login()">vk</button>
+                            {% if app.user %}
+                                {{ app.user.firstName }}
+                            {% endif %}
                         </div>
                     </section>
                 </div>
