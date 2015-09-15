@@ -12,6 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Acme\MainBundle\Entity\Post;
 use Acme\MainBundle\Form\PostType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * Post controller.
@@ -95,6 +96,7 @@ class CompanyController extends Controller
      *
      * @Route("/{city_url}/companies/{company_url}/save_comment", name="client_company_save_comment")
      * @Method("POST")
+     * @Security("is_granted('ROLE_USER')")
      */
     public function saveCommentAction(Request $request, $company_url)
     {

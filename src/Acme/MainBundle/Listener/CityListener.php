@@ -27,6 +27,8 @@ class CityListener
 
         if (isset($params['city_url']) && !empty($params['city_url'])) {
             $this->cityService->setCityByUrl($params['city_url']);
+        } else {
+            $this->cityService->updateSessionCity();
         }
     }
 }

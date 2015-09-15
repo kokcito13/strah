@@ -59,7 +59,6 @@
                         <div class="comment-form-container">
                             <div class="h6" style="text-transform: none; font-size: 18px;">Добавить новый отзыв</div>
                             <form action="{{ path('client_company_save_comment', {
-                            "country_url": entity.city.country.url,
                             "city_url": entity.city.url,
                             "company_url": entity.url
                             }) }}" id="comment-form">
@@ -150,25 +149,37 @@
 
         hello.init({
             facebook: 1644610492487426,
-            vk: 5065377,
+            vk: 5065377
         }
 //                , {redirect_uri: 'redirect.html'}
         );
 
         hello.on('auth.login', function(auth) {
 
-            // Call user information, for the given network
             hello(auth.network).api('/me').then(function(r) {
-                // Inject it into the container
-//                var label = document.getElementById('profile_' + auth.network);
-//                if (!label) {
-//                    label = document.createElement('div');
-//                    label.id = 'profile_' + auth.network;
-//                    document.getElementById('profile').appendChild(label);
-//                }
-//                label.innerHTML = '<img src="' + r.thumbnail + '" /> Hey ' + r.name;
+                var args = {};
+                switch (auth.network) {
+                    case 'vk':
+                        args.uId = r.uid;
+                        args.lastName = r.last_name;
+                        args.firstName = r.first_name;
+                        args.image = r.picture;
+                        args.type = 'vk';
+                        break;
+                    case 'facebook':
+                        args.uId = r.id;
+                        args.fullName = r.name;
+                        args.image = r.picture;
+                        args.type = 'fb';
+                        break;
+                }
 
-                console.log(r);
+                $.post( "{{ path('_secured_social_registration') }}", args,
+                        function( data ) {
+                        console.log(data);
+                });
+
+                console.log(args);
             });
         });
 

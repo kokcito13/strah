@@ -67,6 +67,10 @@ services:
         tags:
             - {name: sonata.admin, manager_type: orm, group: admin, label: CompanyPoint}
 
+    registering.user.social:
+        class: Acme\MainBundle\Service\RegisteringUserSocial
+        arguments: [ @doctrine.orm.entity_manager ]
+
     city.service:
         class: Acme\MainBundle\Service\CityService
         arguments: [ @doctrine.orm.entity_manager, @session ]

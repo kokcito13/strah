@@ -36,6 +36,20 @@ class User extends BaseUser
      */
     protected $avatar_name;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="vk_id", type="string", length=255)
+     */
+    protected $vkId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="social_picture", type="string", length=255)
+     */
+    protected $socialPicture;
+
     protected $file;
 
     public function getFile()
@@ -135,4 +149,41 @@ class User extends BaseUser
         $this->setImageName($this->file->getClientOriginalName());
     }
 
+    /**
+     * @return string|null
+     */
+    public function getVkId()
+    {
+        return $this->vkId;
+    }
+
+    /**
+     * @param string|null $id
+     * @return $this
+     */
+    public function setVkId($id)
+    {
+        $this->vkId = $id;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getSocialPicture()
+    {
+        return $this->socialPicture;
+    }
+
+    /**
+     * @param string|null $pic
+     * @return $this
+     */
+    public function setSocialPicture($pic)
+    {
+        $this->socialPicture = $pic;
+
+        return $this;
+    }
 }

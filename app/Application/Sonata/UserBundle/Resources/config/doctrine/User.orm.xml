@@ -11,7 +11,8 @@
         </id>
         
         <field name="avatar_name" column="avatar_name" type="text" nullable="true"/>
-        
+        <field name="vkId" column="vk_id" type="text" nullable="true"/>
+        <field name="socialPicture" column="social_picture" type="text" nullable="true"/>
     </entity>
 
 </doctrine-mapping>

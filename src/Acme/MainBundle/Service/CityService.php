@@ -5,7 +5,6 @@ use Doctrine\ORM\EntityManager;
 
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\HttpKernel\Tests\EventListener\TestKernelThatThrowsException;
 
 class CityService
 {
@@ -23,7 +22,10 @@ class CityService
 
     public function setCityByUrl($url)
     {
-        $this->getCityByUrl($url);
+        $city = $this->getCityByUrl($url);
+        if (!$city)
+            throw new NotFoundHttpException('Данную страницу нам неудалось найти!');
+
         $this->updateSessionCity();
     }
 
@@ -46,12 +48,10 @@ class CityService
     public function getCity()
     {
         if (!$this->currentCity) {
-
             $this->updateSessionCity();
         }
 
         if (!$this->currentCity) {
-
             $this->setCityByUrl('moscow');
         }
 

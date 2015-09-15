@@ -52,6 +52,10 @@ acme_main_page:
     resource: "@AcmeMainBundle/Controller/PageController.php"
     type:     annotation
 
+acme_main_user_secure:
+    resource: "@AcmeMainBundle/Controller/SecuredController.php"
+    type:     annotation
+
 acme_main_category:
     resource: "@AcmeMainBundle/Controller/CategoryController.php"
     type:     annotation
