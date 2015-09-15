@@ -65,7 +65,7 @@
             {% if app.request.get('_route') == 'page_home' %}
                 <img src="{{ asset('bundles/acmemain/images/logoD.png') }}" alt="" style="width: 255px;"/>
             {% else %}
-                <a href="{{ path('page_home') }}">
+                <a href="{{ path('page_home', {city_url: currentCity().url}) }}">
                     <img src="{{ asset('bundles/acmemain/images/logoD.png') }}" alt="" style="width: 255px;"/>
                 </a>
             {% endif %}
