@@ -67,31 +67,28 @@ class PageController extends Controller
 
             // adding all countries and city and company
             foreach ( $countries as $country ) {/** @var Country $country */
-                $url = $rootUrl . $this->generateUrl('page_catalog', array('country' => $country->getUrl() ));
-
-                $itemNode = $rootNode->addChild('url');
-                $itemNode->addChild( 'loc', $url );
-//                $itemNode->addChild( 'lastmod', $country->getCreatedAt()->format('Y-m-d') );
-                $itemNode->addChild( 'changefreq', 'monthly' );
-                $itemNode->addChild( 'priority', '1.0' );
                 foreach ($country->getCities() as $city) {/** @var City $city */
-                    $url = $rootUrl . $this->generateUrl('page_catalog', array('country' => $country->getUrl(), 'city'=>$city->getUrl() ));
+                    $url = $rootUrl . $this->generateUrl('page_catalog', array('city_url'=>$city->getUrl() ));
 
                     $itemNode = $rootNode->addChild('url');
                     $itemNode->addChild( 'loc', $url );
-//                $itemNode->addChild( 'lastmod', $country->getCreatedAt()->format('Y-m-d') );
                     $itemNode->addChild( 'changefreq', 'monthly' );
                     $itemNode->addChild( 'priority', '0.9' );
-
                     foreach ($city->getCompanies() as $company) {
                         $url = $rootUrl . $this->generateUrl('client_company_show',
                                 array('city_url'=>$city->getUrl(), 'company_url'=>$company->getUrl() ));
 
                         $itemNode = $rootNode->addChild('url');
                         $itemNode->addChild( 'loc', $url );
-//                $itemNode->addChild( 'lastmod', $country->getCreatedAt()->format('Y-m-d') );
                         $itemNode->addChild( 'changefreq', 'monthly' );
                         $itemNode->addChild( 'priority', '0.8' );
+
+                        $url = $rootUrl . $this->generateUrl('client_company_show_comments',
+                                array('city_url'=>$city->getUrl(), 'company_url'=>$company->getUrl() ));
+                        $itemNode = $rootNode->addChild('url');
+                        $itemNode->addChild( 'loc', $url );
+                        $itemNode->addChild( 'changefreq', 'monthly' );
+                        $itemNode->addChild( 'priority', '0.6' );
                     }
                 }
             }
@@ -99,7 +96,10 @@ class PageController extends Controller
             $cache->save($cacheKey, $sitemap, (2*24*60*60)); // 2 days cache 24*10*60*60
         }
 
-        return new Response($sitemap);
+        $response = new Response($sitemap);
+        $response->headers->set('Content-Type', 'xml');
+
+        return $response;
     }
     
     /**

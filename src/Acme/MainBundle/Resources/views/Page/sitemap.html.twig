@@ -26,30 +26,30 @@
 
                 <li>
                     <a href="{{ path('page_catalog') }}"><i class="icon-plus-sign"></i>Каталог</a>
-                    <ul>
-                        {% for country in countries %}
-                            <li>
-                                <a href="{{ path('page_catalog', {"country":country.url}) }}">{#<i class="icon-plus-sign"></i>#}{{ country.name }}</a>
-                                <ul class="post-category-list" style="list-style-type: none;">
-                                    {% for city in country.cities %}
-                                        <li>
-                                            <a href="{{ path('page_catalog', {"country":city.country.url, 'city':city.url}) }}"><i class="icon-asterisk"></i>{{ city.name }}</a>
-                                            <ul>
-                                                {% for company in city.companies %}
-                                                    <li>
-                                                        <a href="{{ path('client_company_show', {
-                                                        "city_url": city.url,
-                                                        "company_url": company.url
-                                                        }) }}">{{ company.name }}</a>
-                                                    </li>
-                                                {% endfor %}
-                                            </ul>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            </li>
-                        {% endfor %}
-                    </ul>
+                    {% for country in countries %}
+                            <ul class="post-category-list" style="list-style-type: none;">
+                                {% for city in country.cities %}
+                                    <li>
+                                        <a href="{{ path('page_catalog', {city_url:city.url}) }}"><i class="icon-asterisk"></i>{{ city.name }}</a> -
+                                        <a href="{{ path('company_rating', {city_url:city.url}) }}">Рейтинг</a> и
+                                        <a href="{{ path('company_comments', {city_url:city.url}) }}">Отзывы</a>
+                                        <ul>
+                                            {% for company in city.companies %}
+                                                <li>
+                                                    <a href="{{ path('client_company_show', {
+                                                    "city_url": city.url,
+                                                    "company_url": company.url
+                                                    }) }}">{{ company.name }}</a> - <a href="{{ path('client_company_show_comments', {
+                                                    "city_url": city.url,
+                                                    "company_url": company.url
+                                                    }) }}">Отзывы</a>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                    {% endfor %}
                 </li>
             </ul>
             {#
