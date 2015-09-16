@@ -115,7 +115,8 @@
     <script type="text/javascript" src="{{ asset('bundles/acmemain/plugins/raty/jquery.raty.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/acmemain/js/hello.min.js') }}"></script>
     <script>
-        var AUTH = {% if app.user %}true{% else %}false{% endif %};
+        var AUTH = {% if app.user %}true{% else %}false{% endif %},
+            CLICK = false;
         $('div#ratyId').raty({
             path: '{{ asset('bundles/acmemain/plugins/raty/images') }}',
             number: 3,
@@ -138,11 +139,17 @@
                 $('#comment-form').submit(function(e){
                     e.preventDefault();
 
+                    CLICK = true;
+
                     var args =
                     {
                         text: $(this).find('#commentText').val().trim(),
                         score: $(this).find('input[name=score]').val().trim()
                     };
+
+                    if (args.text.length < 50) {
+                        return false;
+                    }
 
                     if (AUTH == false) {
                         $('#myModal').modal();
@@ -163,16 +170,20 @@
             comment.init();
         });
 
+        {% if app.user is null %}
         hello.init({
-            facebook: 1644610492487426,
+            facebook: 1644608655820943,
             vk: 5065377
         },
-        {scope: 'email'}
-//                , {redirect_uri: 'redirect.html'}
+        {
+            scope: 'email'//,
+            {#redirect_uri: '{{ url('_secured_social_redirect') }}'#}
+        }
         );
 
         hello.on('auth.login', function(auth) {
-            hello(auth.network).api('/me').then(function(r) {
+            hello(auth.network).api('/me', 'get', {fields:'email,name,id,picture'}).then(function(r) {
+                console.log(r);
                 var args = {};
                 switch (auth.network) {
                     case 'vk':
@@ -191,6 +202,9 @@
                         args.email = r.email;
                         break;
                 }
+                if (!CLICK) {
+                    return;
+                }
 
                 $.post( "{{ path('_secured_social_registration') }}", args,
                         function( data ) {
@@ -202,6 +216,6 @@
                 });
             });
         });
-
+        {% endif %}
     </script>
 {% endblock %}
