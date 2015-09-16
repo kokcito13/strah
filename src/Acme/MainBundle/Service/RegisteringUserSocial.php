@@ -14,6 +14,7 @@ class RegisteringUserSocial
     private $socialImage;
     private $socialLastName;
     private $socialFirstName;
+    private $socialEmail;
 
     const SOCIAL_VK = 'vk';
     const SOCIAL_FB = 'fb';
@@ -60,6 +61,7 @@ class RegisteringUserSocial
         $this->socialId = $data['uId'];
         $this->socialImage = $data['image'];
         $this->socialType = $data['type'];
+        $this->socialEmail = $data['email'];
     }
 
     public function checkUserExist()
@@ -85,8 +87,8 @@ class RegisteringUserSocial
         $user->setFirstname($this->socialFirstName);
         $user->setLastname($this->socialLastName);
         $user->setSocialPicture($this->socialImage);
-        $user->setEmail($this->socialId.'@time.com');
-        $user->setEmailCanonical($this->socialId.'@time.com');
+        $user->setEmail($this->socialEmail);
+        $user->setEmailCanonical($this->socialEmail);
         $user->setUsername($this->socialId);
         $user->setUsernameCanonical($this->socialId);
         $user->setEnabled(false);

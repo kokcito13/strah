@@ -3,10 +3,15 @@ DirectoryIndex app.php
 Redirect 301 /catalog	http://dvestrahovki.ru/moscow/companies
 
 Redirect /company/ua/kyiv/aska http://dvestrahovki.ru/
+Redirect /company/ua/kyiv/vuso http://dvestrahovki.ru/
 Redirect /company/kz/astana/ai http://dvestrahovki.ru/
 Redirect /company/kz/astana/interteac/comments http://dvestrahovki.ru/
 
 Redirect 301 /company/ru/Rostov-on-Don/alfastrah http://dvestrahovki.ru/rostov-na-donu/companies/alfastrah
+Redirect 301 /company/ru/novosibirsk/gefest http://dvestrahovki.ru/novosibirsk/companies/gefest
+Redirect 301 /company/ru/Ekaterinburg/vsk http://dvestrahovki.ru/novosibirsk/companies/gefest
+Redirect 301 /company/ru/Ekaterinburg/vsk http://dvestrahovki.ru/ekaterinburg/companies/vsk
+Redirect 301 /company/ru/moscow/intouch http://dvestrahovki.ru/moscow/companies/intouch
 
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/css

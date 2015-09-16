@@ -127,8 +127,7 @@ class CompanyController extends Controller
 
             $comment = new Comment();
             $comment->setCompany($entity);
-            $comment->setName($arr['args']['name']);
-            $comment->setEmail($arr['args']['email']);
+            $comment->setUser($this->getUser());
             $comment->setText($arr['args']['text']);
             $comment->setRating($arr['args']['score']);
 

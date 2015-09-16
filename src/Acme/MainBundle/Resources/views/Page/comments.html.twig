@@ -19,8 +19,8 @@
                                 "company_url": comment.company.url
                                 }) %}
                         <li>
-                            {#<img src="img/user-avatar.jpg" alt="Image">#}
-                            <span class="comment-name">{{ comment.name }}</span>
+                            <img src="{{ comment.user.socialPicture }}" alt="{{ comment.user.getFullName() }} аватарка" width="25" height="25">
+                            <span class="comment-name">{{ comment.user.getFullName() }}</span>
                             <span class="comment-date">оставил <a href="{{ companyCommentsUrl }}">отзыв</a> о <a href="{{ companyUrl }}">{{ comment.company.name }}</a> в {{ comment.createdAt | date('H:i, d.m.Y') }}</span>
                             <br/>
                             <div class="comment-content">{{ comment.text | raw }}</div>

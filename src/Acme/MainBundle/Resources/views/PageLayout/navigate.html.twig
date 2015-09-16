@@ -21,7 +21,7 @@
                                 <span>{{ city.name }}</span>
                             {% else %}
                                 {% set cityPath = path(route_name, route_attributes | merge ({city_url:city.url})) %}
-                                {% if route_attributes['city_url'] is not defined %}
+                                {% if route_attributes['city_url'] is not defined or route_name == 'client_company_show' or route_name == 'client_company_show_comments' %}
                                     {% set cityPath = path('page_home', {city_url:city.url}) %}
                                 {% endif %}
                                 <a href="{{ cityPath }}">{{ city.name }}</a>

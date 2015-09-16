@@ -80,6 +80,12 @@ class Comment
      */
     private $status;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     **/
+    private $user;
+
     const STATUS_CREATED = 0;
     const STATUS_CONFIRM = 1;
     const STATUS_DELETE = 2;
