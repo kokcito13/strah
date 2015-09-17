@@ -4,14 +4,31 @@ Redirect 301 /catalog	http://dvestrahovki.ru/moscow/companies
 
 Redirect /company/ua/kyiv/aska http://dvestrahovki.ru/
 Redirect /company/ua/kyiv/vuso http://dvestrahovki.ru/
+Redirect /company/ua/kyiv/alfaic http://dvestrahovki.ru/
 Redirect /company/kz/astana/ai http://dvestrahovki.ru/
 Redirect /company/kz/astana/interteac/comments http://dvestrahovki.ru/
+Redirect /company/by/minsk/bns http://dvestrahovki.ru/
 
 Redirect 301 /company/ru/Rostov-on-Don/alfastrah http://dvestrahovki.ru/rostov-na-donu/companies/alfastrah
 Redirect 301 /company/ru/novosibirsk/gefest http://dvestrahovki.ru/novosibirsk/companies/gefest
 Redirect 301 /company/ru/Ekaterinburg/vsk http://dvestrahovki.ru/novosibirsk/companies/gefest
 Redirect 301 /company/ru/Ekaterinburg/vsk http://dvestrahovki.ru/ekaterinburg/companies/vsk
 Redirect 301 /company/ru/moscow/intouch http://dvestrahovki.ru/moscow/companies/intouch
+
+Redirect 301 /krasnodar/companies/sk_if http://dvestrahovki.ru/sankt-peterburg/companies/sk-dar
+Redirect 301 /samara/companies/sk_if http://dvestrahovki.ru/sankt-peterburg/companies/sk-dar
+Redirect 301 /perm/companies/sk_if http://dvestrahovki.ru/sankt-peterburg/companies/sk-dar
+Redirect 301 /perm/companies/AIZhK http://dvestrahovki.ru/moscow/companies/AIZhK
+Redirect 301 /rostov-na-donu/companies/ugsk http://dvestrahovki.ru/moscow/companies/ugsk
+
+Redirect 301 /company/ru/moscow/avangard-garant/comments http://dvestrahovki.ru/moscow/companies/avangard-garant/comments
+Redirect 301 /company/ru/moscow/avangard-garant http://dvestrahovki.ru/moscow/companies/avangard-garant
+Redirect 301 /company/ru/moscow/vsk http://dvestrahovki.ru/moscow/companies/vsk
+Redirect 301 /company/ru/moscow/vsk/comments http://dvestrahovki.ru/moscow/companies/vsk/comments
+Redirect 301 /company/ru/moscow/uralsib http://dvestrahovki.ru/moscow/companies/uralsib
+Redirect 301 /company/ru/moscow/uralsib/comments http://dvestrahovki.ru/moscow/companies/uralsib/comments
+Redirect 301 /company/ru/moscow/gut http://dvestrahovki.ru/moscow/companies/gut
+Redirect 301 /company/ru/moscow/gut/comments http://dvestrahovki.ru/moscow/companies/gut/comments
 
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/css
