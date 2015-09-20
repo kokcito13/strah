@@ -69,8 +69,26 @@ Redirect 301 /krasnoyarsk/companies/vtbins http://dvestrahovki.ru/novosibirsk/co
 
 Redirect 301 /company/ru/novosibirsk/nadins/comments http://dvestrahovki.ru/novosibirsk/companies/nadins
 
-
 Redirect 301 /company/ru http://dvestrahovki.ru/moscow/companies
+
+Redirect 301 //comments http://dvestrahovki.ru/moscow/comments
+Redirect 301 /ekaterinburg/companies/aig/comments http://dvestrahovki.ru/moscow/companies/aig/comments
+Redirect 301 /omsk/companies/aig/comments http://dvestrahovki.ru/moscow/companies/aig/comments
+Redirect 301 /krasnodar/companies/aig/comments http://dvestrahovki.ru/moscow/companies/aig/comments
+Redirect 301 /sankt-peterburg/companies/aig/comments http://dvestrahovki.ru/moscow/companies/aig/comments
+Redirect 301 /samara/companies/aig/comments http://dvestrahovki.ru/moscow/companies/aig/comments
+Redirect 301 /perm/companies/aig/comments http://dvestrahovki.ru/moscow/companies/aig/comments
+Redirect 301 /krasnoyarsk/companies/aig/comments http://dvestrahovki.ru/moscow/companies/aig/comments
+Redirect 301 /rostov-na-donu/companies/aig/comments http://dvestrahovki.ru/moscow/companies/aig/comments
+Redirect 301 /sankt-peterburg/companies/binins http://dvestrahovki.ru/moscow/companies/binins
+Redirect 301 /ekaterinburg/companies/binins http://dvestrahovki.ru/moscow/companies/binins
+Redirect 301 /samara/companies/binins http://dvestrahovki.ru/moscow/companies/binins
+Redirect 301 /omsk/companies/binins http://dvestrahovki.ru/moscow/companies/binins
+Redirect 301 /perm/companies/binins http://dvestrahovki.ru/moscow/companies/binins
+Redirect 301 /krasnodar/companies/binins http://dvestrahovki.ru/moscow/companies/binins
+Redirect 301 /nizhny-novgorod/companies/binins http://dvestrahovki.ru/moscow/companies/binins
+Redirect 301 /krasnoyarsk/companies/binins http://dvestrahovki.ru/moscow/companies/binins
+Redirect 301 /rostov-na-donu/companies/binins http://dvestrahovki.ru/moscow/companies/binins
 
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/css
