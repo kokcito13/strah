@@ -195,9 +195,21 @@ class PageController extends Controller
      * @Route("/{city_url}", name="page_home", defaults={"city_url" = "moscow"})
      * @Template()
      */
-    public function indexAction()
+    public function indexAction($city_url)
     {
         $em = $this->getDoctrine()->getManager();
+
+        $category = $em->getRepository('AcmeMainBundle:Category')->findOneBy(array('url'=>$city_url));
+        if ($category) {
+            $entities = $em->getRepository('AcmeMainBundle:Post')->findByCategory($category, array('id'=>'DESC'));
+
+            return $this->render('AcmeMainBundle:Category:show.html.twig', array(
+                'entity' => $category,
+                'entities' => $entities,
+                'mainCategory' => $category->getUrl()
+            ));
+        }
+
         $entities = $em->getRepository('AcmeMainBundle:Post')->findForPage(false, 8);
 
         $city = $this->get('city.service')->getCity();

@@ -23,8 +23,8 @@ class CityService
     public function setCityByUrl($url)
     {
         $city = $this->getCityByUrl($url);
-        if (!$city)
-            throw new NotFoundHttpException('Данную страницу нам неудалось найти!');
+//        if (!$city)
+//            throw new NotFoundHttpException('Данную страницу нам неудалось найти!');
 
         $this->updateSessionCity();
     }

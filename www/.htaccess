@@ -8,6 +8,7 @@ Redirect /company/ua/kyiv/alfaic http://dvestrahovki.ru/
 Redirect /company/kz/astana/ai http://dvestrahovki.ru/
 Redirect /company/kz/astana/interteac/comments http://dvestrahovki.ru/
 Redirect /company/by/minsk/bns http://dvestrahovki.ru/
+Redirect /company/kz/astana/stdi http://dvestrahovki.ru/
 
 Redirect 301 /company/ru/Rostov-on-Don/alfastrah http://dvestrahovki.ru/rostov-na-donu/companies/alfastrah
 Redirect 301 /company/ru/novosibirsk/gefest http://dvestrahovki.ru/novosibirsk/companies/gefest
@@ -29,6 +30,47 @@ Redirect 301 /company/ru/moscow/uralsib http://dvestrahovki.ru/moscow/companies/
 Redirect 301 /company/ru/moscow/uralsib/comments http://dvestrahovki.ru/moscow/companies/uralsib/comments
 Redirect 301 /company/ru/moscow/gut http://dvestrahovki.ru/moscow/companies/gut
 Redirect 301 /company/ru/moscow/gut/comments http://dvestrahovki.ru/moscow/companies/gut/comments
+
+Redirect 301 /company/ru/sankt-peterburg/reso http://dvestrahovki.ru/moscow/companies/reso
+Redirect 301 /company/ru/sankt-peterburg/vtb http://dvestrahovki.ru/moscow/companies/vtb
+Redirect 301 /company/ru/moscow/d2ins http://dvestrahovki.ru/moscow/companies/d2ins
+Redirect 301 /company/ru/sankt-peterburg/21_vek http://dvestrahovki.ru/moscow/companies/21_vek
+Redirect 301 /nizhny-novgorod/companies/alfastrah http://dvestrahovki.ru/moscow/companies/alfastrah
+Redirect 301 /sankt-peterburg/companies/alfastrah http://dvestrahovki.ru/moscow/companies/alfastrah
+Redirect 301 /krasnodar/companies/alfastrah http://dvestrahovki.ru/moscow/companies/alfastrah
+Redirect 301 /krasnoyarsk/companies/alfastrah http://dvestrahovki.ru/moscow/companies/alfastrah
+Redirect 301 /nizhny-novgorod/companies/sgmsk http://dvestrahovki.ru/moscow/companies/sgmsk
+Redirect 301 /krasnoyarsk/companies/vsk http://dvestrahovki.ru/moscow/companies/vsk
+Redirect 301 /rostov-na-donu/companies/AIZhK/comments http://dvestrahovki.ru/moscow/companies/AIZhK
+Redirect 301 /rostov-na-donu/companies/sk_if http://dvestrahovki.ru/moscow/companies/sk_if
+Redirect 301 /ekaterinburg/companies/sk_if http://dvestrahovki.ru/moscow/companies/sk_if
+Redirect 301 /nizhny-novgorod/companies/zhaso http://dvestrahovki.ru/moscow/companies/zhaso
+Redirect 301 /novosibirsk/companies/aig/comments http://dvestrahovki.ru/moscow/companies/aig/comments
+Redirect 301 /nizhny-novgorod/companies/aig/comments http://dvestrahovki.ru/moscow/companies/aig/comments
+Redirect 301 /krasnoyarsk/companies/AIZhK/comments http://dvestrahovki.ru/moscow/companies/AIZhK/comments
+Redirect 301 /sankt-peterburg/companies/AIZhK/comments http://dvestrahovki.ru/moscow/companies/AIZhK/comments
+Redirect 301 /omsk/companies/AIZhK/comments http://dvestrahovki.ru/moscow/companies/AIZhK/comments
+Redirect 301 /novosibirsk/companies/AIZhK/comments http://dvestrahovki.ru/moscow/companies/AIZhK/comments
+Redirect 301 /samara/companies/AIZhK/comments http://dvestrahovki.ru/moscow/companies/AIZhK/comments
+Redirect 301 /krasnodar/companies/AIZhK/comments http://dvestrahovki.ru/moscow/companies/AIZhK/comments
+Redirect 301 /ekaterinburg/companies/AIZhK/comments http://dvestrahovki.ru/moscow/companies/AIZhK/comments
+Redirect 301 /nizhny-novgorod/companies/AIZhK/comments http://dvestrahovki.ru/moscow/companies/AIZhK/comments
+Redirect 301 /sankt-peterburg/companies/AIZhK http://dvestrahovki.ru/moscow/companies/AIZhK
+Redirect 301 /rostov-na-donu/companies/AIZhK http://dvestrahovki.ru/moscow/companies/AIZhK
+Redirect 301 /ekaterinburg/companies/AIZhK http://dvestrahovki.ru/moscow/companies/AIZhK
+Redirect 301 /samara/companies/AIZhK http://dvestrahovki.ru/moscow/companies/AIZhK
+Redirect 301 /krasnoyarsk/companies/AIZhK http://dvestrahovki.ru/moscow/companies/AIZhK
+Redirect 301 /omsk/companies/AIZhK http://dvestrahovki.ru/moscow/companies/AIZhK
+Redirect 301 /krasnodar/companies/AIZhK http://dvestrahovki.ru/moscow/companies/AIZhK
+Redirect 301 /novosibirsk/companies/AIZhK http://dvestrahovki.ru/moscow/companies/AIZhK
+Redirect 301 /nizhny-novgorod/companies/AIZhK http://dvestrahovki.ru/moscow/companies/AIZhK
+Redirect 301 /nizhny-novgorod/companies/vtbins http://dvestrahovki.ru/novosibirsk/companies/vtbins
+Redirect 301 /krasnoyarsk/companies/vtbins http://dvestrahovki.ru/novosibirsk/companies/vtbins
+
+Redirect 301 /company/ru/novosibirsk/nadins/comments http://dvestrahovki.ru/novosibirsk/companies/nadins
+
+
+Redirect 301 /company/ru http://dvestrahovki.ru/moscow/companies
 
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/css
