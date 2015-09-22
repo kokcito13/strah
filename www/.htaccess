@@ -90,6 +90,31 @@ Redirect 301 /nizhny-novgorod/companies/binins http://dvestrahovki.ru/moscow/com
 Redirect 301 /krasnoyarsk/companies/binins http://dvestrahovki.ru/moscow/companies/binins
 Redirect 301 /rostov-na-donu/companies/binins http://dvestrahovki.ru/moscow/companies/binins
 
+Redirect 301 /perm/companies/zhaso http://dvestrahovki.ru/sankt-peterburg/companies/zhaso
+Redirect 301 /company/ru/sankt-peterburg/companion http://dvestrahovki.ru/sankt-peterburg/companies/companion
+Redirect 301 /nizhny-novgorod/companies/zettains http://dvestrahovki.ru/sankt-peterburg/companies/zettains
+Redirect 301 /company/ru/sankt-peterburg/stalfond http://dvestrahovki.ru/sankt-peterburg/companies/stalfond
+Redirect 301 /nizhny-novgorod/companies/vsk http://dvestrahovki.ru/moscow/companies/vsk
+Redirect 301 /sankt-peterburg/companies/vsk http://dvestrahovki.ru/moscow/companies/vsk
+Redirect 301 /krasnodar/companies/vsk http://dvestrahovki.ru/moscow/companies/vsk
+Redirect 301 /moscow/companies/europlan http://dvestrahovki.ru/sankt-peterburg/companies/europlan
+Redirect 301 /perm/companies/europlan http://dvestrahovki.ru/sankt-peterburg/companies/europlan
+Redirect 301 /nizhny-novgorod/companies/europlan http://dvestrahovki.ru/sankt-peterburg/companies/europlan
+Redirect 301 /moscow/companies/zettains http://dvestrahovki.ru/sankt-peterburg/companies/zettains
+Redirect 301 /sankt-peterburg/companies/vtbins http://dvestrahovki.ru/novosibirsk/companies/vtbins
+Redirect 301 /moscow/companies/vtbins http://dvestrahovki.ru/novosibirsk/companies/vtbins
+Redirect 301 /krasnodar/companies/vtbins http://dvestrahovki.ru/novosibirsk/companies/vtbins
+Redirect 301 /nizhny-novgorod/companies/sk_if http://dvestrahovki.ru/moscow/companies/sk_if
+Redirect 301 /krasnoyarsk/companies/sk_if http://dvestrahovki.ru/moscow/companies/sk_if
+Redirect 301 /omsk/companies/sk_if http://dvestrahovki.ru/moscow/companies/sk_if
+Redirect 301 /novosibirsk/companies/sk_if http://dvestrahovki.ru/moscow/companies/sk_if
+Redirect 301 /moscow/companies/moscow/alfastrah http://dvestrahovki.ru/moscow/companies/alfastrah
+Redirect 301 /moscow/companies/moscow/activ http://dvestrahovki.ru/moscow/companies/activ
+Redirect 301 /company/ru/moscow/rgs http://dvestrahovki.ru/moscow/companies/rgs
+Redirect 301 /moscow/companies/moscow/rgs http://dvestrahovki.ru/moscow/companies/rgs
+Redirect /company/by/minsk/belbroker http://dvestrahovki.ru/
+Redirect /company/by/minsk/eximgarant http://dvestrahovki.ru/
+
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/css
     AddOutputFilterByType DEFLATE text/javascript
