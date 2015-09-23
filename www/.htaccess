@@ -115,6 +115,15 @@ Redirect 301 /moscow/companies/moscow/rgs http://dvestrahovki.ru/moscow/companie
 Redirect /company/by/minsk/belbroker http://dvestrahovki.ru/
 Redirect /company/by/minsk/eximgarant http://dvestrahovki.ru/
 
+Redirect /company/by/minsk/alphabroker http://dvestrahovki.ru/
+Redirect /company/by/minsk/belvneshstrakh http://dvestrahovki.ru/
+Redirect /company/by/minsk http://dvestrahovki.ru/
+Redirect 301 /moscow/companies/moscow/profile-re http://dvestrahovki.ru/moscow/companies/profile-re
+Redirect 301 /moscow/companies/sankt-peterburg/ingos http://dvestrahovki.ru/sankt-peterburg/companies/ingos
+Redirect 301 /moscow/companies/moscow/zhaso http://dvestrahovki.ru/moscow/companies/zhaso
+Redirect 301 /moscow/companies/sankt-peterburg/metlife http://dvestrahovki.ru/sankt-peterburg/companies/metlife
+Redirect 301 /moscow/companies/moscow/sgmsk/comments http://dvestrahovki.ru/moscow/companies/sgmsk/comments
+
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/css
     AddOutputFilterByType DEFLATE text/javascript
