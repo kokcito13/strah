@@ -124,6 +124,10 @@ Redirect 301 /moscow/companies/moscow/zhaso http://dvestrahovki.ru/moscow/compan
 Redirect 301 /moscow/companies/sankt-peterburg/metlife http://dvestrahovki.ru/sankt-peterburg/companies/metlife
 Redirect 301 /moscow/companies/moscow/sgmsk/comments http://dvestrahovki.ru/moscow/companies/sgmsk/comments
 
+Redirect 301 /moscow/companies/sankt-peterburg/oranta http://dvestrahovki.ru/sankt-peterburg/companies/oranta
+Redirect 301 /moscow/companies/Perm/adonis/comments http://dvestrahovki.ru/perm/companies/adonis/comments
+Redirect 301 /moscow/companies/Perm/alfastrah/comments http://dvestrahovki.ru/perm/companies/alfastrah/comments
+
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/css
     AddOutputFilterByType DEFLATE text/javascript
