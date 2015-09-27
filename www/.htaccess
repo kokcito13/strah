@@ -128,6 +128,11 @@ Redirect 301 /moscow/companies/sankt-peterburg/oranta http://dvestrahovki.ru/san
 Redirect 301 /moscow/companies/Perm/adonis/comments http://dvestrahovki.ru/perm/companies/adonis/comments
 Redirect 301 /moscow/companies/Perm/alfastrah/comments http://dvestrahovki.ru/perm/companies/alfastrah/comments
 
+Redirect 301 /moscow/companies/moscow http://dvestrahovki.ru
+Redirect 301 /moscow/companies/rostov-na-donu/alfastrah/comments http://dvestrahovki.ru/rostov-na-donu/companies/alfastrah/comments
+Redirect 301 /moscow/companies/novosibirsk/alfastrah/comments http://dvestrahovki.ru/rostov-na-donu/companies/alfastrah/comments
+Redirect /company/kz/astana/alp http://dvestrahovki.ru
+
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/css
     AddOutputFilterByType DEFLATE text/javascript
