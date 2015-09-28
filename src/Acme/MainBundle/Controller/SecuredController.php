@@ -36,12 +36,6 @@ class SecuredController extends Controller
                 $token = new \Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken($user, null, $providerKey, $roles);
                 $security->setToken($token);
 
-               //need make user logined
-
-//                $token = new \Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken($user, null, 'main');
-//                $this->get('security.context')->setToken($token);
-//                $this->get('session')->set('_security_main',serialize($token));
-
                 $resp['user_id'] = $user->getId();
 
                 $resp['success'] = true;

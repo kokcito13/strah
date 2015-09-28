@@ -133,6 +133,10 @@ Redirect 301 /moscow/companies/rostov-na-donu/alfastrah/comments http://dvestrah
 Redirect 301 /moscow/companies/novosibirsk/alfastrah/comments http://dvestrahovki.ru/rostov-na-donu/companies/alfastrah/comments
 Redirect /company/kz/astana/alp http://dvestrahovki.ru
 
+Redirect 301 /moscow/companies/moscow/renins http://dvestrahovki.ru/moscow/companies/renins
+Redirect 301 /moscow/companies/moscow/kapital http://dvestrahovki.ru/moscow/companies/kapital
+Redirect /company/ua http://dvestrahovki.ru/
+
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/css
     AddOutputFilterByType DEFLATE text/javascript
