@@ -137,6 +137,15 @@ Redirect 301 /moscow/companies/moscow/renins http://dvestrahovki.ru/moscow/compa
 Redirect 301 /moscow/companies/moscow/kapital http://dvestrahovki.ru/moscow/companies/kapital
 Redirect /company/ua http://dvestrahovki.ru/
 
+Redirect /company/kz/astana/kompetenz http://dvestrahovki.ru/
+Redirect //kyiv http://dvestrahovki.ru/
+Redirect 301 /moscow/companies/sankt-peterburg/nsglife http://dvestrahovki.ru/sankt-peterburg/companies/nsglife
+Redirect 301 /moscow/companies/sankt-peterburg/nasko/comments http://dvestrahovki.ru/sankt-peterburg/companies/nasko/comments
+Redirect 301 /moscow/companies/rostov-na-donu/allianz http://dvestrahovki.ru/rostov-na-donu/companies/allianz
+Redirect 301 /moscow/companies/rostov-na-donu/allianz/comments http://dvestrahovki.ru/rostov-na-donu/companies/allianz/comments
+Redirect 301 /moscow/companies/omsk http://dvestrahovki.ru/omsk/companies
+Redirect 301 /moscow/companies/moscow/sk_if http://dvestrahovki.ru/moscow/companies/sk_if
+
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/css
     AddOutputFilterByType DEFLATE text/javascript
