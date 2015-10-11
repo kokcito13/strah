@@ -17,12 +17,12 @@ use Acme\MainBundle\Entity\Post;
  */
 class CategoryController extends Controller
 {
-    /*
+    /**
      *
      * @Route("/{category_url}", name="client_category_show")
      * @Method("GET")
      * @Template()
-
+     */
     public function showAction($category_url)
     {
         $em = $this->getDoctrine()->getManager();
@@ -38,5 +38,5 @@ class CategoryController extends Controller
             'mainCategory' => $category_url
         );
     }
- */
+
 }
