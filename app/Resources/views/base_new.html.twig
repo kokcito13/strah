@@ -1,0 +1,171 @@
+{% if mainCategory is not defined %}
+    {% set mainCategory = false %}
+{% endif %}
+{% if currentPost is not defined %}
+    {% set currentPost = false %}
+{% endif %}
+{% if currentCompany is not defined %}
+    {% set currentCompany = false %}
+{% endif %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}DveStrahovki.ru{% endblock %}</title>
+    <meta name="description" content="{% block description %}DveStrahovki.ru{% endblock %}"/>
+    <meta name="keywords" content="{% block keywords %}DveStrahovki.ru{% endblock %}"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta content="width=device-width, target-densityDpi=device-dpi" name="viewport"/>
+
+    {% block meta %}{% endblock %}
+    {% block stylesheets %}{% endblock %}
+
+    <!-- CSS
+    ================================================== -->
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{{ asset('bundles/acmemain/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/acmemain/css/bootstrap-responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/acmemain/css/prettyPhoto.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/acmemain/css/flexslider.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/acmemain/css/custom-styles.css') }}">
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <link rel="stylesheet" href="{{ asset('bundles/acmemain/css/style-ie.css') }}"/>
+    <![endif]-->
+
+    <script type="text/javascript" src="{{ asset('bundles/acmemain/js/jquery.min.js') }}"></script>
+
+    <!-- Favicons
+    ================================================== -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="apple-touch-icon" href="{{ asset('bundles/acmemain/images/apple-touch-icon.png') }}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('bundles/acmemain/images/apple-touch-icon-72x72.png') }}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('bundles/acmemain/images/apple-touch-icon-114x114.png') }}">
+</head>
+<body class="home">
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-11535685-15', 'auto');
+    ga('send', 'pageview');
+
+</script>
+<!-- Color Bars (above header)-->
+<div class="color-bar-1"></div>
+<div class="color-bar-2 color-bg"></div>
+
+<div class="container">
+    <div class="row header"><!-- Begin Header -->
+        <!-- Logo
+        ================================================== -->
+        <div class="span3 logo">
+            {% if app.request.get('_route') == 'page_home' %}
+                <img src="{{ asset('bundles/acmemain/images/logoD.png') }}" alt="" style="width: 255px;"/>
+            {% else %}
+                <a href="{{ path('page_home', {city_url: currentCity().url}) }}">
+                    <img src="{{ asset('bundles/acmemain/images/logoD.png') }}" alt="" style="width: 255px;"/>
+                </a>
+            {% endif %}
+            {#<h5>Все о страховке</h5>#}
+        </div>
+        <!-- Main Navigation
+        ================================================== -->
+        {{ render(controller('AcmeMainBundle:PageLayout:navigate', {
+            'main': mainCategory,
+            'route_name':  app.request.get('_route'),
+            'route_attributes': app.request.attributes.get('_route_params')
+        })) }}
+    </div><!-- End Header -->
+    {% block body %}{% endblock %}
+</div> <!-- End Container -->
+
+<!-- Footer Area
+    ================================================== -->
+{{ render(controller('AcmeMainBundle:PageLayout:footer', {
+    'main': mainCategory,
+    'route_name':  app.request.get('_route'),
+    'post': currentPost,
+    'company': currentCompany,
+})) }}
+{% if app.environment == 'prod' %}
+<!--LiveInternet counter--><script type="text/javascript"><!--
+    document.write("<a href='//www.liveinternet.ru/click' "+
+            "target=_blank><img src='//counter.yadro.ru/hit?t44.6;r"+
+            escape(document.referrer)+((typeof(screen)=="undefined")?"":
+            ";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+                    screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+            ";"+Math.random()+
+            "' alt='' title='LiveInternet' "+
+            "border='0' width='31' height='31'><\/a>")
+    //--></script><!--/LiveInternet-->
+{% endif %}
+<!-- Scroll to Top -->
+<div id="toTop" class="hidden-phone hidden-tablet">Back to Top</div>
+
+    <!-- JS
+================================================== -->
+    <script src="{{ asset('bundles/acmemain/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('bundles/acmemain/js/jquery.prettyPhoto.js') }}"></script>
+    <script src="{{ asset('bundles/acmemain/js/jquery.flexslider.js') }}"></script>
+    <script src="{{ asset('bundles/acmemain/js/jquery.custom.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#btn-blog-next").click(function () {
+                $('#blogCarousel').carousel('next')
+            });
+            $("#btn-blog-prev").click(function () {
+                $('#blogCarousel').carousel('prev')
+            });
+
+            $("#btn-client-next").click(function () {
+                $('#clientCarousel').carousel('next')
+            });
+            $("#btn-client-prev").click(function () {
+                $('#clientCarousel').carousel('prev')
+            });
+        });
+        $(window).load(function(){
+            $('.flexslider').flexslider({
+                animation: "slide",
+                slideshow: true,
+                start: function(slider){
+                    $('body').removeClass('loading');
+                }
+            });
+        });
+    </script>
+    {% block stylesheets_after %}{% endblock %}
+    {% block javascripts %}{% endblock %}
+    {% if app.environment == 'prod' %}
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function (d, w, c) {
+            (w[c] = w[c] || []).push(function() {
+                try {
+                    w.yaCounter27107978 = new Ya.Metrika({id:27107978,
+                        webvisor:true,
+                        clickmap:true,
+                        trackLinks:true,
+                        accurateTrackBounce:true});
+                } catch(e) { }
+            });
+
+            var n = d.getElementsByTagName("script")[0],
+                    s = d.createElement("script"),
+                    f = function () { n.parentNode.insertBefore(s, n); };
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+            if (w.opera == "[object Opera]") {
+                d.addEventListener("DOMContentLoaded", f, false);
+            } else { f(); }
+        })(document, window, "yandex_metrika_callbacks");
+    </script>
+    <noscript><div><img src="//mc.yandex.ru/watch/27107978" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+    {% endif %}
+</body>
+</html>
