@@ -166,6 +166,15 @@ Redirect 301 /moscow/companies/sankt-peterburg/evro/comments http://dvestrahovki
 Redirect 301 /moscow/companies/sankt-peterburg/pari http://dvestrahovki.ru/sankt-peterburg/companies/pari
 Redirect 301 /rostov-na-don/companies/alfastrah http://dvestrahovki.ru/moscow/companies/alfastrah
 
+Redirect 301 /moscow/companies/sankt-peterburg/sov/comments http://dvestrahovki.ru/sankt-peterburg/companies/sov/comments
+Redirect 301 /moscow/companies/sankt-peterburg/gefes http://dvestrahovki.ru/sankt-peterburg/companies/gefes
+Redirect 301 /moscow/companies/sankt-peterburg/nasko http://dvestrahovki.ru/sankt-peterburg/companies/nasko
+Redirect 301 /moscow/companies/novosibirsk/zettains/comments http://dvestrahovki.ru/novosibirsk/companies/zettains/comments
+Redirect 301 /vtb/comments http://dvestrahovki.ru/moscow/companies/vtb/comments
+Redirect 301 /moscow/companies/Omsk http://dvestrahovki.ru/omsk
+Redirect 301 /moscow/companies/sankt-peterburg http://dvestrahovki.ru/sankt-peterburg
+Redirect 301 /moscow/companies/Ekaterinburg http://dvestrahovki.ru/ekaterinburg
+
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/css
     AddOutputFilterByType DEFLATE text/javascript
