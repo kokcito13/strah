@@ -175,6 +175,23 @@ Redirect 301 /moscow/companies/Omsk http://dvestrahovki.ru/omsk
 Redirect 301 /moscow/companies/sankt-peterburg http://dvestrahovki.ru/sankt-peterburg
 Redirect 301 /moscow/companies/Ekaterinburg http://dvestrahovki.ru/ekaterinburg
 
+Redirect /company/kz/astana/asko http://dvestrahovki.ru
+Redirect 301 /sankt-peterburg/mscins/comments http://dvestrahovki.ru/sankt-peterburg/companies/mscins/comments
+Redirect 301 /sankt-peterburg/sgmsk http://dvestrahovki.ru/sankt-peterburg/companies/sgmsk
+Redirect 301 /aig/comments http://dvestrahovki.ru/moscow/companies/aig/comments
+Redirect 301 /sankt-peterburg/sov http://dvestrahovki.ru/sankt-peterburg/companies/sov
+Redirect 301 /sankt-peterburg/osk http://dvestrahovki.ru/sankt-peterburg/companies/osk
+Redirect 301 //belingo http://dvestrahovki.ru
+Redirect 301 /sankt-peterburg/ask http://dvestrahovki.ru/sankt-peterburg/companies/ask
+Redirect 301 /moscow/companies/krasnodar http://dvestrahovki.ru/krasnodar
+Redirect 301 /moscow/companies/novosibirsk/ingos http://dvestrahovki.ru/novosibirsk/companies/ingos
+Redirect 301 /moscow/companies/Novosibirsk/kupecheskoe/comments http://dvestrahovki.ru/novosibirsk/companies/kupecheskoe/comments
+Redirect 301 /moscow/companies/krasnoyarsk/gefest/comments http://dvestrahovki.ru/krasnoyarsk/companies/gefest/comments
+Redirect 301 /moscow/companies/Perm/adonis http://dvestrahovki.ru/perm/companies/adonis
+Redirect 301 /sankt-peterburg/sgmsk/comments http://dvestrahovki.ru/sankt-peterburg/companies/sgmsk/comments
+Redirect 301 /moscow/companies/perm http://dvestrahovki.ru/perm
+Redirect 301 /moscow/companies/novosibirsk/zettains http://dvestrahovki.ru/novosibirsk/companies/zettains
+
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/css
     AddOutputFilterByType DEFLATE text/javascript
