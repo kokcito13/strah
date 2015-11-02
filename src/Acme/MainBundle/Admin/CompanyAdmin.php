@@ -19,10 +19,7 @@ class CompanyAdmin extends Admin
         $datagridMapper
             ->add('name')
             ->add('url')
-            ->add('title')
-//            ->add('description')
-//            ->add('keywords')
-//            ->add('text')
+            ->add('status')
         ;
     }
 
@@ -33,11 +30,7 @@ class CompanyAdmin extends Admin
     {
         $listMapper
             ->add('name')
-//            ->add('url')
-//            ->add('title')
-//            ->add('description')
-//            ->add('keywords')
-//            ->add('text')
+            ->add('status')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -78,9 +71,12 @@ class CompanyAdmin extends Admin
                     array('label' => 'Город', 'required'  => true, 'class'=>'AcmeMainBundle:City',
                         'property'=>'name'))
                 ->add('services', 'textarea', array('label' => 'Виды услуг', 'attr' => array('class' => 'ckeditor')))
-                ->add('contacts', 'textarea', array('label' => 'Контакты', 'attr' => array('class' => 'ckeditor')))
+//                ->add('contacts', 'textarea', array('label' => 'Контакты', 'attr' => array('class' => 'ckeditor')))
                 ->add('text', 'textarea', array('label' => 'Инфо', 'attr' => array('class' => 'ckeditor')))
                 ->add('rating', 'integer', array('label' => 'Рейтинг'))
+                ->add('status', 'choice', array(
+                    'label' => 'Статус',
+                    'choices' => array(Company::STATUS_OFF => 'скрыт', Company::STATUS_ON => 'видна')))
             ->end()
             ->with('СЕО')
                 ->add('title')

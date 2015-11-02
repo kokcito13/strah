@@ -13,6 +13,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Company
 {
+    const STATUS_ON = true;
+    const STATUS_OFF = false;
+
     /**
      * @var integer
      *
@@ -138,12 +141,20 @@ class Company
      **/
     private $comments;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="status", type="boolean")
+     */
+    private $status;
+
     public function __construct()
     {
         $this->rating = 0;
         $this->servicesArray = new ArrayCollection();
         $this->points = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->status = self::STATUS_ON;
     }
 
     /**
@@ -628,5 +639,28 @@ class Company
     public function getComments()
     {
         return $this->comments;
+    }
+
+    /**
+     * Set status
+     *
+     * @param boolean $status
+     * @return Company
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return boolean 
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 }

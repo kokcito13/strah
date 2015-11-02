@@ -82,9 +82,11 @@
             <div class="row">
                 <div class="span6">
                     <h3>Контактные данные:</h3>
-                    <div style="padding-left: 15px;">
-                        {{ entity.contacts|raw }}
-                    </div>
+                    <ul style="padding-left: 15px;">
+                        {% for point in entity.points %}
+                            <li>{{ point.address }}</li>
+                        {% endfor %}
+                    </ul>
                 </div>
                 <div class="span2">
                     <div class="lower_h6"><b>Перейти на сайт:</b></div>
@@ -92,11 +94,8 @@
                 </div>
             </div>
         </div>
-        <!-- Blog Sidebar
-        ================================================== -->
         {{ render(controller('AcmeMainBundle:PageLayout:rightSidebar', {
-        'post': entity
+            'post': entity
         })) }}
-        <!-- End sidebar column -->
     </div>
 {% endblock %}

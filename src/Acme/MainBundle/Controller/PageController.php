@@ -3,6 +3,7 @@
 namespace Acme\MainBundle\Controller;
 
 use Acme\MainBundle\Entity\City;
+use Acme\MainBundle\Entity\Company;
 use Acme\MainBundle\Entity\Country;
 use Doctrine\Common\Cache\ApcCache;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -296,7 +297,8 @@ class PageController extends Controller
         $description = 'Информации о всех страховых компаниях  города - '.$city->getName();
         $keywords = 'каталог компании страховые агенты '.mb_strtolower($city->getName(), 'UTF8');
         $companies = $em->getRepository('AcmeMainBundle:Company')->findBy(array(
-                'city' => $city
+                'city' => $city,
+                'status' => Company::STATUS_ON
             ));
 
         return array(

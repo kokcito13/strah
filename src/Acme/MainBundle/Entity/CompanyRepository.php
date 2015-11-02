@@ -40,6 +40,8 @@ class CompanyRepository extends EntityRepository
         }
 
         $query
+            ->andWhere('c.status = :status')
+            ->setParameter('status', Company::STATUS_ON)
             ->orderBy('c.rating', 'DESC')
             ->addOrderBy('c.id');
 
