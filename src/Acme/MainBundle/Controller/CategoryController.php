@@ -30,12 +30,12 @@ class CategoryController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Просим нас извинить но данную страницу категории мы неможем найти.');
         }
-        $entities = $em->getRepository('AcmeMainBundle:Post')->findByCategory($entity, array('id'=>'DESC'));
+        $entities = $em->getRepository('AcmeMainBundle:Post')->findByCategory($entity, array('id' => 'DESC'));
 
         return array(
             'entity' => $entity,
             'entities' => $entities,
-            'mainCategory' => $category_url
+            'mainCategory' => $category_url,
         );
     }
 
