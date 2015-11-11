@@ -85,4 +85,32 @@ class PageLayoutController extends Controller
 
         return $entities;
     }
+
+
+    /**
+     * @param string $route_name
+     * @Template()
+     * @return array
+     */
+    public function footerNewAction($route_name = '')
+    {
+        return array(
+            'route_name' => $route_name,
+        );
+    }
+
+    /**
+     * @param bool|false $main
+     * @param string $route_name
+     * @param array $route_attributes
+     * @Template()
+     * @return array
+     */
+    public function navigateNewAction($main = false, $route_name = '', $route_attributes = array())
+    {
+        return array('entities' => $this->categoryList(),
+            'main' => $main,
+            'route_name' => $route_name,
+            'route_attributes' => $route_attributes);
+    }
 }

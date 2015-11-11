@@ -1,0 +1,50 @@
+<footer class="main-footer">
+    <div class="container">
+        <div class="footer-top clearfix">
+            <div class="fl">Две Страховки — портах страховых компаний России.</div>
+            <form class="fr form-inline dark" >
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Ваш E-mail">
+                </div>
+                <button type="submit" class="btn btn-danger">Подписаться</button>
+            </form>
+        </div>
+        <div class="footer-bottom clearfix">
+            <div class="fl">
+                <nav>
+                    <ul class="clearfix menu-foot">
+                        {% if route_name != 'page_home' %}
+                            <li><a href="{{ path('page_home', {city_url: currentCity().url}) }}">Главная</a></li>
+                        {% endif %}
+                        {% if route_name != 'page_catalog' %}
+                            <li><a href="{{ path('page_catalog', {city_url: currentCity().url}) }}">Каталог</a></li>
+                        {% endif %}
+                        {% if route_name != 'company_rating' %}
+                            <li><a href="{{ path('company_rating', {city_url: currentCity().url}) }}">Рейтинг</a></li>
+                        {% endif %}
+                        {% if route_name != 'company_comments' %}
+                            <li><a href="{{ path('company_comments', {city_url: currentCity().url}) }}">Отзывы</a></li>
+                        {% endif %}
+                        {% if route_name != 'page_contact' %}
+                            <li><a href="{{ path('page_contact') }}">Контакты</a></li>
+                        {% endif %}
+                        {% if route_name != 'page_advertising' %}
+                            <li><a href="{{ path('page_advertising') }}">Реклама на сайте</a></li>
+                        {% endif %}
+                        <li>
+                            <a href="{{ path('page_sitemap') }}">Карта сайта</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="fr">
+                <ul class="clearfix social-list">
+                    <li class="vk"><a href="https://twitter.com/dvestrahovki"></a></li>
+                    <li class="tw"><a href="https://vk.com/dvestrahovki"></a></li>
+                    <li class="fb"><a href="https://www.facebook.com/dvestrahovki"></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copy">2014-{{ 'now' | date('Y') }} © Все права защищены</div>
+    </div>
+</footer>

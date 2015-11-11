@@ -1,0 +1,70 @@
+<header class="main-head">
+    <div class="container clearfix">
+        <div class="logo-box">
+            {% if route_name == 'page_home' %}
+                <img src="{{ asset('bundles/acmemain/new/img/logo.png') }}" />
+            {% else %}
+                <a href="{{ path('page_home', {city_url: currentCity().url}) }}" >
+                    <img src="{{ asset('bundles/acmemain/new/img/logo.png') }}" />
+                </a>
+            {% endif %}
+        </div>
+        <div class="head-container">
+            <div class="top-head clearfix">
+                <nav>
+                    <ul class="main-menu clearfix">
+                        <li {% if route_name == 'page_catalog' or route_name == 'client_company_show' %}class="active"{% endif %} >
+                            <a href="{{ path('page_catalog', {city_url: currentCity().url}) }}" >КАТАЛОГ</a>
+                        </li>
+                        <li {% if route_name == 'company_rating' %}class="active"{% endif %} >
+                            <a href="{{ path('company_rating', {city_url: currentCity().url}) }}" >РЕЙТИНГ</a>
+                        </li>
+                        <li {% if route_name == 'company_comments' %}class="active"{% endif %} >
+                            <a href="{{ path('company_comments', {city_url: currentCity().url}) }}" >ОТЗЫВ</a>
+                        </li>
+                        {#<li>#}
+                            {#<a href="#">ПУБЛИКАЦИИ</a>#}
+                        {#</li>#}
+                        {#{% for entity in entities %}#}
+                            {#<li {% if main == entity.url %} class="active" {% endif %}>#}
+                                {#{% if main == entity.url and route_name == 'client_category_show' %}#}
+                                    {#<span>{{ entity.name }}</span>#}
+                                {#{% else %}#}
+                                    {#<a href="{{ path('client_category_show',{ 'category_url': entity.url }) }}">{{ entity.name }}</a>#}
+                                {#{% endif %}#}
+                            {#</li>#}
+                        {#{% endfor %}#}
+                    </ul>
+                </nav>
+                {#<!--<div class="enter-box">
+                    <span>Login:</span>
+                    <ul class="social-list clearfix">
+                        <li class="vk"><a href="#"></a></li>
+                        <li class="fb"><a href="#"></a></li>
+                    </ul>
+                </div>  -->
+                <div class="auth-box">
+                    <div class="img-box"><a href="#"><img src="img/im2.jpg"></a></div>
+                    <div class="info-box">
+                        <div class="name"><a href="#">ALEXANDER</a></div>
+                        <div><a href="#">ВЫХОД</a></div>
+                    </div>
+                </div>#}
+            </div>
+            <span class="mob-menu ico"></span>
+            <nav class="">
+                <ul class="city-menu clearfix">
+                    {% for city in cityList() %}
+                        <li {% if currentCity().id == city.id %}class="active"{% endif %} >
+                            {% set cityPath = path(route_name, route_attributes | merge ({city_url:city.url})) %}
+                            {% if route_attributes['city_url'] is not defined or route_name == 'client_company_show' or route_name == 'client_company_show_comments' %}
+                                {% set cityPath = path('page_home', {city_url:city.url}) %}
+                            {% endif %}
+                            <a href="{{ cityPath }}" >{{ city.name }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
