@@ -1,3 +1,4 @@
+@import url(https://fonts.googleapis.com/css?family=PT+Sans:400,700&subset=latin,cyrillic);
 @font-face {
     font-family: 'ProximaNovaRegular';
     src: url('fonts/ProximaNovaRegular.eot');
@@ -55,7 +56,48 @@ a.btn { padding: 3px 8px 4px 8px; }
 
 .container { max-width: 60.625rem; }
 
-.head-page { margin-bottom: 30px; padding-top: 24px; height: 130px; background: url("../img/bg-paper.png") 0 0 repeat }
+.main-head { padding-bottom: 45px; }
+.logo-box { float: left; padding-top: 22px; }
+.logo-box img { display: block; margin: 16px; }
+.head-container { margin-left: 80px; position: relative; font-family: 'PT Sans', Tahoma, Verdana, Arial, sans-serif; }
+.top-head { padding-top: 38px; padding-bottom: 7px; display: inline-block; width: 100%; border-bottom: 1px solid #d7d7d7; }
+.top-head nav { float: left; }
+.top-head .enter-box { float: right }
+.top-head .enter-box ul { display: inline-block; margin: 0 }
+.top-head .enter-box ul li { width: 20px; height: 20px; }
+.top-head .enter-box ul li:first-child { margin-left: 0; }
+.top-head .enter-box ul li.vk a, .top-head .enter-box ul li.vk a:hover { background: url("../img/soc-ico-head.png") 0 0 no-repeat }
+.top-head .enter-box ul li.fb a, .top-head .enter-box ul li.fb a:hover { background: url("../img/soc-ico-head.png") -22px 0 no-repeat }
+.top-head .enter-box span { margin: 5px 4px 0 0; display: inline-block; vertical-align: top; color: #999; font-size: 14px; letter-spacing: 0.5px; }
+.top-head .auth-box { padding-bottom: 3px; font-size: 9px; text-align: right; float: right; }
+.top-head .auth-box .img-box { float: right; }
+.top-head .auth-box .info-box { line-height: 9px; margin-right: 29px; letter-spacing: 0.3px; }
+.top-head .auth-box .info-box a { text-decoration: none; color: #999; }
+.top-head .auth-box .info-box .name { padding-bottom: 3px; }
+.top-head .auth-box .info-box .name a { color: #6890bb; }
+.top-head .auth-box .info-box a:hover { text-decoration: underline }
+.main-menu { margin: 2px 0 0 -2px; padding: 0; list-style-type: none; text-transform: uppercase }
+.main-menu li { padding-right: 48px; letter-spacing: 0.8px; float: left; font-size: 24px; font-weight: 700; }
+.main-menu li:last-child { padding-right: 0; }
+.main-menu li a { color: #333333; text-decoration: none }
+.main-menu li.active a, .main-menu li a:hover { color: #d8450b;}
+.city-menu { list-style-type: none; margin: 0; padding: 1px 0 0 0; }
+.city-menu li { padding-left: 29px; letter-spacing: 0.5px; float: left; font-size: 14px; }
+.city-menu li:first-child { padding-left: 0; }
+.city-menu li.active a, .city-menu a:hover { color: #d8450b; }
+.city-menu a { text-decoration: none; display: block; color: #777777; font-size: 14px; }
+.city-menu li.hideshow { position:relative; }
+.city-menu li.hideshow ul { margin-top: 5px; padding: 0; list-style-type: none; position:absolute; background: #383838; display:none; left:29px; }
+.city-menu li.hideshow a { cursor: pointer; }
+.city-menu li.hideshow li { white-space: nowrap; padding: 0; float: none; }
+.city-menu li.hideshow li:hover { background: #d8450b; }
+.city-menu li.hideshow li a { border-bottom: 1px solid #474747; color: #ababab; display: block; padding: 5px; margin: 0 5px; }
+.city-menu li.hideshow li a:hover { color: #f9f9f9; border-bottom: 1px solid #d8450b; }
+.arrow-down { margin-top: 10px; width: 8px; height: 5px; display: inline-block; vertical-align: top; background: url("../img/icons.png") 0 0 no-repeat }
+.show-a.active { color: #d8450b; }
+.show-a.active .arrow-down, .show-a:hover .arrow-down { background: url("../img/icons.png") -9px 0 no-repeat }
+
+.head-page { margin-bottom: 30px; padding-bottom: 17px; padding-top: 24px; background: url("../img/bg-paper.png") 0 0 repeat }
 
 .left-container { float: left; width: 100%; margin-right: -240px; }
 .left-box { margin-right: 240px; }
