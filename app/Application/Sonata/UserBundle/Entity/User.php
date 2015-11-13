@@ -11,6 +11,7 @@
 
 namespace Application\Sonata\UserBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Sonata\UserBundle\Entity\BaseUser as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -51,6 +52,21 @@ class User extends BaseUser
     protected $socialPicture;
 
     protected $file;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="social_picture", type="string", length=255)
+     */
+    protected $comments;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->comments = new ArrayCollection();
+    }
+
 
     public function getFile()
     {
@@ -190,5 +206,24 @@ class User extends BaseUser
     public function getFullName()
     {
         return $this->getFirstname().' '.$this->getLastname();
+    }
+
+    /**
+     * @return ArrayCollection|string
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * @param $comments
+     * @return $this
+     */
+    public function setComments($comments)
+    {
+        $this->comments = $comments;
+
+        return $this;
     }
 }

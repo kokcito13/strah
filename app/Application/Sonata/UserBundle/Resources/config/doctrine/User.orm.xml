@@ -13,6 +13,12 @@
         <field name="avatar_name" column="avatar_name" type="text" nullable="true"/>
         <field name="vkId" column="vk_id" type="text" nullable="true"/>
         <field name="socialPicture" column="social_picture" type="text" nullable="true"/>
+
+        <one-to-many field="comments" target-entity="\Acme\MainBundle\Entity\Comment" mapped-by="user">
+            <cascade>
+                <cascade-persist/>
+            </cascade>
+        </one-to-many>
     </entity>
 
 </doctrine-mapping>

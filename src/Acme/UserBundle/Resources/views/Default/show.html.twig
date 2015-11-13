@@ -1,21 +1,24 @@
 {% extends '::base_new.html.twig' %}
 
-{% block title %}Отзывы о страховых компаниях в {{ city.name }}: обсуждения и мнения пользователей{% endblock %}
-{% block description %}Ищете отзывы о страховых компаниях в {{ city.name }}? У нас 1000 отзывов о страховых компаниях в вашем городе.{% endblock %}
-{% block keywords %}отзывы страховые компании город {{ city.name }} комментарии полестители{% endblock %}
+{% block title %}{% endblock %}
+{% block description %}{% endblock %}
+{% block keywords %}{% endblock %}
 
 {% block breadcrumbs %}
     <div class="container-fluid head-page">
         <div class="container">
-            <h1>Отзывы о страховых компаниях в {{ currentCity().name }}</h1>
-            <span class="text-muted">Более {{ comments | length }} отзывов о страховых компаниях, оценки качества предоставления услух, мнения клиентов, советы и рекомендации, которые помогут вам определиться с выбором.</span>
+            <h1>{{ user.getFullName() }}</h1>
+            <small>{% if canEditing %}<a href="{{ path('user_edit', {id: user.id}) }}">Редактировать профиль</a>{% endif %}</small>
+            <span class="text-muted">Профайл пользователя:</span>
+            <span class="text-muted">Написал(а) {{  user.comments | length }} отзывов о страховых компаниях.</span>
+            <span class="text-muted">На сайте с - {{  user.createdAt | date('d.m.Y') }}</span>
         </div>
     </div>
 {% endblock %}
 
 {% block main %}
-    <div class="review-list">
-        {% for comment in comments %}
+    <div class="user_page review-list">
+        {% for comment in user.comments %}
             {% set companyUrl = path('client_company_show', {
             "city_url": comment.company.city.url,
             "company_url": comment.company.url
@@ -41,15 +44,4 @@
             </article>
         {% endfor %}
     </div>
-    {#<nav>#}
-        {#<ul class="pagination clearfix">#}
-            {#<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>#}
-            {#<li><a href="#">2</a></li>#}
-            {#<li><a href="#">3</a></li>#}
-            {#<li><a href="#">4</a></li>#}
-            {#<li><a href="#">5</a></li>#}
-            {#<li><span>...</span></li>#}
-            {#<li><a href="#">15</a></li>#}
-        {#</ul>#}
-    {#</nav>#}
 {% endblock %}

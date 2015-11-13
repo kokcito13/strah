@@ -22,34 +22,37 @@
                         <li {% if route_name == 'company_comments' %}class="active"{% endif %} >
                             <a href="{{ path('company_comments', {city_url: currentCity().url}) }}" >ОТЗЫВ</a>
                         </li>
-                        {#<li>#}
-                            {#<a href="#">ПУБЛИКАЦИИ</a>#}
-                        {#</li>#}
-                        {#{% for entity in entities %}#}
-                            {#<li {% if main == entity.url %} class="active" {% endif %}>#}
-                                {#{% if main == entity.url and route_name == 'client_category_show' %}#}
-                                    {#<span>{{ entity.name }}</span>#}
-                                {#{% else %}#}
-                                    {#<a href="{{ path('client_category_show',{ 'category_url': entity.url }) }}">{{ entity.name }}</a>#}
-                                {#{% endif %}#}
-                            {#</li>#}
-                        {#{% endfor %}#}
+                        <li class="li-in-menu {% for entity in entities %}{% if main == entity.url %} active {% endif %}{% endfor %}">
+                            <a href="#">ПУБЛИКАЦИИ</a>
+                            <ul class="dop-menu">
+                                {% for entity in entities %}
+                                    <li {% if main == entity.url %} class="active" {% endif %}>
+                                        <a href="{{ path('client_category_show',{ 'category_url': entity.url }) }}">{{ entity.name }}</a>
+                                    </li>
+                                {% endfor %}
+                                {#<li><a href="#">Автострахование</a></li>#}
+                            </ul>
+                        </li>
+
                     </ul>
                 </nav>
-                {#<!--<div class="enter-box">
-                    <span>Login:</span>
-                    <ul class="social-list clearfix">
-                        <li class="vk"><a href="#"></a></li>
-                        <li class="fb"><a href="#"></a></li>
-                    </ul>
-                </div>  -->
-                <div class="auth-box">
-                    <div class="img-box"><a href="#"><img src="img/im2.jpg"></a></div>
-                    <div class="info-box">
-                        <div class="name"><a href="#">ALEXANDER</a></div>
-                        <div><a href="#">ВЫХОД</a></div>
+                {% if app.user %}
+                    <div class="auth-box">
+                        <div class="img-box"><a href="{{ path('user_show', {id: app.user.id}) }}"><img src="{{ app.user.socialPicture }}" width="20" height="20"></a></div>
+                        <div class="info-box">
+                            <div class="name"><a href="{{ path('user_show', {id: app.user.id}) }}">{{ app.user.getFullName() }}</a></div>
+                            <div><a href="{{ path('sonata_user_admin_security_logout') }}">ВЫХОД</a></div>
+                        </div>
                     </div>
-                </div>#}
+                {% else %}
+                    <div class="enter-box">
+                        <span>Login:</span>
+                        <ul class="social-list clearfix">
+                            <li class="vk"><a href="#" onclick="setClickTrue(); hello('vk').login();"></a></li>
+                            <li class="fb"><a href="#" onclick="setClickTrue(); hello('facebook').login();"></a></li>
+                        </ul>
+                    </div>
+                {% endif %}
             </div>
             <span class="mob-menu ico"></span>
             <nav class="">

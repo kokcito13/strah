@@ -78,10 +78,33 @@ a.btn { padding: 3px 8px 4px 8px; }
 .top-head .auth-box .info-box .name a { color: #6890bb; }
 .top-head .auth-box .info-box a:hover { text-decoration: underline }
 .main-menu { margin: 2px 0 0 -2px; padding: 0; list-style-type: none; text-transform: uppercase }
-.main-menu li { padding-right: 48px; letter-spacing: 0.8px; float: left; font-size: 24px; font-weight: 700; }
+.main-menu li { position: relative; padding-right: 48px; letter-spacing: 0.8px; float: left; font-size: 24px; font-weight: 700; }
 .main-menu li:last-child { padding-right: 0; }
 .main-menu li a { color: #333333; text-decoration: none }
 .main-menu li.active a, .main-menu li a:hover { color: #d8450b;}
+.main-menu li.li-in-menu:hover {
+    padding: 9px 27px 0 8px;
+    margin: -10px -28px 0 -9px;
+    background: #fff;
+    border: 1px solid #eeeeee; border-bottom: none;
+    border-radius: 4px 4px 0 0; -moz-border-radius: 4px 4px 0 0; -webkit-border-radius: 4px 4px 0 0;
+}
+.main-menu li.li-in-menu:hover:after {
+    position: absolute; content: '';
+    top: 15px; right: 9px;
+    width: 14px; height: 8px;
+    background: url("../img/icons.png") -17px 0 no-repeat;
+}
+.main-menu li.li-in-menu:hover > a { color: #333; position: relative; z-index: 2; }
+.main-menu li.li-in-menu:hover .dop-menu { display: block }
+.dop-menu {
+    background: #fff; display: none; z-index: 1;
+    position: absolute; top: 100%; left: -1px;
+    padding: 15px 31px 0 10px;
+    list-style-type: none; border: 1px solid #eeeeee; border-top: none;
+    border-radius: 0 0 4px 4px; -moz-border-radius: 0 0 4px 4px; -webkit-border-radius: 0 0 4px 4px;
+}
+.dop-menu li { letter-spacing: 0; padding-bottom: 6px; font-size: 14px; float: none; font-weight: normal; text-transform: none }
 .city-menu { list-style-type: none; margin: 0; padding: 1px 0 0 0; }
 .city-menu li { padding-left: 29px; letter-spacing: 0.5px; float: left; font-size: 14px; }
 .city-menu li:first-child { padding-left: 0; }
@@ -175,10 +198,3 @@ a.btn { padding: 3px 8px 4px 8px; }
 .social-list li.tw a:hover { background-position: 0 -90px; }
 .social-list li.fb a { background-position: 0 -120px; }
 .social-list li.fb a:hover { background-position: 0 -150px; }
-
-
-
-
-
-
-

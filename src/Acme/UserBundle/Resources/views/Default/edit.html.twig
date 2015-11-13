@@ -1,0 +1,25 @@
+{% extends '::base_new.html.twig' %}
+
+{% block title %}{% endblock %}
+{% block description %}{% endblock %}
+{% block keywords %}{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="container-fluid head-page">
+        <div class="container">
+            <h1>Редактирование профиля</h1>
+            {#<small>{% if canEditing %}<a href="{{ path('user_edit', {id: user.id}) }}">Редактировать профиль</a>{% endif %}</small>#}
+            {#<span class="text-muted">Профайл пользователя:</span>#}
+            {#<span class="text-muted">Написал(а) {{  user.comments | length }} отзывов о страховых компаниях.</span>#}
+            {#<span class="text-muted">На сайте с - {{  user.createdAt | date('d.m.Y') }}</span>#}
+        </div>
+    </div>
+{% endblock %}
+
+{% block main %}
+    <div class="user_page review-list">
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
