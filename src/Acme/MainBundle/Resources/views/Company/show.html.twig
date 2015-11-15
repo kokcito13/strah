@@ -1,7 +1,7 @@
 {% extends '::base.html.twig' %}
 
-{% block title %}{{ entity.title }}{% endblock %}
-{% block description %}{{ entity.description }}{% endblock %}
+{% block title %}{% if entity.title | length > 50 %}{{ entity.title }}{% else %}{{ entity.name }} {{ entity.city.name }} — страховая компания. Рейтинг страховой {{ entity.name }} в {{ entity.city.name }} на DveStrahovki.ru{% endif %}{% endblock %}
+{% block description %}{% if entity.description | length > 50 %}{{ entity.description }}{% else %}Сравнение страховых компаний {{ entity.name }} на DveStrahovki.ru. Отзывы реальных пользователей, рейтинг страховых компаний {{ entity.name }}.{% endif %}{% endblock %}
 {% block keywords %}{{ entity.keywords }}{% endblock %}
 
 {% block meta %}

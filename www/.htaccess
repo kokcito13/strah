@@ -1,130 +1,5 @@
 DirectoryIndex app.php
 
-Redirect 301 /catalog	http://dvestrahovki.ru/moscow/companies
-
-Redirect /company/ua/kyiv/aska http://dvestrahovki.ru/
-Redirect /company/ua/kyiv/vuso http://dvestrahovki.ru/
-Redirect /company/ua/kyiv/alfaic http://dvestrahovki.ru/
-Redirect /company/kz/astana/ai http://dvestrahovki.ru/
-Redirect /company/kz/astana/interteac/comments http://dvestrahovki.ru/
-Redirect /company/by/minsk/bns http://dvestrahovki.ru/
-Redirect /company/kz/astana/stdi http://dvestrahovki.ru/
-
-Redirect 301 /company/ru/Rostov-on-Don/alfastrah http://dvestrahovki.ru/rostov-na-donu/companies/alfastrah
-Redirect 301 /company/ru/novosibirsk/gefest http://dvestrahovki.ru/novosibirsk/companies/gefest
-Redirect 301 /company/ru/Ekaterinburg/vsk http://dvestrahovki.ru/novosibirsk/companies/gefest
-Redirect 301 /company/ru/Ekaterinburg/vsk http://dvestrahovki.ru/ekaterinburg/companies/vsk
-Redirect 301 /company/ru/moscow/intouch http://dvestrahovki.ru/moscow/companies/intouch
-
-Redirect 301 /krasnodar/companies/sk_if http://dvestrahovki.ru/sankt-peterburg/companies/sk-dar
-Redirect 301 /samara/companies/sk_if http://dvestrahovki.ru/sankt-peterburg/companies/sk-dar
-Redirect 301 /perm/companies/sk_if http://dvestrahovki.ru/sankt-peterburg/companies/sk-dar
-Redirect 301 /perm/companies/AIZhK http://dvestrahovki.ru/moscow/companies/AIZhK
-Redirect 301 /rostov-na-donu/companies/ugsk http://dvestrahovki.ru/moscow/companies/ugsk
-
-Redirect 301 /company/ru/moscow/avangard-garant/comments http://dvestrahovki.ru/moscow/companies/avangard-garant/comments
-Redirect 301 /company/ru/moscow/avangard-garant http://dvestrahovki.ru/moscow/companies/avangard-garant
-Redirect 301 /company/ru/moscow/vsk http://dvestrahovki.ru/moscow/companies/vsk
-Redirect 301 /company/ru/moscow/vsk/comments http://dvestrahovki.ru/moscow/companies/vsk/comments
-Redirect 301 /company/ru/moscow/uralsib http://dvestrahovki.ru/moscow/companies/uralsib
-Redirect 301 /company/ru/moscow/uralsib/comments http://dvestrahovki.ru/moscow/companies/uralsib/comments
-Redirect 301 /company/ru/moscow/gut http://dvestrahovki.ru/moscow/companies/gut
-Redirect 301 /company/ru/moscow/gut/comments http://dvestrahovki.ru/moscow/companies/gut/comments
-
-Redirect 301 /company/ru/sankt-peterburg/reso http://dvestrahovki.ru/moscow/companies/reso
-Redirect 301 /company/ru/sankt-peterburg/vtb http://dvestrahovki.ru/moscow/companies/vtb
-Redirect 301 /company/ru/moscow/d2ins http://dvestrahovki.ru/moscow/companies/d2ins
-Redirect 301 /company/ru/sankt-peterburg/21_vek http://dvestrahovki.ru/moscow/companies/21_vek
-Redirect 301 /company/ru/novosibirsk/nadins/comments http://dvestrahovki.ru/novosibirsk/companies/nadins
-Redirect 301 /company/ru http://dvestrahovki.ru/moscow/companies
-
-Redirect 301 //comments http://dvestrahovki.ru/moscow/comments
-Redirect 301 /company/ru/sankt-peterburg/companion http://dvestrahovki.ru/sankt-peterburg/companies/companion
-Redirect 301 /company/ru/sankt-peterburg/stalfond http://dvestrahovki.ru/sankt-peterburg/companies/stalfond
-Redirect 301 /moscow/companies/moscow/alfastrah http://dvestrahovki.ru/moscow/companies/alfastrah
-Redirect 301 /moscow/companies/moscow/activ http://dvestrahovki.ru/moscow/companies/activ
-Redirect 301 /company/ru/moscow/rgs http://dvestrahovki.ru/moscow/companies/rgs
-Redirect 301 /moscow/companies/moscow/rgs http://dvestrahovki.ru/moscow/companies/rgs
-Redirect /company/by/minsk/belbroker http://dvestrahovki.ru/
-Redirect /company/by/minsk/eximgarant http://dvestrahovki.ru/
-
-Redirect /company/by/minsk/alphabroker http://dvestrahovki.ru/
-Redirect /company/by/minsk/belvneshstrakh http://dvestrahovki.ru/
-Redirect /company/by/minsk http://dvestrahovki.ru/
-Redirect 301 /moscow/companies/moscow/profile-re http://dvestrahovki.ru/moscow/companies/profile-re
-Redirect 301 /moscow/companies/sankt-peterburg/ingos http://dvestrahovki.ru/sankt-peterburg/companies/ingos
-Redirect 301 /moscow/companies/moscow/zhaso http://dvestrahovki.ru/moscow/companies/zhaso
-Redirect 301 /moscow/companies/sankt-peterburg/metlife http://dvestrahovki.ru/sankt-peterburg/companies/metlife
-Redirect 301 /moscow/companies/moscow/sgmsk/comments http://dvestrahovki.ru/moscow/companies/sgmsk/comments
-
-Redirect 301 /moscow/companies/sankt-peterburg/oranta http://dvestrahovki.ru/sankt-peterburg/companies/oranta
-Redirect 301 /moscow/companies/Perm/adonis/comments http://dvestrahovki.ru/perm/companies/adonis/comments
-Redirect 301 /moscow/companies/Perm/alfastrah/comments http://dvestrahovki.ru/perm/companies/alfastrah/comments
-
-Redirect 301 /moscow/companies/moscow http://dvestrahovki.ru
-Redirect 301 /moscow/companies/rostov-na-donu/alfastrah/comments http://dvestrahovki.ru/rostov-na-donu/companies/alfastrah/comments
-Redirect 301 /moscow/companies/novosibirsk/alfastrah/comments http://dvestrahovki.ru/rostov-na-donu/companies/alfastrah/comments
-Redirect /company/kz/astana/alp http://dvestrahovki.ru
-
-Redirect 301 /moscow/companies/moscow/renins http://dvestrahovki.ru/moscow/companies/renins
-Redirect 301 /moscow/companies/moscow/kapital http://dvestrahovki.ru/moscow/companies/kapital
-Redirect /company/ua http://dvestrahovki.ru/
-
-Redirect /company/kz/astana/kompetenz http://dvestrahovki.ru/
-Redirect //kyiv http://dvestrahovki.ru/
-Redirect 301 /moscow/companies/sankt-peterburg/nsglife http://dvestrahovki.ru/sankt-peterburg/companies/nsglife
-Redirect 301 /moscow/companies/sankt-peterburg/nasko/comments http://dvestrahovki.ru/sankt-peterburg/companies/nasko/comments
-Redirect 301 /moscow/companies/rostov-na-donu/allianz http://dvestrahovki.ru/rostov-na-donu/companies/allianz
-Redirect 301 /moscow/companies/rostov-na-donu/allianz/comments http://dvestrahovki.ru/rostov-na-donu/companies/allianz/comments
-Redirect 301 /moscow/companies/omsk http://dvestrahovki.ru/omsk/companies
-Redirect 301 /moscow/companies/moscow/sk_if http://dvestrahovki.ru/moscow/companies/sk_if
-
-Redirect //belingo/comments http://dvestrahovki.ru/
-Redirect /company/kz/astana/interteac http://dvestrahovki.ru/
-Redirect //globus/comments http://dvestrahovki.ru/
-Redirect 301 /sk_if/comments http://dvestrahovki.ru/moscow/companies/sk_if/comments
-Redirect 301 /moscow/companies/sankt-peterburg/companion http://dvestrahovki.ru/sankt-peterburg/companies/companion
-Redirect 301 /moscow/companies/novosibirsk/vsk/comments http://dvestrahovki.ru/novosibirsk/companies/vsk/comments
-Redirect 301 /moscow/companies/novosibirsk/vsk http://dvestrahovki.ru/novosibirsk/companies/vsk
-Redirect 301 /moscow/companies/novosibirsk/vtbins/comments http://dvestrahovki.ru/novosibirsk/companies/vtbins/comments
-Redirect 301 /moscow/companies/rostov-na-donu/vsk/comments http://dvestrahovki.ru/rostov-na-donu/companies/vsk/comments
-Redirect 301 /moscow/companies/rostov-na-donu/vtbins/comments http://dvestrahovki.ru/rostov-na-donu/companies/vtbins/comments
-Redirect 301 /moscow/companies/sankt-peterburg/itil http://dvestrahovki.ru/sankt-peterburg/companies/itil
-Redirect 301 /moscow/companies/sankt-peterburg/ugsk http://dvestrahovki.ru/sankt-peterburg/companies/ugsk
-Redirect 301 /moscow/companies/Rostov-on-Don http://dvestrahovki.ru/rostov-na-donu/companies
-Redirect 301 /moscow/companies/novosibirsk/ingos/comments http://dvestrahovki.ru/novosibirsk/companies/ingos/comments
-Redirect 301 /moscow/companies/novosibirsk/kupecheskoe http://dvestrahovki.ru/novosibirsk/companies/kupecheskoe
-Redirect 301 /moscow/companies/rostov-na-donu/alfastrah http://dvestrahovki.ru/rostov-na-don/companies/alfastrah
-Redirect 301 /moscow/companies/sankt-peterburg/evro/comments http://dvestrahovki.ru/sankt-peterburg/companies/evro/comments
-Redirect 301 /moscow/companies/sankt-peterburg/pari http://dvestrahovki.ru/sankt-peterburg/companies/pari
-Redirect 301 /rostov-na-don/companies/alfastrah http://dvestrahovki.ru/moscow/companies/alfastrah
-
-Redirect 301 /moscow/companies/sankt-peterburg/sov/comments http://dvestrahovki.ru/sankt-peterburg/companies/sov/comments
-Redirect 301 /moscow/companies/sankt-peterburg/gefes http://dvestrahovki.ru/sankt-peterburg/companies/gefes
-Redirect 301 /moscow/companies/sankt-peterburg/nasko http://dvestrahovki.ru/sankt-peterburg/companies/nasko
-Redirect 301 /moscow/companies/novosibirsk/zettains/comments http://dvestrahovki.ru/novosibirsk/companies/zettains/comments
-Redirect 301 /vtb/comments http://dvestrahovki.ru/moscow/companies/vtb/comments
-Redirect 301 /moscow/companies/Omsk http://dvestrahovki.ru/omsk
-Redirect 301 /moscow/companies/sankt-peterburg http://dvestrahovki.ru/sankt-peterburg
-Redirect 301 /moscow/companies/Ekaterinburg http://dvestrahovki.ru/ekaterinburg
-
-Redirect /company/kz/astana/asko http://dvestrahovki.ru
-Redirect 301 /sankt-peterburg/mscins/comments http://dvestrahovki.ru/sankt-peterburg/companies/mscins/comments
-Redirect 301 /sankt-peterburg/sgmsk http://dvestrahovki.ru/sankt-peterburg/companies/sgmsk
-Redirect 301 /aig/comments http://dvestrahovki.ru/moscow/companies/aig/comments
-Redirect 301 /sankt-peterburg/sov http://dvestrahovki.ru/sankt-peterburg/companies/sov
-Redirect 301 /sankt-peterburg/osk http://dvestrahovki.ru/sankt-peterburg/companies/osk
-Redirect 301 //belingo http://dvestrahovki.ru
-Redirect 301 /sankt-peterburg/ask http://dvestrahovki.ru/sankt-peterburg/companies/ask
-Redirect 301 /moscow/companies/krasnodar http://dvestrahovki.ru/krasnodar
-Redirect 301 /moscow/companies/novosibirsk/ingos http://dvestrahovki.ru/novosibirsk/companies/ingos
-Redirect 301 /moscow/companies/Novosibirsk/kupecheskoe/comments http://dvestrahovki.ru/novosibirsk/companies/kupecheskoe/comments
-Redirect 301 /moscow/companies/krasnoyarsk/gefest/comments http://dvestrahovki.ru/krasnoyarsk/companies/gefest/comments
-Redirect 301 /moscow/companies/Perm/adonis http://dvestrahovki.ru/perm/companies/adonis
-Redirect 301 /sankt-peterburg/sgmsk/comments http://dvestrahovki.ru/sankt-peterburg/companies/sgmsk/comments
-Redirect 301 /moscow/companies/perm http://dvestrahovki.ru/perm
-Redirect 301 /moscow/companies/novosibirsk/zettains http://dvestrahovki.ru/novosibirsk/companies/zettains
-
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/css
     AddOutputFilterByType DEFLATE text/javascript
@@ -144,6 +19,13 @@ Redirect 301 /moscow/companies/novosibirsk/zettains http://dvestrahovki.ru/novos
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
+
+    RewriteRule ^/company/ru/moscow/evro-polis$ http://dvestrahovki.ru/moscow/companies/evro-polis [R=301,L]
+    RewriteRule ^/vtb$ http://dvestrahovki.ru/moscow/companies/vtb [R=301,L]
+    RewriteRule ^/company/ru/moscow/ugsk$ http://dvestrahovki.ru/moscow/companies/ugsk [R=301,L]
+    RewriteRule ^/company/ru/nizhny-novgorod/ugsk$ http://dvestrahovki.ru/nizhny-novgorod/companies/ugsk [R=301,L]
+    RewriteRule ^/company/ru/rostov-na-donu/zettains$ http://dvestrahovki.ru/rostov-na-donu/companies/zettains [R=301,L]
+    RewriteRule ^/company/ru/sankt-peterburg/nig$ http://dvestrahovki.ru/sankt-peterburg/companies/nig [R=301,L]
 
     RewriteCond %{HTTP_HOST}	^www\.(.*)	[NC]
     RewriteRule ^(.*)$ http://%1/$1	[R=301,L]
