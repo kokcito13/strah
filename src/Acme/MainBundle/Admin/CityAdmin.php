@@ -46,6 +46,7 @@ class CityAdmin extends Admin
     {
         $formMapper
             ->add('name')
+            ->add('dative')
             ->add('url')
             ->add('lat')
             ->add('lng')

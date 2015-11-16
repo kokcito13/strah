@@ -172,8 +172,8 @@ avalanche_imagine:
             type:    relative_resize
             options: { widen: 70 }
         thumbnail_company_rating:
-            type:    thumbnail
-            options: { size: [54, 38], mode: outbound }
+            type:    relative_resize
+            options: { widen: 58 }
         user_menu:
             type:    thumbnail
             options: { size: [20, 20], mode: outbound }

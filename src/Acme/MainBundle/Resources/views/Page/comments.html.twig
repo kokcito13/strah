@@ -1,13 +1,13 @@
 {% extends '::base_new.html.twig' %}
 
-{% block title %}Отзывы о страховых компаниях в {{ city.name }}: обсуждения и мнения пользователей{% endblock %}
-{% block description %}Ищете отзывы о страховых компаниях в {{ city.name }}? У нас 1000 отзывов о страховых компаниях в вашем городе.{% endblock %}
+{% block title %}Отзывы о страховых компаниях в {{ city.dative }}: обсуждения и мнения пользователей{% endblock %}
+{% block description %}Ищете отзывы о страховых компаниях в {{ city.dative }}? У нас {{ comments | length }} отзывов о страховых компаниях в вашем городе.{% endblock %}
 {% block keywords %}отзывы страховые компании город {{ city.name }} комментарии полестители{% endblock %}
 
 {% block breadcrumbs %}
     <div class="container-fluid head-page">
         <div class="container">
-            <h1>Отзывы о страховых компаниях в {{ currentCity().name }}</h1>
+            <h1>Отзывы о страховых компаниях в {{ currentCity().dative }}</h1>
             <span class="text-muted">Более {{ comments | length }} отзывов о страховых компаниях, оценки качества предоставления услух, мнения клиентов, советы и рекомендации, которые помогут вам определиться с выбором.</span>
         </div>
     </div>

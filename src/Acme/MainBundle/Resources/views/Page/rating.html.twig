@@ -1,72 +1,95 @@
-{% extends '::base.html.twig' %}
+{% extends '::base_new.html.twig' %}
 
-{% block title %}Рейтинг страховых компаний в городе {{ city.name }} на DveStrahovki{% endblock %}
-{% block description %}Представляем рейтинг страховых компаний от DveStrahovki в городе {{ city.name }} на основе отзывов реальных посетителей сайта и активности страховых компаний.{% endblock %}
+{% block title %}Рейтинг страховых компаний в {{ city.dative }} на DveStrahovki{% endblock %}
+{% block description %}Представляем рейтинг страховых компаний от DveStrahovki в {{ city.dative }} на основе отзывов реальных посетителей сайта и активности страховых компаний.{% endblock %}
 {% block keywords %}рейтинг страховые компании город {{ city.name }} отзывы полестители{% endblock %}
 
-{% block body %}
-    <div class="row gallery-row rating">
-        <div class="span12">
-            {% for company in companies %}
-                {% set companyUrl = path('client_company_show', {
-                "city_url": company.city.url,
-                "company_url": company.url
-                }) %}
-                {% set companyCommentsUrl = path('client_company_show_comments', {
-                "city_url": company.city.url,
-                "company_url": company.url
-                }) %}
-                <div class="item">
-                    <span class="number">{{ loop.index }}</span>
-                    <div class="school-img-container">
-                        <a href="{{ companyUrl }}">
-                            <img src="{{ company.getWebPath() | apply_filter('thumbnail_company_rating') }}" alt="{{ company.getImageAltView() }}" width="54" height="38">
-                        </a>
-                    </div>
-                    <a href="{{ companyUrl }}" class="school-rate-link">{{ company.name }}</a><div class="shortcuts rating-shortcuts"><span class="rating-shortcut">
-                            <i class="ico"></i>
-                            <span>{% if company.rating == 0 %}0.00{% else %}{{ company.rating/100 }}{% endif %}</span>
-                        </span><a class="comments-shortcut" href="{{ companyCommentsUrl }}">
-                            <i class="ico"></i>
-                            <span>{{ company.comments|length }}</span>
-                        </a></div>
-                    <div class="clear"></div>
-                </div>
-            {% endfor %}
+{% block breadcrumbs %}
+    <div class="container-fluid head-page">
+        <div class="container">
+            <h1>Рейтинг страховых компаниях в {{ currentCity().dative }}</h1>
+            {#<span class="text-muted">Более {{ comments | length }} отзывов о страховых компаниях, оценки качества предоставления услух, мнения клиентов, советы и рекомендации, которые помогут вам определиться с выбором.</span>#}
         </div>
     </div>
-    <style>
-        .rating .item {
-            border-top: 1px solid #ececec;
-            padding: 15px 0;
-        }
-        .rating .item .school-img-container {
-            float: left;
-            background: #fff;
-            padding: 1px;
-            border: 1px solid #e9e6d6;
-            -webkit-border-radius: 5px;
-            border-radius: 5px;
-        }
-        .rating .item .number {
-            color: #b3b3b3;
-            float: left;
-            margin-right: 15px;
-            width: 15px;
-            line-height: 44px;
-        }
-        .rating .item .school-rate-link a {
-            text-decoration: none;
-            display: inline-block;
-            height: 15px;
-            color: #0098d7;
-            border-bottom: 1px solid #b2e0f3;
-        }
-        .rating .item .school-rate-link {
-            float: left;
-            margin-left: 20px;
-            font-size: 14px;
-            margin-top: 14px;
-        }
-    </style>
+{% endblock %}
+
+{% block main %}
+    <div class="company-list">
+        {% for company in companies %}
+            {% set companyUrl = path('client_company_show', {
+            "city_url": company.city.url,
+            "company_url": company.url
+            }) %}
+            {% set companyCommentsUrl = path('client_company_show_comments', {
+            "city_url": company.city.url,
+            "company_url": company.url
+            }) %}
+            <article class="one-company clearfix">
+                <span class="numb-list">{{ loop.index }}</span>
+                <div class="img-box">
+                    <a href="{{ companyUrl }}">
+                        <img src="{{ company.getWebPath() | apply_filter('thumbnail_company_rating') }}"  alt="{{ company.getImageAltView() }}" width="58"/>
+                    </a>
+                </div>
+                <div class="name-company">
+                    <a href="{{ companyUrl }}">{{ company.name }}</a>
+                </div>
+                <div class="info-box clearfix">
+                    <span class="c-review">{{ company.comments|length }}</span>
+                    <span class="c-star">{% if company.rating == 0 %}0.00{% else %}{{ company.rating/100 }}{% endif %}</span>
+                </div>
+            </article>
+        {% endfor %}
+    </div>
+    <nav>
+        <ul class="pagination clearfix">
+            <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><span>...</span></li>
+            <li><a href="#">15</a></li>
+        </ul>
+    </nav>
+
+    {#<div class="row gallery-row rating">#}
+        {#<div class="span12">#}
+
+        {#</div>#}
+    {#</div>#}
+    {#<style>#}
+        {#.rating .item {#}
+            {#border-top: 1px solid #ececec;#}
+            {#padding: 15px 0;#}
+        {#}#}
+        {#.rating .item .school-img-container {#}
+            {#float: left;#}
+            {#background: #fff;#}
+            {#padding: 1px;#}
+            {#border: 1px solid #e9e6d6;#}
+            {#-webkit-border-radius: 5px;#}
+            {#border-radius: 5px;#}
+        {#}#}
+        {#.rating .item .number {#}
+            {#color: #b3b3b3;#}
+            {#float: left;#}
+            {#margin-right: 15px;#}
+            {#width: 15px;#}
+            {#line-height: 44px;#}
+        {#}#}
+        {#.rating .item .school-rate-link a {#}
+            {#text-decoration: none;#}
+            {#display: inline-block;#}
+            {#height: 15px;#}
+            {#color: #0098d7;#}
+            {#border-bottom: 1px solid #b2e0f3;#}
+        {#}#}
+        {#.rating .item .school-rate-link {#}
+            {#float: left;#}
+            {#margin-left: 20px;#}
+            {#font-size: 14px;#}
+            {#margin-top: 14px;#}
+        {#}#}
+    {#</style>#}
 {% endblock %}

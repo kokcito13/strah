@@ -46,7 +46,7 @@ h4 { font-size: 0.875rem; }
     padding: 5px 8px 4px 8px;
     border-radius: 4px; -moz-border-radius: 4px; -webkit-border-radius: 4px;
 }
-a.btn { padding: 3px 8px 4px 8px; }
+a.btn { padding: 4px 8px 4px 8px; }
 .btn-danger { background: #c1392b; border-color: #c1392b }
 
 .img-box img { display: block }
@@ -95,7 +95,7 @@ a.btn { padding: 3px 8px 4px 8px; }
     width: 14px; height: 8px;
     background: url("../img/icons.png") -17px 0 no-repeat;
 }
-.main-menu li.li-in-menu:hover > a { color: #333; position: relative; z-index: 2; }
+.main-menu li.li-in-menu:hover > a { color: #d8450b !important; /*color: #333;*/ position: relative; z-index: 2; }
 .main-menu li.li-in-menu:hover .dop-menu { display: block }
 .dop-menu {
     background: #fff; display: none; z-index: 1;
@@ -104,19 +104,31 @@ a.btn { padding: 3px 8px 4px 8px; }
     list-style-type: none; border: 1px solid #eeeeee; border-top: none;
     border-radius: 0 0 4px 4px; -moz-border-radius: 0 0 4px 4px; -webkit-border-radius: 0 0 4px 4px;
 }
-.dop-menu li { letter-spacing: 0; padding-bottom: 6px; font-size: 14px; float: none; font-weight: normal; text-transform: none }
+.dop-menu li { letter-spacing: 0; padding-bottom: 6px; font-size: 0.875rem; float: none; font-weight: normal; text-transform: none }
 .city-menu { list-style-type: none; margin: 0; padding: 1px 0 0 0; }
-.city-menu li { padding-left: 29px; letter-spacing: 0.5px; float: left; font-size: 14px; }
+.city-menu li { padding-left: 29px; letter-spacing: 0.5px; float: left; font-size: 0.875rem; }
 .city-menu li:first-child { padding-left: 0; }
 .city-menu li.active a, .city-menu a:hover { color: #d8450b; }
-.city-menu a { text-decoration: none; display: block; color: #777777; font-size: 14px; }
+.city-menu a { text-decoration: none; display: block; color: #777777; font-size: 0.875rem; }
 .city-menu li.hideshow { position:relative; }
-.city-menu li.hideshow ul { margin-top: 5px; padding: 0; list-style-type: none; position:absolute; background: #383838; display:none; left:29px; }
+.city-menu li.hideshow:hover {
+    padding: 0;
+    margin: -1px -5px 0 24px;
+    background: #fff;
+    border: 1px solid #f1f1f1; border-bottom: none;
+    border-radius: 4px 4px 0 0; -moz-border-radius: 4px 4px 0 0; -webkit-border-radius: 4px 4px 0 0;
+}
+.city-menu li.hideshow:hover > a { background: #fff;  padding: 0 4px 2px 4px; position:relative; z-index: 2; }
+.city-menu li.hideshow ul {
+    margin-top: 1px; padding: 2px 0 3px 0; list-style-type: none; position:absolute; background: #fff; display:none; left:-1px;
+    border: 1px solid #f1f1f1; z-index: 1;
+    border-radius: 0 4px 4px 4px; -moz-border-radius: 0 4px 4px 4px; -webkit-border-radius: 0 4px 4px 4px;
+}
 .city-menu li.hideshow a { cursor: pointer; }
-.city-menu li.hideshow li { white-space: nowrap; padding: 0; float: none; }
-.city-menu li.hideshow li:hover { background: #d8450b; }
-.city-menu li.hideshow li a { border-bottom: 1px solid #474747; color: #ababab; display: block; padding: 5px; margin: 0 5px; }
-.city-menu li.hideshow li a:hover { color: #f9f9f9; border-bottom: 1px solid #d8450b; }
+.city-menu li.hideshow li { font-size: 0.75rem; white-space: nowrap; padding: 0; float: none; }
+.city-menu li.hideshow li:hover {  }
+.city-menu li.hideshow li a { font-size: 0.75rem; color: #777777; display: block; margin: 0 5px; }
+.city-menu li.hideshow li a:hover { color: #d8450b;  }
 .arrow-down { margin-top: 10px; width: 8px; height: 5px; display: inline-block; vertical-align: top; background: url("../img/icons.png") 0 0 no-repeat }
 .show-a.active { color: #d8450b; }
 .show-a.active .arrow-down, .show-a:hover .arrow-down { background: url("../img/icons.png") -9px 0 no-repeat }
@@ -135,6 +147,36 @@ a.btn { padding: 3px 8px 4px 8px; }
 .one-review .body-review { margin-left: 4.9375rem; }
 .one-review .body-review header { color: #999; padding-bottom: 6px; }
 .one-review .body-review header a { font-family: 'ProximaNovaSemibold', Tahoma, Arial, Verdana, sans-serif; display: inline-block }
+
+.company-list { padding-top: 15px; }
+.one-company { margin-bottom: 1.94rem; }
+.one-company:last-child { margin-bottom: 1.19rem; }
+.one-company a { color: #d8450b }
+.one-company a:hover { color: #6890bb }
+.one-company .numb-list { line-height: 2.625rem; float: left; width: 1.69rem; color: #999999; }
+.one-company .img-box {
+    text-align: center; margin-right: 1.31rem; line-height: 2.375rem;
+    float: left; width: 3.5rem; height: 2.625rem; border: 1px solid #eeeeee;
+    border-radius: 4px; -moz-border-radius: 4px; -webkit-border-radius: 4px;
+}
+.one-company .img-box img { margin: 0 auto; display: inline-block; line-height: 1px; }
+.one-company .name-company { float: left; font-size: 0.875rem; line-height: 2.625rem; }
+.one-company .info-box { padding-top: 0.81rem; margin-right: 1.875rem; float: right; font-family: 'ProximaNovaBold', Tahoma, Arial, Verdana, sans-serif; font-size: 1rem; }
+.one-company .info-box .c-review { margin-right: 1.69rem; position: relative; padding-left: 24px; float: left; display: block; color: #666666; }
+.one-company .info-box .c-review:before {
+    position: absolute; content: '';
+    top: 2px; left: 0; display: inline-block;
+    width: 19px; height: 13px; vertical-align: top;
+    background: url("../img/icons.png") -17px -8px no-repeat ;
+}
+.one-company .info-box .c-star { position: relative; padding-left: 19px; float: left; display: block; color: #ffa000; }
+.one-company .info-box .c-star:before {
+    position: absolute; content: '';
+    top: 1px; left: 0; display: inline-block;
+    width: 16px; height: 15px; vertical-align: top;
+    background: url("../img/icons.png") 0 -8px no-repeat ;
+}
+
 .pagination { margin: 1.1875rem 0; }
 .pagination > li { margin-right: 0.5625rem; display: block; float: left; }
 .pagination > li > a,
@@ -153,7 +195,7 @@ a.btn { padding: 3px 8px 4px 8px; }
 .pagination > .active > a:hover,
 .pagination > .active > span,
 .pagination > .active > span:focus,
-.pagination > .active > span:hover { color: #d8450b; background: #999; border-color: #999; }
+.pagination > .active > span:hover { color: #d8450b; background: #eeeeee; border-color: #eeeeee; }
 
 .map-box {
     border: 1px solid #eeeeee; padding: 17px 9px 20px 9px;

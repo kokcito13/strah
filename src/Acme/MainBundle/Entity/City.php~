@@ -32,6 +32,13 @@ class City
     /**
      * @var string
      *
+     * @ORM\Column(name="dative", type="string", length=255)
+     */
+    private $dative;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="url", type="string", length=255)
      */
     private $url;

@@ -32,6 +32,13 @@ class City
     /**
      * @var string
      *
+     * @ORM\Column(name="dative", type="string", length=255)
+     */
+    private $dative;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="url", type="string", length=255)
      */
     private $url;
@@ -222,5 +229,28 @@ class City
     public function getLng()
     {
         return $this->lng;
+    }
+
+    /**
+     * Set dative
+     *
+     * @param string $dative
+     * @return City
+     */
+    public function setDative($dative)
+    {
+        $this->dative = $dative;
+
+        return $this;
+    }
+
+    /**
+     * Get dative
+     *
+     * @return string 
+     */
+    public function getDative()
+    {
+        return $this->dative;
     }
 }
