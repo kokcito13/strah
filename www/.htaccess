@@ -20,21 +20,27 @@ DirectoryIndex app.php
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    RewriteRule ^/company/ru/moscow/evro-polis$ http://dvestrahovki.ru/moscow/companies/evro-polis [R=301,L]
-    RewriteRule ^/vtb$ http://dvestrahovki.ru/moscow/companies/vtb [R=301,L]
-    RewriteRule ^/company/ru/moscow/ugsk$ http://dvestrahovki.ru/moscow/companies/ugsk [R=301,L]
-    RewriteRule ^/company/ru/nizhny-novgorod/ugsk$ http://dvestrahovki.ru/nizhny-novgorod/companies/ugsk [R=301,L]
-    RewriteRule ^/company/ru/rostov-na-donu/zettains$ http://dvestrahovki.ru/rostov-na-donu/companies/zettains [R=301,L]
-    RewriteRule ^/company/ru/sankt-peterburg/nig$ http://dvestrahovki.ru/sankt-peterburg/companies/nig [R=301,L]
-    RewriteRule ^/company/ru/moscow/vtb$ http://dvestrahovki.ru/moscow/companies/vtb [R=301,L]
-    RewriteRule ^/company/ru/krasnodar/gefest$ http://dvestrahovki.ru/krasnodar/companies/gefest [R=301,L]
-    RewriteRule ^/company/ru/krasnodar/zhaso$ http://dvestrahovki.ru/krasnodar/companies/zhaso [R=301,L]
-    RewriteRule ^/novosibirsk/companies/alfastrah/comments$ http://dvestrahovki.ru/krasnodar/companies/alfastrah/comments [R=301,L]
-    RewriteRule ^/moscow/companies/novosibirsk/alfastrah$ http://dvestrahovki.ru/krasnodar/companies/alfastrah [R=301,L]
-    RewriteRule ^/moscow/companies/novosibirsk/nadins$ http://dvestrahovki.ru/novosibirsk/companies/nadins [R=301,L]
-    RewriteRule ^/moscow/companies/rostov-na-donu/gefest$ http://dvestrahovki.ru/rostov-na-donu/companies/gefest [R=301,L]
-    RewriteRule ^/krasnodar/gefest$ http://dvestrahovki.ru/krasnodar/companies/gefest [R=301,L]
-    RewriteRule ^/moscow/companies/rostov-na-donu/gefest/comments$ http://dvestrahovki.ru/rostov-na-donu/companies/gefest/comments [R=301,L]
+#    RewriteRule ^/company/ru/moscow/evro-polis$ http://dvestrahovki.ru/moscow/companies/evro-polis [L,R=301]
+#    RewriteRule ^/vtb$ http://dvestrahovki.ru/moscow/companies/vtb [R=301,L]
+#    RewriteRule ^/company/ru/moscow/ugsk$ http://dvestrahovki.ru/moscow/companies/ugsk [R=301,L]
+#    RewriteRule ^/company/ru/nizhny-novgorod/ugsk$ http://dvestrahovki.ru/nizhny-novgorod/companies/ugsk [R=301,L]
+#    RewriteRule ^/company/ru/rostov-na-donu/zettains$ http://dvestrahovki.ru/rostov-na-donu/companies/zettains [R=301,L]
+#    RewriteRule ^/company/ru/sankt-peterburg/nig$ http://dvestrahovki.ru/sankt-peterburg/companies/nig [R=301,L]
+#    RewriteRule ^/company/ru/moscow/vtb$ http://dvestrahovki.ru/moscow/companies/vtb [R=301,L]
+#    RewriteRule ^/company/ru/krasnodar/gefest$ http://dvestrahovki.ru/krasnodar/companies/gefest [R=301,L]
+#    RewriteRule ^/company/ru/krasnodar/zhaso$ http://dvestrahovki.ru/krasnodar/companies/zhaso [R=301,L]
+#    RewriteRule ^/novosibirsk/companies/alfastrah/comments$ http://dvestrahovki.ru/krasnodar/companies/alfastrah/comments [R=301,L]
+#    RewriteRule ^/moscow/companies/novosibirsk/alfastrah$ http://dvestrahovki.ru/krasnodar/companies/alfastrah [R=301,L]
+#    RewriteRule ^/moscow/companies/novosibirsk/nadins$ http://dvestrahovki.ru/novosibirsk/companies/nadins [R=301,L]
+#    RewriteRule ^/moscow/companies/rostov-na-donu/gefest$ http://dvestrahovki.ru/rostov-na-donu/companies/gefest [R=301,L]
+#    RewriteRule ^/krasnodar/gefest$ http://dvestrahovki.ru/krasnodar/companies/gefest [R=301,L]
+#    RewriteRule ^/moscow/companies/rostov-na-donu/gefest/comments$ http://dvestrahovki.ru/rostov-na-donu/companies/gefest/comments [R=301,L]
+#    RewriteRule ^/moscow/companies/novosibirsk/nadins$ http://dvestrahovki.ru/novosibirsk/companies/nadins [R=301,L]
+#    RewriteRule ^/moscow/companies/Novosibirsk/allianz/comments$ http://dvestrahovki.ru/novosibirsk/companies/allianz/comments [R=301,L]
+#    RewriteRule ^/moscow/companies/Samara/alfastrah/comments$ http://dvestrahovki.ru/samara/companies/alfastrah/comments [R=301,L]
+#    RewriteRule ^/moscow/companies/rostov-na-donu$ http://dvestrahovki.ru/rostov-na-donu/companies [R=301,L]
+#    RewriteRule ^/sankt-peterburg/liberty$ http://dvestrahovki.ru/sankt-peterburg/companies/liberty [R=301,L]
+#    RewriteRule ^/company/kz/astana$ http://dvestrahovki.ru [L]
 
     RewriteCond %{HTTP_HOST}	^www\.(.*)	[NC]
     RewriteRule ^(.*)$ http://%1/$1	[R=301,L]
@@ -60,6 +66,7 @@ DirectoryIndex app.php
     <IfModule mod_alias.c>
     
         RedirectMatch 302 ^/$ /app.php/
+        RedirectMatch 301 ^/company/ru/moscow/evro-polis$ http://dvestrahovki.ru/moscow/companies/evro-polis
 
     </IfModule>
 </IfModule>
