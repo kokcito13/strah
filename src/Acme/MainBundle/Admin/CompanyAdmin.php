@@ -20,6 +20,7 @@ class CompanyAdmin extends Admin
             ->add('name')
             ->add('url')
             ->add('status')
+            ->add('city')
         ;
     }
 
@@ -29,7 +30,7 @@ class CompanyAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('name')
+            ->add('nameWithCity')
             ->add('status')
             ->add('_action', 'actions', array(
                 'actions' => array(

@@ -253,4 +253,9 @@ class City
     {
         return $this->dative;
     }
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }

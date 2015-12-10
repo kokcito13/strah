@@ -663,4 +663,9 @@ class Company
     {
         return $this->status;
     }
+
+    public function  getNameWithCity()
+    {
+        return $this->getName().' в '.$this->getCity()->getDative();
+    }
 }
