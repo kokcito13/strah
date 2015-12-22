@@ -30,7 +30,7 @@ function alignMenu() {
         + '</a><ul>' + menuhtml + '</ul></li>');
     $(".city-menu li.hideshow ul").css("top",
         $(".city-menu li.hideshow").outerHeight(true) + "px");
-    $(".city-menu li.hideshow").click(function() {
+    $(".city-menu li.hideshow").hover(function() {
         $(this).children("ul").toggle();
         $('.show-a').toggleClass('active');
     });

@@ -16,40 +16,7 @@
 {% block main %}
     <div class="review-list">
         {% for comment in comments %}
-            {% set companyUrl = path('client_company_show', {
-            "city_url": comment.company.city.url,
-            "company_url": comment.company.url
-            }) %}
-            {% set companyCommentsUrl = path('client_company_show_comments', {
-            "city_url": comment.company.city.url,
-            "company_url": comment.company.url
-            }) %}
-            <article class="one-review clearfix">
-                <div class="img-box img-circle">
-                    <a href="{{ companyCommentsUrl }}">
-                        <img src="{{ comment.user.socialPicture }}" alt="{{ comment.user.getFullName() }} аватарка" width="56" height="56" />
-                    </a>
-                </div>
-                <div class="body-review">
-                    <header>
-                        <a href="{{ path('user_show', {id: comment.user.id}) }}">{{ comment.user.getFullName() }}</a> оставил(а)
-                        <a href="{{ companyCommentsUrl }}#comment{{ comment.id }}" class="dark">отзыв</a> о
-                        <a href="{{ companyUrl }}" class="red">{{ comment.company.name }}</a> в {{ comment.createdAt | date('H:i, d.m.Y') }}
-                    </header>
-                    <p>{{ comment.text | raw }}</p>
-                </div>
-            </article>
+            {{ include('AcmeMainBundle:Company/blocks:_comment.html.twig') }}
         {% endfor %}
     </div>
-    {#<nav>#}
-        {#<ul class="pagination clearfix">#}
-            {#<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>#}
-            {#<li><a href="#">2</a></li>#}
-            {#<li><a href="#">3</a></li>#}
-            {#<li><a href="#">4</a></li>#}
-            {#<li><a href="#">5</a></li>#}
-            {#<li><span>...</span></li>#}
-            {#<li><a href="#">15</a></li>#}
-        {#</ul>#}
-    {#</nav>#}
 {% endblock %}

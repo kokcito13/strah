@@ -1,0 +1,23 @@
+{% set companyUrl = path('client_company_show', {
+    "city_url": comment.company.city.url,
+    "company_url": comment.company.url
+}) %}
+{% set companyCommentsUrl = path('client_company_show_comments', {
+    "city_url": comment.company.city.url,
+    "company_url": comment.company.url
+}) %}
+<article class="one-review clearfix">
+    <div class="img-box img-circle">
+        <a href="{{ companyCommentsUrl }}">
+            <img src="{{ comment.user.socialPicture }}" alt="{{ comment.user.getFullName() }} аватарка" width="56" height="56" />
+        </a>
+    </div>
+    <div class="body-review">
+        <header>
+            <a href="{{ path('user_show', {id: comment.user.id}) }}">{{ comment.user.getFullName() }}</a> оставил(а)
+            <a href="{{ companyCommentsUrl }}#comment{{ comment.id }}" class="dark">отзыв</a> о
+            <a href="{{ companyUrl }}" class="red">{{ comment.company.name }}</a> в {{ comment.createdAt | date('H:i, d.m.Y') }}
+        </header>
+        <p>{{ comment.text | raw }}</p>
+    </div>
+</article>

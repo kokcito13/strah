@@ -211,12 +211,12 @@ class PageController extends Controller
             ));
         }
 
-        $entities = $em->getRepository('AcmeMainBundle:Post')->findForPage(false, 8);
+        $entities = $em->getRepository('AcmeMainBundle:Post')->findForPage(false, 4);
 
         $city = $this->get('city.service')->getCity();
 
         $companiesPopular = $em->getRepository('AcmeMainBundle:Company')
-            ->getTop(false, 5, $city);
+            ->getTop(false, 8, $city);
 
         $comments = $em->getRepository('AcmeMainBundle:Comment')
             ->getLastComments(5, $city);

@@ -1,4 +1,4 @@
-{% extends '::base.html.twig' %}
+{% extends '::base_new.html.twig' %}
 
 {% block title %}Страховые компании в {{ currentCity().name }} на DveStrahovki. Все виды услуг страховых компаний в {{ currentCity().name }}. Отзывы и стоимость, услуги, подробная информация о компаниях.{% endblock %}
 {% block description %}DveStrahovki – портал о страховке. Все страховые компании {{ currentCity().name }}. Отзывы, услуги, новости и события.{% endblock %}
@@ -8,172 +8,43 @@
     <meta name="google-site-verification" content="vBnA1AXjmHnpGFFpV8kJWL9PSL0SLtnhVUxGIlECIQE" />
 {% endblock %}
 {% block javascripts %}{% endblock %}
-{% block body %}
-    <!--noindex-->
-    {#<div class="row headline">#}
-        {#<div class="span12"><!-- Begin sidebar column -->#}
-            {#<div class="row" style="text-align: center">#}
-                {#<h1>DveStrahovki помогут вам подобрать</h1>#}
-                {#<p class="lead">страховую компанию в России</p>#}
-            {#</div>#}
-            {#<div class="row clearfix" style="text-align: center">#}
-                {#<ul class="gallery-post-grid holder">#}
-                    {#<li class="span3 gallery-item" data-id="id-1" data-type="illustration">#}
-                        {#<a href="{{ path('client_category_show',{ 'category_url': "health" }) }}">#}
-                            {#<img src="http://www.clipartsfree.de/images/joomgallery/details/finanzen_clipart-bilder_10/insurance_clip_art_20140814_1284211961.png" alt="Gallery" class="img-circle img_advantages">#}
-                        {#</a>#}
-                    {#</li>#}
-                    {#<li class="span3 gallery-item" data-id="id-2" data-type="illustration">#}
-                        {#<a href="{{ path('client_category_show',{ 'category_url': "auto" }) }}">#}
-                            {#<img src="http://www.clipartguide.com/_named_clipart_images/0511-1002-2501-1027_Car_Keys_and_Insurance_Paper_clipart_image.jpg" alt="Gallery" class="img-circle img_advantages">#}
-                        {#</a>#}
-                    {#</li>#}
-                    {#<li class="span3 gallery-item" data-id="id-3" data-type="web">#}
-                        {#<a href="{{ path('client_category_show',{ 'category_url': "social" }) }}">#}
-                            {#<img src="http://dvestrahovki.ru/media/cache/in_post/uploads/posts/144/1-2.jpeg" alt="Gallery" class="img-circle img_advantages">#}
-                        {#</a>#}
-                    {#</li>#}
-                {#</ul>#}
-            {#</div>#}
-            {#<div class="row" style="text-align: center">#}
-                {#<a href="{{ path('page_catalog') }}" class="btn btn-large btn-warning">Перейти к выбору компании</a>#}
-            {#</div>#}
-        {#</div>#}
-    {#</div>#}
-    <div class="row headline">
-        <div class="span12">
-            <div class="row" style="text-align: center">
-                <h2>Познакомьтесь с популярными компаниями</h2>
-            </div>
-            <div class="row">
-                <div class="span1"></div>
-                {% for company in companies %}
-                    <div class="span2">
-                        <div class="school-item">
-                            <a class="link-to" href="{{ path('client_company_show', {
-                            "city_url": company.city.url,
-                            "company_url": company.url
-                            }) }}">
-                            <span class="school-item-img">
-                                <img src="{{ company.getWebPath() | apply_filter('thumbnail_popular') }}"
-                                     alt="{{ company.getImageAltView() }}" width="122" height="86">
-                            </span>
-                                <span class="school-item-text"><span>{{ company.name }}</span></span>
-                            </a>
-                        </div>
-                    </div>
-                {% endfor %}
-                <div class="span1"></div>
-            </div>
-            <div class="row" style="text-align: center">
-                <a href="{{ path('page_catalog', {city_url: currentCity().url}) }}" class="btn btn-large btn-warning">Выбрать компанию</a>
-            </div>
-        </div>
-    </div>
-    <!--/noindex-->
-    <div class="row gallery-row">
-        <div class="span12">
-            <div class="row" style="text-align: center">
-                <h2>Последние публикации</h2>
-            </div>
-            <div class="row clearfix no-margin">
-                {% for post in entities %}
-                    {% if loop.index < 5 %}
-                        {% set url = path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) %}
-                        <div class="span3">
-                            <div class="news-item">
-                                <a class="news-item-img" href="{{ url }}">
-                                    <img src="{{ post.getWebPath() | apply_filter('thumbnail_index_post') }}" alt="{{ post.imageAlt }}" width="200" height="140">
-                                </a>
-                                <div class="news-item-data">
-                                    <span class="news-item-author">{{ post.category.name }}</span>
-                                    <a class="news-item-link-to" href="{{ url }}">{{ post.name }}</a>
-                                </div>
-                            </div>
-                        </div>
-                    {% endif %}
-                {% endfor %}
-            </div>
-            <div class="row clearfix no-margin">
-                {% for post in entities %}
-                    {% if loop.index > 4 %}
-                        {% set url = path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) %}
-                        <div class="span3">
-                            <div class="news-item">
-                                <a class="news-item-img" href="{{ url }}">
-                                    <img src="{{ post.getWebPath() | apply_filter('thumbnail_index_post') }}" alt="{{ post.imageAlt }}" width="200" height="140">
-                                </a>
-                                <div class="news-item-data">
-                                    <span class="news-item-author">{{ post.category.name }}</span>
-                                    <a class="news-item-link-to" href="{{ url }}">{{ post.name }}</a>
-                                </div>
-                            </div>
-                        </div>
-                    {% endif %}
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-    <div class="span12">
-        <div class="row clearfix no-margin">
-            <div class="span8">
-                <div class="row" style="text-align: left">
-                    <a href="{{ path('company_comments', {city_url: currentCity().url}) }}"><b>Новые отзывы</b> о страховых компаниях</a>
-                </div>
-                <div class="row">
+
+{% block container %}
+    {{ include('AcmeMainBundle:Page:_index_companies.html.twig') }}
+    {{ include('AcmeMainBundle:Page:_index_posts.html.twig') }}
+
+    <div class="container clearfix">
+        <div class="row">
+            <div class="col-md-9">
+                <h4 class="head-text"><strong>Новые отзывы</strong> о страховых компаниях в Москве</h4>
+                <div class="review-list">
                     {% for comment in comments %}
-                        {% set companyUrl = path('client_company_show', {
-                        "city_url": comment.company.city.url,
-                        "company_url": comment.company.url
-                        }) %}
-                        {% set companyCommentsUrl = path('client_company_show_comments', {
-                        "city_url": comment.company.city.url,
-                        "company_url": comment.company.url
-                        }) %}
-                        <ul>
-                            <li>
-                                <img src="{{ comment.user.socialPicture }}" alt="{{ comment.user.getFullName() }} аватарка" width="25" height="25">
-                                <span class="comment-name">{{ comment.user.getFullName() }}</span>
-                                <span class="comment-date">оставил <a href="{{ companyCommentsUrl }}">отзыв</a> o <a href="{{ companyUrl }}">{{ comment.company.name }}</a> в {{ comment.createdAt | date('H:i, d-m-Y') }}</span>
-                                {#<br>#}
-                                <div class="comment-content">{{ comment.text }}</div>
-                            </li>
-                        </ul>
+                        {{ include('AcmeMainBundle:Company/blocks:_comment.html.twig') }}
                     {% endfor %}
                 </div>
-            </div>
-            <div class="span4">
-                <div class="row" style="text-align: left">
-                    <a href="{{ path('company_rating', {city_url: currentCity().url}) }}"><b>Рейтинг</b> страховых компаний</a>
+                <div class="btn-block view-all-review">
+                    <a href="{{ path('company_comments', {city_url: currentCity().url}) }}" class="btn btn-danger">Посмотреть все отзывы</a>
+                    <span class="text-muted">3,810 отзывов о компаниях на сайте Две страховки</span>
                 </div>
-                <div class="row">
+            </div>
+            <div class="col-md-3">
+                <h4 class="head-text"><strong>Рейтинг</strong> страховых компаний</h4>
+                <div class="company-list crop-info">
                     {% for company in companies %}
-                        <ul>
-                            <li>
+                        <article class="one-company clearfix">
+                            <div class="name-company">
                                 <a href="{{ path('client_company_show', {
-                                "city_url": company.city.url,
-                                "company_url": company.url
-                                }) }}">
-                                    <span class="school-item-text"><span>{{ company.name }}</span></span>
-                                </a>
-                            </li>
-                        </ul>
+                                    "city_url": company.city.url,
+                                    "company_url": company.url
+                                }) }}">{{ company.name }}</a>
+                            </div>
+                            <div class="info-box clearfix">
+                                <span class="c-star">{% if company.rating == 0 %}0.00{% else %}{{ company.rating/100 }}{% endif %}</span>
+                            </div>
+                        </article>
                     {% endfor %}
                 </div>
             </div>
         </div>
     </div>
-    {#<div class="row" id="about">#}
-        {#<div class="span12">#}
-            {#<h2>О проекте «Две страховки»</h2>#}
-            {#<p>Абсолютно все из нас сталкивались с таким понятием как страхование. У одних есть только медицинский страховой полюс, у других страховка на автомобиль, а есть и те кто страхует свой бизнес, имущество и даже жизнь.</p>#}
-            {#<p>Чтобы правильно выполнить всю процедуру страховки и не наткнуться на огромное количество подводных камней, требуется квалифицированная помощь специалиста. Если полагаться исключительно на свои познания или ощущения можно в итоге, при наступлении страхового случая, получить компенсацию в заниженном размере или что еще хуже вообще оказаться без возмещения ущерба.</p>#}
-            {#<p>Найти хорошего специалиста в области страхования не трудно. Сейчас существует множество частных адвокатов и страховых компаний, которые с удовольствием предложат весь спектр своих услуг и самых лучших специалистов, чтобы угодить клиенту. Существует лишь одно «но» - стоимость.</p>#}
-            {#<p>Многие могут скептически отнестись к этому нюансу и подойти к вопросу со словами «раз решил застраховаться, значить есть на это деньги». Отчасти это правильно, но любой даже успешный предприниматель всегда экономит не только свое время, но и свои финансы.</p>#}
-            {#<p>Для тех кто действительно не хочет тратить время зря, а желает получить исчерпывающую информацию о любом виде страхования был создан ресурс «Две страховки». В наше время развития интернет технологий с помощью нескольких нажатий можно не только узнать о стоимости, условиях и принципах страхования. Все желающие могут получить онлайн консультации на интересующие темы.</p>#}
-            {#<p>Больше не понадобится записываться на прием к страховому агенту, ехать через весь город и оплачивать серьезные суммы за разъяснения по и так понятным вопросам. Проект «Две страховки» разработан так же для тех кто только думает застраховать имущество, но нет времени или особого желания платить за консультации.</p>#}
-            {#<p>Пролистав страницы проекта многие могут задуматься о том, что страхование не только груз ответственности и дополнительные финансовые затраты, но и серьезная помощь при незапланированных и экстремальных ситуациях, которые в нашей жизни отнюдь не редкость.</p>#}
-            {#<p>Вложив определенную сумму сейчас можно действительно обезопасить себя в будущем. И даже если страховой случай не наступит, что уже само по себе очень хорошо, вложенные деньги дают уверенность в завтрашнем дне, а это очень важно в наше не стабильное время.</p>#}
-        {#</div>#}
-    {#</div>#}
 {% endblock %}

@@ -1,0 +1,22 @@
+<div class="container last-article">
+    <h2 class="text-center">Последние публикации</h2>
+    <div class="row list-card-company">
+        {% for post in entities %}
+            {% set url = path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) %}
+            {% set categoryUrl = path('client_category_show',{'category_url':post.category.url }) %}
+            <div class="col-md-3">
+                <div class="article-card">
+                    <a href="{{ url }}">
+                        <img src="{{ post.getWebPath() | apply_filter('thumbnail_index_post') }}" alt="{{ post.imageAlt }}" width="220" />
+                    </a>
+                    <div class="razdel-name">
+                        <a href="{{ categoryUrl }}">{{ post.category.name }}</a>
+                    </div>
+                    <h4>
+                        <a href="{{ url }}">{{ post.name }}</a>
+                    </h4>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

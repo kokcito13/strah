@@ -1,3 +1,16 @@
+.row { margin-left: -10px; margin-right: -10px; }
+.col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10,
+.col-xs-11, .col-xs-12, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8,
+.col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6,
+.col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4,
+.col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-xl-1, .col-xl-2,
+.col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12 {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+h2, .h2 { margin-bottom: 32px; }
+.text-muted { color: #a5a5a5 }
+
 @import url(https://fonts.googleapis.com/css?family=PT+Sans:400,700&subset=latin,cyrillic);
 @font-face {
     font-family: 'ProximaNovaRegular';
@@ -42,18 +55,20 @@ h4 { font-size: 0.875rem; }
 .fl { float: left }
 .fr { float: right }
 .btn {
-    height: 30px; font-size: 0.875rem; text-decoration: none;
+    height: 2.5625rem; font-size: 0.875rem; text-decoration: none;
     padding: 5px 8px 4px 8px;
     border-radius: 4px; -moz-border-radius: 4px; -webkit-border-radius: 4px;
 }
 a.btn { padding: 4px 8px 4px 8px; }
-.btn-danger { background: #c1392b; border-color: #c1392b }
+.btn-danger { background: #d8450b; border-color: #d8450b; }
 
 .img-box img { display: block }
 .text-muted { padding-bottom: 10px; display: block; font-size: 0.75rem; line-height: 150%; }
 .dark { color: #333 }
 .red { color: #d8450b }
 .img-circle img { border-radius: 50%; -moz-border-radius: 50%; -webkit-border-radius: 50%; }
+.va-container { display: table; height: 100%; width: 100%; }
+.va-middle { display: table-cell; vertical-align: middle }
 
 .container { max-width: 60.625rem; }
 
@@ -70,7 +85,8 @@ a.btn { padding: 4px 8px 4px 8px; }
 .top-head .enter-box ul li.vk a, .top-head .enter-box ul li.vk a:hover { background: url("../img/soc-ico-head.png") 0 0 no-repeat }
 .top-head .enter-box ul li.fb a, .top-head .enter-box ul li.fb a:hover { background: url("../img/soc-ico-head.png") -22px 0 no-repeat }
 .top-head .enter-box span { margin: 5px 4px 0 0; display: inline-block; vertical-align: top; color: #999; font-size: 14px; letter-spacing: 0.5px; }
-.top-head .auth-box { padding-bottom: 3px; font-size: 9px; text-align: right; float: right; }
+.top-head .auth-box { padding-bottom: 3px; font-size: 9px; text-align: right; float: right; font-family: 'PT Sans', Tahoma, Verdana, Arial, sans-serif; }
+.top-head .auth-box .info-box { font-size: 9px; font-family: 'PT Sans', Tahoma, Verdana, Arial, sans-serif; }
 .top-head .auth-box .img-box { float: right; }
 .top-head .auth-box .info-box { line-height: 9px; margin-right: 29px; letter-spacing: 0.3px; }
 .top-head .auth-box .info-box a { text-decoration: none; color: #999; }
@@ -161,16 +177,17 @@ a.btn { padding: 4px 8px 4px 8px; }
 }
 .one-company .img-box img { margin: 0 auto; display: inline-block; line-height: 1px; }
 .one-company .name-company { float: left; font-size: 0.875rem; line-height: 2.625rem; }
-.one-company .info-box { padding-top: 0.81rem; margin-right: 1.875rem; float: right; font-family: 'ProximaNovaBold', Tahoma, Arial, Verdana, sans-serif; font-size: 1rem; }
-.one-company .info-box .c-review { margin-right: 1.69rem; position: relative; padding-left: 24px; float: left; display: block; color: #666666; }
-.one-company .info-box .c-review:before {
+.one-company .info-box { padding-top: 0.81rem; margin-right: 1.875rem; float: right;  }
+.info-box { font-family: 'ProximaNovaBold', Tahoma, Arial, Verdana, sans-serif; font-size: 1rem; }
+.info-box .c-review { margin-right: 1.56rem; position: relative; padding-left: 24px; display: inline-block; color: #666666; }
+.info-box .c-review:before {
     position: absolute; content: '';
     top: 2px; left: 0; display: inline-block;
     width: 19px; height: 13px; vertical-align: top;
     background: url("../img/icons.png") -17px -8px no-repeat ;
 }
-.one-company .info-box .c-star { position: relative; padding-left: 19px; float: left; display: block; color: #ffa000; }
-.one-company .info-box .c-star:before {
+.info-box .c-star { position: relative; padding-left: 19px; display: inline-block; color: #ffa000; }
+.info-box .c-star:before {
     position: absolute; content: '';
     top: 1px; left: 0; display: inline-block;
     width: 16px; height: 15px; vertical-align: top;
@@ -203,12 +220,96 @@ a.btn { padding: 4px 8px 4px 8px; }
 }
 .map-box h4 { margin-bottom: 16px; }
 .map-box .img-box { margin-bottom: 15px; margin-right: -10px; margin-left: -10px; }
+.map-box .btn-danger { height: 30px; background: #c1392b; border-color: #c1392b }
+
+/*main*/
+.popular-company { padding-bottom: 75px; }
+.list-card-company { padding-bottom: 20px; }
+.company-card {
+    cursor: pointer;
+    border: 1px solid #e5e5e5;
+    height: 8.75rem;
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+    border-radius: 4px; -moz-border-radius: 4px; -webkit-border-radius: 4px;
+}
+.company-card:hover .company-info { display: block }
+.company-info {
+    display: none;
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(229,229,229,0.8);
+}
+.company-info-box {
+    bottom: 25px; left: 0;
+    position: absolute;
+    width: 100%;
+}
+.company-info h3 {
+    font-size: 16px; color: #000;
+    font-family: 'ProximaNovaRegular', Tahoma, Arial, Verdana, sans-serif;
+    padding-bottom: 8px;
+}
+.company-info .info-box { text-align: center }
+.company-info .info-box .c-review { margin-right: 1.375rem }
+/**/
+.last-article { padding-bottom: 45px; }
+.article-card { padding-top: 11px; }
+.article-card img {
+    display: block;
+    margin-bottom: 6px;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px; -moz-border-radius: 4px; -webkit-border-radius: 4px;
+}
+.article-card h4 {
+    line-height: 1.43;
+    font-family: 'ProximaNovaRegular', Tahoma, Arial, Verdana, sans-serif;
+}
+.article-card a { color: #1d85c7; text-decoration: none; }
+.article-card a:hover { color: #d8450b; }
+.razdel-name { padding-bottom: 5px; }
+.razdel-name a { color: #a5a5a5; text-transform: uppercase; font-size: 0.69rem; }
+.razdel-name a:hover { color: #777777; }
+.head-text { font-size: 1rem; font-family: 'ProximaNovaRegular', Tahoma, Arial, Verdana, sans-serif; }
+.head-text + .review-list { padding-top: 15px; }
+/**/
+.crop-info { padding-top: 16px; }
+.crop-info .one-company {
+    margin-bottom: 3px;
+    position: relative;
+}
+.crop-info .one-company:before {
+    position: absolute;
+    z-index: 0;
+    left: 0; bottom: 0;
+    display: inline-block;
+    content: '.................................................................';
+}
+.crop-info .one-company .name-company {
+    font-size: 0.81rem;
+    line-height: 140%;
+    background: #fff;
+    position: relative;
+    z-index: 1;
+}
+.crop-info .one-company .name-company a { color: #6890bb }
+.crop-info .one-company .name-company a:hover { color: #d8450b; text-decoration: underline }
+.crop-info .info-box {
+    margin-right: 0; padding-top: 0
+}
+.crop-info .info-box .c-star { padding-left: 0; font-size: 0.75rem; }
+.crop-info .info-box .c-star:before { display: none; }
+.btn-block { padding-top: 18px; padding-bottom: 23px; }
+.btn-block .text-muted { display: inline; font-size: 0.69rem; }
+.view-all-review .btn { padding-left: 16px; padding-right: 16px; margin-right: 17px; margin-left: 4.9375rem }
+
 
 .main-footer { margin-top: 35px; padding-bottom: 1.8125rem; padding-top: 1.5rem; background: #43393b; color: #fff; }
 .footer-top { margin-bottom: 1.0625rem; font-size: 1.125rem; padding-bottom: 0.875rem; border-bottom: 1px solid #fff; }
 .footer-top .fl { padding-top: 0.6875rem; }
 .footer-top .btn { height: 2.5625rem; width: 8.75rem; }
-.footer-top .btn-danger { background: #d8450b; border-color: #d8450b; }
 .footer-top .form-control {
     padding-top: 0.4375rem; margin-right: 0.9375rem; padding-left: 0.5rem; padding-right: 0.5rem;
     width: 18.75rem; font-size: 0.875rem; height: 2.5625rem;
@@ -240,3 +341,10 @@ a.btn { padding: 4px 8px 4px 8px; }
 .social-list li.tw a:hover { background-position: 0 -90px; }
 .social-list li.fb a { background-position: 0 -120px; }
 .social-list li.fb a:hover { background-position: 0 -150px; }
+
+
+
+
+
+
+

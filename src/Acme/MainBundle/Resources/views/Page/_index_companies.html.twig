@@ -1,0 +1,32 @@
+<div class="container popular-company">
+    <h2 class="text-center">Популярные компании</h2>
+    <div class="row list-card-company">
+        {% for company in companies %}
+            {% set companyPath = path('client_company_show', {
+            "city_url": company.city.url,
+            "company_url": company.url
+            }) %}
+            <div class="col-md-3">
+                <div class="company-card">
+                    <div class="va-container">
+                        <div class="va-middle">
+                            <img src="{{ company.getWebPath() | apply_filter('thumbnail_popular') }}" alt="{{ company.getImageAltView() }}">
+                        </div>
+                    </div>
+                    <a href="{{ companyPath }}" class="company-info">
+                        <div class="company-info-box">
+                            <h3>{{ company.name }}</h3>
+                            <div class="info-box clearfix">
+                                <span class="c-review">{{ company.comments|length }}</span>
+                                <span class="c-star">{% if company.rating == 0 %}0.00{% else %}{{ company.rating/100 }}{% endif %}</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="text-center">
+        <a href="{{ path('page_catalog', {city_url: currentCity().url}) }}" class="btn btn-danger">Посмотреть все компании</a>
+    </div>
+</div>
