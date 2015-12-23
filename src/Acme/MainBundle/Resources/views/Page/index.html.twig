@@ -16,7 +16,7 @@
     <div class="container clearfix">
         <div class="row">
             <div class="col-md-9">
-                <h4 class="head-text"><strong>Новые отзывы</strong> о страховых компаниях в Москве</h4>
+                <h4 class="head-text"><strong>Новые отзывы</strong> о страховых компаниях в {{ currentCity().dative }}</h4>
                 <div class="review-list">
                     {% for comment in comments %}
                         {{ include('AcmeMainBundle:Company/blocks:_comment.html.twig') }}
@@ -24,7 +24,7 @@
                 </div>
                 <div class="btn-block view-all-review">
                     <a href="{{ path('company_comments', {city_url: currentCity().url}) }}" class="btn btn-danger">Посмотреть все отзывы</a>
-                    <span class="text-muted">3,810 отзывов о компаниях на сайте Две страховки</span>
+                    <span class="text-muted">{{ commentsCount }} отзывов о компаниях на сайте Две страховки</span>
                 </div>
             </div>
             <div class="col-md-3">

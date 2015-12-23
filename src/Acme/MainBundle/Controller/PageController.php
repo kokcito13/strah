@@ -221,10 +221,14 @@ class PageController extends Controller
         $comments = $em->getRepository('AcmeMainBundle:Comment')
             ->getLastComments(5, $city);
 
+        $commentsAll = $em->getRepository('AcmeMainBundle:Comment')
+            ->findAll();
+
         return array(
             'entities' => $entities,
             'companies' => $companiesPopular,
-            'comments' => $comments
+            'comments' => $comments,
+            'commentsCount' => count($commentsAll)
         );
     }
 
