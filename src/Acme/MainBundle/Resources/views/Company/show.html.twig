@@ -1,101 +1,115 @@
-{% extends '::base.html.twig' %}
+{% extends '::base_new.html.twig' %}
 
 {% block title %}{% if entity.title | length > 50 %}{{ entity.title }}{% else %}{{ entity.name }} {{ entity.city.name }} — страховая компания. Рейтинг страховой {{ entity.name }} в {{ entity.city.name }} на DveStrahovki.ru{% endif %}{% endblock %}
 {% block description %}{% if entity.description | length > 50 %}{{ entity.description }}{% else %}Сравнение страховых компаний {{ entity.name }} на DveStrahovki.ru. Отзывы реальных пользователей, рейтинг страховых компаний {{ entity.name }}.{% endif %}{% endblock %}
 {% block keywords %}{{ entity.keywords }}{% endblock %}
 
-{% block meta %}
-    {#<meta property="og:title" content="{{ entity.title }}"/>#}
-    {#<meta property="og:type" content="website"/>#}
-    {#<meta property="og:url" content="{{ app.request.uri }}"/>#}
-    {#<meta property="og:site_name" content="DveStrahovki.ru"/>#}
-    {#<meta property="og:description" content="{{ entity.description }}"/>#}
-    {#<meta property="og:image:secure_url" content="{{ app.request.uri }}{{ entity.getWebPath() | apply_filter('big_post') }}" />#}
-    {#<meta property="og:image" content="{{ app.request.uri }}{{ entity.getWebPath() | apply_filter('big_post') }}"/>#}
-{% endblock %}
-{% block javascripts %}
-{% endblock %}
-{% block stylesheets %}
-{% endblock %}
-{% set currentCompany = entity %}
-{% block body %}
-    <div class="row company_page">
-        <div class="span8">
-            {% include("AcmeMainBundle::Company/blocks/header.html.twig") %}
+{% block breadcrumbs %}
+    <div class="container-fluid head-page head-page-company">
+        <div class="container">
+            <ol itemscope itemtype="http://schema.org/BreadcrumbList" class="breadcrumb">
+                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                    <a itemprop="item" href="{{ path('page_home', {city: currentCity().url}) }}" ><span itemprop="name">Главная</span></a>
+                    <meta itemprop="position" content="1" />
+                </li>
+                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                    <a itemprop="item" href="{{ path('page_catalog', {city: currentCity().url}) }}"> <span itemprop="name">Страховые компании в {{ currentCity().dative }}</span></a>
+                    <meta itemprop="position" content="2" />
+                </li>
+                <li>
+                    {{ entity.name }}
+                </li>
+            </ol>
             <div class="row">
-                <div class="span8">
-                    <ul class="nav nav-tabs" style="margin-bottom: 0px; border-bottom: 0px;">
-                        <li class="active"><a  >Главная</a></li>
-                        <li>
-                            <a href="{{ path('client_company_show_comments', {
-                            "city_url": entity.city.url,
-                            "company_url": entity.url
-                            }) }}">Отзывы {{ entity.comments|length }}</a>
-                        </li>
-                    </ul>
-                    <section class="post-content">
-                        <div class="post-body about-author ">
-                            <h3>Услуги компании <b>{{ entity.name }}</b>:</h3>
-                            <div class="row">
-                                {% set hlf = (entity.servicesArray|length)/2  %}
-                                <div class="span3">
-                                    <ul>
-                                        {% for service in entity.servicesArray %}
-                                            {% if ( hlf >= 1 and loop.index0 < hlf) or hlf < 1 %}
-                                                <li><i class="icon-ok"></i> {{ service.name }}</li>
-                                            {% endif %}
-                                        {% endfor %}
-                                    </ul>
-                                </div>
-
-                                <div class="span4">
-                                    {% if hlf >= 1 %}
-                                        <ul>
-                                            {% for service in entity.servicesArray %}
-                                                {% if loop.index0 > hlf %}
-                                                    <li><i class="icon-ok"></i> {{ service.name }}</li>
-                                                {% endif %}
-                                            {% endfor %}
-                                        </ul>
-                                    {% endif %}
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+                <div class="col-lg-2">
+                    <a href="#">
+                        <img class="img-fluid img-rounded" src="{{ entity.getWebPath() | apply_filter('in_company') }}" alt="{{ entity.getImageAltView() }}"/>
+                    </a>
                 </div>
-            </div>
-
-            <div class="row">
-                <div class="span8">
-
-                    <h3>О компании <b>{{ entity.name }}</b>:</h3>
-                    {#<section class="post-content">#}
-                        <div class="post-body about-author">
-                            <!--start_content-->
-                            {{ entity.text|raw }}
-                            <!--end_content-->
-                        </div>
-                    {#</section>#}
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="span6">
-                    <h3>Контактные данные:</h3>
-                    <ul style="padding-left: 15px;">
-                        {% for point in entity.points %}
-                            <li>{{ point.address }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                <div class="span2">
-                    <div class="lower_h6"><b>Перейти на сайт:</b></div>
-                    <a href="http://{{ entity.site }}" rel="nofollow" target="_blank" class="btn btn-primary">{{ entity.site }}</a>
+                <div class="col-lg-10">
+                    <h1>{{ entity.name }}</h1>
+                    <div class="info-box">
+                        <span class="c-star m-r-md">
+                            <span class="info-box-text">Рейтинг {% if entity.rating == 0 %}0.00{% else %}{{ entity.rating/100 }}{% endif %}</span>
+                        </span>
+                        <span class="c-review">
+                            <span class="info-box-text">Отзывы: {{ entity.comments|length }}</span>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
-        {{ render(controller('AcmeMainBundle:PageLayout:rightSidebar', {
-            'post': entity
-        })) }}
+    </div>
+{% endblock %}
+
+{% block container %}
+    {% set hlf = (entity.servicesArray|length)/2  %}
+    <div class="row">
+        <section class="col-lg-9">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item m-l-0">
+                    <span class="nav-link active">Главная</span>
+                </li>
+                <li class="nav-item m-l-0">
+                    <a class="nav-link" href="{{ path('client_company_show_comments', {
+                        "city_url": entity.city.url,
+                        "company_url": entity.url
+                    }) }}">Отзывы</a>
+                </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="company-main">
+                    <h4 class="m-b-lg">Услуги компании Капитал Перестрахование:</h4>
+                    <div class="row m-b-lg">
+                        <div class="col-lg-4">
+                            {% for service in entity.servicesArray %}
+                                {% if ( hlf >= 1 and loop.index0 < hlf) or hlf < 1 %}
+                                    <p class="text-normal"><span class="ico ico-shield m-r-xs"></span> {{ service.name }}</p>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="col-lg-4">
+                            {% if hlf >= 1 %}
+                                {% for service in entity.servicesArray %}
+                                    {% if loop.index0 > hlf %}
+                                        <p class="text-normal"><span class="ico ico-shield m-r-xs"></span> {{ service.name }}</p>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                        <div class="col-lg-4"></div>
+                    </div>
+                    <h4 class="m-b-lg">О компании {{ entity.name }}:</h4>
+                    <!--start_content-->
+                    {{ entity.text|raw }}
+                    <!--end_content-->
+                    <h4 class="m-b-md">Контактные данные</h4>
+                    {% for point in entity.points %}
+                        <p class="article-text-normal m-b-0">{{ point.address }}  {#<span class="pull-right">тел.: +7 (495) ... <a href="#" class="link-orange">Показать</a></span>#}</p>
+                    {% endfor %}
+                    {#<div class="row">#}
+                        {#<div class="col-lg-12">#}
+                            {#<div id="map-position"></div>#}
+                        {#</div>#}
+                    {#</div>#}
+                </div>
+            </div>
+        </section>
+        <section class="col-lg-3">
+            {#{{ render(controller('AcmeMainBundle:PageLayout:rightSidebar', {#}
+                {#'post': entity#}
+            {#})) }}#}
+            <div class="map-box">
+                <!-- todo 1. What kind of map to use -->
+                <span class="text-normal map-box-header">Все страховые компании</span>
+                <div class="img-box">
+                    <img src="img/map.jpg" alt="map">
+                </div>
+                <span class="text-muted">Вы всегда можете найти ближайшие страховые компании к вашему дому или офису. Используйте карту, сортировку по району и стоимостью для быстрого перехода к странице компании.</span>
+                <a role="button" href="#" class="btn btn-danger">Выбрать компанию</a>
+            </div>
+        </section>
     </div>
 {% endblock %}
