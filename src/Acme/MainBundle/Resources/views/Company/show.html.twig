@@ -98,18 +98,9 @@
             </div>
         </section>
         <section class="col-lg-3">
-            {#{{ render(controller('AcmeMainBundle:PageLayout:rightSidebar', {#}
-                {#'post': entity#}
-            {#})) }}#}
-            <div class="map-box">
-                <!-- todo 1. What kind of map to use -->
-                <span class="text-normal map-box-header">Все страховые компании</span>
-                <div class="img-box">
-                    <img src="img/map.jpg" alt="map">
-                </div>
-                <span class="text-muted">Вы всегда можете найти ближайшие страховые компании к вашему дому или офису. Используйте карту, сортировку по району и стоимостью для быстрого перехода к странице компании.</span>
-                <a role="button" href="#" class="btn btn-danger">Выбрать компанию</a>
-            </div>
+            {{ render(controller('AcmeMainBundle:PageLayout:rightSidebar', {
+                'post': entity
+            })) }}
         </section>
     </div>
 {% endblock %}

@@ -1,67 +1,153 @@
-{% extends '::base.html.twig' %}
+{% extends '::base_new.html.twig' %}
 
 {% block title %}{{ entity.name }} {{ entity.city.name }} — страховая компания. Рейтинг страховой {{ entity.name }} в {{ entity.city.name }} на DveStrahovki.ru{% endblock %}
 {% block description %}Отзывы о страховой компании {{ entity.name }} {{ entity.city.name }}. Отзывы пользователей о страховой компании {{ entity.name }} в {{ entity.city.name }}.{% endblock %}
 {% block keywords %}{{ entity.keywords }}{% endblock %}
 
-{% block meta %}
-{% endblock %}
+
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('bundles/acmemain/plugins/raty/jquery.raty.css') }}">
 {% endblock %}
-{% set currentCompany = entity %}
-{% block body %}
-    <div class="row company_page">
-        <div class="span8">
-            {% include("AcmeMainBundle::Company/blocks/header.html.twig") %}
-            <div class="row">
-                <div class="span8 blog">
-                    <ul class="nav nav-tabs" style="margin-bottom: 0px; border-bottom: 0px;">
-                        <li><a href="{{ path('client_company_show', {
-                            "city_url": entity.city.url,
-                            "company_url": entity.url
-                            }) }}" >Главная</a></li>
-                        <li class="active">
-                            <a >Отзывы {{ entity.comments|length }}</a>
-                        </li>
-                    </ul>
-                    <!-- Post Comments
-                    ================================================== -->
-                    <section class="comments">
-                        <ul>
-                            {% for comment in entity.comments %}
-                            <li id="comment{{ comment.id }}">
-                                <img src="{{ comment.user.socialPicture }}" alt="{{ comment.user.getFullName() }} аватарка" width="25" height="25">
-                                <span class="comment-name">{{ comment.user.getFullName() }}</span>
-                                <span class="comment-date">оставил отзыв в {{ comment.createdAt | date('H:i, d.m.Y') }}</span>
-                                <br/>
-                                <span class="comment-date">Моя оценка: <span class="rat" data-score="{{ comment.rating }}"></span></span>
-                                <div class="comment-content">{{ comment.text | raw }}</div>
-                                {#<!-- Reply -->#}
-                                {#<ul>#}
-                                    {#<li>#}
-                                        {#<img src="img/user-avatar.jpg" alt="Image">#}
-                                        {#<span class="comment-name">Jason Doe</span>#}
-                                        {#<span class="comment-date">March 15, 2015 | <a href="#">Reply</a></span>#}
-                                        {#<div class="comment-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam venenatis, ligula quis sagittis euismod, odio ante molestie tortor, eget ullamcorper lacus nunc a ligula. Donec est lacus, aliquet in interdum id, rutrum ac tellus. Ut rutrum, justo et lobortis commodo, est metus ornare tortor, vitae luctus turpis leo sed magna. In leo dolor, suscipit non mattis in.</div>#}
-                                    {#</li>#}
-                                    {#<li>#}
-                                        {#<img src="img/user-avatar.jpg" alt="Image">#}
-                                        {#<span class="comment-name">Jason Doe</span>#}
-                                        {#<span class="comment-date">March 15, 2015 | <a href="#">Reply</a></span>#}
-                                        {#<div class="comment-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam venenatis, ligula quis sagittis euismod, odio ante molestie tortor, eget ullamcorper lacus nunc a ligula. Donec est lacus, aliquet in interdum id, rutrum ac tellus. Ut rutrum, justo et lobortis commodo, est metus ornare tortor, vitae luctus turpis leo sed magna. In leo dolor, suscipit non mattis in.</div>#}
-                                    {#</li>#}
-                                {#</ul>#}
-                            </li>
-                            {% endfor %}
 
-                        </ul>
-                        <div class="comment-form-container">
-                            <div class="h6" style="text-transform: none; font-size: 18px;">Добавить новый отзыв</div>
+{% block breadcrumbs %}
+    <div class="container-fluid head-page head-page-company">
+        <div class="container">
+            <ol itemscope itemtype="http://schema.org/BreadcrumbList" class="breadcrumb">
+                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                    <a itemprop="item" href="{{ path('page_home', {city: currentCity().url}) }}" ><span itemprop="name">Главная</span></a>
+                    <meta itemprop="position" content="1" />
+                </li>
+                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                    <a itemprop="item" href="{{ path('page_catalog', {city: currentCity().url}) }}"> <span itemprop="name">Страховые компании в {{ currentCity().dative }}</span></a>
+                    <meta itemprop="position" content="2" />
+                </li>
+                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                    <a itemprop="item" href="{{ path('client_company_show', {
+                        "city_url": entity.city.url,
+                        "company_url": entity.url
+                    }) }}"><span itemprop="name">{{ entity.name }}</span></a>
+                    <meta itemprop="position" content="3" />
+                </li>
+                <li>
+                    Отзывы о компании {{ entity.name }}
+                </li>
+            </ol>
+            <div class="row">
+                <div class="col-lg-2">
+                    <a href="#">
+                        <img class="img-fluid img-rounded" src="{{ entity.getWebPath() | apply_filter('in_company') }}" alt="{{ entity.getImageAltView() }}"/>
+                    </a>
+                </div>
+                <div class="col-lg-10">
+                    <h1>Отзывы о {{ entity.name }}</h1>
+                    <div class="info-box">
+                        <span class="c-star m-r-md">
+                            <span class="info-box-text">Рейтинг {% if entity.rating == 0 %}0.00{% else %}{{ entity.rating/100 }}{% endif %}</span>
+                        </span>
+                        <span class="c-review">
+                            <span class="info-box-text">Отзывы: {{ entity.comments|length }}</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block container %}
+    <div class="row">
+        <section class="col-lg-9">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item m-l-0">
+                    <a href="{{ path('client_company_show', {
+                        "city_url": entity.city.url,
+                        "company_url": entity.url
+                    }) }}" class="nav-link ">Главная</a>
+                </li>
+                <li class="nav-item m-l-0">
+                    <span class="nav-link active">Отзывы</span>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="company-reviews">
+                    <div class="review-list">
+                        <!--
+                        <article itemscope="itemscope" itemtype="http://schema.org/UserComments" class="one-review clearfix border-bottom">
+                            <div class="img-box img-circle">
+                                <a href="#"><img src="img/im1.jpg" alt="avatar"></a>
+                            </div>
+                            <div class="body-review">
+                                <header>
+                                    <a href="#" ><span itemprop="creator">Виталина Гречко</span></a> оставила
+                                    <a href="#" class="dark">отзыв</a> о
+                                    <a href="#" class="red">АИГ</a> в <span itemprop="commentTime" content="2015-10-16T21:53:00"></span>21:53, 16 октября 2015
+                                </header>
+                                <p itemprop="commentText" class="m-b-xs">Добрый день! Подскажите, пожалуйста, если у меня посменный график (2/2), смогу ли я непропускаючы занятия заниматься в стандартной группе?</p>
+                                <div class="my-mark m-r-xs">
+                                    <span>Моя оценка компании</span>
+                                    <div class="my-mark-stars">
+                                        <span class="ico active"></span>
+                                        <span class="ico active"></span>
+                                        <span class="ico passive"></span>
+                                    </div>
+                                </div>
+                                <span>
+                                    <a href="#">Ответить</a>
+                                </span>
+                            </div>
+                        </article>
+                        -->
+                        {% for comment in entity.comments %}
+                            {% set companyUrl = path('client_company_show', {
+                                "city_url": comment.company.city.url,
+                                "company_url": comment.company.url
+                            }) %}
+                            {% set companyCommentsUrl = path('client_company_show_comments', {
+                                "city_url": comment.company.city.url,
+                                "company_url": comment.company.url
+                            }) %}
+                            <article itemscope itemtype="http://schema.org/Review" class="one-review clearfix border-bottom">
+                                <div class="img-box img-circle">
+                                    <a href="{{ companyCommentsUrl }}"><img src="{{ comment.user.socialPicture }}" alt="{{ comment.user.getFullName() }} аватарка" width="56" height="56" /></a>
+                                </div>
+                                <div class="body-review">
+                                    <header>
+                                        <a href="{{ path('user_show', {id: comment.user.id}) }}" ><span itemprop="author">{{ comment.user.getFullName() }}</span></a> оставил(а)
+                                        <a href="{{ companyCommentsUrl }}#comment{{ comment.id }}" class="dark">отзыв</a> о
+                                        <a href="{{ companyUrl }}" class="red"><span itemprop="itemReviewed">{{ comment.company.name }}</span></a> в <span itemprop="datePublished" content="{{ comment.createdAt | date('c') }}"></span>{{ comment.createdAt | date('H:i, d.m.Y') }}
+                                    </header>
+                                    <p itemprop="reviewBody" class="m-b-xs">{{ comment.text | raw }}</p>
+                                    <div class="my-mark m-r-xs">
+                                        <span>Моя оценка компании</span>
+                                        <div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating" class="my-mark-stars">
+                                            <meta itemprop="worstRating" content = "1"/>
+                                            <meta itemprop="ratingValue" content = "2"/>
+                                            <meta itemprop="bestRating" content = "3"/>
+                                            <span class="ico active"></span>
+                                            <span class="ico active"></span>
+                                            <span class="ico passive"></span>
+                                        </div>
+                                    </div>
+                                    {#<span>#}
+                                    {#<a href="#">Ответить</a>#}
+                                    {#</span>#}
+                                </div>
+                            </article>
+                            {#<li id="comment{{ comment.id }}">#}
+                                {#<img src="{{ comment.user.socialPicture }}" alt="{{ comment.user.getFullName() }} аватарка" width="25" height="25">#}
+                                {#<span class="comment-name">{{ comment.user.getFullName() }}</span>#}
+                                {#<span class="comment-date">оставил отзыв в {{ comment.createdAt | date('H:i, d.m.Y') }}</span>#}
+                                {#<br/>#}
+                                {#<span class="comment-date">Моя оценка: <span class="rat" data-score="{{ comment.rating }}"></span></span>#}
+                                {#<div class="comment-content">{{ comment.text | raw }}</div>#}
+                            {#</li>#}
+                        {% endfor %}
+
+                        <p class="text-header-normal m-t-lg m-b-md">Добавить новый отзыв</p>
                             <form action="{{ path('client_company_save_comment', {
-                            "city_url": entity.city.url,
-                            "company_url": entity.url
-                            }) }}" id="comment-form">
+                                "city_url": entity.city.url,
+                                "company_url": entity.url
+                                }) }}" id="comment-form">
                                 {#<div class="input-prepend">#}
                                     {#<span class="add-on"><i class="icon-user"></i></span>#}
                                     {#<input class="span4" id="prependedName" size="16" type="text" placeholder="Имя">#}
@@ -81,14 +167,33 @@
                                     </div>
                                 </div>
                             </form>
-                        </div>
-                    </section>
+
+                        {#<form action="">#}
+                            {#<div class="one-review clearfix">#}
+                                {#<div class="img-box img-circle">#}
+                                    {#<a href="#"><img src="img/no-img.jpg" alt="avatar"></a>#}
+                                {#</div>#}
+                                {#<div class="body-review">#}
+                                    {#<textarea rows="5" placeholder="Що вам сподобалось і не сподобалось на курсах? Чи порадили б ви ці курси друзям?"></textarea>#}
+                                    {#<p class="text-header-normal m-t-md">Моя оценка компании:</p>#}
+                                    {#<div class="radio">#}
+                                        {#<input id="review-rate-bad" type="radio" name="rate" value="bad" class="radio-inline m-r-xs"/><label for="review-rate-bad" class="my-mark-large"><span class="ico active m-r-xs"></span><span class="ico passive m-r-xs"></span><span class="ico passive m-r-xs"></span> <p class="text-header-normal display-inline">Плохо</p></label><br>#}
+                                        {#<input id="review-rate-normal" type="radio" name="rate" value="normal" class="radio-inline m-r-xs"/><label for="review-rate-normal" class="my-mark-large"><span class="ico active m-r-xs"></span><span class="ico active m-r-xs"></span><span class="ico passive m-r-xs"></span> <p class="text-header-normal display-inline">Так себе</p></label><br>#}
+                                        {#<input id="review-rate-good" type="radio" name="rate" value="good" class="radio-inline m-r-xs"/><label for="review-rate-good" class="my-mark-large"><span class="ico active m-r-xs"></span><span class="ico active m-r-xs"></span><span class="ico active m-r-xs"></span> <p class="text-header-normal display-inline">Рекомендую</p></label><br>#}
+                                    {#</div>#}
+                                    {#<button class="btn btn-danger m-t-sm">Добавить</button>#}
+                                {#</div>#}
+                            {#</div>#}
+                        {#</form>#}
+                    </div>
                 </div>
             </div>
-        </div>
-        {{ render(controller('AcmeMainBundle:PageLayout:rightSidebar', {
-        'post': entity
-        })) }}
+        </section>
+        <section class="col-lg-3">
+            {{ render(controller('AcmeMainBundle:PageLayout:rightSidebar', {
+                'post': entity
+            })) }}
+        </section>
     </div>
     {% if app.user is null %}
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -109,7 +214,6 @@
             </div>
         </div>
     {% endif %}
-
 {% endblock %}
 {% block javascripts %}
     <script type="text/javascript" src="{{ asset('bundles/acmemain/plugins/raty/jquery.raty.js') }}"></script>
