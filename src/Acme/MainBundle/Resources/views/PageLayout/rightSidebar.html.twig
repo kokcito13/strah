@@ -5,5 +5,5 @@
         <img src="https://maps.googleapis.com/maps/api/staticmap?center={{ currentCity().lat }},{{ currentCity().lng }}&zoom=12&size=220x131" alt="map" width="220" height="131">
     </div>
     <span class="text-muted">Вы всегда можете найти ближайшие страховые компании к вашему дому или офису. Используйте карту, сортировку по району и стоимостью для быстрого перехода к странице компании.</span>
-    <a role="button" href="{{ path('page_catalog', {city: currentCity().url}) }}" class="btn btn-danger">Выбрать компанию</a>
+    <a role="button" href="{{ path('page_catalog', {city_url: currentCity().url}) }}" class="btn btn-danger">Выбрать компанию</a>
 </div>

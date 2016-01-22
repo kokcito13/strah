@@ -1,78 +1,62 @@
-{% extends '::base.html.twig' %}
+{% extends '::base_new.html.twig' %}
 
 {% block title %}{{ entity.title }}{% endblock %}
 {% block description %}{{ entity.description }}{% endblock %}
 
-{% block meta %}
-{% endblock %}
-{% block javascripts %}
-{% endblock %}
-
-{% block body %}
-    <div class="row">
-        <!-- Blog Posts
-        ================================================== -->
-        <div class="span8 blog">
-            {% for item in entities %}
-                <article class="clearfix">
-                    {% if item.imageName != null %}
-                        <!--noindex-->
-                        <a rel="nofollow" href="{{ path('client_post_show',{'category_url':item.category.url, 'post_url':item.url }) }}">
-                            <img src="{{ item.getWebPath() | apply_filter('thumbnail_index_post') }}" alt="{{ item.imageAlt }}" class="align-left"
-                                    style="border: 1px solid #333;padding: 4px;"
-                                    >
-                        </a>
-                        <!--/noindex-->
-                    {% endif %}
-                    <div class="h4 title-bg">
-                        <a href="{{ path('client_post_show',{'category_url':item.category.url, 'post_url':item.url }) }}">{{ item.name }}</a>
-                    </div>
-                    <!--noindex-->
-                    <p>{{ item.getPreviewText() }} ...</p>
-
-                    <div class="post-summary-footer">
-                        <ul class="post-data-3">
-                            <li><i class="icon-comment"></i> <a rel="nofollow" href="{{ path('client_post_show',{'category_url':item.category.url, 'post_url':item.url }) }}#block_comments">0 Комментариев</a></li>
-                            <li><a rel="nofollow" href="{{ path('client_post_show',{'category_url':item.category.url, 'post_url':item.url }) }}" class="btn btn-mini btn-inverse">Читать дальше</a></li>
-                            {% if item.tags|length > 0 %}
-                                <li>
-                                    <i class="icon-tags"></i>
-                                    {% for tag in entity.tags %}
-                                        <a rel="nofollow" href="{{ path('client_tag_show', {'tag_url': tag.url}) }}" class="gray-btn">{{ tag.name }}</a>
-                                    {% endfor %}
-                                </li>
-                            {% endif %}
-                        </ul>
-                    </div>
-                    <!--/noindex-->
-                </article>
-            {% endfor %}
-            {#
-            <!-- Pagination -->
-            <div class="pagination">
-                <ul>
-                    <li class="active"><a href="#">Prev</a></li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">Next</a></li>
-                </ul>
+{% block breadcrumbs %}
+    <div class="container-fluid head-page">
+        <div class="container">
+            <ol itemscope itemtype="http://schema.org/BreadcrumbList" class="breadcrumb">
+                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                    <a itemprop="item" href="{{ path('page_home', {city_url: currentCity().url}) }}" ><span itemprop="name">Главная</span></a>
+                    <meta itemprop="position" content="1" />
+                </li>
+                <li>
+                    {{ entity.name }}
+                </li>
+            </ol>
+            <div class="row">
+                <div class="col-lg-8">
+                    <h1 class="m-t-0 m-b-md">{{ entity.name }}</h1>
+                    <p class="head-page-section m-b-0"><span class="text-uppercase">публикаций в категории {{ entities | length }}</span></p>
+                </div>
             </div>
-            #}
         </div>
-
-        <!-- Blog Sidebar
-        ================================================== -->
-        {{ render(controller('AcmeMainBundle:PageLayout:rightSidebar', {
-        'post': entity
-        })) }}
-        <!-- End sidebar column -->
     </div>
-    <div class="row" id="about">
-        <div class="span12">
-            {#<h1>{{ entity.name }}</h1>#}
-            {{ entity.text|raw }}
-        </div>
+{% endblock %}
+
+{% block main %}
+    <h2 class="text-center">Последние публикации</h2>
+    <div class="row list-card-company">
+        {% set i = 0 %}
+        {% for post in entities %}
+            {% if i == 0 %}
+                <div class="row">
+            {% endif %}
+
+            {% set url = path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) %}
+            {% set categoryUrl = path('client_category_show',{'category_url':post.category.url }) %}
+            <div class="col-md-3">
+                <div class="article-card">
+                    <a href="{{ url }}">
+                        <img src="{{ post.getWebPath() | apply_filter('thumbnail_index_post') }}" alt="{{ post.imageAlt }}" width="220" />
+                    </a>
+                    <div class="razdel-name">
+                        <a href="{{ categoryUrl }}">{{ post.category.name }}</a>
+                    </div>
+                    <h4>
+                        <a href="{{ url }}">{{ post.name }}</a>
+                    </h4>
+                </div>
+            </div>
+            {% set i = i+1 %}
+            {% if i == 3 or loop.last %}
+                {% set i = 0 %}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="row">
+        {{ entity.text|raw }}
     </div>
 {% endblock %}

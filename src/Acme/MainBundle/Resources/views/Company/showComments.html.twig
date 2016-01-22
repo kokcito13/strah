@@ -14,11 +14,11 @@
         <div class="container">
             <ol itemscope itemtype="http://schema.org/BreadcrumbList" class="breadcrumb">
                 <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                    <a itemprop="item" href="{{ path('page_home', {city: currentCity().url}) }}" ><span itemprop="name">Главная</span></a>
+                    <a itemprop="item" href="{{ path('page_home', {city_url: currentCity().url}) }}" ><span itemprop="name">Главная</span></a>
                     <meta itemprop="position" content="1" />
                 </li>
                 <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                    <a itemprop="item" href="{{ path('page_catalog', {city: currentCity().url}) }}"> <span itemprop="name">Страховые компании в {{ currentCity().dative }}</span></a>
+                    <a itemprop="item" href="{{ path('page_catalog', {city_url: currentCity().url}) }}"> <span itemprop="name">Страховые компании в {{ currentCity().dative }}</span></a>
                     <meta itemprop="position" content="2" />
                 </li>
                 <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">

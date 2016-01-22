@@ -1,4 +1,4 @@
-{% extends '::base.html.twig' %}
+{% extends '::base_new.html.twig' %}
 
 {% block title %}{{ entity.title }}{% endblock %}
 {% block description %}{{ entity.description }}{% endblock %}
@@ -55,58 +55,57 @@
     <!-- Go to www.addthis.com/dashboard to customize your tools -->
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5475a2f20b90b0ff" async="async"></script>
 {% endblock %}
-{% block stylesheets %}
-{% endblock %}
 {% set mainCategory = entity.category.url %}
-{% set currentPost = entity %}
-{% block body %}
-    <div class="row">
-        <div class="span8">
-            <div class="">
-                <div xmlns:v="{{ url('page_home') }}">
-                   <span typeof="v:Breadcrumb">
-                     <a href="{{ url('page_home') }}" rel="v:url" property="v:title">
-                         Страхование
-                     </a> ›
-                   </span>
-                   <span typeof="v:Breadcrumb">
-                    <a href="{{ url('client_category_show', {'category_url':mainCategory}) }}" rel="v:url" property="v:title">
-                        {{ entity.category.name }}    </a> ›
-                   </span>
-                    <span typeof="v:Breadcrumb">...</span>
+
+{% block breadcrumbs %}
+    <div class="container-fluid head-page">
+        <div class="container">
+            <ol itemscope itemtype="http://schema.org/BreadcrumbList" class="breadcrumb">
+                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                    <a itemprop="item" href="{{ path('page_home', {city_url: currentCity().url}) }}" ><span itemprop="name">Главная</span></a>
+                    <meta itemprop="position" content="1" />
+                </li>
+                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                    <a itemprop="item" href="{{ path('client_category_show', {category_url: entity.category.url }) }}"> <span itemprop="name">{{ entity.category.name }}</span></a>
+                    <meta itemprop="position" content="2" />
+                </li>
+                <li>
+                    {{ entity.name }}
+                </li>
+            </ol>
+            <div class="row">
+                <div class="col-lg-8">
+                    <h1 class="m-t-0 m-b-md">{{ entity.name }}</h1>
+                    <p class="head-page-section m-b-0"><span class="text-uppercase">публикации сайта</span> | <span>{{ entity.createdAt | date('d.m.Y') }}</span></p>
                 </div>
             </div>
-            <h1>{{ entity.name }}</h1>
-            <div class="clearfix" style="text-align: center">
-                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                <!-- Strah post 1.1 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:728px;height:300px"
-                     data-ad-client="ca-pub-3861532892125732"
-                     data-ad-slot="8163153699"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            </div>
-            {#<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>#}
-            {#<!-- strah link 1 -->#}
-            {#<ins class="adsbygoogle"#}
-                 {#style="display:inline-block;width:468px;height:15px"#}
-                 {#data-ad-client="ca-pub-3861532892125732"#}
-                 {#data-ad-slot="3474008491"></ins>#}
-            {#<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>#}
-            {#{% if entity.shortText | length > 3 %}#}
-                {#<p class="lead">{{ entity.shortText | raw }}</p>#}
-            {#{% endif %}#}
-            <!--start_content-->
-            <div class="clearfix">
-                <img src="{{ entity.getWebPath() | apply_filter('in_post') }}" width="270" class="thumbnail align-left" alt="{{ entity.imageAlt }}">
+        </div>
+    </div>
+{% endblock %}
+
+{% block container %}
+    <div class="row">
+        <section class="col-lg-8">
+            <article class="post-article">
+                <div class="post-article-head-img">
+                    <img src="{{ entity.getWebPath() | apply_filter('in_post') }}" alt="{{ entity.imageAlt }}"/>
+                </div>
+                <div style="width: 100%; height: auto;">
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- Strah post 1.1 -->
+                    <ins class="adsbygoogle"
+                         style="display:inline-block;width:728px;height:300px"
+                         data-ad-client="ca-pub-3861532892125732"
+                         data-ad-slot="8163153699"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+                <!--start_content-->
                 {{ entity.text|raw }}
-            </div>
-            <!--end_content-->
-            {% if links | length > 0 %}
-                <div class="clearfix">
-                    <span class="sub_title_links">Похожие публикации:</span>
+                <!--end_content-->
+                {% if links | length > 0 %}
+                    <span>Похожие публикации:</span>
                     <ul>
                         {% for link in links %}
                             <li>
@@ -114,148 +113,83 @@
                             </li>
                         {% endfor %}
                     </ul>
+                {% endif %}
+                <div style="width: 100%; height: auto;">
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- Strah post 1.2 -->
+                    <ins class="adsbygoogle"
+                         style="display:inline-block;width:580px;height:400px"
+                         data-ad-client="ca-pub-3861532892125732"
+                         data-ad-slot="9639886896"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
                 </div>
-            {% endif %}
-            <div class="clearfix" style="text-align: center">
-                {#<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>#}
-                {#<!-- strah post footer 1 -->#}
-                {#<ins class="adsbygoogle"#}
-                     {#style="display:inline-block;width:728px;height:90px"#}
-                     {#data-ad-client="ca-pub-3861532892125732"#}
-                     {#data-ad-slot="1857674499"></ins>#}
-                {#<script>#}
-                    {#(adsbygoogle = window.adsbygoogle || []).push({});#}
-                {#</script>#}
-                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                <!-- Strah post 1.2 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:580px;height:400px"
-                     data-ad-client="ca-pub-3861532892125732"
-                     data-ad-slot="9639886896"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
+            </article>
+        </section>
+        <section class="col-lg-3 col-lg-offset-1">
+            {{ render(controller('AcmeMainBundle:PageLayout:rightSidebar', {
+                'post': entity
+            })) }}
+        </section>
+        <section class="col-lg-9 last-article">
+            <hr/>
+            <h2 class="text-left m-t-md">Рекомендованные публикации</h2>
+            <div class="row list-card-company">
+                {% for post in entities %}
+                    <div class="col-lg-4">
+                        <div class="article-card">
+                            <a href="{{ path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) }}">
+                                <img src="{{ post.getWebPath() | apply_filter('thumbnail_same_post') }}" alt="{{ post.imageAlt }}">
+                            </a>
+                            <div class="razdel-name">
+                                <a href="{{ path('client_category_show', {category_url: post.category.url }) }}">{{ post.category.name }}</a>
+                            </div>
+                        <span class="text-normal">
+                            <a href="{{ path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) }}">{{ post.name }}</a>
+                        </span>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="row">
+                <div id="disqus_thread"></div>
+                <script type="text/javascript">
+                    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                    var disqus_shortname = 'dvestrahovki'; // required: replace example with your forum shortname
+
+                    /* * * DON'T EDIT BELOW THIS LINE * * */
+                    (function() {
+                        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                    })();
                 </script>
             </div>
-            {% if entity.getArrayVideoId()|length > 0 %}
-                <div class="clearfix">
-                    <div class="row" style="padding: 4px; border: 1px solid #ddd;">
-                        <div class="span{% if entity.getArrayVideoId()|length > 1 %}6{% else %}8 one_video{% endif %}" id="frameVideo" style="margin-left: 0px;">
-                            <iframe width="520" height="390" src="http://www.youtube.com/embed/{{ entity.getArrayVideoId()[0] }}?fs=1&autoplay=0&loop=0" allowfullscreen></iframe>
-                        </div>
-                        {% if entity.getArrayVideoId()|length > 1 %}
-                        <div class="span2">
-                            <!--noindex-->
-                            <span class="sub_title_links">Еще видео:</span>
-                            <!--/noindex-->
-                            <ul id="yVideos">
-                                {% for v in entity.getArrayVideoId() %}
-                                    <li id="v_{{ v }}" data-v="{{ v }}">
-                                        <img src="http://img.youtube.com/vi/{{ v }}/mqdefault.jpg" width="150"/>
-                                        <div>{{ v }}</div>
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                        {% endif %}
-                    </div>
-                </div>
-            {% endif %}
-        </div>
-        {{ render(controller('AcmeMainBundle:PageLayout:rightSidebar', {
-        'post': entity
-        })) }}
+        </section>
     </div>
-    <div class="row">
-        <div class="span6">
-            <!--noindex-->
-            <div class="h5 title-bg">Рекомендованная публикация
-                {% if entities|length > 1 %}
-                    <button id="btn-blog-next" class="btn btn-inverse btn-mini" type="button">»</button>
-                    <button id="btn-blog-prev" class="btn btn-inverse btn-mini" type="button">«</button>
-                {% endif %}
-            </div>
-            <!--/noindex-->
-            <div id="blogCarousel" class="carousel slide ">
-                <!-- Carousel items -->
-                <div class="carousel-inner">
-                    {% for post in entities %}
-                        <div class="{% if loop.index == 1 %}active{% endif %} item">
-                            <a href="{{ path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) }}">
-                                <img src="{{ post.getWebPath() | apply_filter('thumbnail_same_post') }}" width="150" alt="{{ post.imageAlt }}" class="align-left blog-thumb-preview">
-                            </a>
-                            <div class="post-info clearfix">
-                                <div class="h4">
-                                    <a href="{{ path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) }}">{{ post.name }}</a>
-                                </div>
-                                {% if post.getPreviewText() | length >5 %}
-                                    <!--noindex-->
-                                    <p class="blog-summary">{{ post.getPreviewText() }} ... <a rel="nofollow" href="{{ path('client_post_show',{'category_url':post.category.url, 'post_url':post.url }) }}">Читать дальше</a></p>
-                                    <!--/noindex-->
-                                {% endif %}
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-        <!--noindex-->
-        <div class="span6">
-            <div class="title-bg">Социальное</div>
-            <!-- Client Testimonial Slider-->
-            {#<div id="clientCarousel" class="carousel slide no-margin">#}
-                {#<!-- Carousel items -->#}
-                {#<div class="carousel-inner">#}
-                    {#<div class="active item">#}
-                        {#<p class="quote-text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In interdum felis fermentum ipsum molestie sed porttitor ligula rutrum. Morbi blandit ultricies ultrices. Vivamus nec lectus sed orci molestie molestie."<cite>- Client Name, Big Company</cite></p>#}
-                    {#</div>#}
-                    {#<div class="item">#}
-                        {#<p class="quote-text">"Adipiscing elit. In interdum felis fermentum ipsum molestie sed porttitor ligula rutrum. Morbi blandit ultricies ultrices. Vivamus nec lectus sed orci molestie molestie."<cite>- Another Client Name, Company Name</cite></p>#}
-                    {#</div>#}
-                    {#<div class="item">#}
-                        {#<p class="quote-text">"Mauris eget tellus sem. Cras sollicitudin sem eu elit aliquam quis condimentum nulla suscipit. Nam sed magna ante. Ut eget suscipit mauris."<cite>- On More Client, The Company</cite></p>#}
+            {#{% if entity.getArrayVideoId()|length > 0 %}#}
+                {#<div class="clearfix">#}
+                    {#<div class="row" style="padding: 4px; border: 1px solid #ddd;">#}
+                        {#<div class="span{% if entity.getArrayVideoId()|length > 1 %}6{% else %}8 one_video{% endif %}" id="frameVideo" style="margin-left: 0px;">#}
+                            {#<iframe width="520" height="390" src="http://www.youtube.com/embed/{{ entity.getArrayVideoId()[0] }}?fs=1&autoplay=0&loop=0" allowfullscreen></iframe>#}
+                        {#</div>#}
+                        {#{% if entity.getArrayVideoId()|length > 1 %}#}
+                        {#<div class="span2">#}
+                            {#<!--noindex-->#}
+                            {#<span class="sub_title_links">Еще видео:</span>#}
+                            {#<!--/noindex-->#}
+                            {#<ul id="yVideos">#}
+                                {#{% for v in entity.getArrayVideoId() %}#}
+                                    {#<li id="v_{{ v }}" data-v="{{ v }}">#}
+                                        {#<img src="http://img.youtube.com/vi/{{ v }}/mqdefault.jpg" width="150"/>#}
+                                        {#<div>{{ v }}</div>#}
+                                    {#</li>#}
+                                {#{% endfor %}#}
+                            {#</ul>#}
+                        {#</div>#}
+                        {#{% endif %}#}
                     {#</div>#}
                 {#</div>#}
-            {#</div>#}
-            <!-- Client Logo Thumbs-->
-            {#<ul class="client-logos">#}
-                {#<li><a href="#" class="client-link"><img src="img/gallery/client-img-1.png" alt="Client"></a></li>#}
-                {#<li><a href="#" class="client-link"><img src="img/gallery/client-img-2.png" alt="Client"></a></li>#}
-                {#<li><a href="#" class="client-link"><img src="img/gallery/client-img-3.png" alt="Client"></a></li>#}
-                {#<li><a href="#" class="client-link"><img src="img/gallery/client-img-4.png" alt="Client"></a></li>#}
-                {#<li><a href="#" class="client-link"><img src="img/gallery/client-img-5.png" alt="Client"></a></li>#}
-            {#</ul>#}
-            <script type="text/javascript">(function() {
-                    if (window.pluso)if (typeof window.pluso.start == "function") return;
-                    if (window.ifpluso==undefined) { window.ifpluso = 1;
-                        var d = document, s = d.createElement('script'), g = 'getElementsByTagName';
-                        s.type = 'text/javascript'; s.charset='UTF-8'; s.async = true;
-                        s.src = ('https:' == window.location.protocol ? 'https' : 'http')  + '://share.pluso.ru/pluso-like.js';
-                        var h=d[g]('body')[0];
-                        h.appendChild(s);
-                    }})();</script>
-            <div class="pluso" data-background="transparent" data-options="big,square,line,horizontal,counter,theme=05" data-services="vkontakte,odnoklassniki,facebook,twitter,google,moimir,email,print"></div>
-        </div>
-        <!--/noindex-->
-    </div>
-    <div class="row" id="block_comments">
-        <div class="span6">
-            <!--noindex-->
-            <div class="title-bg">Отзывы</div>
-            <!--/noindex-->
-            <div id="disqus_thread"></div>
-            <script type="text/javascript">
-                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                var disqus_shortname = 'dvestrahovki'; // required: replace example with your forum shortname
-
-                /* * * DON'T EDIT BELOW THIS LINE * * */
-                (function() {
-                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                })();
-            </script>
-        </div>
-        <div class="span6">
-        </div>
-    </div>
+            {#{% endif %}#}
 {% endblock %}
