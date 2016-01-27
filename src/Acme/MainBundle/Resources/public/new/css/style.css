@@ -542,7 +542,7 @@ input[type=radio]:checked + label:before {
 .post-article blockquote:before,
 .post-article blockquote:after{
     content: '';
-    position: absolutes;
+    position: absolute;
     background: url("../img/icons.png") no-repeat;
     width: 50px;
     height: 42px;
@@ -560,3 +560,35 @@ input[type=radio]:checked + label:before {
 .post-article a + blockquote {  padding-top: 0px;  border-top: 0px; margin-top: 0px; }
 .post-article a + blockquote:before {  margin-top: -41px; }
 .post-article a + blockquote:after {  margin-top: -41px; }
+
+
+.contentsBlock {
+    float:left;
+    width: 400px;
+    padding: 5px;
+    border: 1px solid #c1392b;
+    text-align: center;
+}
+.contentsBlock span{
+    margin-left: 15px;
+    font-size: 14px;
+    font-weight: bold;
+}
+#contentsGoTo {
+    margin-left: 0px;
+    list-style: decimal;
+    padding-left: 20px;
+    text-align: left;
+}
+#contentsGoTo li {
+    text-decoration: underline;
+    color:#c1392b;
+    font-size: 12px;
+    cursor: pointer;
+    margin: 0 0 5px 0;
+    background: none;
+    min-height: inherit;
+    line-height: 11px;
+    min-height: 16px;
+    padding-left: 0px;
+}
