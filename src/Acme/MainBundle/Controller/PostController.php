@@ -4,6 +4,7 @@ namespace Acme\MainBundle\Controller;
 
 use Acme\MainBundle\Entity\PostRepository;
 use Acme\MainBundle\Service\Perelink;
+use Acme\MainBundle\Service\PostEdit;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -29,7 +30,6 @@ class PostController extends Controller
      */
     public function showAction($category_url, $post_url)
     {
-        $links = array();
         $em = $this->getDoctrine()->getManager();
         $category = $em->getRepository('AcmeMainBundle:Category')->findOneByUrl($category_url);
         if (!$category) {
@@ -51,13 +51,15 @@ class PostController extends Controller
 
         $entities = $postRepo->findOther($entity);
         
-        $entity->oneMoreView();
-        $em->persist($entity);
-        $em->flush();
+//        $entity->oneMoreView();
+//        $em->persist($entity);
+//        $em->flush();
 
+        /** @var PostEdit $postEdit */
         $postEdit = $this->get('post.edit');
 
         $text = $entity->getText();
+        $contents = $postEdit->setContents($text);
 
         $cacheKey = 'post_pereink_'.$entity->getId();
         $cache = $this->get('cache.m');
@@ -88,7 +90,8 @@ class PostController extends Controller
         return array(
             'entity'        => $entity,
             'entities'      => $entities,
-            'links' => $links
+            'links' => $links,
+            'contents' => $contents
         );
     }
 

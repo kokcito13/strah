@@ -25,7 +25,7 @@
     </div>
 {% endblock %}
 
-{% block main %}
+{% block container %}
     <h2 class="text-center">Последние публикации</h2>
     <div class="row list-card-company">
         {% set i = 0 %}
@@ -50,7 +50,7 @@
                 </div>
             </div>
             {% set i = i+1 %}
-            {% if i == 3 or loop.last %}
+            {% if i == 4 or loop.last %}
                 {% set i = 0 %}
                 </div>
             {% endif %}

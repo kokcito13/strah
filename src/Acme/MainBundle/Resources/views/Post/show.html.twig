@@ -50,6 +50,27 @@
                 $(this).find('div').hide();
             });
         });
+
+        $(document).ready(function () {
+            $('#contentsGoTo li').click(function(){
+                var t = $(this).text().trim();
+                var hedLine = false;
+
+                $('#post_content h2, #post_content h3').each(function(index, item){
+                    if ( $(item).html().trim() == t) {
+                        hedLine = $(item);
+
+                        return false;
+                    }
+                });
+
+                if (hedLine) {
+                    $('html, body').animate({
+                        scrollTop: hedLine.offset().top + 'px'
+                    }, '500');
+                }
+            });
+        });
     </script>
 
     <!-- Go to www.addthis.com/dashboard to customize your tools -->
@@ -84,23 +105,68 @@
 {% endblock %}
 
 {% block container %}
+    <style>
+        .contentsBlock {
+            float:left;
+            width: 400px;
+            padding: 5px;
+            border: 1px solid #c1392b;
+            text-align: center;
+        }
+        .contentsBlock span{
+            margin-left: 15px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        #contentsGoTo {
+            margin-left: 0px;
+            list-style: decimal;
+            padding-left: 20px;
+            text-align: left;
+        }
+        #contentsGoTo li {
+            text-decoration: underline;
+            color:#c1392b;
+            font-size: 12px;
+            cursor: pointer;
+            margin: 0 0 5px 0;
+            background: none;
+            min-height: inherit;
+            line-height: 11px;
+            min-height: 16px;
+            padding-left: 0px;
+        }
+    </style>
     <div class="row">
         <section class="col-lg-8">
-            <article class="post-article">
-                <div class="post-article-head-img">
+            <article class="post-article" id="post_content">
+                <div class="post-article-head-img" style="float:left;">
                     <img src="{{ entity.getWebPath() | apply_filter('in_post') }}" alt="{{ entity.imageAlt }}"/>
                 </div>
+                {% if contents | length > 0 %}
+                    <div class="contentsBlock">
+                        <span>Содержание:</span>
+                        <ol id="contentsGoTo">
+                            {% for cont in contents %}
+                                <li>{{ cont }}</li>
+                            {% endfor %}
+                        </ol>
+                    </div>
+                {% endif %}
+                {#{% if app.environment == 'prod' %}#}
                 <div style="width: 100%; height: auto;">
                     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                    <!-- Strah post 1.1 -->
+                    <!-- devstrah post 1.1 -->
                     <ins class="adsbygoogle"
-                         style="display:inline-block;width:728px;height:300px"
+                         style="display:block"
                          data-ad-client="ca-pub-3861532892125732"
-                         data-ad-slot="8163153699"></ins>
+                         data-ad-slot="5102332899"
+                         data-ad-format="auto"></ins>
                     <script>
                         (adsbygoogle = window.adsbygoogle || []).push({});
                     </script>
                 </div>
+                {#{% endif %}#}
                 <!--start_content-->
                 {{ entity.text|raw }}
                 <!--end_content-->
@@ -114,7 +180,8 @@
                         {% endfor %}
                     </ul>
                 {% endif %}
-                <div style="width: 100%; height: auto;">
+                {#{% if app.environment == 'prod' %}#}
+                <div style="width: 100%; height: auto; text-align: center;">
                     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                     <!-- Strah post 1.2 -->
                     <ins class="adsbygoogle"
@@ -125,6 +192,7 @@
                         (adsbygoogle = window.adsbygoogle || []).push({});
                     </script>
                 </div>
+                {#{% endif %}#}
             </article>
         </section>
         <section class="col-lg-3 col-lg-offset-1">
@@ -152,6 +220,7 @@
                     </div>
                 {% endfor %}
             </div>
+            {% if app.environment == 'prod' %}
             <div class="row">
                 <div id="disqus_thread"></div>
                 <script type="text/javascript">
@@ -166,6 +235,7 @@
                     })();
                 </script>
             </div>
+            {% endif %}
         </section>
     </div>
             {#{% if entity.getArrayVideoId()|length > 0 %}#}
