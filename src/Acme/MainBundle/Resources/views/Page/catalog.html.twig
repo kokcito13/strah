@@ -1,84 +1,52 @@
-{% extends '::base.html.twig' %}
+{% extends '::base_new.html.twig' %}
 
-{% block title %}{{ title }}{% endblock %}
-{% block description %}{{ description }}{% endblock %}
+{% block title %}Страховые компании в {{ currentCity() }} с полной иформацией об отделениях.{% endblock %}
+{% block description %}Список страховых компаний {{ currentCity() }} с адресами и телефонами и другой доступной информацией, а такжи рейтинги и отзывы.{% endblock %}
 {% block keywords %}{{ keywords }}{% endblock %}
 
-{% block body %}
-    <div class="row gallery-row catalog">
-        <div class="span1"></div>
-        <div class="span10">
-            <div class="row clearfix">
-                <div id="map"></div>
-            </div>
-            <div class="row clearfix">
-                {% for company in companies %}
-                <div class="row">
-                    <div class="span4">
-                        <a href="{{ path('client_company_show', {
-                        "city_url": company.city.url,
-                        "company_url": company.url
-                        }) }}" rel="nofollow">
-                            <div class="block_logo">
-                                <img src="{{ company.getWebPath() | apply_filter('thumbnail_catalog_company') }}" alt="{{ company.getImageAltView() }}">
-                            </div>
-                        </a>
-                    </div>
-                    <div class="span6">
-                        <div class="h5"><a href="{{ path('client_company_show', {
-                            "city_url": company.city.url,
-                            "company_url": company.url
-                            }) }}">{{ company.name }}</a></div>
-                        <blockquote>
-                            <small><strong>Отзывов: <a href="{{ path('client_company_show_comments', {
-                                    "city_url": company.city.url,
-                                    "company_url": company.url
-                                    }) }}">{{ company.comments|length }}</a></strong></small>
-                            <small><strong>Рейтинг: {% if company.rating == 0 %}0.00{% else %}{{ company.rating/100 }}{% endif %}</strong></small>
-                        </blockquote>
-                    </div>
-                </div>
-                <hr/>
-                {% endfor %}
-            </div>
+{% set menu = 'catalogue' %}
+
+{% block headPage %}
+    <div class="container-fluid head-page">
+        <div class="container">
+            <ol itemscope itemtype="http://schema.org/BreadcrumbList" class="breadcrumb">
+                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                    <a itemprop="item" href="{{ path('homepage', {city: currentCity().slug}) }}" ><span itemprop="name">Главная</span></a>
+                    <meta itemprop="position" content="1" />
+                </li>
+                <li>
+                    Страховые компании в {{ currentCity().locative }}
+                </li>
+            </ol>
+            <h1>Список страховых компаний {{ currentCity().dative }}</h1>
+            <span class="text-muted">Отделений в {{ currentCity().locative }} {{ companies|length }}.</span>
         </div>
-        <div class="span1"></div>
     </div>
 {% endblock %}
 
-{% block stylesheets_after %}
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />
-    <link rel="stylesheet" href="http://leaflet.github.io/Leaflet.markercluster/dist/MarkerCluster.css" />
-    <link rel="stylesheet" href="http://leaflet.github.io/Leaflet.markercluster/dist/MarkerCluster.Default.css" />
-    <!--[if lte IE 8]><link rel="stylesheet" href="http://leaflet.github.io/Leaflet.markercluster/dist/MarkerCluster.Default.ie.css" /><![endif]-->
-    <style>
-        #map { height: 280px; }
-    </style>
-{% endblock %}
-{% block javascripts %}
-    <script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
-    <script src="http://leaflet.github.io/Leaflet.markercluster/dist/leaflet.markercluster-src.js"></script>
-    <script>
-        var map = L.map('map').setView([{{ city.lat }}, {{ city.lng }}], 12);
-        L.tileLayer('https://{s}.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-            maxZoom: 21,
-            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-            id: 'kokcito13.cied2t8vh001ytsm60v7w5q8m',
-            accessToken: 'pk.eyJ1Ijoia29rY2l0bzEzIiwiYSI6ImVjZmRjMzRhNWY5MGZjYTMyYzNiZmJkYjUyZTE1ZTg5In0.--vP7JCFV3dK3kLipXkXWg'
-        }).addTo(map);
-
-        var markers = new L.MarkerClusterGroup();
-        {% for company in companies %}
-            {% for point in company.points %}
-                var marker = L.marker([{{ point.lat }}, {{ point.lng }}]);
-                    marker
-                        .bindPopup("<a href=\"{{ path('client_company_show', {
-                            "city_url": company.city.url,
-                            "company_url": company.url
-                            }) }}\">{{ company.name }}</a><br />{{ point.address }}").openPopup();
-                markers.addLayer(marker);
-            {% endfor %}
-        {% endfor %}
-        map.addLayer(markers);
-    </script>
+{% block main %}
+    {% for company in companies %}
+        <div class="col-md-3">
+            <div class="company-card">
+                <div class="va-container">
+                    <div class="va-middle">
+                        <a href="{{ path('client_company_show', { city_url: entity.url, company_url: company.url }) }}">
+                            <img {% if company.imageName is not null %}src="{{ asset('/uploads/images/companies/'~company.imageName) }}"{% endif %} width="110" height="60">
+                        </a>
+                    </div>
+                </div>
+                <a href="{{ path('client_company_show', { city_url: entity.url, company_url: company.url }) }}" class="company-info">
+                    <div class="company-info-box">
+                        <h3>{{ company.name }}</h3>
+                        <div class="info-box clearfix">
+                            <span class="c-review">{{ company.getComments()|length }}</span>
+                            <span class="c-star">{% if company.rating == 0 %}0.00{% else %}{{ company.rating/100 }}{% endif %}</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    {% else %}
+        <div class="well">Компаний нет</div>
+    {% endfor %}
 {% endblock %}

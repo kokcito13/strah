@@ -13,44 +13,64 @@ use Doctrine\ORM\EntityRepository;
 class CompanyRepository extends EntityRepository
 {
 
-    /**
-     * @param bool $id
-     * @param bool $limit
-     * @return array
-     */
+	/**
+	 * @param bool|integer $id
+	 * @param bool|integer $limit
+	 * @param null|City $city
+	 * @return array
+	 */
     public function getTop($id = false, $limit = false, $city = null)
     {
-        $em = $this->getEntityManager();
+		$query = $this->createQueryBuilder('c')
+			->where('c.status = :status')
+			->setParameter('status', Company::STATUS_ON)
 
-        $query = $em->createQueryBuilder()
-            ->select('c')
-            ->from('AcmeMainBundle:Company', 'c');
+			->orderBy('c.rating', 'DESC')
+			->addOrderBy('c.id', 'DESC')
+		;
 
-        if ($id)
-            $query
-                ->where('c.id != :cId')
-                ->setParameter('cId', $id);
+        if ($id) {
+			$query
+				->where('c.id != :cId')
+				->setParameter('cId', $id)
+			;
+		}
+
 
         if ($city) {
             $query
-                ->join('c.city', 'city');
-            $query
+				->join('c.city', 'city')
                 ->where('city.id = :cityId')
-                ->setParameter('cityId', $city->getId());
+                ->setParameter('cityId', $city->getId())
+			;
         }
 
-        $query
-            ->andWhere('c.status = :status')
-            ->setParameter('status', Company::STATUS_ON)
-            ->orderBy('c.rating', 'DESC')
-            ->addOrderBy('c.id');
-
-        if ($limit) {
+        if ($limit)
             $query->setMaxResults($limit);
-        }
 
-        $result = $query->getQuery()->getResult();
+        return $query->getQuery()->getResult();
+    }
 
-        return $result;
+	/**
+	 * @param City $city
+	 * @param int $limit
+	 * @return array
+	 */
+	public function getPopularByCity(City $city, $limit = 4)
+	{
+		$query = $this->createQueryBuilder('com')
+			->join('com.city', 'city')
+
+			->where('city.id = :cityId AND com.status = :status')
+			->setParameter('cityId', $city->getId())
+//			->andWhere('com.status = :status')
+			->setParameter('status', Company::STATUS_ON)
+
+			->orderBy('com.rating', 'DESC')
+
+			->setMaxResults($limit)
+			;
+
+		return $query->getQuery()->getResult();
     }
 }

@@ -1,6 +1,7 @@
 <?php
 namespace Acme\MainBundle\Service;
 
+use Acme\MainBundle\Entity\City;
 use Doctrine\ORM\EntityManager;
 
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -45,6 +46,9 @@ class CityService
             ->findOneBy(array('url'=>$url));
     }
 
+	/**
+	 * @return null| City
+	 */
     public function getCity()
     {
         if (!$this->currentCity) {

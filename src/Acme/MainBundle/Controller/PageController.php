@@ -211,14 +211,13 @@ class PageController extends Controller
             ));
         }
 
-        $entities = $em->getRepository('AcmeMainBundle:Post')->findForPage(false, 4);
+		$entities = $em->getRepository('AcmeMainBundle:Post')->findForPage(false, 4);
 
         $city = $this->get('city.service')->getCity();
-
         $companiesPopular = $em->getRepository('AcmeMainBundle:Company')
-            ->getTop(false, 8, $city);
+			->findBy(array('city'=>$city, 'status'=>Company::STATUS_ON), array(), 8);
 
-        $comments = $em->getRepository('AcmeMainBundle:Comment')
+		$comments = $em->getRepository('AcmeMainBundle:Comment')
             ->getLastComments(5, $city);
 
         $commentsAll = $em->getRepository('AcmeMainBundle:Comment')
@@ -310,7 +309,7 @@ class PageController extends Controller
             'title' => $title,
             'description' => $description,
             'keywords' => $keywords,
-            'city' => $city
+            'entity' => $city
         );
     }
 }
