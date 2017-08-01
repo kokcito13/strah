@@ -47,8 +47,7 @@ class PostRepository extends EntityRepository
             ->select('p, c')
             ->from('AcmeMainBundle:Post', 'p')
             ->join('p.category', 'c')
-            ->where('c.id = :category')
-            ->andWhere('p.id > :post_id')
+            ->where('c.id = :category AND p.id > :post_id')
 
             ->setParameter('post_id', $post->getId())
             ->setParameter('category', $post->getCategory()->getId())

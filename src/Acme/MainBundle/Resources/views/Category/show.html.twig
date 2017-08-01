@@ -3,6 +3,12 @@
 {% block title %}{{ entity.title }}{% endblock %}
 {% block description %}{{ entity.description }}{% endblock %}
 
+{% block meta %}
+    {% if pageNum != false %}
+        <link rel="canonical" href="{{ url('client_category_show',{category_url: mainCategory}) }}"/>
+    {% endif %}
+{% endblock %}
+
 {% block breadcrumbs %}
     <div class="container-fluid head-page">
         <div class="container">
@@ -29,7 +35,7 @@
     <h2 class="text-center">Последние публикации</h2>
     <div class="row list-card-company">
         {% set i = 0 %}
-        {% for post in entities %}
+        {% for post in pagination %}
             {% if i == 0 %}
                 <div class="row">
             {% endif %}
@@ -55,6 +61,9 @@
                 </div>
             {% endif %}
         {% endfor %}
+    </div>
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
     </div>
     <div class="row">
         {{ entity.text|raw }}

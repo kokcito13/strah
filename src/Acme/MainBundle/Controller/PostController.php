@@ -50,10 +50,6 @@ class PostController extends Controller
         }
 
         $entities = $postRepo->findOther($entity);
-        
-//        $entity->oneMoreView();
-//        $em->persist($entity);
-//        $em->flush();
 
         /** @var PostEdit $postEdit */
         $postEdit = $this->get('post.edit');

@@ -23,7 +23,7 @@ class CategoryController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function showAction($category_url)
+    public function showAction($category_url, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('AcmeMainBundle:Category')->findOneByUrl($category_url);
@@ -32,10 +32,24 @@ class CategoryController extends Controller
         }
         $entities = $em->getRepository('AcmeMainBundle:Post')->findByCategory($entity, array('id' => 'DESC'));
 
+		$query = $em->createQuery('
+			SELECT p
+			FROM AcmeMainBundle:Post p
+			JOIN p.category catagory
+			WHERE catagory.id = '.$entity->getId().'
+			ORDER BY p.id DESC
+		');
+
+		$paginator = $this->get('knp_paginator');
+		$pagination = $paginator->paginate($query, $request->query->getInt('page', 1), 8);
+		$pagination->setUsedRoute('client_category_show');
+
         return array(
-            'entity' => $entity,
-            'entities' => $entities,
-            'mainCategory' => $category_url,
+			'entity' => $entity,
+			'entities' => $entities,
+			'pagination'=>$pagination,
+			'pageNum' => $request->query->get('page', false),
+			'mainCategory' => $category_url
         );
     }
 

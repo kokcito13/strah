@@ -31,7 +31,9 @@
                 <div class="va-container">
                     <div class="va-middle">
                         <a href="{{ path('client_company_show', { city_url: entity.url, company_url: company.url }) }}">
-                            <img {% if company.imageName is not null %}src="{{ asset('/uploads/images/companies/'~company.imageName) }}"{% endif %} width="110" height="60">
+                            <img {% if company.imageName is not null %}src="{{ company.getWebPath() | apply_filter('thumbnail_popular') }}"{% endif %}
+                                 alt="{{ company.getImageAltView() }}"
+                                 width="110" height="60">
                         </a>
                     </div>
                 </div>

@@ -193,25 +193,15 @@ class PageController extends Controller
     }
 
     /**
-     * @Route("/{city_url}", name="page_home", defaults={"city_url" = "moscow"})
+     * @Route("/{city_url}", name="page_home", defaults={"city_url" = "moscow"},
+	 *	requirements={"city_url":"moscow|sankt-peterburg|novosibirsk|perm|ekaterinburg|omsk|rostov-na-donu|samara|krasnoyarsk|krasnodar|nizhny-novgorod"})
      * @Template()
      */
-    public function indexAction($city_url)
+    public function indexAction($city_url, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $category = $em->getRepository('AcmeMainBundle:Category')->findOneBy(array('url'=>$city_url));
-        if ($category) {
-            $entities = $em->getRepository('AcmeMainBundle:Post')->findByCategory($category, array('id'=>'DESC'));
-
-            return $this->render('AcmeMainBundle:Category:show.html.twig', array(
-                'entity' => $category,
-                'entities' => $entities,
-                'mainCategory' => $category->getUrl()
-            ));
-        }
-
-		$entities = $em->getRepository('AcmeMainBundle:Post')->findForPage(false, 4);
+        $entities = $em->getRepository('AcmeMainBundle:Post')->findForPage(false, 4);
 
         $city = $this->get('city.service')->getCity();
         $companiesPopular = $em->getRepository('AcmeMainBundle:Company')
@@ -234,7 +224,8 @@ class PageController extends Controller
     /**
      * Rating of companies
      *
-     * @Route("/{city_url}/rating", name="company_rating", defaults={"city_url":"moscow"})
+     * @Route("/{city_url}/rating", name="company_rating", defaults={"city_url":"moscow"},
+	 *	requirements={"city_url":"moscow|sankt-peterburg|novosibirsk|perm|ekaterinburg|omsk|rostov-na-donu|samara|krasnoyarsk|krasnodar|nizhny-novgorod"})
      * @Method("GET")
      * @Template()
      */
@@ -265,7 +256,8 @@ class PageController extends Controller
     /**
      * Comments of companies
      *
-     * @Route("/{city_url}/comments", name="company_comments", defaults={"city_url":"moscow"})
+     * @Route("/{city_url}/comments", name="company_comments", defaults={"city_url":"moscow"},
+	 *	requirements={"city_url":"moscow|sankt-peterburg|novosibirsk|perm|ekaterinburg|omsk|rostov-na-donu|samara|krasnoyarsk|krasnodar|nizhny-novgorod"})
      * @Method("GET")
      * @Template()
      */
@@ -288,10 +280,11 @@ class PageController extends Controller
     }
 
     /**
-     * @Route("/{city_url}/companies", name="page_catalog", defaults={"city_url" = "moscow"})
+     * @Route("/{city_url}/companies", name="page_catalog", defaults={"city_url" = "moscow"},
+	 *	requirements={"city_url":"moscow|sankt-peterburg|novosibirsk|perm|ekaterinburg|omsk|rostov-na-donu|samara|krasnoyarsk|krasnodar|nizhny-novgorod"})
      * @Template()
      */
-    public function catalogAction()
+    public function catalogAction(Request $request)
     {
         $city = $this->get('city.service')->getCity();
         $em = $this->getDoctrine()->getManager();
@@ -299,10 +292,11 @@ class PageController extends Controller
         $title = 'Каталог страховых компаний города - '.$city->getName();
         $description = 'Информации о всех страховых компаниях  города - '.$city->getName();
         $keywords = 'каталог компании страховые агенты '.mb_strtolower($city->getName(), 'UTF8');
-        $companies = $em->getRepository('AcmeMainBundle:Company')->findBy(array(
+
+		$companies = $em->getRepository('AcmeMainBundle:Company')->findBy(array(
                 'city' => $city,
                 'status' => Company::STATUS_ON
-            ));
+            ), array('name' => 'ASC'));
 
         return array(
             'companies' => $companies,
