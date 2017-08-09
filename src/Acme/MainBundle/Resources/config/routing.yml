@@ -5,8 +5,3 @@ _index_page:
 #_default_controller:
 #    resource: "@AcmeMainBundle/Controller/DefaultController.php"
 #    type:     annotation
-
-#_demo:
-#    resource: "@AcmeDemoBundle/Controller/DemoController.php"
-#    type:     annotation
-#    prefix:   /demo
