@@ -71,41 +71,37 @@
     <div class="row">
         <section class="col-lg-8">
             <article class="post-article" id="post_content">
-                <div style="width: 100%;">
-                    {#<div>#}
-                        {#<div id="ContextTM_ID_1320"></div>#}
-                    {#</div>#}
-                <div class="post-article-head-img" style="float:left;">
-                    <img src="{{ entity.getWebPath() | apply_filter('in_post') }}" alt="{{ entity.imageAlt }}"/>
-                </div>
-                {% if contents | length > 0 %}
-                    <div class="contentsBlock">
-                        <span>Содержание:</span>
-                        <ol id="contentsGoTo">
-                            {% for cont in contents %}
-                                <li>{{ cont }}</li>
-                            {% endfor %}
-                        </ol>
+                <div style="width: 100%;display: table;">
+                    <div class="post-article-head-img" style="float:left;">
+                        <img src="{{ entity.getWebPath() | apply_filter('in_post') }}" alt="{{ entity.imageAlt }}"/>
                     </div>
-                {% endif %}
+                    {% if contents | length > 0 %}
+                        <div class="contentsBlock">
+                            <span>Содержание:</span>
+                            <ol id="contentsGoTo">
+                                {% for cont in contents %}
+                                    <li>{{ cont }}</li>
+                                {% endfor %}
+                            </ol>
+                        </div>
+                    {% endif %}
                 </div>
-                {% if app.environment == 'prod' %}
-                <div style="width: 100%; height: 300px; display: block; margin: 10px 0 10px 0;">
-                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                    <!-- devstrah post 1.1 -->
-                    <ins class="adsbygoogle"
-                         style="display:block"
-                         data-ad-client="ca-pub-3861532892125732"
-                         data-ad-slot="5102332899"
-                         data-ad-format="auto"></ins>
-                    <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
-                </div>
-                {% endif %}
                 <!--start_content-->
                 {{ entity.text|raw }}
                 <!--end_content-->
+                {% if app.environment == 'prod' %}
+                    <div style="width: 100%; height: auto; text-align: center;">
+                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <!-- Strah post 1.2 -->
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:580px;height:400px"
+                             data-ad-client="ca-pub-3861532892125732"
+                             data-ad-slot="9639886896"></ins>
+                        <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                    </div>
+                {% endif %}
                 {% if links | length > 0 %}
                     <span>Похожие публикации:</span>
                     <ul>
@@ -115,19 +111,6 @@
                             </li>
                         {% endfor %}
                     </ul>
-                {% endif %}
-                {% if app.environment == 'prod' %}
-                <div style="width: 100%; height: auto; text-align: center;">
-                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                    <!-- Strah post 1.2 -->
-                    <ins class="adsbygoogle"
-                         style="display:inline-block;width:580px;height:400px"
-                         data-ad-client="ca-pub-3861532892125732"
-                         data-ad-slot="9639886896"></ins>
-                    <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
-                </div>
                 {% endif %}
             </article>
         </section>
@@ -156,19 +139,6 @@
                     </div>
                 {% endfor %}
             </div>
-            {% if app.environment == 'prod' %}
-            <div class="row">
-                <div id="disqus_thread"></div>
-                <script type="text/javascript">
-                    var disqus_shortname = 'dvestrahovki';
-                    (function() {
-                        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                    })();
-                </script>
-            </div>
-            {% endif %}
         </section>
     </div>
 {% endblock %}

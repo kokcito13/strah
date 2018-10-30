@@ -27,18 +27,32 @@ class PostEdit
 //Тут код нашего адика
 //EODVIDEOS;
 
-        // 2 - номер после какого абзаца и <<<EOD1 ... EOD1; - содержимое что будет выводится
-//        $arrAdvert['2'] = <<<EOD2
-//                                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-//                            <!-- SB в тексте №2 -->
-//                            <ins class="adsbygoogle"
-//                                 style="display:inline-block;width:580px;height:400px"
-//                                 data-ad-client="ca-pub-3861532892125732"
-//                                 data-ad-slot="4583620893"></ins>
-//                            <script>
-//                            (adsbygoogle = window.adsbygoogle || []).push({});
-//                            </script>
-//EOD2;
+        $arrAdvert['1'] = <<<EOD1
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Links Top 1.1, DveStrahovki -->
+<ins class="adsbygoogle"
+     style="display:block;height:300px;"
+     data-ad-client="ca-pub-3861532892125732"
+     data-ad-slot="9189303239"
+     data-ad-format="link"
+     data-full-width-responsive="true"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+EOD1;
+        $arrAdvert['last'] = <<<EOD9
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Links Bot 1.1, DveStrahovki -->
+<ins class="adsbygoogle"
+     style="display:block;height:300px;"
+     data-ad-client="ca-pub-3861532892125732"
+     data-ad-slot="1825818536"
+     data-ad-format="link"
+     data-full-width-responsive="true"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+EOD9;
 
         return $this->getContents($text, $arrAdvert);
     }
